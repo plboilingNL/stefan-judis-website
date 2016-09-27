@@ -6,7 +6,7 @@ const server = http.createServer((req, res) => {
   res.end('ok')
 
   setTimeout(() => {
-    exec( 'npm start', { env: process.env }, (error) => {
+    exec( 'npm start', { env: process.env, cwd: __dirname }, (error) => {
       if ( error ) {
         return console.log(error)
       }
