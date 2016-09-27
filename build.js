@@ -34,9 +34,6 @@ if ( ! spaceId && ! token ) {
   `)
 }
 
-// 'f20lfrunubsq'
-// '0f72dc3f46a2fd76a80145a476ef0f9daf5adce19462787499c1b0f4f2d1c98e'
-
 Metalsmith(__dirname)
   .source('src')
   .destination(path.resolve(destination))
