@@ -2,15 +2,17 @@ const http = require('http')
 const exec = require('child_process').exec
 
 const server = http.createServer((req, res) => {
-  exec( 'npm start', { env: process.env }, (error) => {
-    if ( error ) {
-      res.end('error')
-      return console.log(error)
-    }
+  res.end('ok')
 
-    res.end('ok')
-    console.log('Page rebuilt')
-  })
+  setTimeout(() => {
+    exec( 'npm start', { env: process.env }, (error) => {
+      if ( error ) {
+        return console.log(error)
+      }
+
+      console.log('Rebuilt success')
+    })
+  }, 1000 * 120 )
 })
 
 server.listen(8000);
