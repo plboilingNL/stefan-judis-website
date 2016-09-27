@@ -1,12 +1,14 @@
 const http = require('http')
 const exec = require('child_process').exec
+const config = require('./config.json')
+
 
 const server = http.createServer((req, res) => {
   res.setHeader('Content-Type', 'text/html');
   res.end('ok')
 
   setTimeout(() => {
-    exec( 'npm start', { env: process.env, cwd: __dirname }, (error) => {
+    exec( 'npm start', { env: Object.assign( {}, process.env, config ), cwd: __dirname }, (error) => {
       if ( error ) {
         return console.log(error)
       }
