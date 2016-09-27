@@ -15,4 +15,5 @@ const server = http.createServer((req, res) => {
   }, 1000 * 120 )
 })
 
+console.log('Started server at 8000')
 server.listen(8000);
