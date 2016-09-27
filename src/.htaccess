@@ -6,6 +6,8 @@ RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTP_HOST} !=www.stefanjudis.de
 RewriteRule (.*) http://www.stefanjudis.de/$1 [R=301,L]
 
+# add node endpoint to enable webhooks
+RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
 
 
 # ----------------------------------------------------------------------
