@@ -1,0 +1,165 @@
+.o-section {
+  padding : 7.5em 2em;
+
+  color : #fff;
+
+  background-position : center center;
+  background-size : auto 100%;
+
+  &--black {
+    background-color : #333;
+
+    ::selection {
+      background : #fff;
+      color      : #444;
+    }
+  }
+
+  &--blue {
+    background-color : #3a99d8;
+
+    ::selection {
+      background : #fff;
+      color      : #3a99d8;
+    }
+  }
+
+  &--red {
+    background-color : #e54d42;
+
+    ::selection {
+      background : #fff;
+      color      : #e54d42;
+    }
+  }
+
+  &--green {
+    background-color : #29bb9c;
+
+    ::selection {
+      background : #fff;
+      color      : #29bb9c;
+    }
+  }
+
+  &--yellow {
+    background-color : #fefff4;
+    color : #444;
+  }
+
+  &--small {
+    padding : 2.5em 2em;
+  }
+
+  &__content {
+    font-size   : 1.25em;
+    line-height : 1.5;
+    letter-spacing: .5px;
+
+    p {
+      margin-bottom : .8em;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family    : 'ArgentCF-Regular', serif;
+      letter-spacing : .1em;
+    }
+
+    strong {
+      font-weight : 500;
+    }
+
+    pre {
+      width    : 100vw;
+      position : relative;
+      left     : 50%;
+      right    : 50%;
+
+      background : #fff;
+
+      margin-left: -50vw;
+      margin-right: -50vw;
+
+      padding: 1em 2em;
+      border: 1px solid #f1f1f1;
+
+      &::before {
+        position : absolute;
+
+        top  : -1px;
+        right : 0;
+
+        padding : .25em .5em;
+
+        font-size   : .8em;
+        font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+        background : #29bb9c;
+        color      : #fff;
+
+        content : '<>';
+      }
+
+      code {
+        display   : block;
+        position  : relative;
+
+        max-width : 55em;
+
+        font-size : 1em;
+
+        left      : 50%;
+        transform : translate( -50%, 0 );
+
+        background : transparent;
+        color : inherit;
+
+        overflow : auto;
+      }
+    }
+
+    code {
+      font-size : 1.25em;
+      font-weight : 400;
+    }
+  }
+
+
+
+  &__headline {
+    font-family    : 'ArgentCF-Regular', serif;
+    font-size      : 2.5em;
+    letter-spacing : 3px;
+
+    margin : 0 0 .25em 0;
+
+    @media (min-width:30em) {
+      font-size : 3.5em;
+      margin-bottom : .25em;
+    }
+  }
+
+  &__smallHeadline {
+    font-family    : 'ArgentCF-Regular', serif;
+    font-size      : 2.25em;
+    letter-spacing : 3px;
+
+    margin : 0 0 1em 0;
+  }
+
+  &__subHeadline {
+    font-size : 2em;
+
+    margin-bottom : 2em;
+
+    a {
+      text-decoration : none;
+
+      &::after {
+        margin-left : .5em;
+
+        content : '⟶';
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html class="" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>
+    {{ title }}
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style/main.css">
+</head>
+
+<body>
+  {{> navigation }}
+
+  <main>
+    <section class="o-section o-section--green c-navigation__container">
+      <div class="o-container">
+        <h1 class="o-section__headline">{{common.me.items.[0].fields.welcomeMessage}}</h1>
+        <div class="u-marginTop">
+          {{> author author=common.me.items.[0] }}
+        </div>
+      </div>
+    </section>
+
+    <section class="o-section o-section--blue">
+      <div class="o-container">
+        <h2 class="o-section__headline">Check out my Blog</h2>
+        <div class="o-section__subHeadline">
+          <p>When I'm not coding, I'm writing.</p>
+        </div>
+
+        <ul class="o-list-thirds u-marginTopLarge u-marginBottomLarge">
+          {{#eachLimit common.recent_posts.items 3 }}
+            <li class="o-list-thirds__item">
+              {{> articles/small this }}
+          {{/eachLimit}}
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="o-section o-section--black" style="background-image: url(https://images.contentful.com/f20lfrunubsq/4Oz29xFflegGIgUOAc2m6I/6f20b3af06cc26331f579aaf1bc3f915/talksBg.jpg);">
+      <div class="o-container">
+        <h2 class="o-section__headline">Talks</h2>
+        <ul class="o-list-thirds u-marginTopLarge u-marginBottomLarge">
+          {{#eachLimit common.recent_talks.items 3 }}
+            <li class="o-list-thirds__item">
+              {{> talks/small this }}
+          {{/eachLimit}}
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="o-section o-section--red">
+      <div class="o-container">
+        <h3 class="o-section__headline">Projects</h3>
+        <div class="o-section__subHeadline">
+          <p>Check out my latest projects at <a href="https://github.com/stefanjudis">GitHub</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<div class="c-post">
+  {{#if fields.date }}
+    <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
+  {{/if}}
+
+  <h3 class="o-headline-3">
+    <a href="{{ fields.slug }}.html">{{ fields.title }}</a>
+  </h3>
+
+  <p class="u-marginTopAuto"><a href="{{ fields.slug }}.html" class="u-underline">Read more <span aria-hidden="true">⟶</span></a></p>
+</div>

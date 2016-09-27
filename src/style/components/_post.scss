@@ -1,0 +1,19 @@
+.c-post {
+  display : flex;
+  flex-direction : column;
+
+  height : 100%;
+
+  &__canonical {
+    padding : 1em 0;
+
+    font-size : 1.25em;
+    border-bottom : 1px solid #eee;
+
+    margin-bottom : 1em;
+  }
+
+  &__date {
+    margin-bottom : .5em;
+  }
+}

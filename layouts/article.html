@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>
+    {{ data.fields.title }}
+  </title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="style/main.css">
+
+  {{#if fields.crosslink }}
+    <link rel="canonical" href="{{ fields.crosslink.fields.url }}">
+  {{/if}}
+</head>
+
+<body>
+  <!--[if lt IE 8]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+  {{> navigation }}
+
+
+  <main>
+    <section class="o-section o-section--yellow c-navigation__container">
+      <div class="o-container">
+        <date class="o-date u-marginBottom">{{#date data.fields.date}}{{/date}}</date>
+        <h1 class="o-section__smallHeadline">{{ data.fields.title }}</h1>
+        {{#if data.fields.crosslink }}
+          <div class="c-post__canonical" role="alert">This post was initially published at <a href="{{ data.fields.crosslink.fields.url }}">{{ data.fields.crosslink.fields.originalName }}</a>.</div>
+        {{/if}}
+        <div class="o-section__content">{{#marked data.fields.body }}{{/marked}}</div>
+      </div>
+    </section>
+    <footer class="o-section o-section--green o-section--small">
+      <div class="o-container">
+        {{> author author=data.fields.author.[0] }}
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
