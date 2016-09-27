@@ -2,6 +2,7 @@ const http = require('http')
 const exec = require('child_process').exec
 
 const server = http.createServer((req, res) => {
+  res.setHeader('Content-Type', 'text/html');
   res.end('ok')
 
   setTimeout(() => {
