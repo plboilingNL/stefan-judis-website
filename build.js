@@ -49,7 +49,7 @@ Metalsmith(__dirname)
 
       recent_posts: {
         content_type: '2wKn6yEnZewu2SCCkus4as',
-        order: 'sys.createdAt'
+        order: '-fields.date'
       },
 
       recent_talks: {
