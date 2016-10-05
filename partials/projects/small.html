@@ -1,0 +1,10 @@
+<div class="c-project">
+  <h3 class="o-headline-3">{{ fields.title }}</h3>
+  <p>{{ fields.description }}</p>
+
+  {{#if fields.url}}
+    <p class="u-marginTopAuto">
+      <a href="{{ fields.url }}">Check out the project</a>
+    </p>
+  {{/if}}
+</div>

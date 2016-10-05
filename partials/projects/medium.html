@@ -1,0 +1,9 @@
+<div class="c-project">
+  <h3 class="o-headline-3">{{ fields.title }}</h3>
+
+  {{#if fields.description }}
+    <section>{{#marked fields.description}}{{/marked}}</section>
+  {{/if}}
+
+  <p><a href="{{ fields.url }}">Check out the project</a></p>
+</div>
