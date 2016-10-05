@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
   res.end('ok')
 
   setTimeout(() => {
-    exec( 'npm start', { env: Object.assign( {}, process.env, config ), cwd: __dirname }, (error) => {
+    exec( 'npm start', { cwd: __dirname }, (error) => {
       if ( error ) {
         return console.log(error)
       }

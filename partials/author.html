@@ -1,6 +1,9 @@
 <div class="c-author c-author--small">
 
-  <img class="c-author__image" src="{{ common.me.items.0.fields.profilePhoto.fields.file.url }}" alt="{{ common.me.items.0.fields.name }}">
+  <img class="c-author__image"
+      src="{{ common.me.items.0.fields.profilePhoto.fields.file.url }}?w=150"
+      srcset="{{ common.me.items.0.fields.profilePhoto.fields.file.url }}?w=150 1x, {{ common.me.items.0.fields.profilePhoto.fields.file.url }}?w=300 2x"
+      alt="{{ common.me.items.0.fields.name }}">
 
   <div class="c-author__biography">
     <div>{{#marked author.fields.biography }}{{/marked}}</div>

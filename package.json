@@ -8,7 +8,7 @@
     "url": "https://github.com/contentful-labs/contentful-metalsmith-example"
   },
   "scripts": {
-    "dev": "run-p watch serve",
+    "dev": "MODE=PREVIEW run-p watch serve",
     "serve": "live-server ./build",
     "start": "node build.js",
     "lint": "standard \"helpers/**/*.js\" \"build.js\"",
