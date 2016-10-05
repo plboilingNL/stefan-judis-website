@@ -22,24 +22,22 @@ glob.sync('helpers/*.js').forEach((fileName) => {
 })
 
 // Environment variable handling
-const spaceId = process.env.SPACE_ID
-const token = process.env.TOKEN
-const destination = process.env.DESTINATION || 'build'
+const config = require('./config.json')
+const mode = process.env.MODE || 'DELIVERY'
 
-if ( ! spaceId && ! token ) {
+if ( ! config[mode].SPACE_ID && ! config[mode].TOKEN ) {
   throw new Error(`
-    Please define space id and access token via environment variables:
-
-    SPACE_ID=YOUR_ID TOKEN=YOUR_ACCESS_TOKEN npm start
+    Please define SPACE_ID and TOKEN in your config.json
   `)
 }
 
 Metalsmith(__dirname)
   .source('src')
-  .destination(path.resolve(destination))
+  .destination(path.resolve(config[mode].DESTINATION))
   .use(contentful({
-    space_id: spaceId,
-    access_token: token,
+    space_id: config[mode].SPACE_ID,
+    access_token: config[mode].TOKEN,
+    host: mode === 'PREVIEW' ? 'preview.contentful.com' : 'cdn.contentful.com',
     common: {
       me: {
         filter: {
