@@ -35,15 +35,38 @@
       transition: background 0.3s, color .3s;
       background-position: 0 100%;
 
+
       &:hover {
-        color : #29bb9c;
+        .home & {
+          color: $green;
+        }
+
+        .writing & {
+          color: $blue;
+        }
+
+        .coding & {
+          color: $red;
+        }
+
 
         background-position : 0 0;
       }
 
       &:active {
         transition: background 0.4s;
-        color : #09795c;
+
+        .home & {
+          color : $green-dark;
+        }
+
+        .writing & {
+          color: $blue-dark;
+        }
+
+        .coding & {
+          color: $red-dark;
+        }
       }
     }
 
