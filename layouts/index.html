@@ -59,6 +59,12 @@
     <section class="o-section o-section--red">
       <div class="o-container">
         <h3 class="o-section__headline">Projects</h3>
+        <ul class="o-list-thirds u-marginTopLarge u-marginBottomLarge">
+          {{#eachLimit common.recent_projects.items 3 }}
+            <li class="o-list-thirds__item">
+              {{> projects/small this }}
+          {{/eachLimit}}
+        </ul>
         <div class="o-section__subHeadline">
           <p>Check out my latest projects at <a href="https://github.com/stefanjudis">GitHub</a></p>
         </div>

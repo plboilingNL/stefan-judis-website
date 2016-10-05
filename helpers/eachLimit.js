@@ -1,6 +1,7 @@
 module.exports = function (context, limit, options) {
-  var ret = ''
+  context = context || []
 
+  var ret = ''
   var limitContext = context.slice( 0, limit )
 
   for (var i = 0, j = limitContext.length; i < j; i++) {

@@ -53,6 +53,10 @@ Metalsmith(__dirname)
       recent_talks: {
         content_type: 'talk',
         order: '-fields.date'
+      },
+
+      recent_projects: {
+        content_type: 'project'
       }
     }
   }))
