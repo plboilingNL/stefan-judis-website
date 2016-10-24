@@ -33,19 +33,24 @@
 
       </div>
     </section>
+    {{#if data.fields.comments}}
     <section class="o-section o-section--yellow o-section--small">
       <div class="o-container">
         <h3 class="o-section__smallHeadline">Any comments?</h3>
         <div id="disqus_thread"></div>
       </div>
     </section>
+    {{/if}}
     <footer class="o-section o-section--green o-section--small">
       <div class="o-container">
         {{> author author=data.fields.author.[0] }}
       </div>
     </footer>
   </main>
+  {{#if data.fields.comments}}
+    {{> discuss}}
+  {{/if}}
+
   {{> tracking}}
-  {{> discuss}}
 </body>
 </html>
