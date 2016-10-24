@@ -58,6 +58,15 @@ Metalsmith(__dirname)
 
       recent_projects: {
         content_type: 'project'
+      },
+
+      upcoming_events: {
+        content_type: 'event',
+        order: 'fields.start',
+        filter: {
+          'fields.state[in]': 'attending,accepted',
+          'fields.start[gte]' : (new Date()).toISOString()
+        }
       }
     }
   }))

@@ -24,6 +24,8 @@
     border : .25em solid #fff;
     box-shadow : 0 0px 5px #555;
 
+    align-self: flex-start;
+
     @media (min-width: 42em) {
       margin : 0 2em 0 0;
     }
