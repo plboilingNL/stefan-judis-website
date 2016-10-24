@@ -94,7 +94,7 @@
         font-size   : .8em;
         font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
-        background : $green;
+        background : $blue;
         color      : #fff;
 
         content : '<>';
@@ -114,13 +114,21 @@
         background : transparent;
         color : inherit;
 
+        border: none;
+
         overflow : auto;
       }
     }
 
     code {
-      font-size : 1.25em;
+      font-size : 1em;
       font-weight : 400;
+
+      padding: .125em;
+      background: #fff;
+      color: $blue-dark;
+
+      border-radius: .25em;
     }
   }
 
