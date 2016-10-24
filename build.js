@@ -4,8 +4,8 @@ const Metalsmith = require('metalsmith')
 const layouts = require('metalsmith-layouts')
 const assets = require('metalsmith-assets')
 const sass = require('metalsmith-sass')
+const replace = require('metalsmith-text-replace')
 const contentful = require('contentful-metalsmith')
-
 const handlebars = require('handlebars')
 
 // add custom helpers to handlebars
@@ -63,6 +63,12 @@ Metalsmith(__dirname)
   .use(layouts({
     engine: 'handlebars',
     partials: 'partials'
+  }))
+  .use(replace({
+    '**/*.html': {
+      find: '__DISCUSS_URL__',
+      replace: config.DISCUSS.URL
+    }
   }))
   .use(assets({
     source: 'assets/',

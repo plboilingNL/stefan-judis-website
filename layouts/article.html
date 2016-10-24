@@ -22,7 +22,7 @@
 
 
   <main>
-    <section class="o-section o-section--yellow c-navigation__container">
+    <section class="o-section o-section--yellow o-section--small">
       <div class="o-container">
         <date class="o-date u-marginBottom">{{#date data.fields.date}}{{/date}}</date>
         <h1 class="o-section__smallHeadline">{{ data.fields.title }}</h1>
@@ -30,6 +30,13 @@
           <div class="c-post__canonical" role="alert">This post was initially published at <a href="{{ data.fields.crosslink.fields.url }}">{{ data.fields.crosslink.fields.originalName }}</a>.</div>
         {{/if}}
         <div class="o-section__content">{{#marked data.fields.body }}{{/marked}}</div>
+
+      </div>
+    </section>
+    <section class="o-section o-section--yellow o-section--small">
+      <div class="o-container">
+        <h3 class="o-section__smallHeadline">Any comments?</h3>
+        <div id="disqus_thread"></div>
       </div>
     </section>
     <footer class="o-section o-section--green o-section--small">
@@ -39,5 +46,6 @@
     </footer>
   </main>
   {{> tracking}}
+  {{> discuss}}
 </body>
 </html>
