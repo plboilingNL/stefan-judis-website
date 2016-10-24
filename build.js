@@ -7,6 +7,7 @@ const sass = require('metalsmith-sass')
 const replace = require('metalsmith-text-replace')
 const contentful = require('contentful-metalsmith')
 const handlebars = require('handlebars')
+const htmlMinifier = require('metalsmith-html-minifier')
 
 // add custom helpers to handlebars
 // https://github.com/superwolff/metalsmith-layouts/issues/63
@@ -70,6 +71,7 @@ Metalsmith(__dirname)
       replace: config.DISCUSS.URL
     }
   }))
+  .use(htmlMinifier())
   .use(assets({
     source: 'assets/',
     destination: 'assets/'
