@@ -17,7 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "contentful-metalsmith": "^0.5.0",
+    "contentful-metalsmith": "^0.7.0",
     "dateformat": "^1.0.12",
     "gazer": "^0.0.3",
     "glob": "^7.0.6",
