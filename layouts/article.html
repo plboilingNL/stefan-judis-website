@@ -3,6 +3,8 @@
 <head>
   {{> head title=data.fields.title description=data.fields.description fingerprint=fingerprint }}
 
+  <meta name="theme-color" content="#3a99d8">
+
   {{#if fields.crosslink }}
     <link rel="canonical" href="{{ fields.crosslink.fields.url }}">
   {{/if}}
