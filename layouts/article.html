@@ -1,7 +1,7 @@
 <!doctype html>
 <html class="" lang="en">
 <head>
-  {{> head data.fields }}
+  {{> head title=data.fields.title description=data.fields.description fingerprint=fingerprint }}
 
   {{#if fields.crosslink }}
     <link rel="canonical" href="{{ fields.crosslink.fields.url }}">
@@ -10,7 +10,6 @@
 
 <body class="writing">
   {{> navigation }}
-
 
   <main>
     <section class="o-section o-section--yellow o-section--small">
