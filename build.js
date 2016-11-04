@@ -70,7 +70,7 @@ Metalsmith(__dirname)
         content_type: 'event',
         order: 'fields.start',
         filter: {
-          'fields.state[in]': 'attending,accepted',
+          'fields.state[in]': 'attending,accepted,teaching',
           'fields.start[gte]' : (new Date()).toISOString()
         }
       }
