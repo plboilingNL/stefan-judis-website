@@ -3,12 +3,20 @@
     <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
   {{/if}}
   <h3 class="o-headline-3">
-    <a href="{{ _fileName }}">{{ fields.title }}</a>
+    {{#if fields.externalUrl }}
+      <a href="{{ fields.externalUrl }}">{{ fields.title }}</a>
+    {{else}}
+      <a href="{{ _fileName }}">{{ fields.title }}</a>
+    {{/if}}
   </h3>
 
   {{#if fields.excerpt }}
     <section>{{#marked fields.excerpt}}{{/marked}}</section>
   {{/if}}
 
-  <p class="u-marginTopAuto"><a href="{{ _fileName }}" class="u-underline">Read more</a></p>
+  {{#if fields.externalUrl }}
+    <p class="u-marginTopAuto">Read on <a href="{{ fields.externalUrl }}" target="blank" rel="noopener">{{mainUrl fields.externalUrl }}</a></p>
+  {{else}}
+    <p class="u-marginTopAuto"><a href="{{ _fileName }}" class="u-underline">Read the full article</a></p>
+  {{/if}}
 </div>

@@ -7,5 +7,10 @@
     <a href="{{ fields.slug }}.html">{{ fields.title }}</a>
   </h3>
 
-  <p class="u-marginTopAuto"><a href="{{ fields.slug }}.html" class="u-underline">Read more</a></p>
+  {{#if fields.externalUrl }}
+    <p class="u-marginTopAuto">Read on <a href="{{ fields.externalUrl }}" target="blank" rel="noopener">{{mainUrl fields.externalUrl }}</a></p>
+  {{else}}
+    <p class="u-marginTopAuto"><a href="{{ fields.slug }}.html" class="u-underline">Read the article</a></p>
+  {{/if}}
+
 </div>
