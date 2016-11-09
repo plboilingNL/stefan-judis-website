@@ -14,7 +14,9 @@
       <div class="o-container">
         <date class="o-date u-marginBottom">{{#date data.fields.date}}{{/date}}</date>
         <h1 class="o-section__smallHeadline">{{ data.fields.title }}</h1>
-        <div class="o-section__content">{{#marked data.fields.body }}{{/marked}}</div>
+        {{#if data.fields.body}}
+          <div class="o-section__content">{{#marked data.fields.body }}{{/marked}}</div>
+        {{/if}}
 
       </div>
     </section>
