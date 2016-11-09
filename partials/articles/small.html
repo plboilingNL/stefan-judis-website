@@ -4,7 +4,11 @@
   {{/if}}
 
   <h3 class="o-headline-3">
-    <a href="{{ fields.slug }}.html">{{ fields.title }}</a>
+    {{#if fields.externalUrl }}
+      <a href="{{ fields.externalUrl }}">{{ fields.title }}</a>
+    {{else}}
+      <a href="{{ fields.slug }}.html">{{ fields.title }}</a>
+    {{/if}}
   </h3>
 
   {{#if fields.externalUrl }}
