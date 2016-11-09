@@ -4,10 +4,6 @@
   {{> head title=data.fields.title description=data.fields.description fingerprint=fingerprint }}
 
   <meta name="theme-color" content="#3a99d8">
-
-  {{#if fields.crosslink }}
-    <link rel="canonical" href="{{ fields.crosslink.fields.url }}">
-  {{/if}}
 </head>
 
 <body class="writing">
@@ -18,9 +14,6 @@
       <div class="o-container">
         <date class="o-date u-marginBottom">{{#date data.fields.date}}{{/date}}</date>
         <h1 class="o-section__smallHeadline">{{ data.fields.title }}</h1>
-        {{#if data.fields.crosslink }}
-          <div class="c-post__canonical" role="alert">This post was initially published at <a href="{{ data.fields.crosslink.fields.url }}">{{ data.fields.crosslink.fields.originalName }}</a>.</div>
-        {{/if}}
         <div class="o-section__content">{{#marked data.fields.body }}{{/marked}}</div>
 
       </div>
