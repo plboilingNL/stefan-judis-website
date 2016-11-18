@@ -47,12 +47,11 @@
     if (navigator.share !== undefined) {
       var SHARE_BTN = document.querySelector('.shareBtn');
 
-      SHARE_BTN.textContent = 'Share';
       SHARE_BTN.addEventListener('click', function (ev) {
 
         navigator.share({
           title: document.title,
-          url: document.querySelector('link[rel=canonical]') ? document.querySelector('link[rel=canonical]').href : window.location.href
+          url: window.location.href
         }).then(() => console.log('Successful share'))
         .catch((error) => console.log('Error sharing:', error));
 
