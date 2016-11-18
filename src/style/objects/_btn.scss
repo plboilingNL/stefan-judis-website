@@ -1,0 +1,20 @@
+.shareBtn {
+  background: $blue-dark;
+  color: #fff;
+  padding: .5em;
+  display: inline-block;
+
+  &:hover, &:focus {
+    background: $blue;
+    color: #fff !important;
+  }
+
+  svg {
+    width: 1.5em;
+    fill: currentColor;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -.375em;
+    margin-right: .25em;
+  }
+}
