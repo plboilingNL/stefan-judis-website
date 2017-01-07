@@ -24,6 +24,8 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
           SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
           RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
           Header set Connection keep-alive
+          Header set Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel="preload";as="font";crossorigin
+          Header set Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>;rel="preload";as="image";
       </IfModule>
   </IfModule>
 
