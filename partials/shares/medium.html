@@ -1,0 +1,16 @@
+<div class="c-post">
+  {{#if fields.date }}
+    <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
+  {{/if}}
+  <h3 class="o-headline-3">
+    <a href="{{ fields.url }}">{{ fields.title }}</a>
+  </h3>
+
+  {{#if fields.description }}
+    <section>{{#marked fields.description }}{{/marked}}</section>
+  {{/if}}
+
+  <div class="u-marginTop">
+    {{#categories fields.category }}{{/categories}}
+  </div>
+</div>

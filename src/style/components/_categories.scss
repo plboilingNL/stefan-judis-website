@@ -1,0 +1,11 @@
+.c-categories {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+
+  &__item {
+    margin-right: 1em;
+  }
+}
