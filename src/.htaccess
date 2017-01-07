@@ -25,10 +25,8 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
           RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
           Header set Connection keep-alive
 
-          <If "%{REQUEST_URI} =~ /\.(html)$/">
             Header set Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>; rel=preload; as=font; crossorigin; type='font/woff2'
             Header set Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>; rel=preload; as=image;
-          </If>
       </IfModule>
   </IfModule>
 
