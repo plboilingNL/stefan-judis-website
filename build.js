@@ -8,9 +8,9 @@ const replace      = require( 'metalsmith-text-replace' );
 const contentful   = require( 'contentful-metalsmith' );
 const handlebars   = require( 'handlebars' );
 const htmlMinifier = require( 'metalsmith-html-minifier' );
-const fingerprint  = require( 'metalsmith-fingerprint' );
 
 const sw = require( './lib/sw' );
+const inlineCSS = require( './lib/inline-css' );
 
 // add custom helpers to handlebars
 // https://github.com/superwolff/metalsmith-layouts/issues/63
@@ -41,7 +41,6 @@ Metalsmith( __dirname )
   .use( sass( {
     outputStyle : 'compressed'
   } ) )
-  .use( fingerprint( { pattern : 'style/main.css' } ) )
   .use( contentful( {
     space_id     : config[ mode ].SPACE_ID,
     access_token : config[ mode ].TOKEN,
@@ -88,11 +87,14 @@ Metalsmith( __dirname )
       replace : config.DISCUSS.URL
     }
   } ) )
+  // inline the generated CSS
+  .use( inlineCSS )
   .use( htmlMinifier() )
   .use( assets( {
     source      : 'assets/',
     destination : 'assets/'
   } ) )
+  // write sw.js file depending on files in the pipeline
   .use( sw )
   .build( ( err ) => {
     if ( err ) throw err
