@@ -10,12 +10,15 @@ RewriteRule (.*) http://www.stefanjudis.de/$1 [R=301,L]
 RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
 
 
-<IfModule mod_headers.c>
-  Header set Connection keep-alive
-  Header set Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel=preload;as=font;crossorigin; type='font/woff2'
-  Header set Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>; rel=preload;as=image;
-</IfModule>
 
+<IfModule mod_headers.c>
+  <Files *.html>
+  Header append Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>;rel=preload;as=image
+  Header append Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel=preload;as=font;crossorigin
+  </Files>
+
+  Header set Connection keep-alive
+</IfModule>
 
 
 # ----------------------------------------------------------------------
