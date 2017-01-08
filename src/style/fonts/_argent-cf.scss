@@ -1,11 +1,7 @@
 @font-face {
 	font-family: 'ArgentCF-Regular';
-	src: url('../assets/fonts/argent-cf/argent-cf-thin.eot');
-	src: url('../assets/fonts/argent-cf/argent-cf-thin.eot?#iefix') format('embedded-opentype'),
-             url('../assets/fonts/argent-cf/argent-cf-thin.woff2') format('woff2'),
-	     url('../assets/fonts/argent-cf/argent-cf-thin.woff') format('woff'),
-	     url('../assets/fonts/argent-cf/argent-cf-thin.ttf') format('truetype'),
-	     url('../assets/fonts/argent-cf/argent-cf-thin.svg#youworkforthem') format('svg');
+	src: url('../assets/fonts/argent-cf/argent-cf-thin.woff2') format('woff2');
 	font-weight: normal;
 	font-style: normal;
+  font-display: swap;
 }
