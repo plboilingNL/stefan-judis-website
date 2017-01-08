@@ -15,7 +15,7 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
   <Files *.html>
   Header append Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>;rel=preload;as=image
   Header append Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel=preload;as=font;crossorigin
-  Header append Link: <https://www.google-analytics.com/analytics.js;as=script
+  Header append Link: <https://www.google-analytics.com/analytics.js>;as=script
   </Files>
 
   Header set Connection keep-alive
