@@ -10,18 +10,6 @@ RewriteRule (.*) http://www.stefanjudis.de/$1 [R=301,L]
 RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
 
 
-
-<IfModule mod_headers.c>
-  <Files *.html>
-  Header append Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>;rel=preload;as=image
-  Header append Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel=preload;as=font;crossorigin
-  Header append Link: <https://www.google-analytics.com/analytics.js>;as=script
-  </Files>
-
-  Header set Connection keep-alive
-</IfModule>
-
-
 # ----------------------------------------------------------------------
 # | Compression                                                        |
 # ----------------------------------------------------------------------
@@ -207,3 +195,24 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
     ExpiresByType text/x-cross-domain-policy            "access plus 1 week"
 
 </IfModule>
+
+
+<IfModule mod_headers.c>
+  <Files *.html>
+    Header append Link: <https://www.stefanjudis.de/assets/img/talksBg.jpg>;rel=preload;as=image
+    Header append Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel=preload;as=font;crossorigin
+    Header append Link: <https://www.google-analytics.com/analytics.js>;as=script
+  </Files>
+
+  <Files sw.js>
+    FileETag None
+    Header unset ETag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
+  </Files>
+
+  Header set Connection keep-alive
+</IfModule>
+
+
