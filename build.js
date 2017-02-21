@@ -77,6 +77,13 @@ Metalsmith( __dirname )
       }
     }
   } ) )
+  .use( ( files, metalsmith, callback ) => {
+    Object.keys( files ).forEach( filename => {
+      files[ filename ].slug = path.parse( filename ).name;
+    } );
+
+    callback();
+  } )
   .use( layouts( {
     engine   : 'handlebars',
     partials : 'partials'

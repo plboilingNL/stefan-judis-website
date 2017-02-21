@@ -1,27 +1,27 @@
 <nav class="c-navigation">
   <div class="o-container">
     <ul class="c-navigation__list">
-      <li class="c-navigation__listItem">
+      <li class="c-navigation__listItem {{#isActive slug 'index' }}{{/isActive}}">
         <a href="/index.html">
           {{> icons/home.svg }}
           Home
         </a>
-      <li class="c-navigation__listItem">
+      <li class="c-navigation__listItem {{#isActive slug 'blog' }}{{/isActive}}">
         <a href="/blog.html">
           {{> icons/writing.svg }}
           Write
         </a>
-      <li class="c-navigation__listItem">
+      <li class="c-navigation__listItem {{#isActive slug 'projects' }}{{/isActive}}">
         <a href="/projects.html">
           {{> icons/coding.svg }}
           Code
         </a>
-      <li class="c-navigation__listItem">
+      <li class="c-navigation__listItem {{#isActive slug 'share' }}{{/isActive}}">
         <a href="/share.html">
           {{> icons/sharing.svg }}
           Share
         </a>
-      <li class="c-navigation__listItem">
+      <li class="c-navigation__listItem {{#isActive slug 'today-i-learned' }}{{/isActive}}">
         <a href="/today-i-learned.html">
           {{> icons/learning.svg }}
           Learn
