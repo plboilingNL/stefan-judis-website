@@ -1,0 +1,29 @@
+ <!doctype html>
+<html lang="en">
+<head>
+  {{> head this }}
+
+  <meta name="theme-color" content="#e54d42">
+
+  {{> sw }}
+</head>
+
+<body class="learning">
+  {{> navigation }}
+
+  <main>
+    <section class="o-section o-section--yellow c-navigation__container">
+      <div class="o-container">
+        <h1 class="o-section__headline">{{ title }}</h1>
+        <ul class="o-list-reset">
+          {{#each data.entries}}
+            <li class="u-marginBottomHuge">
+              {{> shares/medium this }}
+          {{/each}}
+        </ul>
+      </div>
+    </section>
+  </main>
+  {{> tracking}}
+</body>
+</html>

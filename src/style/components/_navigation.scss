@@ -1,5 +1,5 @@
 .c-navigation {
-  padding : 1em 2em;
+  padding : .5em 1em;
 
   .home & {
     background: $green;
@@ -13,72 +13,49 @@
     background: $red;
   }
 
+  .learning & {
+    background: $red;
+  }
+
   &__list {
     display : flex;
-    justify-content: center;
+    justify-content: space-around;
     list-style : none;
 
-    margin  : 0 0 0 -.5em;
+    margin  : 0 0 0 -.175em;
     padding : 0;
   }
 
   &__listItem {
-    font-size  : 1.25em;
-    margin: 0 .125em;
-
-    @media (min-width: 32em) {
-      font-size  : 1.375em;
-    }
+    margin: 0 .175em;
 
     > a {
-      display : block;
+      display : inline-block;
 
-      padding : .5em;
+      padding : .125em;
 
+      text-align: center;
       color : #fff;
-
-      letter-spacing: .5px;
 
       box-shadow : none;
 
-      background-position: 0;
-      background-image: linear-gradient(to bottom, #fff 50%, transparent 50%);
-
-      background-size: 100% 200%;
-      transition: background 0.3s, color .3s;
-      background-position: 0 100%;
-
-
-      &:hover {
-        .home & {
-          color: $green;
-        }
-
-        .writing & {
-          color: $blue;
-        }
-
-        .coding & {
-          color: $red;
-        }
-
-
-        background-position : 0 0;
+      @media (min-width: 30em) {
+        margin-right: 2vw;
       }
 
-      &:active {
-        transition: background 0.4s;
+      > svg {
+        display : block;
+        width : 1.25em;
+        fill : #fff;
 
-        .home & {
-          color : $green-dark;
-        }
+        margin : -.125em auto .125em;
 
-        .writing & {
-          color: $blue-dark;
-        }
+        @media (min-width: 30em) {
+          display: inline-block;
+          vertical-align : middle;
 
-        .coding & {
-          color: $red-dark;
+          margin-right : .25em;
+          margin-left  : 0;
         }
       }
     }
