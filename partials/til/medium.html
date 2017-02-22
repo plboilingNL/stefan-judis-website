@@ -1,0 +1,12 @@
+<section class="c-post">
+  {{#if fields.date }}
+    <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
+  {{/if}}
+  <h2 class="o-headline-3">{{ fields.title }}</h2>
+
+  {{#if fields.body }}
+    <div class="o-section__content">
+      {{#marked fields.body }}{{/marked}}
+    </div>
+  {{/if}}
+</section>

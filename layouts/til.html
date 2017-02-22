@@ -17,8 +17,7 @@
         <h1 class="o-section__headline">{{ title }}</h1>
         <ul class="o-list-reset">
           {{#each data.entries}}
-            <li class="u-marginBottomHuge">
-              {{> shares/medium this }}
+            <li class="u-marginBottomHuge">{{> til/medium this }}</li>
           {{/each}}
         </ul>
       </div>
