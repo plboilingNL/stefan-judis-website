@@ -3,4 +3,8 @@
 
   font-style : italic;
   font-size : 1em;
+
+  &__inlineBlock {
+    display: inline-block;
+  }
 }

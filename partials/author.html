@@ -57,10 +57,13 @@
       {{#if common.upcoming_events.items.length }}
         <div class="u-marginTop">
           <p>{{ author.fields.contactMessage }}</p>
-          <ul class="o-list-vertical">
+          <ul class="o-list-reset">
             {{#each common.upcoming_events.items }}
               <li>
-                <a href="{{ fields.website }}">{{ fields.name }}</a>
+                <date class="o-date o-date__inlineBlock u-width-10 u-marginRight">{{#date fields.start}}{{/date}}</date>
+                <a href="{{ fields.website }}">
+                  {{ fields.name }}
+                </a>
             {{/each}}
           </ul>
         </div>
