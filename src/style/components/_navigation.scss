@@ -2,19 +2,19 @@
   padding : .5em 1em;
 
   .home & {
-    background: $green;
+    background: $green-dark;
   }
 
   .writing & {
-    background: $blue;
+    background: $blue-dark;
   }
 
   .coding & {
-    background: $red;
+    background: $red-dark;
   }
 
   .learning & {
-    background: $red;
+    background: $red-dark;
   }
 
   &__list {
