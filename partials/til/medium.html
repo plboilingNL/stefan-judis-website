@@ -9,7 +9,7 @@
       {{#marked fields.body }}{{/marked}}
 
       {{#if fields.video }}
-        <video controls preload="metadata">
+        <video autoplay muted loop playsinline preload="metadata">
           <source src="{{ fields.video.fields.file.url }}" type="video/mp4">
         </video>
       {{/if}}
