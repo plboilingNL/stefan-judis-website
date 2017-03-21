@@ -1,0 +1,22 @@
+.c-offlineNotice {
+  position: fixed;
+  display : none;
+
+  top : 0;
+  left : 0;
+  right : 0;
+
+  padding: .5em;
+  text-align: center;
+  background: #ddd;
+  color: $grey-dark;
+  border-bottom : .125em solid $yellow-bright;
+
+  @media (min-width: 30em) {
+    position : static;
+  }
+
+  .is-offline & {
+    display : block;
+  }
+}
