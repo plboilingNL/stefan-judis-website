@@ -1,12 +1,11 @@
 const marked = require( 'marked' )
 const hl = require('highlight.js')
+const renderer = new marked.Renderer();
 
-marked.setOptions({
-  highlight: function(code) {
-    return hl.highlightAuto(code).value
-  }
-})
+renderer.code = ( code, language ) => {
+  return `<pre class="code-${ language }"><code>${ hl.highlightAuto( code ).value }</code></pre>`;
+};
 
 module.exports = function (text) {
-  return marked(text)
-}
+  return marked(text, { renderer } );
+};
