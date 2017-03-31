@@ -1,6 +1,8 @@
 <section id="{{#idCreator fields.title}}{{/idCreator}}" class="c-post">
-  {{#if fields.date }}
-    <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
+  {{#if showDates }}
+    {{#if fields.date }}
+      <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
+    {{/if}}
   {{/if}}
   <h2 class="o-headline-3">{{ fields.title }}</h2>
 

@@ -19,6 +19,12 @@
           <div class="o-section__content">{{#marked data.fields.body }}{{/marked}}</div>
         {{/if}}
 
+        {{#if data.fields.isTmil}}
+          {{#each data.fields.tilPosts}}
+            <div class="u-marginTopLarge">{{> til/medium this showDates=false }}</div>
+          {{/each}}
+        {{/if}}
+
         <p class="u-marginTopLarge">
           {{#twitter-share data.fields _fileName }}{{/twitter-share}}
         </p>

@@ -15,7 +15,7 @@
         <h1 class="o-section__headline">{{ headline }}</h1>
         <ul class="o-list-reset">
           {{#each data.entries}}
-            <li class="u-marginBottomHuge">{{> til/medium this }}</li>
+            <li class="u-marginBottomHuge">{{> til/medium this showDates=true }}</li>
           {{/each}}
         </ul>
       </div>
