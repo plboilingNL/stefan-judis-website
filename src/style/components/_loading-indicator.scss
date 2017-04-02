@@ -25,6 +25,11 @@
     background : $red-dark;
   }
 
+  .is-offline & {
+    top : 3em;
+    background : #333;
+  }
+
   &__dots {
     clip-path : polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
     animation: dotty 1s infinite;
