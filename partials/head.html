@@ -10,19 +10,19 @@
 <script>
   var baseRegex = new RegExp( `${ window.location.hostname}` );
 
-  if ( window.matchMedia( '(display-mode: standalone)' ).matches ) {
-    window.addEventListener( 'click', function() {
-      if (
-        event.target.tagName === 'A' &&
-        ! baseRegex.test( event.target.href )
-      ){
-        window.open( event.target.href );
-        event.preventDefault();
-      }
+  // if ( window.matchMedia( '(display-mode: standalone)' ).matches ) {
+    // window.addEventListener( 'click', function() {
+    //   if (
+    //     event.target.tagName === 'A' &&
+    //     ! baseRegex.test( event.target.href )
+    //   ){
+    //     window.open( event.target.href );
+    //     event.preventDefault();
+    //   }
 
-      document.getElementById( 'loading-indicator' ).classList.add( 'is-active' );
-    } );
-  }
+    //   document.getElementById( 'loading-indicator' ).classList.add( 'is-active' );
+    // } );
+  // }
 </script>
 <style>__INLINE_STYLES__</style>
 <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
