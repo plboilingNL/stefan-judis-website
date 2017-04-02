@@ -16,11 +16,11 @@
         event.target.tagName === 'A' &&
         ! baseRegex.test( event.target.href )
       ){
-        window.open( event.target.href );
-        event.preventDefault();
+        // window.open( event.target.href );
+        // event.preventDefault();
+      } else {
+        document.getElementById( 'loading-indicator' ).classList.add( 'is-active' );
       }
-
-      document.getElementById( 'loading-indicator' ).classList.add( 'is-active' );
     } );
   }
 </script>
