@@ -11,7 +11,11 @@
       {{#marked fields.body }}{{/marked}}
 
       {{#if fields.video }}
-        <video autoplay muted loop playsinline preload="metadata">
+        {{#if fields.isMobileVideo }}
+          <video class="is-mobile-video" autoplay muted loop playsinline preload="metadata">
+        {{else}}
+          <video autoplay muted loop playsinline preload="metadata">
+        {{/if}}
           <source src="{{ fields.video.fields.file.url }}" type="video/mp4">
         </video>
       {{/if}}

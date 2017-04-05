@@ -43,6 +43,13 @@ img {
 
 video {
   width : 100%;
+
+  &.is-mobile-video {
+    display : block;
+
+    max-width : 20em;
+    margin : 0 auto;
+  }
 }
 
 blockquote {
