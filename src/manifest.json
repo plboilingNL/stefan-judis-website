@@ -3,7 +3,7 @@
   "short_name": "Stefans Discoveries",
   "theme_color": "#1d7cbb",
   "background_color": "#ffffff",
-  "display": "standalone",
+  "display": "minimal-ui",
   "scope": "/",
   "start_url": "/",
   "icons": [

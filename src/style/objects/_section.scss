@@ -104,11 +104,11 @@
 
       &.code-html {
         &::before {
-          content : '{}';
+          content : '<>';
         }
       }
 
-      &.code-javascript {
+      &.code-javascript, &.code-json {
         &::before {
           content : '{}';
         }
