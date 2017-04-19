@@ -15,6 +15,12 @@
     }
   }
 
+  &--withBackground {
+    @media (min-width: 52em) {
+      background-image: url(https://www.stefanjudis.de/assets/img/talksBg.jpg);
+    }
+  }
+
   &--blue {
     background-color : $blue;
 
