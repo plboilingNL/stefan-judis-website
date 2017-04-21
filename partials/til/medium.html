@@ -16,6 +16,9 @@
         {{else}}
           <video autoplay muted loop playsinline preload="metadata">
         {{/if}}
+          {{#if fields.videoWebm }}
+            <source src="{{ fields.videoWebm.fields.file.url }}" type="video/webm">
+          {{/if}}
           <source src="{{ fields.video.fields.file.url }}" type="video/mp4">
         </video>
       {{/if}}
