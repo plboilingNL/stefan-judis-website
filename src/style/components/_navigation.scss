@@ -55,9 +55,19 @@
       padding : .125em;
 
       text-align: center;
-      color : #fff;
+      color : $yellow-bright;
 
       box-shadow : none;
+
+      border-bottom: 2px solid transparent;
+
+      @media (min-width: 30em) {
+        margin: 0 0 .25em;
+      }
+
+      &:hover {
+        border-bottom-color: currentColor;
+      }
 
       > svg {
         display : block;
