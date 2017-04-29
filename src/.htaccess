@@ -198,8 +198,11 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
 
 
 <IfModule mod_headers.c>
+  <Files>
+    Header set Connection keep-alive
+  </Files>
+
   <Files *.html>
-    Header append Link: <https://www.stefanjudis.de/assets/fonts/argent-cf/argent-cf-thin.woff2>;rel=preload;as=font;crossorigin
     Header append Link: <https://www.google-analytics.com/analytics.js>;as=script
   </Files>
 
@@ -210,8 +213,6 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
     Header set Pragma "no-cache"
     Header set Expires "Wed, 11 Jan 1984 05:00:00 GMT"
   </Files>
-
-  Header set Connection keep-alive
 </IfModule>
 
 
