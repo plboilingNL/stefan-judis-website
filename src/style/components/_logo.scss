@@ -1,0 +1,36 @@
+@mixin logoGradient ($color) {
+  background: linear-gradient(to bottom, $yellow-bright 0%,$yellow-bright 48.5%,$color 48.5%,$color 51%,$yellow-bright 51%);
+}
+
+.c-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .home & {
+    @include logoGradient($green-dark);
+  }
+
+  .writing & {
+    @include logoGradient($blue-dark);
+  }
+
+  .coding & {
+    @include logoGradient($red-dark);
+  }
+
+  .learning & {
+    @include logoGradient($red-dark);
+  }
+
+  svg {
+    margin: .5em;
+    width: 4em;
+    height: 4em;
+    border: 6px solid #fefff4;
+  }
+
+  @media (min-width: 30em) {
+    display : none;
+  }
+}
