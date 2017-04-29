@@ -2,7 +2,7 @@
   {{#if fields.date }}
     <date class="o-date c-post__date">{{#date fields.date}}{{/date}}</date>
   {{/if}}
-  <h3 class="o-headline-3">
+  <h3 id="{{#idCreator fields.title}}{{/idCreator}}-headline" class="o-headline-3" >
     {{#if fields.externalUrl }}
       <a href="{{ fields.externalUrl }}">{{ fields.title }}</a>
     {{else}}
@@ -17,6 +17,6 @@
   {{#if fields.externalUrl }}
     <p class="u-marginTopAuto">Read on <a href="{{ fields.externalUrl }}">{{mainUrl fields.externalUrl }}</a></p>
   {{else}}
-    <p class="u-marginTopAuto"><a href="{{ _fileName }}" class="u-underline">Read the full article</a></p>
+    <p class="u-marginTopAuto"><a href="{{ _fileName }}" class="u-underline" aria-labelledby="{{#idCreator fields.title}}{{/idCreator}}-headline">Read the full article</a></p>
   {{/if}}
 </div>
