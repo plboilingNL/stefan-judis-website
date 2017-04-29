@@ -198,9 +198,7 @@ RewriteRule ^hook-it/(.*) http://localhost:8000/$1 [P]
 
 
 <IfModule mod_headers.c>
-  <Files>
-    Header set Connection keep-alive
-  </Files>
+  Header set Connection keep-alive
 
   <Files *.html>
     Header append Link: <https://www.google-analytics.com/analytics.js>;as=script
