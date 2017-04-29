@@ -67,7 +67,7 @@
     }
 
     h1, h2, h3, h4, h5 {
-      font-family    : 'ArgentCF-Regular', serif;
+      font-family    : 'Georgia', serif;
       letter-spacing : .1em;
     }
 
@@ -166,9 +166,10 @@
 
 
   &__headline {
-    font-family    : 'ArgentCF-Regular', serif;
+    font-family    : 'Georgia', serif;
     font-size      : 2.5em;
-    letter-spacing : 3px;
+    font-weight    : normal;
+    letter-spacing : 1px;
 
     margin : 0 0 .25em 0;
 
@@ -179,9 +180,10 @@
   }
 
   &__smallHeadline {
-    font-family    : 'ArgentCF-Regular', serif;
+    font-family    : 'Georgia', serif;
     font-size      : 2.25em;
-    letter-spacing : 3px;
+    font-weight    : normal;
+    letter-spacing : 1px;
 
     margin : 0 0 1em 0;
   }

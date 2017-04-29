@@ -9,6 +9,10 @@ body {
   background : $yellow-bright;
 }
 
+h1, h2, h3, h4, h5 {
+  font-weight : normal;
+}
+
 * {
   &, &::before, &::after {
     box-sizing : border-box;
@@ -59,9 +63,9 @@ blockquote {
 
   p {
     &::before, &::after {
-      font-family: 'ArgentCF-Regular', serif;
+      font-family: 'Georgia', serif;
       font-size: 2em;
-      line-height: .675;
+      line-height: .75;
       content: '"';
       margin: 0 .125em;
     }
