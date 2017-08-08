@@ -38,14 +38,13 @@ module.exports = {
                   return /https:\\/\\/cdn\\.contentful\\.com/.test(entry.name)
                 })
                 .forEach(entry => {
-                  if (entry.duration > 200) {
-                    ga('send', {
-                      hitType: 'timing',
-                      timingCategory: 'CDA CALL',
-                      timingVar: entry.name,
-                      timingValue: entry.duration
-                    });
-                  }
+                  console.log('API TRACKING:' + entry.name);
+                  ga('send', {
+                    hitType: 'timing',
+                    timingCategory: 'CDA CALL',
+                    timingVar: entry.name,
+                    timingValue: entry.duration
+                  });
                 });
             })).observe({
               entryTypes: ["resource"]
