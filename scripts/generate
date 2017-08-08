@@ -1,0 +1,4 @@
+./node_modules/.bin/nuxt generate
+echo "Moving ./dist/404/index.html to ./404.html"
+mv ./dist/404/index.html ./dist/404.html
+rm -rf ./dist/404

@@ -1,0 +1,62 @@
+.o-list-reset {
+  list-style : none;
+
+  margin  : 0;
+  padding : 0;
+}
+
+.o-list-thirds, .o-list-halds {
+  list-style : none;
+
+  margin : 0 -.5em;
+  padding : 0;
+
+  display : flex;
+  flex-direction : column;
+}
+
+@media (min-width: 52em) {
+  .o-list-thirds {
+    flex-direction : row;
+    flex-wrap      : wrap;
+  }
+}
+
+.o-list-thirds > li {
+  /* safari hack */
+  display : table;
+
+  flex : 1 1 calc( 33.333% - 2em );
+  margin : 0 .5em 5em;
+
+  max-width : 100%;
+  width: 100%;
+}
+
+@media (min-width: 52em) {
+  .o-list-thirds {
+    margin: 0 -.625em;
+  }
+
+  .o-list-thirds > li {
+    display : block;
+
+    max-width : calc(33.333% - 1.25em);
+
+    margin : 0 .625em 2em;
+  }
+}
+
+.o-list-inline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.o-list-inline > li {
+  margin: 0;
+  padding: 0;
+
+  display: inline-block;
+  vertical-align: middle;
+}

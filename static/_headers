@@ -1,0 +1,11 @@
+/_nuxt/*
+  Cache-Control: max-age=31556926
+
+/favicon.ico
+  Cache-Control: max-age=3600000
+
+/sw.js
+  Cache-Control: max-age=100000
+
+/workbox-sw.prod.v1.1.0.js
+  Cache-Control: max-age=100000
