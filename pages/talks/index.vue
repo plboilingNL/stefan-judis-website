@@ -16,7 +16,10 @@
     <ul class="o-list-thirds">
       <li v-for="talk in talks" class="u-marginBottomLarge">
         <div class="u-flex-column u-height-100">
-          <lazy-image :asset="talk.fields.thumbnail" ></lazy-image>
+          <!-- this is container is needed because of a FF bug -->
+          <div>
+            <lazy-image :asset="talk.fields.thumbnail" ></lazy-image>
+          </div>
           <h3>{{ talk.fields.title }}</h3>
           <p class="u-marginTopAuto">
             <a v-if="talk.fields.slideUrl" :href="talk.fields.slideUrl" class="o-btn o-btn--small u-marginRightSmall">Slides</a>
