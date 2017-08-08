@@ -28,6 +28,7 @@
     "autoprefixer": "^7.1.1",
     "babel-eslint": "^7.1.1",
     "contentful-management": "^3.7.6",
+    "es6-promise": "^4.1.1",
     "eslint": "^4.4.0",
     "eslint-config-standard": "^10.0.0",
     "eslint-loader": "^1.6.1",
