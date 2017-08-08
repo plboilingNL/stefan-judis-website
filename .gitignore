@@ -12,3 +12,9 @@ dist
 
 static/sw.js
 static/workbox-sw*.js
+
+# local config file
+contentful.json
+
+# generated sitemap
+static/sitemap.xml
