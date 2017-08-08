@@ -5,11 +5,11 @@
     <ul class="o-list-thirds">
       <li v-for="event in events">
         <pretty-date :date="event.fields.start"></pretty-date>
+        <h3 class="o-headline-3"><a :href="event.fields.website">{{event.fields.name}}</a></h3>
         <p class="u-inline-block">
           <flag :code="event.fields.country"/>
           {{ event.fields.city }}
         </p>
-        <h3 class="o-headline-3"><a :href="event.fields.website">{{event.fields.name}}</a></h3>
       </li>
     </ul>
     <h2>Slidedecks</h2>
