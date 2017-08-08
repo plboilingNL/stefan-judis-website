@@ -27,33 +27,6 @@ module.exports = {
       lang: 'en'
     },
     title: 'Stefan Judis Web Development',
-    script: [
-      {
-        innerHTML: `
-          if ( window.PerformanceObserver ) {
-            (new PerformanceObserver(list => {
-              list
-                .getEntries()
-                .filter(entry => {
-                  return /https:\\/\\/cdn\\.contentful\\.com/.test(entry.name)
-                })
-                .forEach(entry => {
-                  console.log('API TRACKING:' + entry.name, entry.duration);
-                  ga('send', {
-                    hitType: 'timing',
-                    timingCategory: 'CDA CALL',
-                    timingVar: entry.name,
-                    timingValue: entry.duration
-                  });
-                });
-            })).observe({
-              entryTypes: ["resource"]
-            });
-          }
-        `
-      }
-    ],
-    __dangerouslyDisableSanitizers: ['script'],
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
