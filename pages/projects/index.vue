@@ -48,8 +48,9 @@
 <style lang="scss">
   .c-project {
     img {
-      border: .25em solid #fff;
-      box-shadow: 0 0.05em 0.0625em #888
+      display: block;
+      max-height: 6em;
+      margin: 0 auto 1em;
     }
   }
 </style>
