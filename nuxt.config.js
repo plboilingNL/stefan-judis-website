@@ -38,7 +38,7 @@ module.exports = {
                   return /https:\\/\\/cdn\\.contentful\\.com/.test(entry.name)
                 })
                 .forEach(entry => {
-                  console.log('API TRACKING:' + entry.name);
+                  console.log('API TRACKING:' + entry.name, entry.duration);
                   ga('send', {
                     hitType: 'timing',
                     timingCategory: 'CDA CALL',
