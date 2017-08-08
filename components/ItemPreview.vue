@@ -3,7 +3,7 @@
   <div class="c-preview">
     <PrettyDate v-if="item.fields.date && showDate" :date="item.fields.date"></PrettyDate>
 
-    <DynamicHeadline v-if="includeLink" :level="level" :url="`/${linkPrefix}/${item.fields.slug}`">{{ item.fields.title }}</DynamicHeadline>
+    <DynamicHeadline v-if="includeLink" :level="level" :url="`/${linkPrefix}/${item.fields.slug}/`">{{ item.fields.title }}</DynamicHeadline>
     <DynamicHeadline v-if="!includeLink" :level="level">{{ item.fields.title }}</DynamicHeadline>
 
     <p v-if="showDescription">{{ item.fields.description }}</p>
@@ -12,7 +12,7 @@
 
     <div v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as'" class="u-marginTopAuto">
       <p v-if="item.fields.externalUrl"><a :href="item.fields.externalUrl" class="o-btn">Read on {{ item.fields.externalUrl | externalUrl }}</a></p>
-      <p v-if="!item.fields.externalUrl"><nuxt-link :to="`/${linkPrefix}/${item.fields.slug}`" class="o-btn">Read more</nuxt-link></p>
+      <p v-if="!item.fields.externalUrl"><nuxt-link :to="`/${linkPrefix}/${item.fields.slug}/`" class="o-btn">Read more</nuxt-link></p>
     </div>
 
     <div v-if="item.sys.contentType.sys.id === 'talk'" class="u-marginTopAuto">
