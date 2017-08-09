@@ -49,7 +49,7 @@
   color: currentColor !important;
 }
 
-.o-code .token.keyword { color: var(--blue-dark); font-weight: bold; }
+.o-code .token.keyword, .o-code .token.boolean, .o-code .token.number { color: var(--blue-dark); font-weight: bold; }
 .o-code .token.string, .o-code .token.template-string { color: var(--red-dark); }
 .o-code .token.tag { font-weight: bold; }
 .o-code .token.attr-name { font-weight: normal; }
