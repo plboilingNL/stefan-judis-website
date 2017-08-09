@@ -2,13 +2,16 @@
   <Container>
     <h1 slot="headline">Side Projects</h1>
     <ul class="o-list-thirds">
-      <li class="c-project" v-for="project in projects">
-        <picture v-if="project.fields.logo">
-          <source :srcset="`${project.fields.logo.fields.file.url}?fm=webp&w=500`" type='image/webp'>
-          <img :src="`${project.fields.logo.fields.file.url}?w=500`" :alt="project.fields.title">
-        </picture>
-        <h2 class="o-headline-2">{{ project.fields.title }}</h2>
-        <p>{{ project.fields.description }}</p>
+      <li v-for="project in projects">
+        <div class="c-project">
+          <picture v-if="project.fields.logo">
+            <source :srcset="`${project.fields.logo.fields.file.url}?fm=webp&w=500`" type='image/webp'>
+            <img :src="`${project.fields.logo.fields.file.url}?w=500`" :alt="project.fields.title">
+          </picture>
+          <h2 :id="project.fields.title | idAlize" class="o-headline-2">{{ project.fields.title }}</h2>
+          <p>{{ project.fields.description }}</p>
+          <p class="u-marginTopAuto"><a :href="project.fields.url" class="o-btn" :aria-labelledby="project.fields.title | idAlize">Check the project</a></p>
+        </div>
       </li>
     </ul>
   </Container>
@@ -47,6 +50,10 @@
 
 <style lang="scss">
   .c-project {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
     img {
       display: block;
       max-height: 6em;
