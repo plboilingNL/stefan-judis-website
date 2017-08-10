@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+const {promisify} = require('util')
+const chalk = require('chalk')
+const glob = promisify(require('multi-glob').glob)
+const readFile = promisify(require('fs').readFile)
+const writeFile = promisify(require('fs').writeFile)
+const jsdom = require('jsdom')
+const RSS = require('rss')
+
+const BASE_URL = 'https://www.stefanjudis.com'
+
+;(async () => {
+  console.log(chalk.green('---------------------'))
+  console.log(chalk.green('CREATING RSS FEED'))
+
+  const feed = new RSS({
+    title: 'Stefan Judis Web Development',
+    feed_url: `${BASE_URL}/rss.xml`,
+    site_url: BASE_URL,
+    managingEditor: 'Stefan Judis',
+    webMaster: 'Stefan Judis',
+    language: 'en'
+  })
+
+  const files = await glob(
+    ['./dist/blog/*/index.html', './dist/today-i-learned/*/index.html']
+  )
+
+  await Promise.all(files.map(filePath => {
+    return (async () => {
+      // overwrite the console
+      // to get rid of error I don't care about
+      const virtualConsole = new jsdom.VirtualConsole()
+      const { document } = (
+        new jsdom.JSDOM(await readFile(filePath, 'utf8'), {virtualConsole})
+      ).window
+
+      return feed.item({
+        date: document.querySelector('.c-prettyDate').innerHTML,
+        title: document.querySelector('h1').innerHTML,
+        description: document.querySelector('meta[name="description"]').content,
+        url: `${BASE_URL}${filePath.replace('./dist', '').replace('index.html', '')}`
+      })
+    })()
+  }))
+
+  await writeFile('./dist/rss.xml', feed.xml())
+
+  console.log(chalk.green('✔ rss.xml written'))
+  console.log(chalk.green('---------------------'))
+})()
