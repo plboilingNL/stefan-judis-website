@@ -42,7 +42,6 @@
     "glob": "^7.1.2",
     "htmlparser2": "^3.9.2",
     "jsdom": "^11.1.0",
-    "multi-glob": "^1.0.1",
     "netlify-cli": "^1.2.2",
     "node-sass": "^4.5.3",
     "rss": "^1.2.2",
