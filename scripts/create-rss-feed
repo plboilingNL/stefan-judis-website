@@ -36,7 +36,7 @@ const BASE_URL = 'https://www.stefanjudis.com'
         new jsdom.JSDOM(await readFile(filePath, 'utf8'), {virtualConsole})
       ).window
 
-      const isTil = /today-i-learned/.match(filePath)
+      const isTil = /today-i-learned/.test(filePath)
 
       return feed.item({
         date: document.querySelector('.c-prettyDate').innerHTML,
