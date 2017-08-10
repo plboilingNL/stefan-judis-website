@@ -36,9 +36,11 @@ const BASE_URL = 'https://www.stefanjudis.com'
         new jsdom.JSDOM(await readFile(filePath, 'utf8'), {virtualConsole})
       ).window
 
+      const isTil = /today-i-learned/.match(filePath)
+
       return feed.item({
         date: document.querySelector('.c-prettyDate').innerHTML,
-        title: document.querySelector('h1').innerHTML,
+        title: `${isTil ? 'TIL: ' : ''}${document.querySelector('h1').innerHTML}`,
         description: document.querySelector('meta[name="description"]').content,
         url: `${BASE_URL}${filePath.replace('./dist', '').replace('index.html', '')}`
       })
