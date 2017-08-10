@@ -28,7 +28,7 @@ const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date)
     const feeds = await Promise.all(
       [
         { glob: './dist/blog/*/index.html', file: 'blog.xml', name: 'Blog Posts' },
-        { glob: './dist/today-i-learned/*/index.html', file: 'til.xml', name: 'Today I learned' }
+        { glob: './dist/today-i-learned/*/index.html', file: 'til.xml', name: 'Today I learned Posts' }
       ].map(async feed => {
         feed.files = await glob(feed.glob)
         feed.items = (await getFeedItemsForFiles(feed.files))
