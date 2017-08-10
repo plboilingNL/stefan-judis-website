@@ -38,7 +38,9 @@ module.exports = {
       { rel: 'dns-prefetch', href: 'https://cdn.contentful.com' },
       { rel: 'dns-prefetch', href: 'https://videos.contentful.com' },
       { rel: 'dns-prefetch', href: 'https://images.contentful.com' },
-      { rel: 'dns-prefetch', href: 'https://www.google-analytics.com' }
+      { rel: 'dns-prefetch', href: 'https://www.google-analytics.com' },
+      { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development', href: 'https://www.stefanjudis.com/rss.xml' }
+
     ]
   },
 
