@@ -63,8 +63,7 @@ module.exports = {
   ** Plugin configuration
   */
   plugins: [
-    '~plugins/filters.js',
-    { src: '~plugins/cda-tracking.js', ssr: false }
+    '~plugins/filters.js'
   ],
 
   /*
