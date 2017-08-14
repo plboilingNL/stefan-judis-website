@@ -101,11 +101,30 @@
 
   a {
     color: currentColor;
+
+  }
+
+  :focus {
+    outline-style: dashed;
+    outline-width: 3px;
+    outline-offset: 2px;
+    outline-color: var(--c-theme);
+
+    &:not(.focus-ring) {
+      outline: none;
+    }
   }
 
   img {
     max-width: 100%;
   }
+
+  ::selection {
+    background: var(--c-theme);
+    color: #fff;
+    text-shadow: none;
+  }
+
 
   /*
   ** Controls on body element

@@ -61,16 +61,19 @@
 
   .c-container--blue {
     --c-container-bg: var(--blue-dark);
+    --c-theme: #fff;
     color: var(--yellow-bright);
   }
 
   .c-container--grey {
     --c-container-bg: var(--grey-dark);
+    --c-theme: #fff;
     color: var(--yellow-bright);
   }
 
   .c-container--red {
     --c-container-bg: var(--red-dark);
+    --c-theme: #fff;
     color: var(--yellow-bright);
   }
 

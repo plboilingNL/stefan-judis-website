@@ -126,7 +126,7 @@ module.exports = {
       })
     ],
 
-    vendor: ['contentful']
+    vendor: ['wicg-focus-ring']
   },
 
   // related to

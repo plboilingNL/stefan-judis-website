@@ -24,13 +24,17 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .c-sharingLine {
     background-color: var(--c-theme);
     color: var(--c-theme-text);
-  }
 
-  .c-sharingLine a:hover {
-    color: currentColor;
+    a:hover {
+      color: currentColor;
+    }
+
+    a:focus {
+      outline-color: var(--c-theme-text);
+    }
   }
 </style>

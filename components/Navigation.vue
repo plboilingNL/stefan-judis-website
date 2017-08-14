@@ -70,10 +70,14 @@
       border-bottom: 2px solid transparent;
       text-decoration: none;
 
-      &:hover, &:focus {
+      &:hover {
         color: currentColor !important;
         border-bottom-color: currentColor;
         outline: none;
+      }
+
+      &:focus {
+        outline-color: var(--c-theme-text);
       }
 
       &.is-active::before, &.is-almost-active:not([href="/"])::before {
