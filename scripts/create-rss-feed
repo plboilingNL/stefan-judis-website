@@ -57,7 +57,7 @@ const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date)
 
 async function writeRssFeed (feed) {
   const rssFeed = new RSS(Object.assign(FEED_DEFAULTS, {
-    title: feed.name ? `${BASE_FEED_TITLE} | ${feed.name}` : null,
+    title: feed.name ? `${BASE_FEED_TITLE} | ${feed.name}` : BASE_FEED_TITLE,
     feed_url: `${BASE_URL}/${feed.file}`
   }))
 
