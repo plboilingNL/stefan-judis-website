@@ -1,7 +1,7 @@
 <template>
   <div>
     <Container>
-      <h1 slot="headline">{{ me.fields.welcomeMessage }}</h1>
+      <h1 slot="headline" tabindex="-1">{{ me.fields.welcomeMessage }}</h1>
       <Person :person="me"></Person>
     </Container>
     <Container color="blue">

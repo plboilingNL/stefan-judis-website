@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <h1 slot="headline">Blog - Page {{ page }}</h1>
+    <h1 slot="headline" tabindex="-1">Blog - Page {{ page }}</h1>
 
     <ul class="o-list-reset">
       <li v-for="post in posts" class="u-marginBottomLarge">

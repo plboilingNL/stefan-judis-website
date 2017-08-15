@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <h1 slot="headline">Blog</h1>
+    <h1 slot="headline" tabindex="-1">Blog</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" class="u-marginBottomLarge">
         <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2"></ItemPreview>

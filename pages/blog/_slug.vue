@@ -3,7 +3,7 @@
     <article>
       <Container>
         <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
-        <h1 slot="headline">{{ post.fields.title }}</h1>
+        <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
         <Marked :markdown="post.fields.body"></Marked>
         <div v-if="post.fields.isTmil">
           <ul class="o-list-reset u-marginBottomLarge">

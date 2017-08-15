@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <h1 slot="headline">TIL - Today I learned</h1>
+    <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" class="u-marginBottomLarge">
         <ItemPreview :item="post" :include-link="true" :show-body="true" :show-video="true" :show-date="true" :level="2"></ItemPreview>

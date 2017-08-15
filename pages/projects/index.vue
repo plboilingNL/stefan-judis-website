@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <h1 slot="headline">Side Projects</h1>
+    <h1 slot="headline" tabindex="-1">Side Projects</h1>
     <ul class="o-list-thirds">
       <li v-for="project in projects">
         <div class="c-project">

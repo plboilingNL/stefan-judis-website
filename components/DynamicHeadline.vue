@@ -2,9 +2,15 @@
   export default {
     props: ['level', 'url'],
     render: function (h) {
+      console.log(this.level, this.url)
       return h(
         'h' + this.level,
-        { class: `o-headline-${this.level}` },
+        {
+          class: `o-headline-${this.level}`,
+          attrs: {
+            ...this.level === 1 && { tabindex: '-1' }
+          }
+        },
         [
           this.url
             ? h('nuxt-link', { props: { 'to': this.url } }, this.$slots.default)

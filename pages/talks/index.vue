@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <h1 slot="headline">Talks</h1>
+    <h1 slot="headline" tabindex="-1">Talks</h1>
     <h2>Upcoming events</h2>
     <ul class="o-list-thirds">
       <li v-for="event in events">

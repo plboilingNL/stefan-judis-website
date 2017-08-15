@@ -59,6 +59,18 @@ module.exports = {
     linkExactActiveClass: 'is-active'
   },
 
+  transition: {
+    afterEnter (el) {
+      const h1 = el.querySelector('h1')
+
+      if (!h1) {
+        return console.error('No h1 on', el)
+      }
+
+      h1.focus()
+    }
+  },
+
   /*
   ** Plugin configuration
   */
