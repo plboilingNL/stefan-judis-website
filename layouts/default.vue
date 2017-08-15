@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ $route.name, !isOnline ? 'is-offline' : '' ]">
+  <div :class="[ $route.name, !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
     <offline-notice v-if="!isOnline"/>
     <Logo/>
     <navigation/>
