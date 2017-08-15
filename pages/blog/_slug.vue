@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="t-container">
     <article>
       <Container>
         <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
@@ -35,6 +35,7 @@
   import ItemPreview from '~/components/ItemPreview.vue'
   import SharingLine from '~/components/SharingLine.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -56,6 +57,9 @@
           { hid: 'description', name: 'description', content: this.post.fields.description }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container,

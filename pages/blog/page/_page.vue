@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <Container class="t-container">
     <h1 slot="headline" tabindex="-1">Blog - Page {{ page }}</h1>
 
     <ul class="o-list-reset">
@@ -16,6 +16,7 @@
   import ItemPreview from '~/components/ItemPreview.vue'
   import PaginationActions from '~/components/PaginationActions.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -44,6 +45,9 @@
           { hid: 'description', name: 'description', content: `Writings on web development including mainly JavaScript, web performance and accessibility - Page ${this.page}` }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container,

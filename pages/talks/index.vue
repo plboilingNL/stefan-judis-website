@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <Container class="t-container">
     <h1 slot="headline" tabindex="-1">Talks</h1>
     <h2>Upcoming events</h2>
     <ul class="o-list-thirds">
@@ -37,6 +37,7 @@
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -67,6 +68,9 @@
           { hid: 'description', name: 'description', content: `Listing of my upcoming events and talks` }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container,

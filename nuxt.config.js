@@ -75,7 +75,8 @@ module.exports = {
   ** Plugin configuration
   */
   plugins: [
-    '~plugins/filters.js'
+    '~plugins/filters.js',
+    '~plugins/transition.js'
   ],
 
   /*

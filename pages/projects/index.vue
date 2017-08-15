@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <Container class="t-container">
     <h1 slot="headline" tabindex="-1">Side Projects</h1>
     <ul class="o-list-thirds">
       <li v-for="project in projects">
@@ -20,6 +20,7 @@
 <script>
   import Container from '~/components/Container.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -41,6 +42,9 @@
           { hid: 'description', name: 'description', content: `Listing of my current side projects.` }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container

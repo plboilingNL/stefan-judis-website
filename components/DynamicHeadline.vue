@@ -2,7 +2,6 @@
   export default {
     props: ['level', 'url'],
     render: function (h) {
-      console.log(this.level, this.url)
       return h(
         'h' + this.level,
         {

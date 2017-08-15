@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="t-container">
     <Container>
       <h1 slot="headline" tabindex="-1">{{ me.fields.welcomeMessage }}</h1>
       <Person :person="me"></Person>
@@ -41,6 +41,7 @@
   import ItemPreview from '~/components/ItemPreview.vue'
   import Icon from '~/components/Icon.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -80,6 +81,9 @@
           { hid: 'description', name: 'description', content: `Welcome to my personal website dealing with daily web development things.` }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       ItemPreview,

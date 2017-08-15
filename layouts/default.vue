@@ -41,6 +41,7 @@
   @import '../assets/styles/objects/headline.scss';
   @import '../assets/styles/objects/grid.scss';
   @import '../assets/styles/objects/list.scss';
+  @import '../assets/styles/transitions.scss';
   @import '../assets/styles/util.scss';
 
   body {

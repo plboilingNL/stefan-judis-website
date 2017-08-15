@@ -1,0 +1,14 @@
+.t-container {
+  transition: all .225s cubic-bezier(.55,0,.1,1);
+}
+
+.t-slide-left-enter,
+.t-slide-right-leave-active {
+  opacity: 0;
+  transform: translate(30px, 0);
+}
+.t-slide-left-leave-active,
+.t-slide-right-enter {
+  opacity: 0;
+  transform: translate(-30px, 0);
+}

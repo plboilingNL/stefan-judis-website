@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="t-container">
     <article>
       <Container>
         <ItemPreview :item="post" :show-body="true" :show-video="true" :show-date="true" :level="1"></ItemPreview>
@@ -18,6 +18,7 @@
   import SharingLine from '~/components/SharingLine.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -39,6 +40,9 @@
           { hid: 'description', name: 'description', content: this.post.fields.description }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container,

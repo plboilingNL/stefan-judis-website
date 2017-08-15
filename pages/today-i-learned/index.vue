@@ -1,5 +1,5 @@
 <template>
-  <Container>
+  <Container class="t-container">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" class="u-marginBottomLarge">
@@ -15,6 +15,7 @@
   import ItemPreview from '~/components/ItemPreview.vue'
   import PaginationActions from '~/components/PaginationActions.vue'
   import {createClient} from '~/plugins/contentful.js'
+  import getTransition from '~/plugins/transition.js'
 
   const client = createClient()
 
@@ -40,6 +41,9 @@
           { hid: 'description', name: 'description', content: `My daily Web Development learnings` }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container,
