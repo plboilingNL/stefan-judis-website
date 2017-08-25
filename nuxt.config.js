@@ -123,7 +123,7 @@ module.exports = {
 
         // get CSS out of the JS
         if (rule.loader === 'vue-loader') {
-          rule.query.extractCSS = true
+          rule.options.extractCSS = true
         }
       })
 

@@ -111,7 +111,7 @@
     outline-offset: 2px;
     outline-color: var(--c-theme);
 
-    &:not(.focus-ring) {
+    .js-focus-ring &:not(.focus-ring) {
       outline: none;
     }
   }

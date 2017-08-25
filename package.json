@@ -8,10 +8,10 @@
     "@nuxtjs/pwa": "^0.2.0",
     "contentful": "^4.5.0",
     "marked": "^0.3.6",
-    "nuxt": "latest",
+    "nuxt": "^1.0.0-rc4",
     "prismjs": "^1.6.0",
     "url": "^0.11.0",
-    "wicg-focus-ring": "^1.0.1"
+    "wicg-focus-ring": "^2.0.1"
   },
   "scripts": {
     "analyze": "nuxt build --analyze",
