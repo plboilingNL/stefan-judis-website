@@ -2,6 +2,7 @@ const {getConfigForKeys} = require('./lib/config.js')
 const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
   'CTF_CDA_TOKEN',
+  'CTF_CPA_TOKEN',
   'CTF_CMA_TOKEN',
   'CTF_ME_ID',
   'CTF_POST_ID',
@@ -157,6 +158,7 @@ module.exports = {
   env: {
     CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
     CTF_CDA_TOKEN: ctfConfig.CTF_CDA_TOKEN,
+    CTF_CPA_TOKEN: ctfConfig.CTF_CPA_TOKEN,
     CTF_PERSON_ID: ctfConfig.CTF_PERSON_ID,
     CTF_ME_ID: ctfConfig.CTF_ME_ID,
     CTF_POST_ID: ctfConfig.CTF_POST_ID,
