@@ -81,6 +81,12 @@
         outline-color: var(--c-theme-text);
       }
 
+      &.is-active {
+        svg {
+          filter: drop-shadow(0 2px 1px #333);
+        }
+      }
+
       &.is-active::before, &.is-almost-active:not([href="/"])::before {
         position: absolute;
         content: '';
