@@ -6,6 +6,9 @@
     </div>
 
     <img v-if="ready" :src="imageSrc" :alt="asset.fields.title">
+    <noscript>
+      <img :src="asset.fields.file.url" :alt="asset.fields.title">
+    </noscript>
   </figure>
 </template>
 
@@ -72,7 +75,7 @@
       position: absolute;
       text-align: center;
       font-size: .875em;
-      color: #eee;
+      color: #595959;
 
       > p {
         margin: .25em;
