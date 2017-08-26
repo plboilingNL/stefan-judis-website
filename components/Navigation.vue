@@ -58,6 +58,7 @@
 
     background-color: var(--c-theme);
     color: var(--c-theme-text);
+    box-shadow: inset 0 1px 1px #333;
 
     a {
       display: inline-block;
@@ -90,11 +91,13 @@
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-top: 6px solid #fefff4;
+        filter: drop-shadow(0 2px 1px #333);
 
         @media (min-width: 30em) {
           border-bottom: 6px solid #fefff4;
           border-top: none;
           top: calc(100% + .525em);
+          filter: none;
         }
       }
     }
@@ -118,6 +121,7 @@
     @media (min-width: 30em) {
       position : static;
       border-top: none;
+      box-shadow: none;
     }
 
     &__list {
