@@ -82,8 +82,10 @@
       }
 
       &.is-active {
+        text-shadow: 0 1px 1px #333;
+
         svg {
-          filter: drop-shadow(0 2px 1px #333);
+          filter: drop-shadow(0 1px 1px #333);
         }
       }
 
