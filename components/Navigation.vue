@@ -84,7 +84,7 @@
       &.is-active::before, &.is-almost-active:not([href="/"])::before {
         position: absolute;
         content: '';
-        top: -.5em;
+        top: -.5625em;
         left: calc(50% - 6px);
         width: 0;
         height: 0;
