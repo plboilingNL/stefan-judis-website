@@ -210,6 +210,6 @@ function getAllRoutes () {
       .find(field => field.id === 'tags')
       .items.validations[0].in.map(category => `/blog/tag/${category}`)
 
-    return [...postPages, ...tilPages, ...tags, '404']
+    return [...postPages, ...tilPages, ...tags, '/i-would-love-to-speak', '404']
   })
 }
