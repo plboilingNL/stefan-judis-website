@@ -18,7 +18,7 @@
         <div class="u-flex-column u-height-100">
           <!-- this is container is needed because of a FF bug -->
           <div>
-            <lazy-image :asset="talk.fields.thumbnail" ></lazy-image>
+            <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
           </div>
           <h3>{{ talk.fields.title }}</h3>
           <p class="u-marginTopAuto">
