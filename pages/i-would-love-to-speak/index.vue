@@ -57,6 +57,16 @@
         </dt>
         <dd>
           <ul>
+            <li v-for="tech in speakerInfo.fields.technicalEquipment">
+              {{ tech }}
+            </li>
+          </ul>
+        </dd>
+        <dt>
+          Additional info:
+        </dt>
+        <dd>
+          <ul>
             <li v-for="pref in speakerInfo.fields.preferences">
               {{ pref }}
             </li>
