@@ -4,12 +4,15 @@
     <h2>Upcoming events</h2>
     <ul class="o-list-thirds">
       <li v-for="event in events">
-        <pretty-date :date="event.fields.start"></pretty-date>
-        <h3 class="o-headline-3"><a :href="event.fields.website">{{event.fields.name}}</a></h3>
-        <p class="u-inline-block">
-          <flag :code="event.fields.country"/>
-          {{ event.fields.city }}
-        </p>
+        <div class="c-preview">
+          <pretty-date :date="event.fields.start"></pretty-date>
+          <h3 class="o-headline-3 u-marginBottomTiny"><a :href="event.fields.website">{{event.fields.name}}</a></h3>
+          <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
+          <p class="u-inline-block u-marginTopAuto">
+            <flag :code="event.fields.country"/>
+            {{ event.fields.city }}
+          </p>
+        </div>
       </li>
     </ul>
     <h2>Slidedecks</h2>

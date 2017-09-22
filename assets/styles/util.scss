@@ -6,8 +6,16 @@
   margin-left: auto;
 }
 
+.u-marginBottomTiny {
+  margin-bottom: .25em;
+}
+
 .u-marginBottomSmall {
   margin-bottom: .5em;
+}
+
+.u-marginBottomMedium {
+  margin-bottom: 1em;
 }
 
 .u-marginBottomLarge {
@@ -42,4 +50,8 @@
 
 .u-overflowHidden {
   overflow: hidden;
+}
+
+.u-fontStyleItalic {
+  font-style: italic;
 }
