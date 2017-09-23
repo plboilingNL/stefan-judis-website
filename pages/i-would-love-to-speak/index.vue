@@ -1,6 +1,6 @@
 <template>
   <div class="t-container">
-    <Container>
+    <Container accessible-line-length="true">
       <h1 slot="headline" tabindex="-1">Hey there! 👋</h1>
       <p>
         In case you're considering to let me speak at your event you probably need some information.

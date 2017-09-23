@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container">
+  <Container class="t-container" accessible-line-length="true">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned - Page {{ page }}</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" class="u-marginBottomLarge">

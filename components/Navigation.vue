@@ -1,6 +1,6 @@
 <template>
   <nav class="c-navigation">
-    <Container no-padding="true">
+    <Container no-padding="true" accessible-line-length="true">
       <ul class="c-navigation__list">
         <li>
           <nuxt-link to="/">

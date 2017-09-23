@@ -21,6 +21,7 @@
           'c-container': true,
           'c-container--noPadding': this.noPadding,
           'c-container--smallPadding': this.smallPadding,
+          'c-container--accessibleLineLength': this.accessibleLineLength,
 
           'c-container--blue': this.color === 'blue',
           'c-container--grey': this.color === 'grey',
@@ -28,7 +29,7 @@
         }
       }
     },
-    props: ['noPadding', 'smallPadding', 'color']
+    props: ['noPadding', 'smallPadding', 'accessibleLineLength', 'color']
   }
 </script>
 
@@ -57,6 +58,11 @@
 
   .c-container--smallPadding > div {
     padding: 1em 2em;
+  }
+
+  .c-container--accessibleLineLength > div {
+    max-width: 45em;
+    max-width: 65ch;
   }
 
   .c-container--blue {

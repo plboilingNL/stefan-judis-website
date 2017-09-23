@@ -1,7 +1,7 @@
 <template>
   <main class="t-container">
     <article>
-      <Container>
+      <Container accessible-line-length="true">
         <ItemPreview :item="post" :show-body="true" :show-video="true" :show-date="true" :level="1"></ItemPreview>
         <Disqus></Disqus>
       </Container>

@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container">
+  <Container class="t-container" accessible-line-length="true">
     <h1 slot="headline" tabindex="-1">Blog - #{{ tag }}</h1>
 
     <ul class="o-list-reset">
