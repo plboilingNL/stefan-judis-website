@@ -35,7 +35,7 @@
     },
     head () {
       return {
-        title: this.post.title,
+        title: this.post.fields.title,
         meta: [
           { hid: 'description', name: 'description', content: this.post.fields.description }
         ]
