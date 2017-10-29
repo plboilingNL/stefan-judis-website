@@ -9,13 +9,13 @@
 
       <ul class="c-person__social">
         <li>
-          <a href="https://twitter.com/stefanjudis">
+          <a href="https://twitter.com/stefanjudis" rel="me">
             <Icon name="Twitter"></Icon>
             Follow me on Twitter
           </a>
         </li>
         <li>
-          <a href="https://github.com/stefanjudis">
+          <a href="https://github.com/stefanjudis" rel="me">
             <Icon name="GitHub"></Icon>
             Follow me on GitHub
           </a>
