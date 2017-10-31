@@ -1,6 +1,6 @@
 <template>
   <div class="c-sharingLine">
-    <Container :small-padding="true">
+    <Container :small-padding="true" accessible-line-length="true">
       If you like this post <a :href="sharingUrl" target="_blank" rel="noopener">share it on Twitter</a> or <a :href="followUrl" target="_blank" rel="noopener">follow me on Twitter</a>.
     </Container>
   </div>
