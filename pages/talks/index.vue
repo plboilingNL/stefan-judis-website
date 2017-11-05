@@ -18,7 +18,7 @@
     <h2>Slidedecks</h2>
     <ul class="o-list-thirds">
       <li v-for="talk in talks" class="u-marginBottomLarge">
-        <div class="u-flex-column u-height-100">
+        <div class="u-flex-column u-height-100 h-entry">
           <!-- this is container is needed because of a FF bug -->
           <div>
             <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
