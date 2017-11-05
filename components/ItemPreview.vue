@@ -1,14 +1,14 @@
 <template>
   <!-- aria-label -->
-  <div class="c-preview">
-    <PrettyDate v-if="item.fields.date && showDate" :date="item.fields.date"></PrettyDate>
+  <div class="c-preview h-entry">
+    <PrettyDate v-if="item.fields.date && showDate" :date="item.fields.date" class="dt-published"></PrettyDate>
 
-    <DynamicHeadline v-if="includeLink" :level="level" :url="`/${linkPrefix}/${item.fields.slug}/`">{{ item.fields.title }}</DynamicHeadline>
-    <DynamicHeadline v-if="!includeLink" :level="level" :id="item.fields.title | idAlize">{{ item.fields.title }}</DynamicHeadline>
+    <DynamicHeadline v-if="includeLink" :level="level" :url="`/${linkPrefix}/${item.fields.slug}/`" class="p-name">{{ item.fields.title }}</DynamicHeadline>
+    <DynamicHeadline v-if="!includeLink" :level="level" :id="item.fields.title | idAlize" class="p-name">{{ item.fields.title }}</DynamicHeadline>
 
     <p v-if="showDescription">{{ item.fields.description }}</p>
     <Marked v-if="showExcerpt" :markdown="item.fields.excerpt"></Marked>
-    <Marked v-if="showBody" :markdown="item.fields.body"></Marked>
+    <Marked v-if="showBody" :markdown="item.fields.body" class="e-content"></Marked>
 
     <div v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as'" class="u-marginTopAuto">
       <p v-if="item.fields.externalUrl"><a :href="item.fields.externalUrl" class="o-btn" :aria-labelledby="item.fields.title | idAlize">Read on {{ item.fields.externalUrl | externalUrl }}</a></p>
