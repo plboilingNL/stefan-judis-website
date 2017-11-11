@@ -7,6 +7,8 @@
     <div class="c-person__details">
       <div v-html="bio"></div>
 
+      <p>I'm also <nuxt-link to="/staying-up-to-date/">reading a lot of newsletters and listen to a few podcasts</nuxt-link>.</p>
+
       <ul class="c-person__social">
         <li>
           <a href="https://twitter.com/stefanjudis" rel="me">

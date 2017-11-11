@@ -9,7 +9,8 @@ const ctfConfig = getConfigForKeys([
   'CTF_TALK_ID',
   'CTF_PROJECT_ID',
   'CTF_EVENT_ID',
-  'CTF_TIL_ID'
+  'CTF_TIL_ID',
+  'CTF_LANDING_PAGE_ID'
 ])
 
 const {createClient} = require('./plugins/contentful')
@@ -165,7 +166,8 @@ module.exports = {
     CTF_TALK_ID: ctfConfig.CTF_TALK_ID,
     CTF_PROJECT_ID: ctfConfig.CTF_PROJECT_ID,
     CTF_EVENT_ID: ctfConfig.CTF_EVENT_ID,
-    CTF_TIL_ID: ctfConfig.CTF_TIL_ID
+    CTF_TIL_ID: ctfConfig.CTF_TIL_ID,
+    CTF_LANDING_PAGE_ID: ctfConfig.CTF_LANDING_PAGE_ID
   }
 }
 

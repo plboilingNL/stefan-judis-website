@@ -7,13 +7,16 @@ const defaultConfig = {
 
 module.exports = {
   createClient (config = defaultConfig) {
+    // preview environment
+    // using the Content Preview API
     const options = {
       host: 'preview.contentful.com',
       space: config.CTF_SPACE_ID,
       accessToken: config.CTF_CPA_TOKEN
     }
 
-    // enable preview environment
+    // production environment
+    // using the Content Delivery API
     if (process.env.NODE_ENV === 'production') {
       options.host = 'cdn.contentful.com'
       options.accessToken = config.CTF_CDA_TOKEN
