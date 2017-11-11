@@ -76,7 +76,7 @@
     },
     head () {
       return {
-        title: `Stefan Judis Web Development`,
+        title: `Stefan's web dev journey`,
         meta: [
           { hid: 'description', name: 'description', content: `Welcome to my personal website dealing with daily web development things.` }
         ]
