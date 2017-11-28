@@ -4,7 +4,7 @@ import Prism from 'prismjs'
 const renderer = new marked.Renderer()
 
 renderer.code = (code, language) => {
-  return `<pre class="o-code o-code-${language}"><code>${language ? Prism.highlight(code, Prism.languages[language]) : code}</code></pre>`
+  return `<pre class="o-code o-code-${language || 'whatevs'}"><code>${language ? Prism.highlight(code, Prism.languages[language]) : code}</code></pre>`
 }
 
 renderer.image = (href, title, text) => {

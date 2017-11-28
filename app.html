@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html {{ HTML_ATTRS }}>
   <head>
+    {{ HEAD }}
     <script>
       (function() {
         if (window.PerformanceObserver) {
@@ -57,7 +58,6 @@
         }
       })()
     </script>
-    {{ HEAD }}
   </head>
   <body {{ BODY_ATTRS }}>
     {{ APP }}

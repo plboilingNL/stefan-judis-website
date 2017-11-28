@@ -21,6 +21,10 @@ const cmaClient = cmaContentful.createClient({
 })
 
 module.exports = {
+  css: [
+    process.env !== 'production' ? { src: '~/node_modules/a11y.css/css/a11y-en.css' } : { src: null }
+  ],
+
   /*
   ** Headers of the page
   */
@@ -44,7 +48,6 @@ module.exports = {
       { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development (everything)', href: 'https://www.stefanjudis.com/rss.xml' },
       { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development (only blog posts)', href: 'https://www.stefanjudis.com/blog.xml' },
       { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development (only TIL)', href: 'https://www.stefanjudis.com/til.xml' }
-
     ]
   },
 

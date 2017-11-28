@@ -26,6 +26,7 @@
   "devDependencies": {
     "@nuxtjs/google-analytics": "^1.0.0",
     "@nuxtjs/sitemap": "0.0.3",
+    "a11y.css": "^4.2.2",
     "autoprefixer": "^7.1.1",
     "babel-eslint": "^7.1.1",
     "chalk": "^2.1.0",
