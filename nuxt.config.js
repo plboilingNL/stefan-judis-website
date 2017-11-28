@@ -20,11 +20,7 @@ const cmaClient = cmaContentful.createClient({
   accessToken: ctfConfig.CTF_CMA_TOKEN
 })
 
-module.exports = {
-  css: [
-    process.env.NODE_ENV !== 'production' ? { src: '~/node_modules/a11y.css/css/a11y-en.css' } : { src: null }
-  ],
-
+const config = {
   /*
   ** Headers of the page
   */
@@ -218,3 +214,9 @@ function getAllRoutes () {
     return [...postPages, ...tilPages, ...tags, '/i-would-love-to-speak', '/staying-up-to-date', '404']
   })
 }
+
+if (process.env.NODE_ENV !== 'production') {
+  config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
+}
+
+module.exports = config
