@@ -4,7 +4,7 @@
       <DynamicHeadline :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
       <Marked :markdown="page.fields.body" class="e-content"></Marked>
     </Container>
-    <SharingLine v-if="page.slug !== '404'" :item="page"></SharingLine>
+    <SharingLine v-if="page.fields.slug !== '404'" :item="page"></SharingLine>
   </main>
 </template>
 
