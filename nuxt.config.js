@@ -21,9 +21,9 @@ const cmaClient = cmaContentful.createClient({
 })
 
 module.exports = {
-  css: [
-    process.env !== 'production' ? { src: '~/node_modules/a11y.css/css/a11y-en.css' } : { src: null }
-  ],
+  // css: [
+  //   process.env !== 'production' ? { src: '~/node_modules/a11y.css/css/a11y-en.css' } : { src: null }
+  // ],
 
   /*
   ** Headers of the page
