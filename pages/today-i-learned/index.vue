@@ -2,11 +2,16 @@
   <Container class="t-container" accessible-line-length="true">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-reset">
-      <li v-for="post in posts" class="u-marginBottomLarge">
-        <ItemPreview :item="post" :include-link="true" :show-body="true" :show-video="true" :show-date="true" :level="2"></ItemPreview>
+      <li v-for="categoryName in categoryKeys" class="u-marginBottomLarge">
+        <h2 class="o-headline-2">{{ `#${categoryName}` }}</h2>
+        <ul class="o-list-reset">
+          <li v-for="post in categories[categoryName]">
+            <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
+          </li>
+        </ul>
+
       </li>
     </ul>
-    <PaginationActions :next-page="nextPage"></PaginationActions>
   </Container>
 </template>
 
@@ -21,16 +26,29 @@
 
   export default {
     asyncData ({ env }) {
-      return Promise.all([
-        client.getEntries({
-          content_type: env.CTF_TIL_ID,
-          order: '-fields.date',
-          limit: 5
-        })
-      ]).then(([posts]) => {
+      return client.getEntries({
+        content_type: env.CTF_TIL_ID,
+        order: '-fields.date'
+      }).then(posts => {
+        const categories = posts.items.reduce((acc, post) => {
+          if (post.fields.categories) {
+            post.fields.categories.forEach(category => {
+              if (!acc[category]) {
+                acc[category] = []
+              }
+              acc[category].push(post)
+
+              return acc
+            })
+          }
+
+          return acc
+        }, {})
+
         return {
-          posts: posts.items,
-          nextPage: posts.total > 5 ? '/today-i-learned/page/2' : null
+          categories,
+          categoryKeys: Object.keys(categories).sort(),
+          posts: posts.items
         }
       }).catch(console.error)
     },
