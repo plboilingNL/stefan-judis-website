@@ -1,7 +1,7 @@
 <template>
   <section :class="classes">
     <div>
-      <header class="c-container__headline">
+      <header v-if="$slots.date || $slots.headline" class="c-container__headline">
         <slot name="date"></slot>
         <slot name="headline"></slot>
       </header>
