@@ -1,28 +1,26 @@
 <template>
   <main class="t-container">
-    <article>
-      <Container accessible-line-length="true">
-        <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
-        <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
-        <Marked :markdown="post.fields.body"></Marked>
-        <div v-if="post.fields.isTmil">
-          <ul class="o-list-reset u-marginBottomLarge">
-            <li v-for="tilPost in post.fields.tilPosts">
-              <ItemPreview :item="tilPost" :show-body="true" :show-video="true" :level="2"></ItemPreview>
-            </li>
-          </ul>
-        </div>
-        <div v-if="post.fields.tags && post.fields.tags.length" class="u-marginBottomLarge">
-          <h3>Tags for this post</h3>
-          <ul class="o-list-inline">
-            <li v-for="tag in post.fields.tags">
-              <nuxt-link class="o-btn o-btn--small u-marginRightSmall" :to="`/blog/tag/${tag}`">{{ tag }}</nuxt-link>
-            </li>
-          </ul>
-        </div>
-        <Disqus></Disqus>
-      </Container>
-    </article>
+    <Container accessible-line-length="true">
+      <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
+      <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
+      <Marked :markdown="post.fields.body"></Marked>
+      <div v-if="post.fields.isTmil">
+        <ul class="o-list-reset u-marginBottomLarge">
+          <li v-for="tilPost in post.fields.tilPosts">
+            <ItemPreview :item="tilPost" :show-body="true" :show-video="true" :level="2"></ItemPreview>
+          </li>
+        </ul>
+      </div>
+      <div v-if="post.fields.tags && post.fields.tags.length" class="u-marginBottomLarge">
+        <h3>Tags for this post</h3>
+        <ul class="o-list-inline">
+          <li v-for="tag in post.fields.tags">
+            <nuxt-link class="o-btn o-btn--small u-marginRightSmall u-marginBottomSmall" :to="`/blog/tag/${tag}`">{{ tag }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <Disqus></Disqus>
+    </Container>
     <SharingLine :item="post"></SharingLine>
   </main>
 </template>
