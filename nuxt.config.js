@@ -197,11 +197,17 @@ function getAllRoutes () {
       return pages
     }, [])
 
+    const tilPages = tilPosts.items.reduce((pages, entry, index) => {
+      pages.push(`/today-i-learned/${entry.fields.slug}`)
+
+      return pages
+    }, [])
+
     const tags = postType.fields
       .find(field => field.id === 'tags')
       .items.validations[0].in.map(category => `/blog/tag/${category}`)
 
-    return [...postPages, ...tags, '/i-would-love-to-speak', '/staying-up-to-date', '/404']
+    return [...postPages, ...tilPages, ...tags, '/i-would-love-to-speak', '/staying-up-to-date', '/404']
   })
 }
 
