@@ -197,21 +197,11 @@ function getAllRoutes () {
       return pages
     }, [])
 
-    const tilPages = tilPosts.items.reduce((pages, entry, index) => {
-      pages.push(`/today-i-learned/${entry.fields.slug}`)
-
-      if (index % 5 === 0 && index !== 0) {
-        pages.push(`/today-i-learned/page/${Math.floor(index / 5)}`)
-      }
-
-      return pages
-    }, [])
-
     const tags = postType.fields
       .find(field => field.id === 'tags')
       .items.validations[0].in.map(category => `/blog/tag/${category}`)
 
-    return [...postPages, ...tilPages, ...tags, '/i-would-love-to-speak', '/staying-up-to-date', '/404']
+    return [...postPages, ...tags, '/i-would-love-to-speak', '/staying-up-to-date', '/404']
   })
 }
 
