@@ -5,7 +5,7 @@
       <li v-for="categoryName in categoryKeys" class="u-marginBottomLarge">
         <h2 class="o-headline-2">{{ `#${categoryName}` }}</h2>
         <ul class="o-list-reset">
-          <li v-for="post in categories[categoryName]">
+          <li v-for="post in categories[categoryName]" class="u-marginBottomSmall">
             <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
           </li>
         </ul>
