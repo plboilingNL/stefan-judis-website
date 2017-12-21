@@ -11,24 +11,24 @@
         <li>
           <nuxt-link to="/blog/">
             <Icon name="Write"></Icon>
-            Write
+            Blog
           </nuxt-link>
         <li>
           <nuxt-link to="/projects/">
             <Icon name="Code"></Icon>
-            Code
+            Projects
           </nuxt-link>
         </li>
         <li>
           <nuxt-link to="/talks/">
             <Icon name="Speak"></Icon>
-            Speak
+            Talks
           </nuxt-link>
         </li>
         <li>
           <nuxt-link to="/today-i-learned/">
             <Icon name="Learn"></Icon>
-            Learn
+            TIL
           </nuxt-link>
         </li>
       </ul>
