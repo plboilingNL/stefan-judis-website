@@ -21,11 +21,11 @@
     </div>
 
     <div v-if="item.sys.contentType.sys.id === 'talk'" class="c-tile__footer">
-      <a :href="item.fields.slideUrl" :aria-labelledby="item.fields.title | idAlize">Check the slides</a>
+      <a :href="item.fields.slideUrl" :aria-labelledby="item.fields.title | idAlize">Check out the slides</a>
     </div>
 
     <div v-if="item.sys.contentType.sys.id === 'project'" class="c-tile__footer">
-      <a :href="item.fields.url" :aria-labelledby="item.fields.title | idAlize">Check the project</a>
+      <a :href="item.fields.url" :aria-labelledby="item.fields.title | idAlize">Check out the project</a>
     </div>
 
     <div v-if="showVideo && (item.fields.video || item.fields.videoWebm)">
