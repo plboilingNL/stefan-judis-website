@@ -69,7 +69,7 @@
   padding: 0;
   grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
   grid-template-rows: 1fr;
-  grid-gap: 1em;
+  grid-gap: 1.5em 1em;
 
   > li {
     margin: 0;
