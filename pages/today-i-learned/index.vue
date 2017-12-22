@@ -3,7 +3,7 @@
     <Container class="t-container" :full-width="true">
       <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
       <ul class="o-list-grid">
-        <li v-for="categoryName in categoryKeys">
+        <li v-for="categoryName in Object.keys(categories).sort()">
           <div class="c-tile">
             <h2 class="o-headline-2">{{ `#${categoryName}` }}</h2>
             <ul class="o-list-reset">
@@ -28,12 +28,18 @@
   const client = createClient()
 
   export default {
-    asyncData ({ env }) {
-      return client.getEntries({
-        content_type: env.CTF_TIL_ID,
-        order: '-fields.date'
-      }).then(posts => {
-        const categories = posts.items.reduce((acc, post) => {
+    async fetch ({ store, params, env }) {
+      if (!store.state.til.list.length) {
+        let {items} = await client.getEntries({
+          'content_type': env.CTF_TIL_ID,
+          order: '-fields.date'
+        })
+        store.commit('til/setList', items)
+      }
+    },
+    computed: {
+      categories () {
+        return this.$store.state.til.list.reduce((acc, post) => {
           if (post.fields.categories) {
             post.fields.categories.forEach(category => {
               if (!acc[category]) {
@@ -47,13 +53,7 @@
 
           return acc
         }, {})
-
-        return {
-          categories,
-          categoryKeys: Object.keys(categories).sort(),
-          posts: posts.items
-        }
-      }).catch(console.error)
+      }
     },
     head () {
       return {
