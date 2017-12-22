@@ -106,7 +106,7 @@
     }
 
     span {
-      margin-top: -.25em;
+      margin-top: -.125em;
     }
 
     h1, h2 {
