@@ -1,35 +1,36 @@
 <template>
   <div class="t-container">
     <Container>
-      <h1 slot="headline" tabindex="-1">{{ me.fields.welcomeMessage }}</h1>
+      <h1 slot="headline" class="o-headline-1" tabindex="-1">{{ me.fields.welcomeMessage }}</h1>
       <Person :person="me"></Person>
     </Container>
-    <Container color="blue">
+    <Container class="u-highlight__blue">
       <h2 slot="headline">Blog</h2>
       <ul class="o-list-thirds">
         <li v-for="post in posts">
           <ItemPreview :item="post" :level="3" :show-date="true"></itemPreview>
         </li>
       </ul>
-      <nuxt-link slot="footerLine" to="/blog/" class="u-font-size-1-5">Discover more at the Blog section <span aria-hidden="true">⟶</span></nuxt-link>
+      <nuxt-link slot="footerLine" to="/blog/" class="o-btn">See all posts</nuxt-link>
     </Container>
-    <Container color="grey">
+    <Container class="u-highlight__green">
       <h2 slot="headline">Talks</h2>
       <ul class="o-list-thirds">
         <li v-for="talk in talks">
           <ItemPreview :item="talk" :level="3"></itemPreview>
         </li>
       </ul>
-      <nuxt-link slot="footerLine" to="/talks/" class="u-font-size-1-5">See my past and upcoming talks <span aria-hidden="true">⟶</span></nuxt-link>
+        <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
-    <Container color="red">
+    <Container class="u-highlight__red">
       <h2 slot="headline">Side Projects</h2>
       <ul class="o-list-thirds">
         <li v-for="project in projects">
           <ItemPreview :item="project" :show-description="true" :level="3"></itemPreview>
         </li>
       </ul>
-      <nuxt-link  to="/projects/" class="u-font-size-1-5">Check my ongoing side projects <span aria-hidden="true">⟶</span></nuxt-link>
+
+      <nuxt-link slot="footerLine" to="/projects/" class="o-btn">See all side projects</nuxt-link>
     </Container>
   </div>
 </template>

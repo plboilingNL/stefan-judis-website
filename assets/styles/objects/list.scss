@@ -27,10 +27,10 @@
   display : table;
 
   flex : 1 1 calc( 33.333% - 2em );
-  margin : 0 .5em 5em;
+  margin : 0 .5em 2em;
 
   max-width : 100%;
-  width: 100%;
+  width: calc(100% - 1em);
 }
 
 @media (min-width: 52em) {
@@ -59,4 +59,20 @@
 
   display: inline-block;
   vertical-align: middle;
+}
+
+
+.o-list-grid {
+  display: grid;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: repeat(auto-fit, minmax(20em, 1fr));
+  grid-template-rows: 1fr;
+  grid-gap: 1em;
+
+  > li {
+    margin: 0;
+    padding: 0;
+  }
 }

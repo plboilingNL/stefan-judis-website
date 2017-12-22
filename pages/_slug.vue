@@ -1,10 +1,12 @@
 <template>
   <main class="t-container">
     <Container accessible-line-length="true">
-      <DynamicHeadline :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
-      <Marked :markdown="page.fields.body" class="e-content"></Marked>
+      <DynamicHeadline slot="headline" :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
+      <div class="c-tile">
+        <Marked :markdown="page.fields.body" class="e-content"></Marked>
+        <SharingLine v-if="page.fields.slug !== '404'" :item="page"></SharingLine>
+      </div>
     </Container>
-    <SharingLine v-if="page.fields.slug !== '404'" :item="page"></SharingLine>
   </main>
 </template>
 

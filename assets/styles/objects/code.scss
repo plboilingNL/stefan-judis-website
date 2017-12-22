@@ -1,19 +1,15 @@
 .o-code {
-  width: 100vw;
   position: relative;
-  left: 50%;
-  right: 50%;
-  background: #fff;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  padding: 1em 2em;
-  border: 1px solid #f1f1f1;
+
+  background: #333;
+
+  padding: 1em;
+  margin: 0 -1em;
 }
 
 .o-code::before {
   position : absolute;
-
-  top  : -1px;
+  top  : 0;
   right : 0;
 
   z-index : 1;
@@ -22,16 +18,15 @@
 
   font-size   : .8em;
   font-family : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-
-  background : var(--c-theme);
-  color      : var(--yellow-bright);
+  color      : #ddd;
 
   content : '//';
+  background: var(--c-highlight);
 }
 
 .o-code.o-code-html::before { content : 'html'; }
 .o-code.o-code-css::before { content : 'css'; }
-.o-code.o-code-javascript::before { content : 'javascript'; }
+.o-code.o-code-javascript::before { content : 'js'; }
 .o-code.o-code-json::before { content : 'json'; }
 .o-code.o-code-bash::before { content : 'bash'; }
 
@@ -46,15 +41,15 @@
   color: inherit;
   border: none;
   overflow: auto;
-  color: currentColor !important;
+  color: #ddd !important;
 }
 
-.o-code .token.keyword, .o-code .token.boolean, .o-code .token.number { color: var(--blue-dark); font-weight: bold; }
-.o-code .token.string, .o-code .token.template-string { color: var(--red-dark); }
-.o-code .token.tag { font-weight: bold; }
+.o-code .token.keyword, .o-code .token.boolean, .o-code .token.number { color: var(--blue-bright); font-weight: bold; }
+.o-code .token.string, .o-code .token.template-string { color: var(--red-bright); }
+.o-code .token.tag { color: #ccc; font-weight: bold; }
 .o-code .token.attr-name { font-weight: normal; }
-.o-code .token.attr-value { color: var(--red-dark); font-weight: normal; }
-.o-code .token.attr-value .punctuation { color: var(--grey-dark); }
-.o-code .token.atrule .rule { color: var(--red-dark); }
-.o-code .token.selector { color: var(--blue-dark); }
-.o-code .token.comment { color: #777; }
+.o-code .token.attr-value { color: var(--red-bright); font-weight: normal; }
+.o-code .token.attr-value .punctuation { color: var(--grey); }
+.o-code .token.atrule .rule { color: var(--red-bright); }
+.o-code .token.selector { color: var(--blue-gright); }
+.o-code .token.comment { color: #aaa; }

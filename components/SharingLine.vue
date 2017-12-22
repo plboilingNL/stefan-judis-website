@@ -1,8 +1,6 @@
 <template>
   <div class="c-sharingLine">
-    <Container :small-padding="true" accessible-line-length="true">
-      If you like this post <a :href="sharingUrl" target="_blank" rel="noopener noreferrer">share it</a> or <a :href="followUrl" target="_blank" rel="noopener noreferrer">follow me on Twitter</a>.
-    </Container>
+    If you like this post <a :href="sharingUrl" target="_blank" rel="noopener noreferrer">share it</a> or <a :href="followUrl" target="_blank" rel="noopener noreferrer">follow me on Twitter</a>.
   </div>
 </template>
 
@@ -26,8 +24,10 @@
 
 <style lang="scss">
   .c-sharingLine {
-    background-color: var(--c-theme);
-    color: var(--c-theme-text);
+    background: var(--c-highlight);
+    color: #fff;
+    padding: 1em;
+    margin: 0 -1em -1em;
 
     a:hover {
       color: currentColor;

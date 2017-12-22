@@ -1,38 +1,31 @@
 <template>
   <nav class="c-navigation">
-    <Container no-padding="true" accessible-line-length="true">
-      <ul class="c-navigation__list">
-        <li>
-          <nuxt-link to="/">
-            <Icon name="Home"></Icon>
-            Home
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/blog/">
-            <Icon name="Write"></Icon>
-            Blog
-          </nuxt-link>
-        <li>
-          <nuxt-link to="/projects/">
-            <Icon name="Code"></Icon>
-            Projects
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/talks/">
-            <Icon name="Speak"></Icon>
-            Talks
-          </nuxt-link>
-        </li>
-        <li>
-          <nuxt-link to="/today-i-learned/">
-            <Icon name="Learn"></Icon>
-            TIL
-          </nuxt-link>
-        </li>
-      </ul>
-    </Container>
+    <ul class="c-navigation__list">
+      <li>
+        <nuxt-link to="/">
+          Home
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/blog/">
+          Blog
+        </nuxt-link>
+      <li>
+        <nuxt-link to="/projects/">
+          Projects
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/talks/">
+          Talks
+        </nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/today-i-learned/">
+          TIL
+        </nuxt-link>
+      </li>
+    </ul>
   </nav>
 </template>
 <script>
@@ -52,13 +45,12 @@
     position : fixed;
     width  : 100%;
     bottom : 0;
-    padding : 0;
+    padding : 0 2em;
     z-index : 2;
-    border-top : .125em solid var(--yellow-bright);
 
-    background-color: var(--c-theme);
-    color: var(--c-theme-text);
-    box-shadow: inset 0 1px 1px #333;
+    background: #fff;
+    color: var(--c-highlight);
+    box-shadow: 0 -.25em 2.5em #e6e6e6;
 
     a {
       display: inline-block;
@@ -66,7 +58,7 @@
       margin: .5em 0 .75em;
       position: relative;
       text-align: center;
-      color: #fefff4;
+      color: var(--grey-dark);
       box-shadow: none;
       border-bottom: 2px solid transparent;
       text-decoration: none;
@@ -78,35 +70,12 @@
       }
 
       &:focus {
-        outline-color: var(--c-theme-text);
+        outline-color: var(--c-highlight);
       }
 
       &.is-active {
-        text-shadow: 0 1px 1px #333;
-
-        svg {
-          filter: drop-shadow(0 1px 1px #333);
-        }
-      }
-
-      &.is-active::before, &.is-almost-active:not([href="/"])::before {
-        position: absolute;
-        content: '';
-        top: -.5625em;
-        left: calc(50% - 6px);
-        width: 0;
-        height: 0;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 6px solid #fefff4;
-        filter: drop-shadow(0 2px 1px #333);
-
-        @media (min-width: 30em) {
-          border-bottom: 6px solid #fefff4;
-          border-top: none;
-          top: calc(100% + .525em);
-          filter: none;
-        }
+        color: var(--c-highlight);
+        border-bottom: .125em solid currentColor;
       }
     }
 
@@ -126,27 +95,29 @@
       }
     }
 
-    @media (min-width: 30em) {
+    @media (min-width: 38em) {
       position : static;
       border-top: none;
-      box-shadow: none;
+      box-shadow: 0 .25em 2.5em #e6e6e6;
     }
 
     &__list {
       display : flex;
-      justify-content: space-around;
-
+      justify-content: space-between;
       list-style : none;
       text-align : center;
       margin  : 0 0 0 -.175em;
       padding : 0;
-    }
-  }
 
-  @supports (display: grid) {
-    .c-navigation__list {
-      display: grid;
-      grid-template-columns: repeat(5, 20%);
+      @media (min-width: 38em) {
+        justify-content: flex-end;
+      }
+
+      > li {
+        @media (min-width: 38em) {
+          margin-left: 3em;
+        }
+      }
     }
   }
 </style>

@@ -7,8 +7,10 @@
       </header>
       <slot/>
 
+      <div v-if="$slots.footerLine" class="c-container__footerLine">
+        <slot name="footerLine"></slot>
+      </div>
       <!-- TODO this is not working properly -->
-      <slot name="footerLine" class="c-container__footerLine" ></slot>
     </div>
   </section>
 </template>
@@ -22,6 +24,7 @@
           'c-container--noPadding': this.noPadding,
           'c-container--smallPadding': this.smallPadding,
           'c-container--accessibleLineLength': this.accessibleLineLength,
+          'c-container--fullWidth': this.fullWidth,
 
           'c-container--blue': this.color === 'blue',
           'c-container--grey': this.color === 'grey',
@@ -29,7 +32,7 @@
         }
       }
     },
-    props: ['noPadding', 'smallPadding', 'accessibleLineLength', 'color']
+    props: ['noPadding', 'smallPadding', 'accessibleLineLength', 'color', 'fullWidth']
   }
 </script>
 
@@ -38,18 +41,10 @@
     background-color: var(--c-container-bg);
 
     & > div {
-      max-width: 50em;
+      max-width: 65em;
       margin: 0 auto;
-      padding: 2em;
-
-      @media (min-width: 30em) {
-        padding: 5em 2em;
-      }
+      padding: 1em;
     }
-  }
-
-  .c-container a:hover {
-    color: var(--c-theme);
   }
 
   .c-container--noPadding > div {
@@ -63,6 +58,10 @@
   .c-container--accessibleLineLength > div {
     max-width: 45em;
     max-width: 65ch;
+  }
+
+  .c-container--fullWidth > div {
+    max-width: none;
   }
 
   .c-container--blue {
@@ -93,34 +92,28 @@
     padding: 0;
   }
 
-  .c-container__headline h1, .c-container__headline h2 {
-    font-family: 'Georgia', serif;
-    font-size: 2em;
-    letter-spacing: 1px;
-    margin: 0 0 .5em 0;
-  }
+  .c-container__headline {
+    margin-top: 1em;
 
-  @media (min-width: 30em) {
-    .c-container__headline h1, .c-container__headline h2 {
-      font-size: 2.5em;
+    @media (min-width: 38em) {
+      margin-top: 2em;
+    }
+
+    h1, h2 {
+      font-family: 'Georgia', serif;
+      font-size: 2em;
+      letter-spacing: 1px;
+      margin: 0 0 1em;
+      text-align: center;
+
+      @media (min-width: 30em) {
+        font-size: 2em;
+      }
     }
   }
 
-  .c-container__footerLine {
-    font-size: 2em;
-    margin: 1em 0 1em;
-  }
 
-  /* TODO spread this across links */
   .c-container__footerLine {
-    text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    display: inline-block;
-    line-height: 1;
-    text-shadow:
-      2px 2px var(--c-container-bg),
-      2px -2px var(--c-container-bg),
-      -2px 2px var(--c-container-bg),
-      -2px -2px var(--c-container-bg);
+    text-align: center;
   }
 </style>

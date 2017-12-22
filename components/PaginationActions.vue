@@ -13,9 +13,7 @@
 
 <style>
   .c-paginationActions {
-    padding: 2em 0 1em;
+    padding: 1em 0;
     display: flex;
-
-    border-top: .125em solid currentColor;
   }
 </style>

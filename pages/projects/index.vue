@@ -1,16 +1,16 @@
 <template>
   <Container class="t-container">
-    <h1 slot="headline" tabindex="-1">Side Projects</h1>
+    <h1 slot="headline" tabindex="-1">Coding Projects</h1>
     <ul class="o-list-thirds">
       <li v-for="project in projects">
-        <div class="c-project">
+        <div class="c-tile c-project">
           <picture v-if="project.fields.logo">
             <source :srcset="`${project.fields.logo.fields.file.url}?fm=webp&w=500`" type='image/webp'>
             <img :src="`${project.fields.logo.fields.file.url}?w=500`" :alt="project.fields.title">
           </picture>
           <h2 :id="project.fields.title | idAlize" class="o-headline-2">{{ project.fields.title }}</h2>
           <p>{{ project.fields.description }}</p>
-          <p class="u-marginTopAuto"><a :href="project.fields.url" class="o-btn" :aria-labelledby="project.fields.title | idAlize">Check the project</a></p>
+          <p class="c-tile__footer"><a :href="project.fields.url" :aria-labelledby="project.fields.title | idAlize">Check the project</a></p>
         </div>
       </li>
     </ul>
@@ -54,10 +54,6 @@
 
 <style lang="scss">
   .c-project {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
     img {
       display: block;
       max-height: 6em;

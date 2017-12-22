@@ -58,7 +58,6 @@
     padding: 0;
 
     background: #fff;
-    box-shadow: 0 0.05em 0.0625em #888;
 
     img {
       position: absolute;

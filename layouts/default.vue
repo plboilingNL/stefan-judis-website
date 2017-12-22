@@ -41,23 +41,31 @@
   @import '../assets/styles/objects/headline.scss';
   @import '../assets/styles/objects/grid.scss';
   @import '../assets/styles/objects/list.scss';
-  @import '../assets/styles/objects/preview.scss';
+  @import '../assets/styles/objects/tile.scss';
+  @import '../assets/styles/objects/tag.scss';
   @import '../assets/styles/transitions.scss';
   @import '../assets/styles/util.scss';
 
   body {
     --blue: #1d7cbb;
     --blue-dark: #1a79b8;
+    --blue-bright: #3a99d8;
     --green: #10967a;
     --green-dark: #09795c;
+    --green-bright: #39b97c;
     --red: #d73f34;
     --red-dark: #c52d22;
+    --red-bright: #f55d52;
     --yellow-bright: #fefff4;
     --grey-bright: #eee;
-    --grey-dark: #444;
+    --grey-dark: #5a5a5a;
 
-    --c-theme: var(--green-dark);
-    --c-theme-text: var(--yellow-bright);
+    --c-highlight: var(--green-dark);
+
+    --shadow-tile: 0 .25em 2.5em #e1e1e1;
+    --shadow-person: var(--shadow-tile);
+
+    --navigation-break: 30em;
 
     margin: 0;
     padding: 0;
@@ -67,13 +75,13 @@
     font-weight: 400;
     line-height: 1.5;
 
-    background: var(--yellow-bright);
+    background: #f9f9f9;
     color: var(--grey-dark);
 
     padding-bottom: 5em;
   }
 
-  @media (min-width: 30em) {
+  @media (min-width: 38em) {
     body {
       padding-bottom: 0;
     }
@@ -86,8 +94,6 @@
   video {
     max-width: 100%;
     display: block;
-    border: .5em solid #fff;
-    box-shadow: 0 0.05em 0.0625em #888;
     margin: 1em auto;
   }
 
@@ -104,6 +110,9 @@
   a {
     color: currentColor;
 
+    &:hover {
+      color: var(--c-highlight);
+    }
   }
 
   :focus {
@@ -122,19 +131,18 @@
   }
 
   ::selection {
-    background: var(--c-theme);
+    background: var(--c-highlight);
     color: #fff;
-    text-shadow: none;
   }
 
 
   /*
   ** Controls on body element
   */
-  .index { --c-theme: var(--green-dark); }
-  .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .share { --c-theme: var(--blue-dark); }
-  .projects, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug { --c-theme: var(--red-dark); }
-  .is-offline { --c-theme: var(--grey-dark); }
+  .index { --c-highlight: var(--green-dark); }
+  .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .share { --c-highlight: var(--blue-dark); }
+  .projects, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug { --c-highlight: var(--red-dark); }
+  .is-offline { --c-highlight: var(--grey-dark); }
 
   /*
   ** overwrite progress color

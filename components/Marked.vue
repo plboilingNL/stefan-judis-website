@@ -43,14 +43,8 @@
       font-weight: 400;
       line-height: 1.5;
       padding: .125em;
-      background: #fff;
-      color: var(--c-theme);
+      color: var(--c-highlight);
       border-radius: .25em;
-    }
-
-    img {
-      border: .25em solid #fff;
-      box-shadow: 0 0.05em 0.0625em #888
     }
   }
 </style>

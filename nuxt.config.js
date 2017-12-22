@@ -50,7 +50,7 @@ const config = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fefff4' },
+  loading: { color: '#555' },
 
   /*
   ** Router configuration
@@ -212,7 +212,7 @@ function getAllRoutes () {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
+  // config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
 }
 
 module.exports = config

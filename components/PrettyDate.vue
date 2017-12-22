@@ -3,7 +3,7 @@
 </template>
 <script>
   export default {
-    props: ['date', 'isSmall'],
+    props: ['date', 'isSmall', 'isArticleHead'],
     computed: {
       readableDate () {
         return (new Date(this.date)).toDateString()
@@ -11,21 +11,20 @@
       classes () {
         return {
           'c-prettyDate': true,
-          'c-prettyDate__small': this.isSmall
+          'c-prettyDate__isArticleHead': this.isArticleHead
         }
       }
     }
   }
 </script>
 
-<style>
+<style lang="scss">
   .c-prettyDate {
     display: block;
-    margin-bottom: .5em;
-    font-style: italic;
-  }
+    font-size: .875em;
 
-  .c-prettyDate__small {
-    margin-bottom: .25em;
+    &__isArticleHead {
+      text-align: center;
+    }
   }
 </style>

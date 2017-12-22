@@ -2,6 +2,14 @@
   margin-top: auto;
 }
 
+.u-marginTopMedium {
+  margin-top: 1em;
+}
+
+.u-marginTopLarge {
+  margin-top: 3em;
+}
+
 .u-marginLeftAuto {
   margin-left: auto;
 }
@@ -55,3 +63,8 @@
 .u-fontStyleItalic {
   font-style: italic;
 }
+
+
+.u-highlight__green { --c-highlight: var(--green);}
+.u-highlight__red { --c-highlight: var(--red);}
+.u-highlight__blue { --c-highlight: var(--blue);}

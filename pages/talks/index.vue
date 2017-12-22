@@ -1,26 +1,28 @@
 <template>
   <Container class="t-container">
-    <h1 slot="headline" tabindex="-1">Talks</h1>
-    <h2>Upcoming events</h2>
+    <h2 slot="headline" tabindex="-1">Upcoming events</h2>
     <ul class="o-list-thirds">
       <li v-for="event in events">
-        <div class="c-preview h-event">
+        <div class="c-tile h-event">
           <pretty-date :date="event.fields.start" class="dt-start"></pretty-date>
-          <h3 class="o-headline-3 u-marginBottomTiny p-name"><a :href="event.fields.website">{{event.fields.name}}</a></h3>
-          <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
+          <h3 class="o-headline-3 u-marginBottomTiny p-name">{{event.fields.name}}</h3>
           <p class="u-inline-block u-marginTopAuto p-location">
             <flag :code="event.fields.country"/>
             {{ event.fields.city }}
           </p>
+          <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
+          <div class="c-tile__footer">
+            <a :href="event.fields.website" :aria-labelledby="`Visit ${event.fields.name}`">Go to event</a>
+          </div>
         </div>
       </li>
     </ul>
-    <h2>Slidedecks</h2>
+    <h1 class="o-headline-1">Talks</h1>
     <ul class="o-list-thirds">
       <li v-for="talk in talks" class="u-marginBottomLarge">
-        <div class="u-flex-column u-height-100 h-entry">
+        <div class="c-tile c-tile__noHighlight h-entry">
           <!-- this is container is needed because of a FF bug -->
-          <div>
+          <div class="c-tile__image">
             <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
           </div>
           <h3>{{ talk.fields.title }}</h3>
