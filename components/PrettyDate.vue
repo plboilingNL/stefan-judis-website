@@ -10,8 +10,7 @@
       },
       classes () {
         return {
-          'c-prettyDate': true,
-          'c-prettyDate__isArticleHead': this.isArticleHead
+          'c-prettyDate': true
         }
       }
     }
@@ -22,9 +21,5 @@
   .c-prettyDate {
     display: block;
     font-size: .875em;
-
-    &__isArticleHead {
-      text-align: center;
-    }
   }
 </style>

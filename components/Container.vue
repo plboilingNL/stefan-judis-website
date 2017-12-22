@@ -1,16 +1,16 @@
 <template>
   <section :class="classes">
     <div>
-      <header v-if="$slots.date || $slots.headline" class="c-container__headline">
+      <header v-if="$slots.date || $slots.headline || $slots.readingTime" class="c-container__headline">
         <slot name="date"></slot>
         <slot name="headline"></slot>
+        <slot name="readingTime"></slot>
       </header>
       <slot/>
 
       <div v-if="$slots.footerLine" class="c-container__footerLine">
         <slot name="footerLine"></slot>
       </div>
-      <!-- TODO this is not working properly -->
     </div>
   </section>
 </template>
@@ -93,17 +93,27 @@
   }
 
   .c-container__headline {
-    margin-top: 1em;
+    margin: 1em 0 2em;
 
     @media (min-width: 38em) {
       margin-top: 2em;
     }
 
+    time, span {
+      font-size: .875em;
+      display: block;
+      text-align: center;
+    }
+
+    span {
+      margin-top: -.25em;
+    }
+
     h1, h2 {
+      margin: 0;
       font-family: 'Georgia', serif;
       font-size: 2em;
       letter-spacing: 1px;
-      margin: 0 0 1em;
       text-align: center;
 
       @media (min-width: 30em) {

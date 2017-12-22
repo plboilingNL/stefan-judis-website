@@ -1,8 +1,9 @@
 <template>
   <main class="t-container">
     <Container accessible-line-length="true">
-      <PrettyDate slot="date" :date="post.fields.date" :is-article-head="true"></PrettyDate>
+      <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
       <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
+      <span slot="readingTime">{{ readingTime }} min read</span>
       <div class="c-tile">
         <Marked :markdown="post.fields.body"></Marked>
         <div v-if="post.fields.isTmil">
@@ -42,6 +43,7 @@
   import Marked from '~/components/Marked.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import SharingLine from '~/components/SharingLine.vue'
+  import ReadingTime from '~/plugins/reading-time.js'
   import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
@@ -53,8 +55,10 @@
         'content_type': env.CTF_POST_ID,
         'fields.slug': params.slug
       }).then(entries => {
+        const post = entries.items[0]
         return {
-          post: entries.items[0]
+          post,
+          readingTime: ReadingTime(post)
         }
       }).catch(console.error)
     },
