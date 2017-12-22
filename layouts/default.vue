@@ -143,17 +143,4 @@
   .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .share { --c-highlight: var(--blue-dark); }
   .projects, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug { --c-highlight: var(--red-dark); }
   .is-offline { --c-highlight: var(--grey-dark); }
-
-  /*
-  ** overwrite progress color
-  */
-  .progress {
-    background: var(--c-theme) !important;
-  }
-
-  @media (min-width: 30em) {
-    .progress {
-      background:  #fff !important;
-    }
-  }
 </style>
