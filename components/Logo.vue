@@ -6,7 +6,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
   .c-logo {
     display: flex;
     align-items: center;
@@ -27,10 +27,8 @@
     .c-logo {
       position: absolute;
       left: 2em;
-      top: 0.25em;
+      top: 0.75em;
       margin: 0;
-      width: 3.25em;
-      height: 3.25em;
     }
   }
 
@@ -40,10 +38,15 @@
 
   .c-logo a {
     display: block;
-    margin: .5em;
+    margin: 1em .5em 0;
     width: 4em;
     height: 4em;
-    padding: .75em;
+
+    @media (min-width: 38em) {
+      width: 2.25em;
+      height: 2.25em;
+      margin: 0;
+    }
   }
 
   .c-logo svg {
