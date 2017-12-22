@@ -28,8 +28,7 @@
     </div>
     <div class="c-person__details">
       <div v-html="bio"></div>
-
-      <p>I'm also <nuxt-link to="/staying-up-to-date/">reading a lot of newsletters and listen to a few podcasts</nuxt-link>.</p>
+      <p>I also <nuxt-link to="/staying-up-to-date/">read a lot of newsletters and listen to a few podcasts</nuxt-link> and document <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link>.</p>
 
     </div>
   </div>
@@ -77,7 +76,7 @@
   .c-person__details {
     padding: 1em;
 
-    @media (min-width: 52em) {
+    @media (min-width: 56em) {
       font-size: 1.125em;
     }
   }
@@ -121,7 +120,7 @@
     }
 
 
-    @media (min-width: 52em) {
+    @media (min-width: 56em) {
       flex: 0 0 33.333%;
     }
   }
@@ -141,7 +140,7 @@
     background: #fff;
   }
 
-  @media (min-width: 52em) {
+  @media (min-width: 56em) {
 
   }
 
