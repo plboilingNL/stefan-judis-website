@@ -10,4 +10,8 @@
     color: var(--c-highlight);
     border-color: currentColor;
   }
+
+  &:active {
+    filter: brightness(.875)
+  }
 }

@@ -11,6 +11,10 @@
     background: var(--c-highlight);
     color: #fff;
   }
+
+  &:active {
+    filter: brightness(.75)
+  }
 }
 
 .o-btn--small {

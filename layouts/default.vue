@@ -113,6 +113,10 @@
     &:hover {
       color: var(--c-highlight);
     }
+
+    &:active {
+      filter: brightness(.875)
+    }
   }
 
   :focus {
