@@ -1,9 +1,7 @@
 <template>
   <div>
-    <Container class="t-container">
-      <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
-    </Container>
     <Container class="t-container" :full-width="true">
+      <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
       <ul class="o-list-grid">
         <li v-for="categoryName in categoryKeys">
           <div class="c-tile">
