@@ -28,7 +28,7 @@
   const client = createClient()
 
   export default {
-    async fetch ({ store, params, env }) {
+    async fetch ({ store, env }) {
       if (!store.state.til.list.length) {
         let {items} = await client.getEntries({
           'content_type': env.CTF_TIL_ID,

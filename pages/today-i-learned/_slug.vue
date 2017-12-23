@@ -12,6 +12,14 @@
             <source v-if="post.fields.video" :src="post.fields.video.fields.file.url" type="video/mp4">
           </video>
         </div>
+        <div v-if="relatedPosts.length">
+          <h3>Other posts</h3>
+          <ul>
+            <li v-for="related in relatedPosts">
+              <nuxt-link :to="`/today-i-learned/${ related.fields.slug }/`">{{ related.fields.title }}</nuxt-link>
+            </li>
+          </ul>
+        </div>
         <Disqus class="u-marginBottomMedium"></Disqus>
         <SharingLine :item="post"></SharingLine>
       </div>
@@ -47,20 +55,28 @@
         return redirect('/404/')
       }
     },
+    computed: {
+      post () {
+        return this.$store.state.til.active
+      },
+      relatedPosts () {
+        if (this.post) {
+          return this.$store.state.til.list.filter(item => {
+            return item.fields.categories.some(category => {
+              return this.post.fields.categories.some(
+                activeCat => activeCat === category
+              )
+            }) && item.sys.id !== this.post.sys.id
+          }).slice(0, 3)
+        }
+      }
+    },
     head () {
       return {
         title: this.post.fields.title,
         meta: [
           { hid: 'description', name: 'description', content: this.post.fields.description }
         ]
-      }
-    },
-    beforeDestroy () {
-      this.$store.commit('til/setActive', null)
-    },
-    computed: {
-      post () {
-        return this.$store.state.til.active
       }
     },
     transition (to, from) {
