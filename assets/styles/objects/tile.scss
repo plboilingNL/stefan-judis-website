@@ -7,6 +7,9 @@
   padding: 1em;
   background: #fff;
 
+  border-top: .25em solid var(--c-highlight);
+  border-radius: .125em .25em 0 0;
+
   &::before {
     position: absolute;
     top: 0;
@@ -19,21 +22,6 @@
     content: '';
 
     z-index: -1;
-  }
-
-  &::after {
-    position: absolute;
-    top: -.25em;
-    left: 1em;
-    right: 1em;
-    bottom: 1em;
-
-    content: '';
-
-    z-index: -1;
-    background: var(--c-highlight);
-
-    border-radius: .25em;
   }
 
   &__noHighlight {
