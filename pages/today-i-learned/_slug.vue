@@ -13,7 +13,7 @@
           </video>
         </div>
         <div v-if="relatedPosts.length">
-          <h3>Other posts</h3>
+          <h3>Related learnings</h3>
           <ul>
             <li v-for="related in relatedPosts">
               <nuxt-link :to="`/today-i-learned/${ related.fields.slug }/`">{{ related.fields.title }}</nuxt-link>
