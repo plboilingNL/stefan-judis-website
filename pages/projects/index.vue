@@ -25,15 +25,18 @@
   const client = createClient()
 
   export default {
-    asyncData ({ env }) {
-      return client.getEntries({
-        content_type: env.CTF_PROJECT_ID,
-        limit: 3
-      }).then(projects => {
-        return {
-          projects: projects.items
-        }
-      })
+    async fetch ({ store, env }) {
+      if (!store.state.projects.list.length) {
+        let {items} = await client.getEntries({
+          content_type: env.CTF_PROJECT_ID
+        })
+        store.commit('projects/setList', items)
+      }
+    },
+    computed: {
+      projects () {
+        return this.$store.state.projects.list
+      }
     },
     head () {
       return {

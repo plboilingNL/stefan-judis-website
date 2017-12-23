@@ -47,33 +47,56 @@
   const client = createClient()
 
   export default {
-    asyncData ({ env }) {
-      return Promise.all([
-        client.getEntries({
-          'sys.id': env.CTF_ME_ID
-        }),
-        client.getEntries({
-          content_type: env.CTF_POST_ID,
-          order: '-fields.date',
-          limit: 3
-        }),
-        client.getEntries({
-          content_type: env.CTF_TALK_ID,
-          order: '-fields.date',
-          limit: 3
-        }),
-        client.getEntries({
-          content_type: env.CTF_PROJECT_ID,
-          limit: 3
-        })
-      ]).then(([me, posts, talks, projects]) => {
-        return {
-          me: me.items[0],
-          posts: posts.items,
-          talks: talks.items,
-          projects: projects.items
-        }
-      }).catch(console.error)
+    async fetch ({ store, params, env, redirect }) {
+      await Promise.all([
+        store.state.me.entry.sys
+          ? store.state.me.entry
+          : client.getEntries({
+            'sys.id': env.CTF_ME_ID
+          }).then(res => {
+            store.commit('me/setMe', res.items[0])
+          }),
+
+        store.state.posts.list.length
+          ? store.state.posts.list
+          : client.getEntries({
+            content_type: env.CTF_POST_ID,
+            order: '-fields.date'
+          }).then(res => {
+            store.commit('posts/setList', res.items)
+          }),
+
+        store.state.projects.list.length
+          ? store.state.projects.list
+          : client.getEntries({
+            content_type: env.CTF_PROJECT_ID
+          }).then(res => {
+            store.commit('projects/setList', res.items)
+          }),
+
+        store.state.talks.list.length
+          ? store.state.talks.list
+          : client.getEntries({
+            content_type: env.CTF_TALK_ID,
+            order: '-fields.date'
+          }).then(res => {
+            store.commit('talks/setList', res.items)
+          })
+      ])
+    },
+    computed: {
+      me () {
+        return this.$store.state.me.entry
+      },
+      posts () {
+        return this.$store.state.posts.list.slice(0, 3)
+      },
+      projects () {
+        return this.$store.state.projects.list.slice(0, 3)
+      },
+      talks () {
+        return this.$store.state.talks.list.slice(0, 3)
+      }
     },
     head () {
       return {
