@@ -25,9 +25,7 @@
   }
 
   &__noHighlight {
-    &::after {
-      content: none;
-    }
+    border-top: none;
   }
 
   &__image {
