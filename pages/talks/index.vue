@@ -26,7 +26,7 @@
             <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
           </div>
           <h3>{{ talk.fields.title }}</h3>
-          <p class="u-marginTopAuto">
+          <p class="u-marginTopAuto u-noMarginBottom">
             <a v-if="talk.fields.slideUrl" :href="talk.fields.slideUrl" class="o-btn o-btn--small u-marginRightSmall">Slides</a>
             <a v-if="talk.fields.videoUrl" :href="talk.fields.videoUrl" class="o-btn o-btn--small">Recording</a>
           </p>
