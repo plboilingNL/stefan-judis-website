@@ -140,8 +140,24 @@
     background: #fff;
   }
 
-  @media (min-width: 56em) {
+  .c-person__social li {
+    &:nth-child(1) {
+      a:hover {
+        background: var(--blue-dark);
+      }
+    }
 
+    &:nth-child(2) {
+      a:hover {
+        background: var(--green-dark);
+      }
+    }
+
+    &:nth-child(3) {
+      a:hover {
+        background: var(--red-dark);
+      }
+    }
   }
 
   .c-person__social li a {

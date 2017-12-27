@@ -24,15 +24,11 @@
           'c-container--noPadding': this.noPadding,
           'c-container--smallPadding': this.smallPadding,
           'c-container--accessibleLineLength': this.accessibleLineLength,
-          'c-container--fullWidth': this.fullWidth,
-
-          'c-container--blue': this.color === 'blue',
-          'c-container--grey': this.color === 'grey',
-          'c-container--red': this.color === 'red'
+          'c-container--fullWidth': this.fullWidth
         }
       }
     },
-    props: ['noPadding', 'smallPadding', 'accessibleLineLength', 'color', 'fullWidth']
+    props: ['noPadding', 'smallPadding', 'accessibleLineLength', 'fullWidth']
   }
 </script>
 
@@ -62,30 +58,6 @@
 
   .c-container--fullWidth > div {
     max-width: none;
-  }
-
-  .c-container--blue {
-    --c-container-bg: var(--blue-dark);
-    --c-theme: #fff;
-    color: var(--yellow-bright);
-  }
-
-  .c-container--grey {
-    --c-container-bg: var(--grey-dark);
-    --c-theme: #fff;
-    color: var(--yellow-bright);
-  }
-
-  .c-container--red {
-    --c-container-bg: var(--red-dark);
-    --c-theme: #fff;
-    color: var(--yellow-bright);
-  }
-
-  .c-container.c-container--red a:hover,
-  .c-container.c-container--grey a:hover,
-  .c-container.c-container--blue a:hover {
-    color: currentColor;
   }
 
   .c-container--noPadding {

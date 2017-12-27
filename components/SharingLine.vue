@@ -32,9 +32,5 @@
     a:hover {
       color: currentColor;
     }
-
-    a:focus {
-      outline-color: var(--c-theme-text);
-    }
   }
 </style>

@@ -123,7 +123,7 @@
     outline-style: dashed;
     outline-width: 3px;
     outline-offset: 2px;
-    outline-color: var(--c-theme);
+    outline-color: var(--c-highlight);
 
     .js-focus-ring &:not(.focus-ring) {
       outline: none;

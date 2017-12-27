@@ -13,14 +13,6 @@
     justify-content: center;
 
     margin : 0 2em;
-
-    background: linear-gradient(
-      to bottom,
-      transparent 48.5%,
-      var(--c-theme) 48.5%,
-      var(--c-theme) 51%,
-      transparent 51%
-    );
   }
 
   @media (min-width: 38em) {
