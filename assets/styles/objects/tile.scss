@@ -30,6 +30,8 @@
 
   &__image {
     margin: -1em -1em 0 -1em;
+    border-radius: .125em .25em 0 0;
+    overflow: hidden;
   }
 
   &__footer {
