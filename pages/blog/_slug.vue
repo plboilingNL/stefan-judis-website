@@ -3,7 +3,7 @@
     <Container accessible-line-length="true">
       <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
       <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
-      <span slot="readingTime">{{ readingTime }} min read</span>
+      <span slot="readingTime">{{ post.fields.readingTime }} min read</span>
       <div class="c-tile">
         <Marked :markdown="post.fields.body"></Marked>
         <div v-if="post.fields.isTmil">
@@ -43,24 +43,32 @@
   import Marked from '~/components/Marked.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import ReadingTime from '~/plugins/reading-time.js'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    asyncData ({ params, env }) {
-      return client.getEntries({
-        'content_type': env.CTF_POST_ID,
-        'fields.slug': params.slug
-      }).then(entries => {
-        const post = entries.items[0]
-        return {
-          post,
-          readingTime: ReadingTime(post)
+    async fetch ({ app, params, store, redirect }) {
+      await app.contentful.getPosts()
+      store.commit('posts/setActiveWithSlug', params.slug)
+
+      if (!store.state.posts.active) {
+        return redirect('/404/')
+      }
+    },
+    computed: {
+      post () {
+        return this.$store.state.posts.active
+      },
+      relatedPosts () {
+        if (this.post) {
+          return this.$store.state.posts.list.filter(item => {
+            return item.fields.tags.some(tag => {
+              return this.post.fields.tags.some(
+                activeTag => activeTag === tag
+              )
+            }) && item.sys.id !== this.post.sys.id
+          }).slice(0, 3)
         }
-      }).catch(console.error)
+      }
     },
     head () {
       return {

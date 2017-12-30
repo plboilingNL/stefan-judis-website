@@ -13,25 +13,28 @@
 <script>
   import Container from '~/components/Container.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    asyncData ({ params, env }) {
-      return Promise.all([
-        client.getEntries({
-          content_type: env.CTF_POST_ID,
-          order: '-fields.date',
-          'fields.tags[in]': params.tag
+    async fetch ({ app, params, store }) {
+      await app.contentful.getPosts()
+      store.commit('posts/setActiveTag', params.tag)
+    },
+    computed: {
+      posts () {
+        return this.$store.state.posts.list.filter(post => {
+          if (post.fields.tags) {
+            return post.fields.tags.some(
+              tag => tag === this.$store.state.posts.activeTag
+            )
+          }
+
+          return false
         })
-      ]).then(([posts]) => {
-        return {
-          posts: posts.items,
-          tag: params.tag
-        }
-      }).catch(console.error)
+      },
+      tag () {
+        return this.$store.state.posts.activeTag
+      }
     },
     head () {
       return {

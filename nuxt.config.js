@@ -14,8 +14,16 @@ const ctfConfig = getConfigForKeys([
   'CTF_LANDING_PAGE_ID'
 ])
 
-const {createClient} = require('./plugins/contentful')
-const cdaClient = createClient(ctfConfig)
+const cdaContentful = require('contentful')
+const cdaClient = cdaContentful.createClient({
+  accessToken: process.env.NODE_ENV === 'production'
+    ? ctfConfig.CTF_CDA_TOKEN
+    : ctfConfig.CTF_CPA_TOKEN,
+  host: process.env.NODE_ENV === 'production'
+    ? 'cdn.contentful.com'
+    : 'preview.contentful.com',
+  space: ctfConfig.CTF_SPACE_ID
+})
 const cmaContentful = require('contentful-management')
 const cmaClient = cmaContentful.createClient({
   accessToken: ctfConfig.CTF_CMA_TOKEN
@@ -77,6 +85,7 @@ const config = {
   ** Plugin configuration
   */
   plugins: [
+    '~plugins/contentful.js',
     '~plugins/filters.js',
     '~plugins/transition.js'
   ],
@@ -157,6 +166,7 @@ const config = {
   },
 
   env: {
+    IS_PRODUCTION: process.env.NODE_ENV === 'production',
     CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
     CTF_CDA_TOKEN: ctfConfig.CTF_CDA_TOKEN,
     CTF_CPA_TOKEN: ctfConfig.CTF_CPA_TOKEN,

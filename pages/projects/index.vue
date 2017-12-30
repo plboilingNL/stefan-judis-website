@@ -37,30 +37,15 @@
   import Container from '~/components/Container.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    async fetch ({ store, env }) {
-      await Promise.all([
-        store.state.projects.list.length
-          ? store.state.projects.list
-          : client.getEntries({
-            content_type: env.CTF_PROJECT_ID
-          }).then(res => {
-            store.commit('projects/setList', res.items)
-          }),
+    async fetch ({ app, store, env }) {
+      const { getProjects, getScreencasts } = app.contentful
 
-        store.state.screencasts.list.length
-          ? store.state.screencasts.list
-          : client.getEntries({
-            content_type: env.CTF_SCREENCAST_ID,
-            order: '-fields.publishDate'
-          }).then(res => {
-            store.commit('screencasts/setList', res.items)
-          })
+      await Promise.all([
+        getProjects(),
+        getScreencasts()
       ])
     },
     computed: {

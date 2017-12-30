@@ -14,23 +14,22 @@
   import Container from '~/components/Container.vue'
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
   import Marked from '~/components/Marked.vue'
 
-  const client = createClient()
-
   export default {
-    asyncData ({ env, params }) {
-      console.log(params.slug)
-      return client.getEntries({
-        content_type: env.CTF_LANDING_PAGE_ID,
-        'fields.slug': params.slug
-      }).then(entries => {
-        return {
-          page: entries.items[0]
-        }
-      }).catch(console.error)
+    async fetch ({ app, store, params, redirect }) {
+      await app.contentful.getLandingpages()
+      store.commit('landingpages/setActiveWithSlug', params.slug)
+
+      if (!store.state.landingpages.active) {
+        return redirect('/404/')
+      }
+    },
+    computed: {
+      page () {
+        return this.$store.state.landingpages.active
+      }
     },
     head () {
       return {

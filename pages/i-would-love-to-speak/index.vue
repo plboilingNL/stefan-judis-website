@@ -81,31 +81,24 @@
 
 <script>
   import Container from '~/components/Container.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import Marked from '~/components/Marked.vue'
   import LazyImage from '~/components/LazyImage.vue'
 
-  const client = createClient()
-
   export default {
-    asyncData ({ env }) {
-      return Promise.all([
-        client.getEntries({
-          'sys.id': env.CTF_ME_ID
-        }),
-        client.getEntries({
-          content_type: env.CTF_EVENT_ID,
-          order: '-fields.end',
-          'fields.state[in]': 'attending,accepted,teaching',
-          'fields.end[lte]': (new Date()).toISOString(),
-          'fields.state': 'accepted'
-        })
-      ]).then(([me, events]) => {
-        return {
-          speakerInfo: me.items[0].fields.speakerInformation,
-          events: events.items
-        }
-      })
+    async fetch ({ app }) {
+      const { getPastEvents, getMe } = app.contentful
+      await Promise.all([
+        getPastEvents(),
+        getMe()
+      ])
+    },
+    computed: {
+      events () {
+        return this.$store.state.events.pastList
+      },
+      speakerInfo () {
+        return this.$store.state.me.entry.fields.speakerInformation
+      }
     },
     head () {
       return {

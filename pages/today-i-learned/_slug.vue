@@ -34,21 +34,12 @@
   import Marked from '~/components/Marked.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    async fetch ({ store, params, env, redirect }) {
-      if (!store.state.til.list.length) {
-        let {items} = await client.getEntries({
-          'content_type': env.CTF_TIL_ID,
-          order: '-fields.date'
-        })
+    async fetch ({ app, params, store, redirect }) {
+      await app.contentful.getTil()
 
-        store.commit('til/setList', items)
-      }
       store.commit('til/setActiveWithSlug', params.slug)
 
       if (!store.state.til.active) {

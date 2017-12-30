@@ -22,20 +22,11 @@
   import Container from '~/components/Container.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import PaginationActions from '~/components/PaginationActions.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    async fetch ({ store, env }) {
-      if (!store.state.til.list.length) {
-        let {items} = await client.getEntries({
-          'content_type': env.CTF_TIL_ID,
-          order: '-fields.date'
-        })
-        store.commit('til/setList', items)
-      }
+    async fetch ({ app }) {
+      await app.contentful.getTil()
     },
     computed: {
       categories () {

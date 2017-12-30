@@ -41,47 +41,17 @@
   import PrettyDate from '~/components/PrettyDate.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import Icon from '~/components/Icon.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    async fetch ({ store, params, env, redirect }) {
+    async fetch ({ app, redirect }) {
+      const { getMe, getPosts, getProjects, getTalks } = app.contentful
+
       await Promise.all([
-        store.state.me.entry.sys
-          ? store.state.me.entry
-          : client.getEntries({
-            'sys.id': env.CTF_ME_ID
-          }).then(res => {
-            store.commit('me/setMe', res.items[0])
-          }),
-
-        store.state.posts.list.length
-          ? store.state.posts.list
-          : client.getEntries({
-            content_type: env.CTF_POST_ID,
-            order: '-fields.date'
-          }).then(res => {
-            store.commit('posts/setList', res.items)
-          }),
-
-        store.state.projects.list.length
-          ? store.state.projects.list
-          : client.getEntries({
-            content_type: env.CTF_PROJECT_ID
-          }).then(res => {
-            store.commit('projects/setList', res.items)
-          }),
-
-        store.state.talks.list.length
-          ? store.state.talks.list
-          : client.getEntries({
-            content_type: env.CTF_TALK_ID,
-            order: '-fields.date'
-          }).then(res => {
-            store.commit('talks/setList', res.items)
-          })
+        getMe(),
+        getPosts(),
+        getProjects(),
+        getTalks()
       ])
     },
     computed: {

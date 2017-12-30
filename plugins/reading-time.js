@@ -1,7 +1,11 @@
 const WORDS_PER_MIN = 275
 
 export default (entry) => {
-  let count = entry.fields.body.match(/\w+/g).length
+  let count = 0
+
+  if (entry.fields.body) {
+    count = entry.fields.body.match(/\w+/g).length
+  }
 
   if (entry.fields.tilPosts && entry.fields.tilPosts.length) {
     count += entry.fields.tilPosts.reduce((acc, post) => {

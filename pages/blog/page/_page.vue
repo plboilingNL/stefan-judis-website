@@ -15,28 +15,33 @@
   import Container from '~/components/Container.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import PaginationActions from '~/components/PaginationActions.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    asyncData ({ params, env }) {
-      return Promise.all([
-        client.getEntries({
-          content_type: env.CTF_POST_ID,
-          order: '-fields.date',
-          limit: 5,
-          skip: (params.page - 1) * 5
-        })
-      ]).then(([posts]) => {
-        return {
-          posts: posts.items,
-          prevPage: params.page > 1 ? `/blog/page/${+params.page - 1}` : null,
-          nextPage: posts.total > params.page * 5 ? `/blog/page/${+params.page + 1}` : null,
-          page: params.page
-        }
-      }).catch(console.error)
+    async fetch ({ app, params, store }) {
+      await app.contentful.getPosts()
+      store.commit('posts/setActivePageNumber', +params.page)
+    },
+    computed: {
+      page () {
+        return this.$store.state.posts.activePageNumber
+      },
+      nextPage () {
+        return this.$store.state.posts.list.length > this.$store.state.posts.activePageNumber * 5
+          ? `/blog/page/${this.$store.state.posts.activePageNumber + 1}`
+          : null
+      },
+      prevPage () {
+        return this.$store.state.posts.activePageNumber > 2
+          ? `/blog/page/${this.$store.state.posts.activePageNumber - 1}`
+          : `/blog/`
+      },
+      posts () {
+        return this.$store.state.posts.list.slice(
+          (this.$store.state.posts.activePageNumber - 1) * 5,
+          (this.$store.state.posts.activePageNumber) * 5
+        )
+      }
     },
     head () {
       return {

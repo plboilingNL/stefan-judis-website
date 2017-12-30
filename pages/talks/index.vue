@@ -42,30 +42,24 @@
   import Flag from '~/components/Flag.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
-  import {createClient} from '~/plugins/contentful.js'
   import getTransition from '~/plugins/transition.js'
 
-  const client = createClient()
-
   export default {
-    asyncData ({ env }) {
-      return Promise.all([
-        client.getEntries({
-          content_type: env.CTF_TALK_ID,
-          order: '-fields.date'
-        }),
-        client.getEntries({
-          content_type: env.CTF_EVENT_ID,
-          order: 'fields.end',
-          'fields.state[in]': 'attending,accepted,teaching',
-          'fields.end[gte]': (new Date()).toISOString()
-        })
-      ]).then(([talks, events]) => {
-        return {
-          talks: talks.items,
-          events: events.items
-        }
-      }).catch(console.error)
+    async fetch ({ app }) {
+      const { getFutureEvents, getTalks } = app.contentful
+
+      await Promise.all([
+        getFutureEvents(),
+        getTalks()
+      ])
+    },
+    computed: {
+      events () {
+        return this.$store.state.events.futureList
+      },
+      talks () {
+        return this.$store.state.talks.list
+      }
     },
     head () {
       return {
