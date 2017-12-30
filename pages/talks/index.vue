@@ -17,6 +17,7 @@
         </div>
       </li>
     </ul>
+
     <h1 class="o-headline-1">Talks</h1>
     <ul class="o-list-thirds">
       <li v-for="talk in talks" class="u-marginBottomLarge">
