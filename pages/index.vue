@@ -23,7 +23,7 @@
         <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
     <Container class="u-highlight__red">
-      <h2 slot="headline">Side Projects</h2>
+      <h2 slot="headline">Coding Side Projects</h2>
       <ul class="o-list-thirds">
         <li v-for="project in projects">
           <ItemPreview :item="project" :show-description="true" :level="3"></itemPreview>
