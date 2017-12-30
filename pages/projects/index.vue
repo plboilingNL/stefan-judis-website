@@ -1,7 +1,7 @@
 <template>
   <Container class="t-container">
-    <h1 slot="headline" tabindex="-1">Free time fun projects</h1>
-    <h2 class="o-headline-2 u-textAlignCenter u-marginBottomMedium">Small talking &amp; recording</h2>
+    <h1 slot="headline" tabindex="-1">Free time &amp; fun projects</h1>
+    <h2 class="o-headline-2 u-textAlignCenter u-marginBottomMedium">Small talking</h2>
     <ul class="o-list-thirds">
       <li v-for="cast in screenCasts">
         <div class="c-tile c-tile__noHighlight">
