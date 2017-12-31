@@ -91,7 +91,7 @@
     width: 100%;
     height: 100%;
 
-    animation: animatedHeart 2s linear infinite;
+    animation: animatedHeart 1.75s linear infinite;
     animation-play-state: paused;
   }
 
@@ -105,10 +105,10 @@
 
   @keyframes animatedHeart {
     0% { transform: scale(1) }
-    15% { transform: scale(1.125) }
-    25% { transform: scale(1) }
-    35% { transform: scale(1.125) }
-    50% { transform: scale(1) }
+    20% { transform: scale(1.175) }
+    30% { transform: scale(1) }
+    50% { transform: scale(1.125) }
+    60% { transform: scale(1) }
     100% { transform: scale(1) }
   }
 </style>
