@@ -70,7 +70,7 @@
     animation-play-state: paused;
     box-shadow: 0 0 1em #fff;
     // TODO fix this
-    transition: box-shadow 1.25s;
+    transition: box-shadow .75s;
 
 
     &.is-loading {
