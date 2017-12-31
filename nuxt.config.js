@@ -57,9 +57,9 @@ const config = {
   },
 
   /*
-  ** Customize the progress-bar color
+  ** Custom heart loader
   */
-  loading: { color: '#555' },
+  loading: '~/components/Loading.vue',
 
   /*
   ** Router configuration
