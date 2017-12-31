@@ -27,7 +27,7 @@
 
     width: var(--logo-size);
     height: var(--logo-size);
-    margin : 1em auto 0;
+    margin : 1.5em auto 0;
   }
 
   @media (min-width: 38em) {
