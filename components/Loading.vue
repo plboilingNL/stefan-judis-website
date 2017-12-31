@@ -16,7 +16,9 @@
         this.loading = true
       },
       finish () {
-        this.loading = false
+        setTimeout(_ => {
+          this.loading = false
+        }, 500)
       }
     }
   }
@@ -68,14 +70,13 @@
     background-position: 0 0;
     animation: animatedBackground 2.5s linear infinite;
     animation-play-state: paused;
-    box-shadow: 0 0 1em #fff;
-    // TODO fix this
-    transition: box-shadow .75s;
-
 
     &.is-loading {
       animation-play-state: running;
-      box-shadow: 0 0 1em #888;
+
+      svg {
+        animation-play-state: running;
+      }
     }
 
     @media (min-width: 38em) {
@@ -89,6 +90,9 @@
   .c-logo svg {
     width: 100%;
     height: 100%;
+
+    animation: animatedHeart 2s linear infinite;
+    animation-play-state: paused;
   }
 
   @keyframes animatedBackground {
@@ -97,5 +101,14 @@
 
     to {
       background-position-y: var(--logo-size); }
+  }
+
+  @keyframes animatedHeart {
+    0% { transform: scale(1) }
+    15% { transform: scale(1.125) }
+    25% { transform: scale(1) }
+    35% { transform: scale(1.125) }
+    50% { transform: scale(1) }
+    100% { transform: scale(1) }
   }
 </style>
