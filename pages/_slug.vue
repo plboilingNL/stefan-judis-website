@@ -1,5 +1,5 @@
 <template>
-  <main class="t-container">
+  <div class="t-container">
     <Container accessible-line-length="true">
       <DynamicHeadline slot="headline" :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
       <div class="c-tile">
@@ -7,7 +7,7 @@
         <SharingLine v-if="page.fields.slug !== '404'" :item="page"></SharingLine>
       </div>
     </Container>
-  </main>
+  </div>
 </template>
 
 <script>

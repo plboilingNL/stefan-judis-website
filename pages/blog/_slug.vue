@@ -1,5 +1,5 @@
 <template>
-  <main class="t-container">
+  <div class="t-container">
     <Container accessible-line-length="true">
       <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
       <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
@@ -32,7 +32,7 @@
         <SharingLine :item="post"></SharingLine>
       </div>
     </Container>
-  </main>
+  </div>
 </template>
 
 <script>

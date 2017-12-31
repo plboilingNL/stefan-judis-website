@@ -3,7 +3,9 @@
     <offline-notice v-if="!isOnline"/>
     <Logo/>
     <navigation/>
-    <nuxt/>
+    <main>
+      <nuxt/>
+    </main>
     <closing/>
   </div>
 </template>
@@ -89,6 +91,10 @@
 
   h1, h2, h3 {
     font-weight: normal;
+  }
+
+  main {
+    min-height: 100vh;
   }
 
   video {
