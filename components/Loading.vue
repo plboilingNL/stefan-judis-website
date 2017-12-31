@@ -68,9 +68,14 @@
     background-position: 0 0;
     animation: animatedBackground 2.5s linear infinite;
     animation-play-state: paused;
+    box-shadow: 0 0 1em #fff;
+    // TODO fix this
+    transition: box-shadow 1.25s;
+
 
     &.is-loading {
       animation-play-state: running;
+      box-shadow: 0 0 1em #888;
     }
 
     @media (min-width: 38em) {
