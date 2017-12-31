@@ -25,9 +25,7 @@ export default (from, to) => {
   const toIndex = getIndex(to.name)
 
   if (fromIndex === toIndex) {
-    return from.path > to.path
-      ? 't-slide-right'
-      : 't-slide-left'
+    return 't-slide-left'
   }
 
   return fromIndex > toIndex
