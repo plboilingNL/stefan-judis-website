@@ -94,6 +94,8 @@
 
     animation: animatedHeart 1.75s linear infinite;
     animation-play-state: paused;
+
+    filter: drop-shadow(0 0 1px #888);
   }
 
   @keyframes animatedBackground {
