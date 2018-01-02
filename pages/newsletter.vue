@@ -9,7 +9,7 @@
             If you're interested in new posts on my <nuxt-link to="/blog/">blog</nuxt-link> or new learnings that I share in my <nuxt-link to="/today-i-learned">"Today I learned" section</nuxt-link> this newsletter is for you.</p>
           </p>
           <p>
-            This newsletter is an experiment and is highly inspired by <a href="https://tinyletter.com/kentcdodds">Kent C. Dodds excellent newsletter</a>. I don't want to share my articles only but also things that I've been up to and articles, tools, videos, ... that discovered in this month.
+            This newsletter is an experiment and is highly inspired by <a href="https://tinyletter.com/kentcdodds">Kent C. Dodds excellent newsletter</a>. I don't want to share my articles only but also things that I've been up to and articles, tools, videos, ... that I discovered in this month.
           </p>
           <p>
             Enjoy! 👋🏻
