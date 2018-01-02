@@ -4,7 +4,7 @@
       <h1 slot="headline" class="o-headline-1" tabindex="-1">{{ me.fields.welcomeMessage }}</h1>
       <Person :person="me"></Person>
     </Container>
-    <Container class="u-highlight__blue">
+    <Container class="u-highlight">
       <h2 slot="headline">Blog</h2>
       <ul class="o-list-thirds">
         <li v-for="post in posts">
@@ -13,7 +13,7 @@
       </ul>
       <nuxt-link slot="footerLine" to="/blog/" class="o-btn">See all posts</nuxt-link>
     </Container>
-    <Container class="u-highlight__green">
+    <Container class="u-highlight">
       <h2 slot="headline">Talks</h2>
       <ul class="o-list-thirds">
         <li v-for="talk in talks">
@@ -22,7 +22,7 @@
       </ul>
         <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
-    <Container class="u-highlight__red">
+    <Container class="u-highlight">
       <h2 slot="headline">Coding Side Projects</h2>
       <ul class="o-list-thirds">
         <li v-for="project in projects">

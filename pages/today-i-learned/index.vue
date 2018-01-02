@@ -1,21 +1,19 @@
 <template>
-  <div class="t-container">
-    <Container :full-width="true">
-      <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
-      <ul class="o-list-grid">
-        <li v-for="categoryName in Object.keys(categories).sort()">
-          <div class="c-tile">
-            <h2 class="o-headline-2">{{ `#${categoryName}` }}</h2>
-            <ul class="o-list-reset">
-              <li v-for="post in categories[categoryName]" class="u-marginBottomSmall">
-                <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-    </Container>
-  </div>
+  <Container class="t-container" :full-width="true">
+    <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
+    <ul class="o-list-grid">
+      <li v-for="categoryName in Object.keys(categories).sort()">
+        <div class="c-tile">
+          <h2 class="o-headline-2">{{ `#${categoryName}` }}</h2>
+          <ul class="o-list-reset">
+            <li v-for="post in categories[categoryName]" class="u-marginBottomSmall">
+              <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
+            </li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </Container>
 </template>
 
 <script>

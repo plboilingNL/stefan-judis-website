@@ -1,38 +1,36 @@
 <template>
-  <div class="t-container">
-    <Container accessible-line-length="true">
-      <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
-      <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
-      <span slot="readingTime">{{ post.fields.readingTime }} min read</span>
-      <div class="c-tile">
-        <Marked :markdown="post.fields.body"></Marked>
-        <div v-if="post.fields.isTmil">
-          <ul class="o-list-reset u-marginBottomLarge">
-            <li v-for="tilPost in post.fields.tilPosts">
-              <DynamicHeadline :level="2" :id="tilPost.fields.title | idAlize" class="p-name">{{ tilPost.fields.title }}</DynamicHeadline>
-              <Marked :markdown="tilPost.fields.body"></Marked>
-              <div v-if="(tilPost.fields.video || tilPost.fields.videoWebm)">
-                <video autoplay muted loop playsinline preload="metadata" :class="{ 'is-mobile-video': tilPost.fields.isMobileVideo }">
-                  <source v-if="tilPost.fields.videoWebm" :src="tilPost.fields.videoWebm.fields.file.url" type="video/webm">
-                  <source v-if="tilPost.fields.video" :src="tilPost.fields.video.fields.file.url" type="video/mp4">
-                </video>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div v-if="post.fields.tags && post.fields.tags.length" class="u-marginBottomMedium">
-          <h3>Tags for this post</h3>
-          <ul class="o-list-inline">
-            <li v-for="tag in post.fields.tags">
-              <nuxt-link class="o-tag u-marginRightSmall u-marginBottomSmall" :to="`/blog/tag/${tag}`">{{ tag }}</nuxt-link>
-            </li>
-          </ul>
-        </div>
-        <Disqus class="u-marginBottomMedium"></Disqus>
-        <SharingLine :item="post"></SharingLine>
+  <Container class="t-container" accessible-line-length="true">
+    <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
+    <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
+    <span slot="readingTime">{{ post.fields.readingTime }} min read</span>
+    <div class="c-tile">
+      <Marked :markdown="post.fields.body"></Marked>
+      <div v-if="post.fields.isTmil">
+        <ul class="o-list-reset u-marginBottomLarge">
+          <li v-for="tilPost in post.fields.tilPosts">
+            <DynamicHeadline :level="2" :id="tilPost.fields.title | idAlize" class="p-name">{{ tilPost.fields.title }}</DynamicHeadline>
+            <Marked :markdown="tilPost.fields.body"></Marked>
+            <div v-if="(tilPost.fields.video || tilPost.fields.videoWebm)">
+              <video autoplay muted loop playsinline preload="metadata" :class="{ 'is-mobile-video': tilPost.fields.isMobileVideo }">
+                <source v-if="tilPost.fields.videoWebm" :src="tilPost.fields.videoWebm.fields.file.url" type="video/webm">
+                <source v-if="tilPost.fields.video" :src="tilPost.fields.video.fields.file.url" type="video/mp4">
+              </video>
+            </div>
+          </li>
+        </ul>
       </div>
-    </Container>
-  </div>
+      <div v-if="post.fields.tags && post.fields.tags.length" class="u-marginBottomMedium">
+        <h3>Tags for this post</h3>
+        <ul class="o-list-inline">
+          <li v-for="tag in post.fields.tags">
+            <nuxt-link class="o-tag u-marginRightSmall u-marginBottomSmall" :to="`/blog/tag/${tag}`">{{ tag }}</nuxt-link>
+          </li>
+        </ul>
+      </div>
+      <Disqus class="u-marginBottomMedium"></Disqus>
+      <SharingLine :item="post"></SharingLine>
+    </div>
+  </Container>
 </template>
 
 <script>

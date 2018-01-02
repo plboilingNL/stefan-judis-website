@@ -1,82 +1,80 @@
 <template>
-  <div class="t-container">
-    <Container accessible-line-length="true">
-      <h1 slot="headline" tabindex="-1">Hey there! 👋</h1>
-      <div class="c-tile">
-        <p>
-          In case you're considering to let me speak at your event you probably need some information.
-          First of all, I'm really happy about any invitation to speak somewhere... so <strong>thank you!</strong>
-        </p>
-        <p>
-          You can find slides and recordings of my recent talks in the <a href="/talks/">speak section</a>.
-        </p>
-        <p>
-          But here we go with some basic information:
-        </p>
-        <dl>
-          <dt>
-            Short bio:
-          </dt>
-          <dd>
-            <Marked :markdown="speakerInfo.fields.shortBio"></Marked>
-          </dd>
-          <dt>
-            Favorite talk topics:
-          </dt>
-          <dd>
-            {{ speakerInfo.fields.favoriteTopics.join(', ') }}
-          </dd>
-          <dt>
-            Images:
-          </dt>
-          <dd>
-            <ul class="o-list-thirds">
-              <li v-for="image in speakerInfo.fields.images" class="u-marginBottomLarge">
-                <div class="u-flex-column u-height-100">
-                  <!-- this is container is needed because of a FF bug -->
-                  <div>
-                    <a :href="image.fields.file.url">
-                      <lazy-image :asset="image" :ratio="0.65"></lazy-image>
-                    </a>
-                  </div>
+  <Container class="t-container" accessible-line-length="true">
+    <h1 slot="headline" tabindex="-1">Hey there! 👋</h1>
+    <div class="c-tile">
+      <p>
+        In case you're considering to let me speak at your event you probably need some information.
+        First of all, I'm really happy about any invitation to speak somewhere... so <strong>thank you!</strong>
+      </p>
+      <p>
+        You can find slides and recordings of my recent talks in the <a href="/talks/">speak section</a>.
+      </p>
+      <p>
+        But here we go with some basic information:
+      </p>
+      <dl>
+        <dt>
+          Short bio:
+        </dt>
+        <dd>
+          <Marked :markdown="speakerInfo.fields.shortBio"></Marked>
+        </dd>
+        <dt>
+          Favorite talk topics:
+        </dt>
+        <dd>
+          {{ speakerInfo.fields.favoriteTopics.join(', ') }}
+        </dd>
+        <dt>
+          Images:
+        </dt>
+        <dd>
+          <ul class="o-list-thirds">
+            <li v-for="image in speakerInfo.fields.images" class="u-marginBottomLarge">
+              <div class="u-flex-column u-height-100">
+                <!-- this is container is needed because of a FF bug -->
+                <div>
+                  <a :href="image.fields.file.url">
+                    <lazy-image :asset="image" :ratio="0.65"></lazy-image>
+                  </a>
                 </div>
-              </li>
-            </ul>
-          </dd>
-          <dt>
-            Past talks:
-          </dt>
-          <dd>
-            <ul>
-              <li v-for="event in events">
-                <a :href="event.fields.website">{{ event.fields.name }}</a>
-              </li>
-            </ul>
-          </dd>
-          <dt>
-            Technical equipment:
-          </dt>
-          <dd>
-            <ul>
-              <li v-for="tech in speakerInfo.fields.technicalEquipment">
-                {{ tech }}
-              </li>
-            </ul>
-          </dd>
-          <dt>
-            Additional info:
-          </dt>
-          <dd>
-            <ul>
-              <li v-for="pref in speakerInfo.fields.preferences">
-                {{ pref }}
-              </li>
-            </ul>
-          </dd>
-        </dl>
-      </div>
-    </Container>
-  </div>
+              </div>
+            </li>
+          </ul>
+        </dd>
+        <dt>
+          Past talks:
+        </dt>
+        <dd>
+          <ul>
+            <li v-for="event in events">
+              <a :href="event.fields.website">{{ event.fields.name }}</a>
+            </li>
+          </ul>
+        </dd>
+        <dt>
+          Technical equipment:
+        </dt>
+        <dd>
+          <ul>
+            <li v-for="tech in speakerInfo.fields.technicalEquipment">
+              {{ tech }}
+            </li>
+          </ul>
+        </dd>
+        <dt>
+          Additional info:
+        </dt>
+        <dd>
+          <ul>
+            <li v-for="pref in speakerInfo.fields.preferences">
+              {{ pref }}
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+  </Container>
 </template>
 
 <script>
