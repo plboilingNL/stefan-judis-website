@@ -1,6 +1,6 @@
 <template>
   <div class="c-sharingLine">
-    If you like this post <a :href="sharingUrl" target="_blank" rel="noopener noreferrer">share it</a> or <a :href="followUrl" target="_blank" rel="noopener noreferrer">follow me on Twitter</a>.
+    <p>If you like this post <a :href="sharingUrl" target="_blank" rel="noopener noreferrer">share it</a> or subscribe to <nuxt-link to="/newsletter/">my monthly newsletter</nuxt-link>.</p>
   </div>
 </template>
 
@@ -11,9 +11,6 @@
     computed: {
       sharingUrl () {
         return encodeURI(`https://twitter.com/intent/tweet?text=${this.item.fields.title}&url=https://www.stefanjudis.de/blog/${this.item.fields.slug}&via=stefanjudis`)
-      },
-      followUrl () {
-        return encodeURI('https://twitter.com/intent/follow?screen_name=stefanjudis')
       }
     },
     components: {
@@ -31,6 +28,10 @@
 
     a:hover {
       color: currentColor;
+    }
+
+    p {
+      margin: 0;
     }
   }
 </style>
