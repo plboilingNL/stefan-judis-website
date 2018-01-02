@@ -68,6 +68,7 @@
     background-repeat: repeat;
     background-size: 100% 100%;
     background-position: 0 0;
+    box-shadow: inset 0px 0 1px var(--grey-dark);
     animation: animatedBackground 2.5s linear infinite;
     animation-play-state: paused;
 
