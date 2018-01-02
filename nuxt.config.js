@@ -224,7 +224,7 @@ function getAllRoutes () {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  // config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
+  config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
 }
 
 module.exports = config

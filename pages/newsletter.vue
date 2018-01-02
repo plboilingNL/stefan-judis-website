@@ -6,7 +6,7 @@
       <div class="c-tile">
         <form style="text-align:center;" action="https://tinyletter.com/stefanjudis" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/stefanjudis', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true">
           <p>
-            If you're interested in new posts on my <nuxt-link to="/blog/">blog</nuxt-link> or new learnings that I share in my <nuxt-link to="/today-i-learned">"Today I learned" section</nuxt-link> this newsletter is for you.</p>
+            If you're interested in new posts on my <nuxt-link to="/blog/">blog</nuxt-link> or new learnings that I share in my <nuxt-link to="/today-i-learned">"Today I learned" section</nuxt-link> this newsletter is for you.
           </p>
           <p>
             This newsletter is an experiment and is highly inspired by <a href="https://tinyletter.com/kentcdodds">Kent C. Dodds excellent newsletter</a>. I don't want to share my articles only but also things that I've been up to and articles, tools, videos, ... that I discovered in this month.
@@ -22,7 +22,7 @@
           <input type="hidden" value="1" name="embed"/>
           <button type="submit" class="o-btn">Subscribe</button>
           <p>
-            <a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a>
+            <a href="https://tinyletter.com">powered by TinyLetter</a>
           </p>
         </form>
       </div>
