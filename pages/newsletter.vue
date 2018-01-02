@@ -14,11 +14,10 @@
           <p>
             Enjoy! 👋🏻
           </p>
-          <p>
-            <label for="tlemail">Email address</label>
-          </p>
-          <p>
-            <input type="text" name="email" id="tlemail" />
+          <p class="u-marginBottomMedium">
+            <label for="tlemail">Email address:
+              <input type="email" name="email" id="tlemail" placeholder="janedoe@example.com"/>
+            </label>
           </p>
           <input type="hidden" value="1" name="embed"/>
           <button type="submit" class="o-btn">Subscribe</button>
@@ -54,13 +53,17 @@
 </script>
 
 <style scoped>
-  input[type="text"] {
+  input {
     display: block;
     width: 100%;
 
     line-height: 1.75;
     font-size: 1em;
     padding: .25em .5em;
+    margin: .5em 0;
     text-align: center;
+
+    border: 1px solid #eee;
+    box-shadow: 0 .125em .25em #e1e1e1;
   }
 </style>

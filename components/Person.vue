@@ -28,8 +28,7 @@
     </div>
     <div class="c-person__details">
       <div v-html="bio"></div>
-      <p>I also <nuxt-link to="/staying-up-to-date/">read a lot of newsletters and listen to a few podcasts</nuxt-link> and document <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link>.</p>
-
+      <p>I also <nuxt-link to="/staying-up-to-date/">read a lot of newsletters and listen to a few podcasts</nuxt-link>, document <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link> and write <nuxt-link to="/newsletter/">a monthly newsletter</nuxt-link>.</p>
     </div>
   </div>
 </template>
@@ -67,7 +66,7 @@
     box-shadow: var(--shadow-person);
   }
 
-  @media (min-width: 43em) {
+  @media (min-width: 45.5em) {
     .c-person {
       flex-direction : row;
     }
@@ -116,7 +115,7 @@
       }
     }
 
-    @media (min-width: 43em) {
+    @media (min-width: 45.5em) {
       margin: 0 1em 0 0;
       flex: 0 0 50%;
       flex-direction: row;
