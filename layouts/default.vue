@@ -114,6 +114,8 @@
 
   a {
     color: currentColor;
+    text-decoration: underline;
+    text-decoration-skip: ink;
 
     &:hover {
       color: var(--c-highlight);
