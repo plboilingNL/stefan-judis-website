@@ -46,10 +46,10 @@
 
 .o-code .token.keyword, .o-code .token.boolean, .o-code .token.number { color: var(--blue-bright); font-weight: bold; }
 .o-code .token.string, .o-code .token.template-string { color: var(--red-bright); }
-.o-code .token.tag { color: #ccc; font-weight: bold; }
-.o-code .token.attr-name { font-weight: normal; }
+.o-code .token.tag { color: var(--blue-bright); font-weight: bold; }
+.o-code .token.attr-name { color: #ddd; font-weight: normal; }
 .o-code .token.attr-value { color: var(--red-bright); font-weight: normal; }
 .o-code .token.attr-value .punctuation { color: var(--grey); }
 .o-code .token.atrule .rule { color: var(--red-bright); }
-.o-code .token.selector { color: var(--blue-gright); }
+.o-code .token.selector { color: var(--blue-bright); }
 .o-code .token.comment { color: #aaa; }
