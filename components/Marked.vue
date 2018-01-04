@@ -20,7 +20,7 @@
     blockquote {
       position: relative;
       margin: 0;
-      padding: .5em .5em .5em 1.75em;
+      padding: .5em .5em .5em 2em;
       font-style: italic;
 
       p {
