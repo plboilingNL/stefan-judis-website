@@ -2,7 +2,6 @@
   <div>
     <div class="nuxt-progress" :style="{
       'width': percent+'%',
-      'height': height,
       'opacity': show ? 1 : 0
     }"></div>
     <div class="c-logo">
@@ -23,8 +22,7 @@ export default {
       show: false,
       loading: false,
       canSuccess: true,
-      duration: 250,
-      height: '.2em'
+      duration: 250
     }
   },
   methods: {
@@ -101,11 +99,11 @@ export default {
     top: 0px;
     left: 0px;
     right: 0px;
-    height: 2px;
+    height: 3px;
     width: 0%;
     transition: width 0.2s, opacity 0.4s;
     opacity: 1;
-    background-color: var(--c-highlight);
+    background-color: #5a5a5a;
     z-index: 999999;
   }
 
