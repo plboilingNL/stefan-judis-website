@@ -1,30 +1,115 @@
-<template>
-  <div class="c-logo">
-    <nuxt-link :to="'/'" aria-label="Home" :class="[loading ? 'is-loading': '']">
-      <svg aria-hidden="true" width="36" height="36" viewbox="0 0 436 400" xmlns="http://www.w3.org/2000/svg"><path d="M228.682 396.419c-6.504 4.687-15.042 4.578-21.4 0C198.852 390.279 0 244.327 0 128.75 0 48.308 59.55.239 117.102.239c34.553 0 75.21 17.876 100.898 64.819C243.615 18.115 284.308.239 318.861.239 376.45.24 436 48.309 436 128.751c0 115.576-198.889 261.527-207.318 267.668z" fill="#fff"/></svg>
-    </nuxt-link>
+ <template>
+  <div>
+    <div class="nuxt-progress" :style="{
+      'width': percent+'%',
+      'height': height,
+      'opacity': show ? 1 : 0
+    }"></div>
+    <div class="c-logo">
+      <nuxt-link :to="'/'" aria-label="Home" :class="[loading ? 'is-loading': '']">
+        <svg aria-hidden="true" width="36" height="36" viewbox="0 0 436 400" xmlns="http://www.w3.org/2000/svg"><path d="M228.682 396.419c-6.504 4.687-15.042 4.578-21.4 0C198.852 390.279 0 244.327 0 128.75 0 48.308 59.55.239 117.102.239c34.553 0 75.21 17.876 100.898 64.819C243.615 18.115 284.308.239 318.861.239 376.45.24 436 48.309 436 128.751c0 115.576-198.889 261.527-207.318 267.668z" fill="#fff"/></svg>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      loading: false
-    }),
-    methods: {
-      start () {
-        this.loading = true
-      },
-      finish () {
-        setTimeout(_ => {
-          this.loading = false
-        }, 500)
+import Vue from 'vue'
+export default {
+  name: 'nuxt-loading',
+  data () {
+    return {
+      percent: 0,
+      show: false,
+      loading: false,
+      canSuccess: true,
+      duration: 250,
+      height: '.2em'
+    }
+  },
+  methods: {
+    start () {
+      this.show = true
+      this.loading = true
+      this.canSuccess = true
+      if (this._timer) {
+        clearInterval(this._timer)
+        this.percent = 0
       }
+      this._cut = 10000 / Math.floor(this.duration)
+      this._timer = setInterval(() => {
+        this.increase(this._cut * Math.random())
+        if (this.percent > 95) {
+          this.finish()
+        }
+      }, 100)
+      return this
+    },
+    set (num) {
+      this.show = true
+      this.canSuccess = true
+      this.percent = Math.floor(num)
+      return this
+    },
+    get () {
+      return Math.floor(this.percent)
+    },
+    increase (num) {
+      this.percent = this.percent + Math.floor(num)
+      return this
+    },
+    decrease (num) {
+      this.percent = this.percent - Math.floor(num)
+      return this
+    },
+    finish () {
+      this.percent = 100
+      this.hide()
+      setTimeout(_ => {
+        this.loading = false
+      }, 500)
+      return this
+    },
+    pause () {
+      clearInterval(this._timer)
+      return this
+    },
+    hide () {
+      clearInterval(this._timer)
+      this._timer = null
+      setTimeout(() => {
+        this.show = false
+        Vue.nextTick(() => {
+          setTimeout(() => {
+            this.percent = 0
+          }, 200)
+        })
+      }, 500)
+      return this
+    },
+    fail () {
+      this.canSuccess = false
+      return this
     }
   }
+}
 </script>
+
 <style lang="scss">
-  .c-logo {
+  .nuxt-progress {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 2px;
+    width: 0%;
+    transition: width 0.2s, opacity 0.4s;
+    opacity: 1;
+    background-color: var(--c-highlight);
+    z-index: 999999;
+  }
+
+    .c-logo {
     --logo-size: 4em;
 
     width: var(--logo-size);
