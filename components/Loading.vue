@@ -22,7 +22,7 @@ export default {
       show: false,
       loading: false,
       canSuccess: true,
-      duration: 250
+      duration: 500
     }
   },
   methods: {
