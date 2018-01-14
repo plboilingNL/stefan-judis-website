@@ -60,10 +60,12 @@
     --yellow-bright: #fefff4;
     --grey-bright: #eee;
     --grey-dark: #5a5a5a;
+    --grey-very-dark: #3a3a3a;
 
     --c-highlight: var(--green-dark);
 
     --shadow-tile: 0 .25em 2.5em #e1e1e1;
+    --shadow-btn: 0 .125em .375em #e1e1e1;
     --shadow-person: var(--shadow-tile);
 
     --navigation-break: 30em;
