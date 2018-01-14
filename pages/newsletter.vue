@@ -53,7 +53,7 @@
 
     @media (min-width: 38em) {
       position: absolute;
-      top: 0;
+      top: 3.5em;
       right: 0;
       bottom: 0;
       left: 0;
