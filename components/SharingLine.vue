@@ -1,6 +1,6 @@
 <template>
   <div class="c-sharingLine">
-    <p>If you like this post <a :href="sharingUrl" target="_blank" rel="noopener noreferrer">share it</a> or subscribe to <nuxt-link to="/newsletter/">my monthly newsletter</nuxt-link>.</p>
+    <p>If you like this post <a :href="sharingUrl" target="_blank" rel="noopener noreferrer">share it</a> or subscribe to <nuxt-link :to="`/newsletter/?back=${$route.path}`">my monthly newsletter</nuxt-link>.</p>
   </div>
 </template>
 

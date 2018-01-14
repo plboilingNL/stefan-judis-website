@@ -4,7 +4,7 @@
     <h2 class="o-headline-2 u-textAlignCenter u-marginBottomMedium">Small talking</h2>
     <ul class="o-list-thirds">
       <li v-for="cast in screenCasts">
-        <div class="c-tile c-tile__noHighlight">
+        <div class="c-tile c-tile--noHighlight">
           <!-- this is container is needed because of a FF bug -->
           <div class="c-tile__image">
             <lazy-image :asset="cast.fields.coverImage" :ratio="0.5625"></lazy-image>

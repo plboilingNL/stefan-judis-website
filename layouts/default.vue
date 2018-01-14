@@ -63,6 +63,7 @@
     --grey-very-dark: #3a3a3a;
 
     --c-highlight: var(--green-dark);
+    --c-text: var(--grey-dark);
 
     --shadow-tile: 0 .5em 3.5em #ddd;
     --shadow-btn: 0 .125em .375em #e1e1e1;
@@ -79,7 +80,7 @@
     line-height: 1.5;
 
     background: #fff;
-    color: var(--grey-dark);
+    color: var(--c-text);
 
     padding-bottom: 5em;
   }
@@ -95,7 +96,7 @@
   }
 
   main {
-    min-height: 100vh;
+    min-height: calc(100vh - 2.5em);
   }
 
   video {

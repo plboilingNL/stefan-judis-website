@@ -21,6 +21,14 @@ export default (from, to) => {
     return ''
   }
 
+  if (to.name === 'newsletter') {
+    return 't-slide-up'
+  }
+
+  if (from.name === 'newsletter') {
+    return 't-slide-down'
+  }
+
   const fromIndex = getIndex(from.name)
   const toIndex = getIndex(to.name)
 
