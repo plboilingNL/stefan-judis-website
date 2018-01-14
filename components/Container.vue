@@ -34,8 +34,6 @@
 
 <style lang="scss">
   .c-container {
-    background-color: var(--c-container-bg);
-
     & > div {
       max-width: 65em;
       margin: 0 auto;

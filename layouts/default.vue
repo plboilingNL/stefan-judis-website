@@ -58,13 +58,13 @@
     --red-dark: #c52d22;
     --red-bright: #f55d52;
     --yellow-bright: #fefff4;
-    --grey-bright: #eee;
+    --grey-bright: #f5f5f5;
     --grey-dark: #5a5a5a;
     --grey-very-dark: #3a3a3a;
 
     --c-highlight: var(--green-dark);
 
-    --shadow-tile: 0 .25em 2.5em #e1e1e1;
+    --shadow-tile: 0 .25em 3em #d8d8d8;
     --shadow-btn: 0 .125em .375em #e1e1e1;
     --shadow-person: var(--shadow-tile);
 
@@ -78,7 +78,7 @@
     font-weight: 400;
     line-height: 1.5;
 
-    background: #f9f9f9;
+    background: #fff;
     color: var(--grey-dark);
 
     padding-bottom: 5em;

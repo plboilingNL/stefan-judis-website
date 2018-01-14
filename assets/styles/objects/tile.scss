@@ -47,7 +47,8 @@
       text-decoration: none;
       padding: 1em;
       margin-top: .5em;
-      border-top: 1px solid #eee;
+      background: var(--grey-bright);
+      color: var(--c-highlight);
 
       &:hover {
         color: white;
