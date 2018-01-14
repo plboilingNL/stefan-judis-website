@@ -14,19 +14,19 @@
       </p>
       <dl>
         <dt>
-          Short bio:
+          Short bio
         </dt>
         <dd>
           <Marked :markdown="speakerInfo.fields.shortBio"></Marked>
         </dd>
         <dt>
-          Favorite talk topics:
+          Favorite talk topics
         </dt>
         <dd>
           {{ speakerInfo.fields.favoriteTopics.join(', ') }}
         </dd>
         <dt>
-          Images:
+          Images
         </dt>
         <dd>
           <ul class="o-list-thirds">
@@ -43,7 +43,7 @@
           </ul>
         </dd>
         <dt>
-          Past talks:
+          Past talks
         </dt>
         <dd>
           <ul>
@@ -53,7 +53,7 @@
           </ul>
         </dd>
         <dt>
-          Technical equipment:
+          Technical equipment
         </dt>
         <dd>
           <ul>
@@ -63,7 +63,7 @@
           </ul>
         </dd>
         <dt>
-          Additional info:
+          Additional info
         </dt>
         <dd>
           <ul>
@@ -81,6 +81,7 @@
   import Container from '~/components/Container.vue'
   import Marked from '~/components/Marked.vue'
   import LazyImage from '~/components/LazyImage.vue'
+  import getTransition from '~/plugins/transition.js'
 
   export default {
     async fetch ({ app }) {
@@ -105,6 +106,9 @@
           { hid: 'description', name: 'description', content: `You want me to speak at your event? Great - here is some basic information` }
         ]
       }
+    },
+    transition (to, from) {
+      return getTransition(from, to)
     },
     components: {
       Container,

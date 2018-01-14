@@ -20,7 +20,7 @@
           <ItemPreview :item="talk" :level="3"></itemPreview>
         </li>
       </ul>
-        <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
+      <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
     <Container class="u-highlight">
       <h2 slot="headline">Coding Side Projects</h2>
