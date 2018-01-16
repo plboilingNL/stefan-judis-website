@@ -13,7 +13,7 @@
             </p>
             <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
             <div class="c-tile__footer">
-              <a :href="event.fields.website" :aria-labelledby="`Visit ${event.fields.name}`">Go to event</a>
+              <a :href="event.fields.website" :aria-label="`Visit ${event.fields.name}`">Go to event</a>
             </div>
           </div>
         </li>
