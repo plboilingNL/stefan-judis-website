@@ -10,7 +10,7 @@
             <lazy-image :asset="cast.fields.coverImage" :ratio="0.5625"></lazy-image>
           </div>
           <pretty-date :date="cast.fields.publishDate" class="u-marginTopMedium"></pretty-date>
-          <h3 class="u-noMarginTop">{{ cast.fields.title }}</h3>
+          <h3 class="u-noMarginTop" :id="cast.fields.title | idAlize">{{ cast.fields.title }}</h3>
           <p class="c-tile__footer"><a :href="cast.fields.url" :aria-labelledby="cast.fields.title | idAlize">Watch on YouTube</a></p>
         </div>
       </li>
