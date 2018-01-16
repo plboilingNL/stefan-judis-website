@@ -35,7 +35,7 @@ export default ({app, env, store}) => {
           content_type: env.CTF_EVENT_ID,
           order: 'fields.end',
           'fields.state[in]': 'attending,accepted,teaching',
-          'fields.end[gte]': (new Date()).toISOString()
+          'fields.end[gte]': (new Date(+new Date() - 1000 * 60 * 60 * 24)).toISOString()
         }).then(res => {
           store.commit('events/setFutureList', res.items)
           return res.items
