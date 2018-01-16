@@ -99,7 +99,8 @@ const config = {
       manifest: {
         name: 'Stefan Judis Web Development',
         lang: 'en',
-        short_name: 'SJ Web Dev'
+        short_name: 'SJ Web Dev',
+        theme_color: '#fefff4'
       }
     }],
     ['@nuxtjs/google-analytics', { ua: 'UA-104150131-1' }]
