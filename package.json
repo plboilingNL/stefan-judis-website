@@ -6,9 +6,11 @@
   "private": true,
   "dependencies": {
     "@nuxtjs/pwa": "^0.2.0",
+    "@nuxtjs/google-analytics": "^1.0.0",
+    "@nuxtjs/sitemap": "0.0.3",
     "contentful": "^4.5.0",
-    "marked": "^0.3.6",
-    "nuxt": "^1.0.0-rc4",
+    "marked": "^0.3.12",
+    "nuxt": "^1.0.0",
     "prismjs": "^1.6.0",
     "url": "^0.11.0",
     "wicg-focus-ring": "^2.0.1"
@@ -24,8 +26,6 @@
     "precommit": "npm run lint"
   },
   "devDependencies": {
-    "@nuxtjs/google-analytics": "^1.0.0",
-    "@nuxtjs/sitemap": "0.0.3",
     "a11y.css": "^4.2.2",
     "autoprefixer": "^7.1.1",
     "babel-eslint": "^7.1.1",
