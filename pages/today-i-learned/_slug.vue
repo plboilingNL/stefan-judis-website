@@ -64,7 +64,9 @@
       return {
         title: this.post.fields.title,
         meta: [
-          { hid: 'description', name: 'description', content: this.post.fields.description }
+          { hid: 'description', name: 'description', content: this.post.fields.description },
+          { property: 'og:title', content: this.post.fields.title },
+          { property: 'og:description', content: this.post.fields.description }
         ]
       }
     },
@@ -81,7 +83,3 @@
     }
   }
 </script>
-
-<style>
-
-</style>
