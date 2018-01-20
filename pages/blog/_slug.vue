@@ -27,7 +27,7 @@
           </li>
         </ul>
       </div>
-      <Disqus class="u-marginBottomMedium"></Disqus>
+      <Comments class="u-marginBottomMedium" />
       <SharingLine :item="post"></SharingLine>
     </div>
   </Container>
@@ -35,7 +35,7 @@
 
 <script>
   import Container from '~/components/Container.vue'
-  import Disqus from '~/components/Disqus.vue'
+  import Comments from '~/components/Comments.vue'
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
   import Marked from '~/components/Marked.vue'
@@ -78,7 +78,7 @@
     },
     components: {
       Container,
-      Disqus,
+      Comments,
       DynamicHeadline,
       PrettyDate,
       Marked,

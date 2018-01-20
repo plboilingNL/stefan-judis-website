@@ -4,11 +4,11 @@
   border: none;
   background: var(--grey-dark);
   color: #fff;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   text-decoration: none;
-  border-radius: .125em;
+  border-radius: 0.125em;
   text-shadow: 0 1px 2px var(--grey-very-dark);
-  transition: transform .125s ease-in-out;
+  transition: transform 0.125s ease-in-out;
   box-shadow: var(--shadow-btn);
 
   &:hover {
@@ -16,14 +16,14 @@
     color: #fff;
     text-shadow: 0 1px 2px var(--grey-dark);
 
-    transform: translate(0, -.0625em);
+    transform: translate(0, -0.0625em);
   }
 
   &:active {
-    filter: brightness(.75)
+    filter: brightness(0.75);
   }
 }
 
 .o-btn--small {
-  padding: .25em .5em;
+  padding: 0.25em 0.5em;
 }
