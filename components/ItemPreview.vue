@@ -59,7 +59,12 @@
         return PREFIXES[this.item.sys.contentType.sys.id]
       },
       classes () {
-        return ['c-tile', `c-tile__${this.color || 'red'}`, 'h-entry']
+        return [
+          'c-tile',
+          `c-tile__${this.color || 'red'}`,
+          'h-entry',
+          this.item.fields.isDraft ? 'is-draft' : null
+        ]
       }
     },
     components: {
