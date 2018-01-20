@@ -32,9 +32,9 @@
   import Marked from '~/components/Marked.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app, params, store, redirect }) {
       await app.contentful.getTil()
 
@@ -70,9 +70,6 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       Disqus,
@@ -81,5 +78,5 @@
       PrettyDate,
       SharingLine
     }
-  }
+  })
 </script>

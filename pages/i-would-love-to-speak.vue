@@ -81,9 +81,9 @@
   import Container from '~/components/Container.vue'
   import Marked from '~/components/Marked.vue'
   import LazyImage from '~/components/LazyImage.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app }) {
       const { getPastEvents, getMe } = app.contentful
       await Promise.all([
@@ -107,15 +107,12 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       Marked,
       LazyImage
     }
-  }
+  })
 </script>
 
 <style scoped>

@@ -12,10 +12,10 @@
   import Container from '~/components/Container.vue'
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
   import Marked from '~/components/Marked.vue'
 
-  export default {
+  export default createPage({
     async fetch ({ app, store, params, redirect }) {
       await app.contentful.getLandingpages()
       store.commit('landingpages/setActiveWithSlug', params.slug)
@@ -37,16 +37,13 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       DynamicHeadline,
       Marked,
       SharingLine
     }
-  }
+  })
 </script>
 
 <style scoped></style>

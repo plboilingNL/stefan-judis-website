@@ -13,9 +13,9 @@
 <script>
   import Container from '~/components/Container.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app, params, store }) {
       await app.contentful.getPosts()
       store.commit('posts/setActiveTag', params.tag)
@@ -44,14 +44,11 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       ItemPreview
     }
-  }
+  })
 </script>
 
 <style></style>

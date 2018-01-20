@@ -41,9 +41,9 @@
   import PrettyDate from '~/components/PrettyDate.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import Icon from '~/components/Icon.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app, redirect }) {
       const { getMe, getPosts, getProjects, getTalks } = app.contentful
 
@@ -76,9 +76,6 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       ItemPreview,
       Container,
@@ -86,5 +83,5 @@
       Person,
       PrettyDate
     }
-  }
+  })
 </script>

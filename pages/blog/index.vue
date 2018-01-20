@@ -14,9 +14,9 @@
   import Container from '~/components/Container.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import PaginationActions from '~/components/PaginationActions.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app }) {
       await app.contentful.getPosts()
     },
@@ -36,13 +36,10 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       ItemPreview,
       PaginationActions
     }
-  }
+  })
 </script>

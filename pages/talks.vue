@@ -46,9 +46,9 @@
   import Flag from '~/components/Flag.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app }) {
       const { getFutureEvents, getTalks } = app.contentful
 
@@ -73,14 +73,11 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       Flag,
       LazyImage,
       PrettyDate
     }
-  }
+  })
 </script>

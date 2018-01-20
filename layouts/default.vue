@@ -37,6 +37,7 @@
 </script>
 
 <style lang="scss">
+  @import '../assets/styles/objects/anchor.scss';
   @import '../assets/styles/objects/button.scss';
   @import '../assets/styles/objects/code.scss';
   @import '../assets/styles/objects/headline.scss';
@@ -57,7 +58,6 @@
     --red: #d73f34;
     --red-dark: #c52d22;
     --red-bright: #f55d52;
-    --yellow-bright: #fefff4;
     --grey-bright: #f8f8f8;
     --grey-dark: #5a5a5a;
     --grey-very-dark: #3a3a3a;

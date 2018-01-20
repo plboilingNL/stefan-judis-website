@@ -41,9 +41,9 @@
   import Marked from '~/components/Marked.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app, params, store, redirect }) {
       await app.contentful.getPosts()
       store.commit('posts/setActiveWithSlug', params.slug)
@@ -76,9 +76,6 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       Disqus,
@@ -88,5 +85,5 @@
       SharingLine,
       ItemPreview
     }
-}
+  })
 </script>

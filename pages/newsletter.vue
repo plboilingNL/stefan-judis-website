@@ -27,9 +27,9 @@
 
 <script>
   import Container from '~/components/Container.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     head () {
       return {
         title: `Stefan Judis Web Development - Newsletter`,
@@ -38,13 +38,10 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container
     }
-  }
+  })
 </script>
 
 <style lang="scss">

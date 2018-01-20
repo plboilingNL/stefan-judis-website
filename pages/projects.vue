@@ -37,9 +37,9 @@
   import Container from '~/components/Container.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
-  import getTransition from '~/plugins/transition.js'
+  import {createPage} from '~/lib/basepage.js'
 
-  export default {
+  export default createPage({
     async fetch ({ app, store, env }) {
       const { getProjects, getScreencasts } = app.contentful
 
@@ -64,15 +64,12 @@
         ]
       }
     },
-    transition (to, from) {
-      return getTransition(from, to)
-    },
     components: {
       Container,
       LazyImage,
       PrettyDate
     }
-  }
+  })
 </script>
 
 <style lang="scss">
