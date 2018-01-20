@@ -1,15 +1,17 @@
 #!/usr/bin/env node
 
 const htmlparser = require('htmlparser2')
-const {promisify} = require('util')
+const { promisify } = require('util')
 const glob = promisify(require('glob'))
 const readFile = promisify(require('fs').readFile)
 const chalk = require('chalk')
 
 // TODO get the nuxt folder out of here
 const DIST_HTML = './dist/**/*.html'
-const FILES_TO_IGNORE = ['./dist/_nuxt/index.spa.html', './dist/_nuxt/index.ssr.html']
-
+const FILES_TO_IGNORE = [
+  './dist/_nuxt/index.spa.html',
+  './dist/_nuxt/index.ssr.html'
+]
 ;(async () => {
   try {
     console.log(chalk.green('---------------------'))
@@ -22,7 +24,7 @@ const FILES_TO_IGNORE = ['./dist/_nuxt/index.spa.html', './dist/_nuxt/index.ssr.
     const invalidFiles = validatedFiles.filter(file => !file.valid)
 
     if (invalidFiles.length) {
-      console.log(chalk.red('  The following files don\'t have a description:'))
+      console.log(chalk.red("  The following files don't have a description:"))
       console.log(invalidFiles.map(file => file.name).join('\n'))
 
       return process.exit(1)
@@ -71,7 +73,7 @@ function readFiles (filePaths) {
   return Promise.all(
     filePaths.map(fileName => {
       return new Promise((resolve, reject) => {
-        readFile(fileName, {encoding: 'utf8'})
+        readFile(fileName, { encoding: 'utf8' })
           .then(content => {
             resolve({
               name: fileName,

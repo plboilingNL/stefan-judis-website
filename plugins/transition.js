@@ -36,7 +36,5 @@ export default (from, to) => {
     return 't-slide-left'
   }
 
-  return fromIndex > toIndex
-    ? 't-slide-right'
-    : 't-slide-left'
+  return fromIndex > toIndex ? 't-slide-right' : 't-slide-left'
 }

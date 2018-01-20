@@ -1,4 +1,4 @@
-const {getConfigForKeys} = require('./lib/config.js')
+const { getConfigForKeys } = require('./lib/config.js')
 const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
   'CTF_CDA_TOKEN',
@@ -16,12 +16,14 @@ const ctfConfig = getConfigForKeys([
 
 const cdaContentful = require('contentful')
 const cdaClient = cdaContentful.createClient({
-  accessToken: process.env.NODE_ENV === 'production'
-    ? ctfConfig.CTF_CDA_TOKEN
-    : ctfConfig.CTF_CPA_TOKEN,
-  host: process.env.NODE_ENV === 'production'
-    ? 'cdn.contentful.com'
-    : 'preview.contentful.com',
+  accessToken:
+    process.env.NODE_ENV === 'production'
+      ? ctfConfig.CTF_CDA_TOKEN
+      : ctfConfig.CTF_CPA_TOKEN,
+  host:
+    process.env.NODE_ENV === 'production'
+      ? 'cdn.contentful.com'
+      : 'preview.contentful.com',
   space: ctfConfig.CTF_SPACE_ID
 })
 const cmaContentful = require('contentful-management')
@@ -43,7 +45,10 @@ const config = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Nuxt.js project' },
       { name: 'theme-color', content: '#fefff4' },
-      { property: 'og:image', content: 'https://www.stefanjudis.com/twitter-card-logo.jpg' }
+      {
+        property: 'og:image',
+        content: 'https://www.stefanjudis.com/twitter-card-logo.jpg'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -51,9 +56,24 @@ const config = {
       { rel: 'dns-prefetch', href: 'https://videos.contentful.com' },
       { rel: 'dns-prefetch', href: 'https://images.contentful.com' },
       { rel: 'dns-prefetch', href: 'https://www.google-analytics.com' },
-      { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development (everything)', href: 'https://www.stefanjudis.com/rss.xml' },
-      { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development (only blog posts)', href: 'https://www.stefanjudis.com/blog.xml' },
-      { rel: 'alternate', type: 'application/rss+xml', title: 'Stefan Judis Web Development (only TIL)', href: 'https://www.stefanjudis.com/til.xml' }
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: 'Stefan Judis Web Development (everything)',
+        href: 'https://www.stefanjudis.com/rss.xml'
+      },
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: 'Stefan Judis Web Development (only blog posts)',
+        href: 'https://www.stefanjudis.com/blog.xml'
+      },
+      {
+        rel: 'alternate',
+        type: 'application/rss+xml',
+        title: 'Stefan Judis Web Development (only TIL)',
+        href: 'https://www.stefanjudis.com/til.xml'
+      }
     ]
   },
 
@@ -96,14 +116,17 @@ const config = {
   */
   modules: [
     '@nuxtjs/sitemap',
-    ['@nuxtjs/pwa', {
-      manifest: {
-        name: 'Stefan Judis Web Development',
-        lang: 'en',
-        short_name: 'SJ Web Dev',
-        theme_color: '#fefff4'
+    [
+      '@nuxtjs/pwa',
+      {
+        manifest: {
+          name: 'Stefan Judis Web Development',
+          lang: 'en',
+          short_name: 'SJ Web Dev',
+          theme_color: '#fefff4'
+        }
       }
-    }],
+    ],
     ['@nuxtjs/google-analytics', { ua: 'UA-104150131-1' }]
   ],
 
@@ -221,7 +244,14 @@ function getAllRoutes () {
       .find(field => field.id === 'tags')
       .items.validations[0].in.map(category => `/blog/tag/${category}`)
 
-    return [...postPages, ...tilPages, ...tags, '/i-would-love-to-speak', '/staying-up-to-date', '/404']
+    return [
+      ...postPages,
+      ...tilPages,
+      ...tags,
+      '/i-would-love-to-speak',
+      '/staying-up-to-date',
+      '/404'
+    ]
   })
 }
 

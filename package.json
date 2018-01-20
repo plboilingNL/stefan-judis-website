@@ -33,7 +33,7 @@
     "contentful-management": "^3.7.6",
     "es6-promise": "^4.1.1",
     "eslint": "^4.4.0",
-    "eslint-config-standard": "^10.0.0",
+    "eslint-config-standard": "^10.2.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-html": "^3.0.0",
     "eslint-plugin-import": "^2.7.0",
