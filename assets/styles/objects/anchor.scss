@@ -1,0 +1,18 @@
+.o-anchorHeadline {
+  &::before {
+    content: "#";
+    padding: 0.125em 0.375em;
+    background: var(--grey-bright);
+    border-radius: 0.125em;
+    margin-right: 0.5em;
+    font-weight: 800;
+    color: var(--c-highlight);
+  }
+
+  &:hover {
+    &::before {
+      background: var(--c-highlight);
+      color: #fff;
+    }
+  }
+}
