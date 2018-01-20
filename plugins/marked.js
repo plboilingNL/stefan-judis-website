@@ -9,6 +9,17 @@ renderer.code = (code, language) => {
   }</code></pre>`
 }
 
+renderer.heading = function (text, level) {
+  const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-')
+
+  return `
+    <div class="o-anchorContainer">
+      <a href="#${escapedText}" aria-label="Anchor link for '${text}'">#</a>
+      <h${level} id="${escapedText}">${text}</h${level}>
+    </div>
+  `
+}
+
 renderer.image = (href, title, text) => {
   if (/\.mp4$/.test(href)) {
     return `
