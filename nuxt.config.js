@@ -43,11 +43,10 @@ const config = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
       { name: 'theme-color', content: '#fefff4' },
       {
         property: 'og:image',
-        content: 'https://www.stefanjudis.com/twitter-card-logo.jpg'
+        content: 'https://www.stefanjudis.com/og-card-logo.jpg'
       }
     ],
     link: [

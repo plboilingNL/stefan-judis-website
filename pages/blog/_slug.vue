@@ -41,7 +41,7 @@
   import Marked from '~/components/Marked.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import {createPage} from '~/lib/basepage.js'
+  import {createPage, getHeadForPost} from '~/lib/basepage.js'
 
   export default createPage({
     async fetch ({ app, params, store, redirect }) {
@@ -69,12 +69,7 @@
       }
     },
     head () {
-      return {
-        title: `${this.post.fields.title} | Stefan Judis Web Development`,
-        meta: [
-          { hid: 'description', name: 'description', content: this.post.fields.description }
-        ]
-      }
+      return getHeadForPost(this.post)
     },
     components: {
       Container,

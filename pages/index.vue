@@ -72,7 +72,8 @@
       return {
         title: `Stefan's web dev journey`,
         meta: [
-          { hid: 'description', name: 'description', content: `Welcome to my personal website dealing with daily web development things.` }
+          { hid: 'description', name: 'description', content: 'My personal website dealing with daily web development things.' },
+          { property: 'og:description', content: 'My personal website dealing with daily web development things.' }
         ]
       }
     },
