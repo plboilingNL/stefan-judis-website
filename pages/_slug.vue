@@ -12,7 +12,7 @@
   import Container from '~/components/Container.vue'
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
   import SharingLine from '~/components/SharingLine.vue'
-  import {createPage} from '~/lib/basepage.js'
+  import {createPage, getHeadForPost} from '~/lib/basepage.js'
   import Marked from '~/components/Marked.vue'
 
   export default createPage({
@@ -30,12 +30,7 @@
       }
     },
     head () {
-      return {
-        title: this.page.fields.title,
-        meta: [
-          { hid: 'description', name: 'description', content: 'You want me to stay up to date? Great - this is how I learn about new technologies' }
-        ]
-      }
+      return getHeadForPost(this.page)
     },
     components: {
       Container,
