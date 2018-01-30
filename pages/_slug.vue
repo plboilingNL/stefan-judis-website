@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container" accessible-line-length="true">
+  <Container :class="['t-container', page.fields.slug]" accessible-line-length="true">
     <DynamicHeadline slot="headline" :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
     <div class="c-tile">
       <Marked :markdown="page.fields.body" class="e-content"></Marked>
@@ -46,4 +46,14 @@
   })
 </script>
 
-<style scoped></style>
+<style lang="scss">
+.useful-talk-quotes {
+  blockquote {
+    font-weight: bold;
+
+    + p {
+      margin: -.5em 0 2em;
+    }
+  }
+}
+</style>

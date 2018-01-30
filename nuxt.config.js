@@ -249,6 +249,7 @@ function getAllRoutes () {
       ...tags,
       '/i-would-love-to-speak',
       '/staying-up-to-date',
+      '/useful-talk-quotes',
       '/404'
     ]
   })
