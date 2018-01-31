@@ -6,7 +6,6 @@
 import Instagram from '~/assets/icons/instagram.svg'
 import GitHub from '~/assets/icons/github.svg'
 import Twitter from '~/assets/icons/twitter.svg'
-import Info from '~/assets/icons/info.svg'
 import Close from '~/assets/icons/close.svg'
 
 const addAriaHiddenToSvg = (svg) => {
@@ -20,8 +19,7 @@ export default {
         Close: addAriaHiddenToSvg(Close),
         GitHub: addAriaHiddenToSvg(GitHub),
         Twitter: addAriaHiddenToSvg(Twitter),
-        Instagram: addAriaHiddenToSvg(Instagram),
-        Info: addAriaHiddenToSvg(Info)
+        Instagram: addAriaHiddenToSvg(Instagram)
       }
     }
   },

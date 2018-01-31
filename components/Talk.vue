@@ -5,7 +5,7 @@
       <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
     </div>
     <button v-if="talk.fields.info" type="button" @click="toggleOverlay" class="c-tile__overlayToggle o-btn o-btn--tiny u-noShadow" aria-label="Show information">
-      Info
+      Details
     </button>
     <h3>{{ talk.fields.title }}</h3>
     <p class="u-marginTopAuto u-noMarginBottom u-flex">
