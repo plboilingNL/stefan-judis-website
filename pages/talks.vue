@@ -23,18 +23,8 @@
     <Container>
       <h1 class="o-headline-1">Talks</h1>
       <ul class="o-list-thirds">
-        <li v-for="talk in talks" class="u-marginBottomLarge">
-          <div class="c-tile c-tile--noHighlight h-entry">
-            <!-- this is container is needed because of a FF bug -->
-            <div class="c-tile__image">
-              <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
-            </div>
-            <h3>{{ talk.fields.title }}</h3>
-            <p class="u-marginTopAuto u-noMarginBottom">
-              <a v-if="talk.fields.slideUrl" :href="talk.fields.slideUrl" class="o-btn o-btn--small u-marginRightSmall">Slides</a>
-              <a v-if="talk.fields.videoUrl" :href="talk.fields.videoUrl" class="o-btn o-btn--small">Recording</a>
-            </p>
-          </div>
+        <li v-for="talk in talks" class="u-marginBottomLarge" :key="talk.sys.id">
+          <Talk :talk="talk"/>
         </li>
       </ul>
     </Container>
@@ -46,6 +36,7 @@
   import Flag from '~/components/Flag.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
+  import Talk from '~/components/Talk.vue'
   import {createPage} from '~/lib/basepage.js'
 
   export default createPage({
@@ -77,7 +68,8 @@
       Container,
       Flag,
       LazyImage,
-      PrettyDate
+      PrettyDate,
+      Talk
     }
   })
 </script>

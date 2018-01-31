@@ -65,6 +65,32 @@
     }
   }
 
+  &__overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1em;
+    background: var(--grey-very-dark);
+    color: var(--grey-bright);
+    border-radius: 0.125em 0.25em 0 0;
+    > p {
+      font-size: .875em;
+    }
+  }
+
+  &__overlayToggle {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+  }
+
   &.is-draft {
     opacity: 0.6;
   }

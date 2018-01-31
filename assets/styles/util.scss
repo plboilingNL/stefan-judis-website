@@ -55,6 +55,10 @@
   vertical-align: middle;
 }
 
+.u-flex {
+  display: flex;
+}
+
 .u-flex-column {
   display: flex;
   flex-direction: column;
@@ -78,6 +82,10 @@
 
 .u-heightAuto {
   height: auto;
+}
+
+.u-noShadow {
+  box-shadow: none;
 }
 
 .u-highlight__green { --c-highlight: var(--green-dark);}

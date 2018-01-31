@@ -33,5 +33,7 @@ renderer.image = (href, title, text) => {
 }
 
 export default function (text) {
-  return marked(text, { renderer })
+  return text
+    ? marked(text, { renderer })
+    : ''
 }
