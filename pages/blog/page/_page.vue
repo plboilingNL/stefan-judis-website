@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1">Blog - Page {{ page }}</h1>
 
     <ul class="o-list-reset">
-      <li v-for="post in posts" class="u-marginBottomLarge">
+      <li v-for="post in posts" class="u-marginBottomLarge" :key="post.sys.id">
         <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2"></ItemPreview>
       </li>
     </ul>
@@ -17,6 +17,8 @@
   import PaginationActions from '~/components/PaginationActions.vue'
   import {createPage} from '~/lib/basepage.js'
 
+  const NR_OF_POSTS = 5
+
   export default createPage({
     async fetch ({ app, params, store }) {
       await app.contentful.getPosts()
@@ -27,7 +29,7 @@
         return this.$store.state.posts.activePageNumber
       },
       nextPage () {
-        return this.$store.state.posts.list.length > this.$store.state.posts.activePageNumber * 5
+        return this.$store.state.posts.list.length > this.$store.state.posts.activePageNumber * NR_OF_POSTS
           ? `/blog/page/${this.$store.state.posts.activePageNumber + 1}`
           : null
       },
@@ -37,9 +39,13 @@
           : `/blog/`
       },
       posts () {
+        if ((this.$store.state.posts.activePageNumber - 1) * NR_OF_POSTS > this.$store.state.posts.list.length) {
+          return this.$router.replace({ path: '/404' })
+        }
+
         return this.$store.state.posts.list.slice(
-          (this.$store.state.posts.activePageNumber - 1) * 5,
-          (this.$store.state.posts.activePageNumber) * 5
+          (this.$store.state.posts.activePageNumber - 1) * NR_OF_POSTS,
+          (this.$store.state.posts.activePageNumber) * NR_OF_POSTS
         )
       }
     },
