@@ -219,10 +219,13 @@ function getAllRoutes () {
       content_type: 'tilPost',
       order: '-fields.date'
     }),
+    cdaClient.getEntries({
+      content_type: 'landingPage'
+    }),
     cmaClient
       .getSpace(ctfConfig.CTF_SPACE_ID)
       .then(space => space.getContentType('2wKn6yEnZewu2SCCkus4as'))
-  ]).then(([blogPosts, tilPosts, postType]) => {
+  ]).then(([blogPosts, tilPosts, landingPages, postType]) => {
     const postPages = blogPosts.items.reduce((pages, entry, index) => {
       // the external posts don't need do be rendered
       if (!entry.fields.externalUrl) {
@@ -242,6 +245,8 @@ function getAllRoutes () {
       return pages
     }, [])
 
+    const landingPageSlugs = landingPages.items.map(item => `/${item.fields.slug}`)
+
     const tags = postType.fields
       .find(field => field.id === 'tags')
       .items.validations[0].in.map(category => `/blog/tag/${category}`)
@@ -249,11 +254,8 @@ function getAllRoutes () {
     return [
       ...postPages,
       ...tilPages,
-      ...tags,
-      '/i-would-love-to-speak',
-      '/staying-up-to-date',
-      '/useful-talk-quotes',
-      '/404'
+      ...landingPageSlugs,
+      ...tags
     ]
   })
 }
