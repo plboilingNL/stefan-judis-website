@@ -3,13 +3,13 @@
     <Container>
       <h2 slot="headline" tabindex="-1">Upcoming events</h2>
       <ul class="o-list-thirds">
-        <li v-for="event in events">
+        <li v-for="event in events" :key="event.sys.id">
           <div class="c-tile h-event">
             <pretty-date :date="event.fields.start" class="dt-start"></pretty-date>
             <h3 class="o-headline-3 u-marginBottomTiny p-name">{{event.fields.name}}</h3>
             <p class="u-inline-block u-marginTopAuto p-location">
-              <flag :code="event.fields.country"/>
-              {{ event.fields.city }}
+              <flag :code="event.fields.conference.fields.country"/>
+              {{ event.fields.conference.fields.city }}
             </p>
             <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
             <div class="c-tile__footer">
