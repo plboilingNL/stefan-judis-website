@@ -2,13 +2,13 @@
   <Container class="t-container" :full-width="true">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-grid">
-      <li v-for="categoryName in Object.keys(categories).sort()">
+      <li v-for="categoryName in Object.keys(categories).sort()" :key="categoryName" :class="`area-${categoryName}`">
         <div :id="categoryName | idAlize" class="c-tile">
           <h2 class="o-headline-2">
             <a class="o-anchorHeadline" :href="categoryName | idAlize({prependHash: true})">{{ categoryName }}</a>
           </h2>
           <ul class="o-list-reset">
-            <li v-for="post in categories[categoryName]" class="u-marginBottomSmall">
+            <li v-for="post in categories[categoryName]" class="u-marginBottomSmall" :key="post.sys.id">
               <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
             </li>
           </ul>
@@ -61,3 +61,12 @@
     }
   })
 </script>
+
+<style lang="scss">
+  .area-javascript {
+    @media (min-width: 70em) {
+      grid-row: 2 / 6;
+      grid-column: 3;
+    }
+  }
+</style>
