@@ -17,20 +17,20 @@
           Short bio
         </dt>
         <dd>
-          <Marked :markdown="speakerInfo.fields.shortBio"></Marked>
+          <Marked :markdown="me.fields.speakerBio"></Marked>
         </dd>
         <dt>
           Favorite talk topics
         </dt>
         <dd>
-          {{ speakerInfo.fields.favoriteTopics.join(', ') }}
+          {{ me.fields.favoriteSpeakerTopics.join(', ') }}
         </dd>
         <dt>
           Images
         </dt>
         <dd>
           <ul class="o-list-thirds">
-            <li v-for="image in speakerInfo.fields.images" class="u-marginBottomLarge">
+            <li v-for="image in me.fields.images" class="u-marginBottomLarge" :key="image.sys.id">
               <div class="u-flex-column u-height-100">
                 <!-- this is container is needed because of a FF bug -->
                 <div>
@@ -47,7 +47,7 @@
         </dt>
         <dd>
           <ul>
-            <li v-for="event in events">
+            <li v-for="event in events" :key="event.sys.id">
               <a :href="event.fields.website">{{ event.fields.name }}</a>
             </li>
           </ul>
@@ -57,7 +57,7 @@
         </dt>
         <dd>
           <ul>
-            <li v-for="tech in speakerInfo.fields.technicalEquipment">
+            <li v-for="(tech, index) in me.fields.speakerEquipment" :key="index">
               {{ tech }}
             </li>
           </ul>
@@ -67,7 +67,7 @@
         </dt>
         <dd>
           <ul>
-            <li v-for="pref in speakerInfo.fields.preferences">
+            <li v-for="(pref, index) in me.fields.additionalSpeakerInformation" :key="index">
               {{ pref }}
             </li>
           </ul>
@@ -95,8 +95,8 @@
       events () {
         return this.$store.state.events.pastList
       },
-      speakerInfo () {
-        return this.$store.state.me.entry.fields.speakerInformation
+      me () {
+        return this.$store.state.me.entry
       }
     },
     head () {

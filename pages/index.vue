@@ -1,13 +1,13 @@
 <template>
   <div class="t-container">
     <Container>
-      <h1 slot="headline" class="o-headline-1" tabindex="-1">{{ me.fields.welcomeMessage }}</h1>
+      <h1 slot="headline" class="o-headline-1" tabindex="-1">Hey, I'm Stefan. I develop digital services and products.</h1>
       <Person :person="me"></Person>
     </Container>
     <Container class="u-highlight__blue">
       <h2 slot="headline">Blog</h2>
       <ul class="o-list-thirds">
-        <li v-for="post in posts">
+        <li v-for="post in posts" :key="post.sys.id">
           <ItemPreview :item="post" :level="3" :show-date="true"></itemPreview>
         </li>
       </ul>
@@ -16,7 +16,7 @@
     <Container class="u-highlight__green">
       <h2 slot="headline">Talks</h2>
       <ul class="o-list-thirds">
-        <li v-for="talk in talks">
+        <li v-for="talk in talks" :key="talk.sys.id">
           <ItemPreview :item="talk" :level="3"></itemPreview>
         </li>
       </ul>
@@ -25,7 +25,7 @@
     <Container class="u-highlight__red" color="red">
       <h2 slot="headline">Coding Side Projects</h2>
       <ul class="o-list-thirds">
-        <li v-for="project in projects">
+        <li v-for="project in projects" :key="project.sys.id">
           <ItemPreview :item="project" :show-description="true" :level="3"></itemPreview>
         </li>
       </ul>
