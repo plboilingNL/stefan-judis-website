@@ -6,7 +6,7 @@
     </div>
 
     <img v-if="ready" :src="imageSrc" :alt="asset.fields.title">
-    <noscript>
+    <noscript v-if="$isServer">
       <img :src="asset.fields.file.url" :alt="asset.fields.title">
     </noscript>
   </figure>
