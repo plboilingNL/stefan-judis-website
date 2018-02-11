@@ -11,14 +11,12 @@
 
 <script>
   import Closing from '~/components/Closing.vue'
-  import Logo from '~/components/Logo.vue'
   import Navigation from '~/components/Navigation.vue'
   import OfflineNotice from '~/components/OfflineNotice.vue'
 
   export default {
     components: {
       Closing,
-      Logo,
       Navigation,
       OfflineNotice
     },
@@ -40,6 +38,7 @@
   @import '../assets/styles/objects/anchor.scss';
   @import '../assets/styles/objects/button.scss';
   @import '../assets/styles/objects/code.scss';
+  @import '../assets/styles/objects/emoji.scss';
   @import '../assets/styles/objects/headline.scss';
   @import '../assets/styles/objects/grid.scss';
   @import '../assets/styles/objects/list.scss';

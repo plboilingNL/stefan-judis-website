@@ -23,7 +23,7 @@ export function makeEmojisAccessible (text) {
         console.warn(`Label for CodePoint ${emojiCodePoint} is not defined`)
       }
 
-      return `<span role="img" aria-label="${EMOJI_LABELS[emoji.codePointAt(0)]}">${emoji}</span>`
+      return `<span role="img" aria-label="${EMOJI_LABELS[emoji.codePointAt(0)]}" tabindex="0">${emoji}</span>`
     }
   )
 }
