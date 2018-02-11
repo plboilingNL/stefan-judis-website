@@ -32,6 +32,7 @@
 
           font-family: 'Georgia', serif;
           font-size: 3em;
+          font-weight: normal;
           content: '“';
         }
       }
