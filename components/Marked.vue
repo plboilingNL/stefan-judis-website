@@ -23,17 +23,15 @@
       padding: .5em .5em .5em 2em;
       font-style: italic;
 
-      p {
-        &::before {
-          position: absolute;
+      &::before {
+        position: absolute;
 
-          left: 0;
-          top: 0;
+        left: 0;
+        top: 0;
 
-          font-family: 'Georgia', serif;
-          font-size: 3em;
-          content: '“';
-        }
+        font-family: 'Georgia', serif;
+        font-size: 3em;
+        content: '“';
       }
     }
 
