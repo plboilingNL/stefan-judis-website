@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1">Free time &amp; fun projects</h1>
     <h2 class="o-headline-2 u-textAlignCenter u-marginBottomMedium">Small talking</h2>
     <ul class="o-list-thirds">
-      <li v-for="cast in screenCasts">
+      <li v-for="cast in screenCasts" :key="cast.sys.id">
         <div class="c-tile c-tile--noHighlight">
           <!-- this is container is needed because of a FF bug -->
           <div class="c-tile__image">
@@ -18,7 +18,7 @@
 
     <h2 class="o-headline-2 u-textAlignCenter u-marginBottomMedium">Coding</h2>
     <ul class="o-list-thirds">
-      <li v-for="project in projects">
+      <li v-for="project in projects" :key="project.sys.id">
         <div class="c-tile c-project">
           <picture v-if="project.fields.logo">
             <source :srcset="`${project.fields.logo.fields.file.url}?fm=webp&w=500`" type='image/webp'>
