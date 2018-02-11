@@ -1,5 +1,6 @@
 import marked from 'marked'
 import Prism from 'prismjs'
+import {makeEmojisAccessible} from './accessible-emojis.js'
 
 const renderer = new marked.Renderer()
 
@@ -15,7 +16,7 @@ renderer.heading = function (text, level) {
   return `
     <div class="o-anchorContainer">
       <a href="#${escapedText}" aria-label="Anchor link for '${text}'">#</a>
-      <h${level} id="${escapedText}">${text}</h${level}>
+      <h${level} id="${escapedText}">${makeEmojisAccessible(text)}</h${level}>
     </div>
   `
 }
@@ -31,6 +32,8 @@ renderer.image = (href, title, text) => {
 
   return `<img src="${href}" alt="${text}">`
 }
+
+renderer.paragraph = (text) => makeEmojisAccessible(text)
 
 export default function (text) {
   return text
