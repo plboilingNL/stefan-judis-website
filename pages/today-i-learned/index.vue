@@ -2,13 +2,13 @@
   <Container class="t-container" :full-width="true">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-grid">
-      <li v-for="categoryName in Object.keys(categories).sort()" :key="categoryName" :class="`area-${categoryName}`">
-        <div :id="categoryName | idAlize" class="c-tile">
+      <li v-for="tag in Object.keys(tags).sort()" :key="tag" :class="`area-${tag}`">
+        <div :id="tag | idAlize" class="c-tile">
           <h2 class="o-headline-2">
-            <a class="o-anchorHeadline" :href="categoryName | idAlize({prependHash: true})">{{ categoryName }}</a>
+            <a class="o-anchorHeadline" :href="tag | idAlize({prependHash: true})">{{ tag }}</a>
           </h2>
           <ul class="o-list-reset">
-            <li v-for="post in categories[categoryName]" class="u-marginBottomSmall" :key="post.sys.id">
+            <li v-for="post in tags[tag]" class="u-marginBottomSmall" :key="post.sys.id">
               <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
             </li>
           </ul>
@@ -29,14 +29,14 @@
       await app.contentful.getTil()
     },
     computed: {
-      categories () {
+      tags () {
         return this.$store.state.til.list.reduce((acc, post) => {
-          if (post.fields.categories) {
-            post.fields.categories.forEach(category => {
-              if (!acc[category]) {
-                acc[category] = []
+          if (post.fields.tags) {
+            post.fields.tags.forEach(tag => {
+              if (!acc[tag]) {
+                acc[tag] = []
               }
-              acc[category].push(post)
+              acc[tag].push(post)
 
               return acc
             })

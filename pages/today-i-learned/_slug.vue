@@ -14,7 +14,7 @@
       <div v-if="relatedPosts.length">
         <h3>Related learnings</h3>
         <ul>
-          <li v-for="related in relatedPosts">
+          <li v-for="related in relatedPosts" :key="related.sys.id">
             <nuxt-link :to="`/today-i-learned/${ related.fields.slug }/`">{{ related.fields.title }}</nuxt-link>
           </li>
         </ul>
@@ -51,9 +51,9 @@
       relatedPosts () {
         if (this.post) {
           return this.$store.state.til.list.filter(item => {
-            return item.fields.categories.some(category => {
-              return this.post.fields.categories.some(
-                activeCat => activeCat === category
+            return item.fields.tags.some(tag => {
+              return this.post.fields.tags.some(
+                activeCat => activeCat === tag
               )
             }) && item.sys.id !== this.post.sys.id
           }).slice(0, 3)
