@@ -33,7 +33,7 @@ renderer.image = (href, title, text) => {
   return `<img src="${href}" alt="${text}">`
 }
 
-renderer.paragraph = (text) => makeEmojisAccessible(text)
+renderer.paragraph = (text) => `<p>${makeEmojisAccessible(text)}</p>\n`
 
 export default function (text) {
   return text

@@ -20,18 +20,20 @@
     blockquote {
       position: relative;
       margin: 0;
-      padding: 2em .5em .5em 2.5em;
+      padding: .5em .5em .5em 2em;
       font-style: italic;
 
-      &::before {
-        position: absolute;
+      p {
+        &::before {
+          position: absolute;
 
-        left: 0;
-        top: 0;
+          left: 0;
+          top: 0;
 
-        font-family: 'Georgia', serif;
-        font-size: 3em;
-        content: '“';
+          font-family: 'Georgia', serif;
+          font-size: 3em;
+          content: '“';
+        }
       }
     }
 
