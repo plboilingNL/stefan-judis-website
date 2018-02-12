@@ -1,16 +1,29 @@
 <template>
   <nav :class="['c-navigation', mainNavIsVisible ? 'main-nav-visible' : '']">
-    <ul class="c-navigation__complete" :inert="!mainNavIsVisible">
-      <li v-for="item in mainNav" :key="item.url">
-        <nuxt-link :to="item.url">{{ item.label }}</nuxt-link>
+    <transition-group
+      name="staggered-item"
+      tag="ul"
+      class="c-navigation__complete"
+      v-on:before-enter="beforeEnter"
+      :inert="!mainNavIsVisible && !showFullNav"
+    >
+      <li
+        v-for="(item, index) in menu"
+        :key="item.label"
+        :data-index="index"
+      >
+        <nuxt-link :to="item.url">
+          <Icon v-if="item.icon" :name="item.icon"></Icon>
+          {{ item.label }}
+        </nuxt-link>
       </li>
-    </ul>
-    <ul class="c-navigation__reduced">
+    </transition-group>
+    <ul class="c-navigation__reduced" :inert="mainNavIsVisible">
       <li v-for="item in reducedNav" :key="item.url">
         <nuxt-link :to="item.url">{{ item.label }}</nuxt-link>
       </li>
     </ul>
-    <button type="button" class="c-navigation__toggle" @click="toggleNav()">
+    <button type="button" class="c-navigation__toggle" @click="toggleNav()" :aria-lable="mainNavIsVisible ? 'Close navigation' : 'Open navigation'">
       {{ mainNavIsVisible ? 'Close' : 'Menu' }}
     </button>
   </nav>
@@ -20,30 +33,54 @@
   import Container from '~/components/Container.vue'
 
   export default {
+    mounted () {
+      this.$router.afterEach(_ => this.toggleNav({isOpen: false}))
+
+      const mql = window.matchMedia('(min-width:38em)')
+      this.showFullNav = mql.matches
+
+      mql.addListener(mql => {
+        this.showFullNav = mql.matches
+      })
+    },
     data () {
       return {
         mainNavIsVisible: false,
         mainNav: [
-          { label: 'Home', url: '/' },
-          { label: 'Blog', url: '/blog/' },
-          { label: 'Resources', url: '/resources/' },
-          { label: 'Developer Smalltalk', url: '/smalltalk/' },
-          { label: 'Today I learned', url: '/today-i-learned/' },
-          { label: 'Projects', url: '/projects/' },
-          { label: 'Talks', url: '/talks/' },
-          { label: 'Snippets', url: '/snippets/' }
+          { label: 'Home', url: '/', icon: 'Home' },
+          { label: 'Blog', url: '/blog/', icon: 'Blog' },
+          { label: 'Resources', url: '/resources/', icon: 'Resources' },
+          { label: 'Talks', url: '/talks/', icon: 'Talk' },
+          { label: 'Smalltalk', url: '/smalltalk/', icon: 'Smalltalk' },
+          { label: 'Today I learned', url: '/today-i-learned/', icon: 'Learn' }
+          // { label: 'Projects', url: '/projects/', icon: 'Project' },
+          // { label: 'Snippets', url: '/snippets/', icon: 'Snippet' }
 
         ],
         reducedNav: [
           { label: 'Home', url: '/' },
           { label: 'Blog', url: '/blog/' },
           { label: 'Resources', url: '/resources' }
-        ]
+        ],
+        showFullNav: true
+      }
+    },
+    computed: {
+      menu () {
+        return this.mainNavIsVisible || this.showFullNav
+          ? this.mainNav
+          : []
       }
     },
     methods: {
-      toggleNav () {
-        this.mainNavIsVisible = !this.mainNavIsVisible
+      toggleNav (options = {}) {
+        // todo focus the first element
+        this.mainNavIsVisible = typeof options.isOpen !== 'undefined'
+          ? options.isOpen
+          : !this.mainNavIsVisible
+      },
+      beforeEnter (el) {
+        el.style.transitionDelay = `${0.05 * (this.menu.length / 2 - el.dataset.index % 3)}s`
       }
     },
     components: {
@@ -59,15 +96,19 @@
     width  : 100%;
     bottom : 0;
     padding : 0;
-    z-index : 2;
+    z-index : 1;
     background: #fff;
     box-shadow: 0 0 1em #d1d1d1;
+
+    @media (min-width: 47em) {
+      bottom: auto;
+      top: 0;
+    }
 
     &__complete, &__reduced {
       list-style: none;
       margin: 0;
       padding: 0;
-      font-size: .9em;
 
       display: grid;
       grid-template-rows: 1fr;
@@ -83,8 +124,7 @@
 
       a {
         display: block;
-        padding: .75em 0;
-        border-top: .125em solid transparent;
+        text-decoration: none;
 
         &:hover {
           border-bottom-color: currentColor;
@@ -97,27 +137,81 @@
 
         &.is-active {
           color: var(--c-highlight);
-          border-top-color: currentColor;
+        }
+      }
+
+      svg {
+        display: block;
+        width: 1.5em;
+        margin: 0 auto .5em;
+
+        path {
+          fill: currentColor;
+        }
+
+        @media (min-width: 38em) {
+          display: none;
         }
       }
     }
 
     &__complete {
       position: absolute;
+      width: 100%;
+      min-height: 12em;
       z-index: 2;
       bottom: 0;
-      padding-bottom: 3em;
-      // color: transparent;
+      padding: 2em .75em 3em;
       background: #fff;
       box-shadow: 0 0 2em #d1d1d1;
-      grid-template-columns: repeat(4, 1fr);;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 4em);
 
-      transform: scale(0.2, .225);
+      transform: scale(.2, .225) translate(0, 0);
       transform-origin: bottom right;
       transition: transform .225s ease-in-out;
 
       .main-nav-visible & {
         transform: scale(1) translate(0, 0);
+      }
+
+      //
+      // mobile nav full
+      //
+      @media (min-width: 38em) {
+        position: static;
+        display: flex;
+        justify-content: space-between;
+        transform: scale(1) translate(0);
+        min-height: 0;
+        padding: 0 2em;
+
+        a {
+          padding: .25em 0;
+          margin: .5em 0;
+          border-bottom: .125em solid transparent;
+          &.is-active {
+            border-bottom-color: currentColor;
+          }
+        }
+      }
+
+      @media (min-width: 47em) {
+        justify-content: flex-end;
+
+        > li {
+          margin-left: 2.5em;
+        }
+
+        a {
+          margin: .75em 0;
+          border-bottom: .125em solid transparent;
+
+          &.is-active {
+            border-top-color: transparent;
+            border-bottom-color: currentColor;
+          }
+        }
       }
     }
 
@@ -128,6 +222,22 @@
 
       .main-nav-visible & {
         opacity: 0;
+      }
+
+      a {
+        padding: .5em 0;
+        margin: .25em 0;
+
+        &.is-active {
+          box-shadow: 0 .675em 0 0 currentColor;
+        }
+      }
+
+      //
+      // desktop nav
+      //
+      @media (min-width: 38em) {
+        display: none;
       }
     }
 
@@ -143,73 +253,35 @@
       background: #fff;
       border: none;
       color: currentColor;
+
+      //
+      // desktop nav
+      //
+      @media (min-width: 38em) {
+        display: none;
+      }
     }
   }
 
+  .staggered-item, .staggered-item-leave {
+    opacity: 1;
+    transform: translate(0);
+  }
 
+  .staggered-item-leave {
+    transition-delay: .25s;
+  }
 
+  .staggered-item-enter-active, .staggered-item-leave-active {
+    // transition: all .0625s;
+    transition: all .25s;
+  }
 
-  // .c-navigation {
-  //   position : fixed;
-  //   width  : 100%;
-  //   bottom : 0;
-  //   padding : 0 6em 0 1.5em;
-  //   z-index : 2;
+  .staggered-item-enter, .staggered-item-leave-to {
+    opacity: 0;
+  }
 
-  //   background: #fff;
-  //   color: var(--c-highlight);
-  //   box-shadow: 0 -.25em 2.5em #e6e6e6;
-
-  //   a {
-  //     display: inline-block;
-  //     padding: .5em .125em .25em;
-  //     margin: .5em 0 .75em;
-  //     position: relative;
-  //     text-align: center;
-  //     color: var(--grey-dark);
-  //     box-shadow: none;
-  //     border-bottom: 2px solid transparent;
-  //     text-decoration: none;
-
-  //     &:hover {
-  //       color: currentColor !important;
-  //       border-bottom-color: currentColor;
-  //       outline: none;
-  //     }
-
-  //     &:focus {
-  //       outline-color: var(--c-highlight);
-  //     }
-
-  //     &.is-active {
-  //       color: var(--c-highlight);
-  //       border-bottom: .125em solid currentColor;
-  //     }
-  //   }
-
-  //   @media (min-width: 38em) {
-  //     position : static;
-  //     border-top: none;
-  //     box-shadow: 0 .25em 2.5em #e6e6e6;
-  //   }
-
-  //   &__list {
-  //     display : flex;
-  //     justify-content: space-between;
-  //     list-style : none;
-  //     text-align : center;
-  //     margin  : 0 0 0 -.175em;
-  //     padding : 0;
-
-  //     @media (min-width: 38em) {
-  //       justify-content: flex-end;
-  //     }
-
-  //     > li {
-  //       @media (min-width: 38em) {
-  //         margin-left: 3em;
-  //       }
-  //     }
-  //   }
-  // }
+  .staggered-item-enter {
+    transform: translateY(1em);
+  }
 </style>

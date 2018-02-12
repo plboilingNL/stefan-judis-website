@@ -115,20 +115,16 @@ export default {
     margin : 1.5em auto 0;
   }
 
-  @media (min-width: 38em) {
+  @media (min-width: 47em) {
     .c-logo {
       --logo-size: 2.25em;
 
-      position: absolute;
-
+      position: fixed;
+      z-index: 2;
       left: 2em;
       top: 0.75em;
       margin: 0;
     }
-  }
-
-  .is-offline .c-logo {
-    filter: grayscale(100%);
   }
 
   .c-logo a {
@@ -163,7 +159,7 @@ export default {
       }
     }
 
-    @media (min-width: 38em) {
+    @media (min-width: 47em) {
       width: 2.25em;
       height: 2.25em;
       margin: 0;

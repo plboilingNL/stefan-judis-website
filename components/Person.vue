@@ -132,7 +132,7 @@
     position: absolute;
     bottom: 1em;
     left: 0;
-    z-index: 1;
+    z-index: 0;
     color: #fff;
     list-style: none;
     padding: 0;

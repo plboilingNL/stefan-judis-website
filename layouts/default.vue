@@ -82,10 +82,9 @@
     color: var(--c-text);
 
     padding-bottom: 5em;
-  }
 
-  @media (min-width: 38em) {
-    body {
+    @media (min-width: 47em) {
+      padding-top: 3em;
       padding-bottom: 0;
     }
   }
@@ -149,11 +148,15 @@
   }
 
 
+  .is-offline {
+    filter: grayscale(100%);
+  }
+
   /*
   ** Controls on body element
   */
   .index { --c-highlight: var(--green-dark); }
-  .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .share { --c-highlight: var(--blue-dark); }
-  .projects, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug { --c-highlight: var(--red-dark); }
+  .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .smalltalk, .share { --c-highlight: var(--blue-dark); }
+  .resources, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug { --c-highlight: var(--red-dark); }
   .is-offline { --c-highlight: var(--grey-dark); }
 </style>
