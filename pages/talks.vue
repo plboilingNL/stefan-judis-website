@@ -2,7 +2,7 @@
   <div class="t-container">
     <Container>
       <h2 slot="headline" tabindex="-1">Upcoming events</h2>
-      <ul class="o-list-thirds">
+      <ul class="o-list-grid">
         <li v-for="event in events" :key="event.sys.id">
           <div class="c-tile h-event">
             <pretty-date :date="event.fields.start" class="dt-start"></pretty-date>
@@ -18,11 +18,11 @@
           </div>
         </li>
       </ul>
-      <nuxt-link slot="footerLine" to="/i-would-love-to-speak/"  class="o-btn">Invite me to your event</nuxt-link>
+      <nuxt-link slot="footerLine" to="/i-would-love-to-speak/"  class="o-btn u-marginTopLarge">Invite me to your event</nuxt-link>
     </Container>
     <Container>
       <h1 class="o-headline-1">Talks</h1>
-      <ul class="o-list-thirds">
+      <ul class="o-list-grid">
         <li v-for="talk in talks" class="u-marginBottomLarge" :key="talk.sys.id">
           <Talk :talk="talk"/>
         </li>

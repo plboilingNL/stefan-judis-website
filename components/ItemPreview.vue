@@ -1,5 +1,9 @@
 <template>
   <div :class="classes">
+    <div v-if="contentTypeId === 'screenCast'" class="c-tile__image">
+      <lazy-image :asset="item.fields.coverImage" :ratio="0.5625"></lazy-image>
+    </div>
+
     <PrettyDate v-if="item.fields.date && showDate" :date="item.fields.date" class="dt-published"></PrettyDate>
 
     <DynamicHeadline v-if="includeLink" :level="level" :url="`/${linkPrefix}/${item.fields.slug}/`" class="p-name">{{ item.fields.title }}</DynamicHeadline>
@@ -8,9 +12,10 @@
     <p v-if="showDescription">{{ item.fields.description }}</p>
     <Marked v-if="showExcerpt" :markdown="item.fields.excerpt"></Marked>
 
+
     <div v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as'" class="u-marginTopAuto">
       <ul class="o-list-inline">
-        <li v-for="tag in item.fields.tags">
+        <li v-for="tag in item.fields.tags" :key="tag">
           <nuxt-link class="o-tag u-marginRightSmall u-marginBottomSmall" :to="`/blog/tag/${tag}`">{{ tag }}</nuxt-link>
         </li>
       </ul>
@@ -20,12 +25,8 @@
       </div>
     </div>
 
-    <div v-if="item.sys.contentType.sys.id === 'talk'" class="c-tile__footer">
-      <a :href="item.fields.slideUrl" :aria-labelledby="item.fields.title | idAlize">Check out the slides</a>
-    </div>
-
-    <div v-if="item.sys.contentType.sys.id === 'project'" class="c-tile__footer">
-      <a :href="item.fields.url" :aria-labelledby="item.fields.title | idAlize">Check out the project</a>
+    <div v-if="item.sys.contentType.sys.id === 'screenCast'" class="c-tile__footer">
+      <a :href="item.fields.url" :aria-labelledby="item.fields.title | idAlize">Watch on YouTube</a>
     </div>
 
     <div v-if="showVideo && (item.fields.video || item.fields.videoWebm)">
@@ -40,11 +41,15 @@
 <script>
   import PrettyDate from '~/components/PrettyDate.vue'
   import Marked from '~/components/Marked.vue'
+  import LazyImage from '~/components/LazyImage.vue'
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
 
   export default {
     props: ['item', 'includeLink', 'showDescription', 'showExcerpt', 'showVideo', 'showDate', 'level', 'color'],
     computed: {
+      contentTypeId () {
+        return this.item.sys.contentType.sys.id
+      },
       headingLevel () {
         return this.level || 2
       },
@@ -56,13 +61,17 @@
           'project': 'projects',
           'tilPost': 'today-i-learned'
         }
-        return PREFIXES[this.item.sys.contentType.sys.id]
+        return PREFIXES[this.contentTypeId]
       },
       classes () {
+        const isHighlighted =
+          this.contentTypeId !== 'screenCast' &&
+          this.contentTypeId !== 'talk'
+
         return [
           'c-tile',
           `c-tile__${this.color || 'red'}`,
-          'h-entry',
+          isHighlighted ? '' : 'c-tile--noHighlight',
           this.item.fields.isDraft ? 'is-draft' : null
         ]
       }
@@ -70,6 +79,7 @@
     components: {
       DynamicHeadline,
       PrettyDate,
+      LazyImage,
       Marked
     }
   }

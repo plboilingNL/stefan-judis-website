@@ -2,6 +2,9 @@
   <Container :class="['t-container', page.fields.slug]" accessible-line-length="true">
     <DynamicHeadline slot="headline" :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
     <div class="c-tile">
+      <p>
+        <strong>Last updated at: <PrettyDate v-if="page.fields.isResource" slot="date" :date="page.sys.updatedAt"></PrettyDate></strong>
+      </p>
       <Marked :markdown="page.fields.body" class="e-content"></Marked>
       <SharingLine v-if="page.fields.slug !== '404'" :item="page"></SharingLine>
     </div>
@@ -12,6 +15,7 @@
   import Container from '~/components/Container.vue'
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
   import SharingLine from '~/components/SharingLine.vue'
+  import PrettyDate from '~/components/PrettyDate.vue'
   import {createPage, getHeadForPost} from '~/lib/basepage.js'
   import Marked from '~/components/Marked.vue'
 
@@ -36,6 +40,7 @@
       Container,
       DynamicHeadline,
       Marked,
+      PrettyDate,
       SharingLine
     }
   })

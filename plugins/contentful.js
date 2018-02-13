@@ -19,6 +19,7 @@ export default ({ app, env, store }) => {
     landingpages,
     posts,
     projects,
+    resources,
     screencasts,
     talks,
     til
@@ -123,6 +124,23 @@ export default ({ app, env, store }) => {
           })
           .then(res => {
             store.commit('projects/setList', res.items)
+            return res.items
+          })
+          .catch(err => console.log(err))
+      }
+
+      return projects.list
+    },
+
+    async getResources () {
+      if (!resources.list.length) {
+        return client
+          .getEntries({
+            content_type: env.CTF_LANDING_PAGE_ID,
+            'fields.isResource': 'true'
+          })
+          .then(res => {
+            store.commit('resources/setList', res.items)
             return res.items
           })
           .catch(err => console.log(err))

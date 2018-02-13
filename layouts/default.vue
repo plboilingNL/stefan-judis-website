@@ -157,6 +157,6 @@
   */
   .index { --c-highlight: var(--green-dark); }
   .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .smalltalk, .share { --c-highlight: var(--blue-dark); }
-  .resources, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug { --c-highlight: var(--red-dark); }
+  .resources, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug, .slug { --c-highlight: var(--red-dark); }
   .is-offline { --c-highlight: var(--grey-dark); }
 </style>

@@ -1,7 +1,7 @@
 const generalOrder = [
   ['index'],
-  ['blog', 'blog-tag-tag', 'blog-page-page', 'blog-slug', 'slug'],
-  ['resources'],
+  ['blog', 'blog-tag-tag', 'blog-page-page', 'blog-slug'],
+  ['resources', 'slug'],
   ['talks'],
   ['smalltalk'],
   ['today-i-learned', 'today-i-learned-slug']

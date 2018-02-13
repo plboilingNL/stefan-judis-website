@@ -3,7 +3,7 @@
 </template>
 <script>
   export default {
-    props: ['date', 'isSmall', 'isArticleHead'],
+    props: ['date', 'isSmall'],
     computed: {
       readableDate () {
         const [, year, month, day] = this.date.match(/(\d{4})-(\d{2})-(\d{2})/)

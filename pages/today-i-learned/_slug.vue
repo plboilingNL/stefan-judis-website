@@ -1,6 +1,6 @@
 <template>
   <Container class="t-container" accessible-line-length="true">
-    <PrettyDate slot="date" :date="post.fields.date" :is-article-head="true"></PrettyDate>
+    <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
     <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
     <span slot="readingTime">{{ post.fields.readingTime }} min read</span>
     <div class="c-tile">

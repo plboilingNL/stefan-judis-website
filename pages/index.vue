@@ -17,20 +17,20 @@
       <h2 slot="headline">Talks</h2>
       <ul class="o-list-thirds">
         <li v-for="talk in talks" :key="talk.sys.id">
-          <ItemPreview :item="talk" :level="3"></itemPreview>
+          <Talk :talk="talk"/>
         </li>
       </ul>
       <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
     <Container class="u-highlight__red" color="red">
-      <h2 slot="headline">Coding Side Projects</h2>
+      <h2 slot="headline">Developer Smalltalk</h2>
       <ul class="o-list-thirds">
-        <li v-for="project in projects" :key="project.sys.id">
-          <ItemPreview :item="project" :show-description="true" :level="3"></itemPreview>
+        <li v-for="screencast in screencasts" :key="screencast.sys.id">
+          <ItemPreview :item="screencast" :show-description="true" :level="3"></itemPreview>
         </li>
       </ul>
 
-      <nuxt-link slot="footerLine" to="/projects/" class="o-btn">See all side projects</nuxt-link>
+      <nuxt-link slot="footerLine" to="/smalltalk/" class="o-btn">See all episodes</nuxt-link>
     </Container>
   </div>
 </template>
@@ -41,17 +41,18 @@
   import PrettyDate from '~/components/PrettyDate.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import Icon from '~/components/Icon.vue'
+  import Talk from '~/components/Talk.vue'
   import {createPage} from '~/lib/basepage.js'
 
   export default createPage({
     async fetch ({ app, redirect }) {
-      const { getMe, getPosts, getProjects, getTalks } = app.contentful
+      const { getMe, getPosts, getScreencasts, getTalks } = app.contentful
 
       await Promise.all([
         getMe(),
         getPosts(),
-        getProjects(),
-        getTalks()
+        getTalks(),
+        getScreencasts()
       ])
     },
     computed: {
@@ -61,11 +62,11 @@
       posts () {
         return this.$store.state.posts.list.slice(0, 3)
       },
-      projects () {
-        return this.$store.state.projects.list.slice(0, 3)
-      },
       talks () {
         return this.$store.state.talks.list.slice(0, 3)
+      },
+      screencasts () {
+        return this.$store.state.screencasts.list.slice(0, 3)
       }
     },
     head () {
@@ -82,7 +83,8 @@
       Container,
       Icon,
       Person,
-      PrettyDate
+      PrettyDate,
+      Talk
     }
   })
 </script>
