@@ -11,14 +11,7 @@
           <source v-if="post.fields.video" :src="post.fields.video.fields.file.url" type="video/mp4">
         </video>
       </div>
-      <div v-if="relatedPosts.length">
-        <h3>Related learnings</h3>
-        <ul>
-          <li v-for="related in relatedPosts" :key="related.sys.id">
-            <nuxt-link :to="`/today-i-learned/${ related.fields.slug }/`">{{ related.fields.title }}</nuxt-link>
-          </li>
-        </ul>
-      </div>
+      <RelatedItems :items="posts" :item="post" />
       <Comments class="u-marginBottomMedium" />
       <SharingLine :item="post"></SharingLine>
     </div>
@@ -31,6 +24,7 @@
   import DynamicHeadline from '~/components/DynamicHeadline.vue'
   import Marked from '~/components/Marked.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
+  import RelatedItems from '~/components/RelatedItems.vue'
   import SharingLine from '~/components/SharingLine.vue'
   import {createPage, getHeadForPost} from '~/lib/basepage.js'
 
@@ -48,16 +42,8 @@
       post () {
         return this.$store.state.til.active
       },
-      relatedPosts () {
-        if (this.post) {
-          return this.$store.state.til.list.filter(item => {
-            return item.fields.tags.some(tag => {
-              return this.post.fields.tags.some(
-                activeCat => activeCat === tag
-              )
-            }) && item.sys.id !== this.post.sys.id
-          }).slice(0, 3)
-        }
+      posts () {
+        return this.$store.state.til.list
       }
     },
     head () {
@@ -69,6 +55,7 @@
       DynamicHeadline,
       Marked,
       PrettyDate,
+      RelatedItems,
       SharingLine
     }
   })

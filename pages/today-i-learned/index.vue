@@ -9,7 +9,7 @@
           </h2>
           <ul class="o-list-reset">
             <li v-for="post in tags[tag]" class="u-marginBottomSmall" :key="post.sys.id">
-              <nuxt-link :to="`/today-i-learned/${post.fields.slug}/`">{{ post.fields.title }}</nuxt-link>
+              <entry-link :entry="post" />
             </li>
           </ul>
         </div>
@@ -20,6 +20,7 @@
 
 <script>
   import Container from '~/components/Container.vue'
+  import EntryLink from '~/components/EntryLink.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import PaginationActions from '~/components/PaginationActions.vue'
   import {createPage} from '~/lib/basepage.js'
@@ -57,7 +58,8 @@
     components: {
       Container,
       ItemPreview,
-      PaginationActions
+      PaginationActions,
+      EntryLink
     }
   })
 </script>
