@@ -1,9 +1,9 @@
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Building Lambda Functions"
-./node_modules/.bin/netlify-lambda build
+./node_modules/.bin/netlify-lambda build ./functions
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
-echo "Generating Stati Sites"
+echo "Generating Static Site"
 NODE_ENV=production ./node_modules/.bin/nuxt generate
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
