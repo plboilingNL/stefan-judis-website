@@ -1,29 +1,32 @@
-const Mailgun = require('mailgun')
-
 exports.handler = (event, context, callback) => {
-  const mg = new Mailgun('api-key')
-  console.log(event)
-  console.log(context)
-  try {
+  if (event.body) {
+    console.log(context)
+    const apiKey = 'key-XXXXXXXXXXXXXXXXXXXXXXX'
+    // const domain = 'www.mydomain.com'
+    const mailgun = require('mailgun-js')({apiKey})
     const report = JSON.stringify(JSON.parse(event.body), null, 2)
 
-    mg.sendText(
-      'csp@stefanjudis.com',
-      'stefanjudis@gmail.com',
-      'CSP Violation Repot',
-      report,
-      (error) => {
-        if (error) {
-          return callback(error)
-        }
+    var data = {
+      from: 'CSP Report Bot <csp@stefanjudis.com>',
+      to: 'stefanjudis@gmail.com',
+      subject: 'CSP Report',
+      text: report
+    }
 
-        callback(null, {
-          statusCode: 200,
-          body: 'Sent'
-        })
+    mailgun.messages().send(data, (error, body) => {
+      if (error) {
+        return callback(error)
       }
-    )
-  } catch(e) {
-    callback(e)
+
+      callback(null, {
+        statusCode: 200,
+        body: 'Sent'
+      })
+    })
+  } else {
+    callback(null, {
+      statusCode: 400,
+      body: 'No report, hmm?'
+    })
   }
 }
