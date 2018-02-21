@@ -1,3 +1,5 @@
+const Mailgun = require('mailgun')
+
 exports.handler = (event, context, callback) => {
   const mg = new Mailgun('api-key')
   console.log(event)
