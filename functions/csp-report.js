@@ -6,13 +6,13 @@ exports.handler = (event, context, callback) => {
     const apiKey = process.env.MG_TOKEN
     const domain = process.env.MG_DOMAIN
     const mailgun = require('mailgun-js')({apiKey, domain})
-    const report = JSON.stringify(JSON.parse(event.body), null, 2)
+    const report = JSON.parse(event.body);
 
     var data = {
       from: 'CSP Report Bot <csp@stefanjudis.com>',
       to: 'stefanjudis@gmail.com',
-      subject: 'CSP Report',
-      text: report
+      subject: `Blocked ${report['csp-report']['document-uri']}`,
+      text: JSON.stringify(report, null, 2)
     }
 
     mailgun.messages().send(data, (error, body) => {
