@@ -31,7 +31,7 @@ const FILES_TO_IGNORE = [
     }
 
     console.log(chalk.green('✔ MARKUP LOOKS GOOD!'))
-    console.log(chalk.green('---------------------'))
+    console.log(chalk.green('  - all HTML files have a valid description'))
 
     process.exit(0)
   } catch (e) {
