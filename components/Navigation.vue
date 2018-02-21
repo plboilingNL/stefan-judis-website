@@ -161,7 +161,7 @@
       min-height: 12em;
       z-index: 2;
       bottom: 0;
-      padding: 2em .75em 3em;
+      padding: 2em .75em 4em;
       background: #fff;
       box-shadow: 0 0 2em #d1d1d1;
       grid-template-columns: repeat(3, 1fr);
