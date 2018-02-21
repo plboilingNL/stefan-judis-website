@@ -1,0 +1,15 @@
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "Building Lambda Functions"
+../node_modules/.bin/netlify-lambda build
+
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "Generating Stati Sites"
+NODE_ENV=production ../node_modules/.bin/nuxt generate
+
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "Validating Markup"
+./scripts/check-markup
+
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "Creating RSS Feeds"
+./scripts/create-rss-feed

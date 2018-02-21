@@ -24,11 +24,12 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "netlify-lambda build ./functions && ./scripts/generate && ./scripts/check-markup && ./scripts/create-rss-feed",
+    "generate": "nuxt generate",
     "function:serve": "netlify-lambda serve ./functions",
     "function:build": "netlify-lambda build ./functions",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "netlify:build": "./scripts/build-it"
   },
   "devDependencies": {
     "a11y.css": "^4.2.2",
