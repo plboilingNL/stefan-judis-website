@@ -7,7 +7,14 @@
             :src="image.src"
             :srcset="image.srcset"
             :alt="person.fields.name"
-            onload="this.classList.add('is-loaded')">
+            :class="[imageIsLoaded ? 'is-loaded' : '']"
+            ref="profileImage">
+        <noscript>
+          <img
+            :src="image.src"
+            :srcset="image.srcset"
+            :alt="person.fields.name">
+        </noscript>
         <ul class="c-person__social">
           <li>
             <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">
@@ -40,6 +47,18 @@
 
   export default {
     props: ['person'],
+    mounted () {
+      this.$refs.profileImage.addEventListener(
+        'load', _ => {
+          this.imageIsLoaded = true
+        }
+      )
+    },
+    data () {
+      return {
+        imageIsLoaded: false
+      }
+    },
     computed: {
       image: function () {
         return {
