@@ -24,10 +24,9 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "./scripts/generate && ./scripts/check-markup && ./scripts/create-rss-feed",
+    "generate": "netlify-lambda build ./functions && ./scripts/generate && ./scripts/check-markup && ./scripts/create-rss-feed",
     "function:serve": "netlify-lambda serve ./functions",
     "function:build": "netlify-lambda build ./functions",
-    "deploy": "npm run function:build && npm run generate && netlify deploy",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },
