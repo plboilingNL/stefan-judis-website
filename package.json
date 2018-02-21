@@ -13,6 +13,7 @@
     "inert-polyfill": "^0.2.5",
     "mailgun-js": "^0.16.0",
     "marked": "^0.3.12",
+    "netlify-lambda": "^0.2.0",
     "nuxt": "^1.0.0",
     "prismjs": "^1.6.0",
     "url": "^0.11.0",
@@ -24,7 +25,9 @@
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "./scripts/generate && ./scripts/check-markup && ./scripts/create-rss-feed",
-    "deploy": "npm run generate && netlify deploy",
+    "function:serve": "netlify-lambda serve ./functions",
+    "function:build": "netlify-lambda build ./functions",
+    "deploy": "npm run function:build && npm run generate && netlify deploy",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint"
   },
