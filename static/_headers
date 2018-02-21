@@ -1,5 +1,5 @@
 /*
- Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self' 'sha256-dafa012aa1e42d3122a5c3858c16149c11462b6149b02ddce3eea775cc33da44' just-comments.com www.google-analytics.com; connect-src 'self' cdn.contentful.com service.just-comments.com; img-src 'self' images.contentful.com www.gravatar.com; style-src 'self' 'unsafe-inline'; report-uri /.netlify/functions/csp-violation/
+ Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self' 'sha256-2voBKqHkLTEipcOFjBYUnBFGK2FJsC3c4+6ndcwz2kQ=' just-comments.com www.google-analytics.com; connect-src 'self' cdn.contentful.com service.just-comments.com; img-src 'self' images.contentful.com www.gravatar.com; style-src 'self' 'unsafe-inline'; report-uri /.netlify/functions/csp-violation/
 
 /_nuxt/*
   Cache-Control: max-age=31556926
