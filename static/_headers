@@ -1,3 +1,6 @@
+/*
+ Content-Security-Policy-Report-Only: default-src 'none'; script-src 'self' just-comments.com www.google-analytics.com; connect-src 'self' cdn.contentful.com service.just-comments.com; img-src 'self' images.contentful.com www.gravatar.com; style-src 'self'; report-uri /csp-violation/
+
 /_nuxt/*
   Cache-Control: max-age=31556926
 
@@ -9,4 +12,3 @@
 
 /workbox-sw.prod.v1.1.0.js
   Cache-Control: max-age=100000
-
