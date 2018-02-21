@@ -9,7 +9,7 @@
             :alt="person.fields.name"
             :class="[imageIsLoaded ? 'is-loaded' : '']"
             ref="profileImage">
-        <noscript>
+        <noscript v-if="$isServer">
           <img
             :src="image.src"
             :srcset="image.srcset"
