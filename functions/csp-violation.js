@@ -1,9 +1,11 @@
 exports.handler = (event, context, callback) => {
   if (event.body) {
+    console.log(process.env.MG_TOKEN, process.env.MG_DOMAIN)
+    console.log('*********************************')
     console.log(context)
-    const apiKey = 'key-XXXXXXXXXXXXXXXXXXXXXXX'
-    // const domain = 'www.mydomain.com'
-    const mailgun = require('mailgun-js')({apiKey})
+    const apiKey = process.env.MG_TOKEN
+    const domain = process.env.MG_DOMAIN
+    const mailgun = require('mailgun-js')({apiKey, domain})
     const report = JSON.stringify(JSON.parse(event.body), null, 2)
 
     var data = {
