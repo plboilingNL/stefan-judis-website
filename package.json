@@ -11,7 +11,7 @@
     "contentful": "^4.5.0",
     "emoji-regex": "^6.5.1",
     "inert-polyfill": "^0.2.5",
-    "mailgun": "^0.5.0",
+    "mailgun-js": "^0.16.0",
     "marked": "^0.3.12",
     "nuxt": "^1.0.0",
     "prismjs": "^1.6.0",
