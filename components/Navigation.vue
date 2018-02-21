@@ -96,7 +96,7 @@
     width  : 100%;
     bottom : 0;
     padding : 0;
-    z-index : 1;
+    z-index : 2;
     background: #fff;
     box-shadow: 0 0 1em #d1d1d1;
 
