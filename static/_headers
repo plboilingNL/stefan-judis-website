@@ -1,5 +1,5 @@
 /*
- Content-Security-Policy-Report-Only: default-src 'self'; script-src 'unsafe-inline' just-comments.com www.google-analytics.com; connect-src cdn.contentful.com service.just-comments.com www.google-analytics.com; img-src images.contentful.com www.gravatar.com www.google-analytics.com; style-src 'unsafe-inline'; report-uri /.netlify/functions/csp-report/
+  Content-Security-Policy-Report-Only: default-src 'self' ; script-src 'unsafe-inline' just-comments.com www.google-analytics.com; style-src 'unsafe-inline' ; img-src images.contentful.com www.gravatar.com www.google-analytics.com; font-src 'none' ; connect-src cdn.contentful.com service.just-comments.com www.google-analytics.com; media-src 'self' ; object-src 'self' ; worker-src 'self' ; upgrade-insecure-requests; block-all-mixed-content; disown-opener; manifest-src 'self' ; report-uri /.netlify/functions/csp-report/;
 
 /_nuxt/*
   Cache-Control: max-age=31556926
