@@ -120,7 +120,7 @@ export default {
       --logo-size: 2.25em;
 
       position: fixed;
-      z-index: 2;
+      z-index: 3;
       left: 2em;
       top: 0.75em;
       margin: 0;
