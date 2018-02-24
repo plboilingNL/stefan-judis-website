@@ -1,26 +1,16 @@
 <template>
-  <div class="c-tile c-tile--noHighlight h-entry">
+  <div class="c-tile c-tile--noHighlight">
+    <div class="c-tile__container">
     <!-- this is container is needed because of a FF bug -->
     <div class="c-tile__image">
       <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
+        <div class="c-tile__imageActions">
+          <a v-if="talk.fields.slideUrl" :href="talk.fields.slideUrl" class="o-btn o-btn--floating u-marginHorizontalSmall">Slides</a>
+          <a v-if="talk.fields.videoUrl" :href="talk.fields.videoUrl" class="o-btn o-btn--floating u-marginHorizontalSmall">Recording</a>
+        </div>
     </div>
-    <button v-if="talk.fields.info" type="button" @click="toggleOverlay" class="c-tile__overlayToggle o-btn o-btn--tiny u-noShadow" aria-label="Show information">
-      Details
-    </button>
-    <h3>{{ talk.fields.title }}</h3>
-    <p class="u-marginTopAuto u-noMarginBottom u-flex">
-      <a v-if="talk.fields.slideUrl" :href="talk.fields.slideUrl" class="o-btn o-btn--small u-marginRightSmall">Slides</a>
-      <a v-if="talk.fields.videoUrl" :href="talk.fields.videoUrl" class="o-btn o-btn--small">Recording</a>
-    </p>
-
-    <transition name="t-tileOverlay">
-      <div v-if="showOverlay" class="c-tile__overlay">
-        <button type="button" @click="toggleOverlay" class="c-tile__overlayToggle o-btn--icon" aria-label="Close talk information">
-          <Icon name="Close"></Icon>
-        </button>
-        <p>{{ talk.fields.info }}</p>
-      </div>
-    </transition>
+    <h3 class="o-headline-3">{{ talk.fields.title }}</h3>
+  </div>
   </div>
 </template>
 

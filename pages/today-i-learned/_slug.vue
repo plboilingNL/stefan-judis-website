@@ -4,16 +4,18 @@
     <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
     <span slot="readingTime">{{ post.fields.readingTime }} min read</span>
     <div class="c-tile">
-      <Marked :markdown="post.fields.body"></Marked>
-      <div v-if="(post.fields.video || post.fields.videoWebm)">
-        <video autoplay muted loop playsinline preload="metadata" :class="{ 'is-mobile-video': post.fields.isMobileVideo }">
-          <source v-if="post.fields.videoWebm" :src="post.fields.videoWebm.fields.file.url" type="video/webm">
-          <source v-if="post.fields.video" :src="post.fields.video.fields.file.url" type="video/mp4">
-        </video>
+      <div class="c-tile__container">
+        <Marked :markdown="post.fields.body"></Marked>
+        <div v-if="(post.fields.video || post.fields.videoWebm)">
+          <video autoplay muted loop playsinline preload="metadata" :class="{ 'is-mobile-video': post.fields.isMobileVideo }">
+            <source v-if="post.fields.videoWebm" :src="post.fields.videoWebm.fields.file.url" type="video/webm">
+            <source v-if="post.fields.video" :src="post.fields.video.fields.file.url" type="video/mp4">
+          </video>
+        </div>
+        <RelatedItems :items="posts" :item="post" />
+        <Comments class="u-marginBottomMedium" />
+        <SharingLine :item="post"></SharingLine>
       </div>
-      <RelatedItems :items="posts" :item="post" />
-      <Comments class="u-marginBottomMedium" />
-      <SharingLine :item="post"></SharingLine>
     </div>
   </Container>
 </template>

@@ -4,11 +4,13 @@
     <ul class="o-list-grid">
       <li v-for="resource in resources" :key="resource.sys.id">
         <div class="c-tile">
-          <h2 class="o-headline-2">{{ resource.fields.title }}</h2>
-          <p class="u-marginTopAuto">{{ resource.fields.description }}</p>
-          <div class="c-tile__footer">
-            <!-- TODO these calls currently make an http request -->
-            <nuxt-link :to="`/${resource.fields.slug}/`" :aria-labelledby="resource.fields.title | idAlize">Read more</nuxt-link>
+          <div class="c-tile__container">
+            <h2 class="o-headline-2">{{ resource.fields.title }}</h2>
+            <p class="u-marginTopAuto">{{ resource.fields.description }}</p>
+            <div class="c-tile__footer">
+              <!-- TODO these calls currently make an http request -->
+              <nuxt-link :to="`/${resource.fields.slug}/`" :aria-labelledby="resource.fields.title | idAlize">Read more</nuxt-link>
+            </div>
           </div>
         </div>
       </li>

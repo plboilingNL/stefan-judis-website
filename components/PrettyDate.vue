@@ -22,5 +22,6 @@
   .c-prettyDate {
     display: block;
     font-size: .875em;
+    font-weight: 500;
   }
 </style>

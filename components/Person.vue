@@ -9,12 +9,6 @@
             :alt="person.fields.name"
             :class="[imageIsLoaded ? 'is-loaded' : '']"
             ref="profileImage">
-        <noscript v-if="$isServer">
-          <img
-            :src="image.src"
-            :srcset="image.srcset"
-            :alt="person.fields.name">
-        </noscript>
         <ul class="c-person__social">
           <li>
             <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">

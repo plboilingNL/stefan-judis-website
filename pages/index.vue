@@ -4,7 +4,7 @@
       <h1 slot="headline" class="o-headline-1" tabindex="-1">Hey, I'm Stefan. I develop digital services and products.</h1>
       <Person :person="me"></Person>
     </Container>
-    <Container class="u-highlight__blue">
+    <Container>
       <h2 slot="headline">Blog</h2>
       <ul class="o-list-thirds">
         <li v-for="post in posts" :key="post.sys.id">
@@ -13,7 +13,7 @@
       </ul>
       <nuxt-link slot="footerLine" to="/blog/" class="o-btn">See all posts</nuxt-link>
     </Container>
-    <Container class="u-highlight__green">
+    <Container>
       <h2 slot="headline">Talks</h2>
       <ul class="o-list-thirds">
         <li v-for="talk in talks" :key="talk.sys.id">
@@ -22,11 +22,11 @@
       </ul>
       <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
-    <Container class="u-highlight__red" color="red">
+    <Container>
       <h2 slot="headline">Developer Smalltalk</h2>
       <ul class="o-list-thirds">
         <li v-for="screencast in screencasts" :key="screencast.sys.id">
-          <ItemPreview :item="screencast" :show-description="true" :level="3"></itemPreview>
+          <Screen-cast :screencast="screencast" />
         </li>
       </ul>
 
@@ -39,6 +39,7 @@
   import Container from '~/components/Container.vue'
   import Person from '~/components/Person.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
+  import ScreenCast from '~/components/ScreenCast.vue'
   import ItemPreview from '~/components/ItemPreview.vue'
   import Icon from '~/components/Icon.vue'
   import Talk from '~/components/Talk.vue'
@@ -84,7 +85,8 @@
       Icon,
       Person,
       PrettyDate,
-      Talk
+      Talk,
+      ScreenCast
     }
   })
 </script>

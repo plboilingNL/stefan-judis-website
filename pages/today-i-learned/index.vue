@@ -4,14 +4,16 @@
     <ul class="o-list-grid">
       <li v-for="tag in Object.keys(tags).sort()" :key="tag" :class="`area-${tag}`">
         <div :id="tag | idAlize" class="c-tile">
-          <h2 class="o-headline-2">
-            <a class="o-anchorHeadline" :href="tag | idAlize({prependHash: true})">{{ tag }}</a>
-          </h2>
-          <ul class="o-list-reset">
-            <li v-for="post in tags[tag]" class="u-marginBottomSmall" :key="post.sys.id">
-              <entry-link :entry="post" />
-            </li>
-          </ul>
+          <div class="c-tile__container">
+            <h2 class="o-headline-2">
+              <a class="o-anchorHeadline" :href="tag | idAlize({prependHash: true})">{{ tag }}</a>
+            </h2>
+            <ul class="o-list-reset">
+              <li v-for="post in tags[tag]" class="u-marginBottomSmall" :key="post.sys.id">
+                <entry-link :entry="post" />
+              </li>
+            </ul>
+          </div>
         </div>
       </li>
     </ul>

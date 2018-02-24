@@ -42,21 +42,3 @@
   left: 0;
   transform: translate(0, 0);
 }
-
-
-.t-tileOverlay {
-  &-enter-active, &-leave-active {
-    transition: transform .375s, opacity .25s;
-    transform-origin: calc(100% - 3em) 2em;
-  }
-
-  &-enter, &-leave-to {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  &-enter-to, &-leave {
-    opacity: 1;
-    transform: scale(1);
-  }
-}

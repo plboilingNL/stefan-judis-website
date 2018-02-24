@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ $route.name, !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
+  <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
     <offline-notice v-if="!isOnline"/>
     <navigation/>
     <main>
@@ -58,10 +58,11 @@
     --red-dark: #c52d22;
     --red-bright: #f55d52;
     --grey-bright: #f8f8f8;
+    --grey: #eee;
     --grey-dark: #5a5a5a;
     --grey-very-dark: #3a3a3a;
 
-    --c-highlight: var(--green-dark);
+    --c-highlight: var(--blue-dark);
     --c-text: var(--grey-dark);
 
     --shadow-tile: 0 .5em 3.5em #ddd;
@@ -152,11 +153,5 @@
     filter: grayscale(100%);
   }
 
-  /*
-  ** Controls on body element
-  */
-  .index { --c-highlight: var(--green-dark); }
-  .blog, .blog-slug, .blog-page-page, .blog-tag-tag, .smalltalk, .share { --c-highlight: var(--blue-dark); }
-  .resources, .today-i-learned, .today-i-learned-page-page, .today-i-learned-slug, .slug { --c-highlight: var(--red-dark); }
   .is-offline { --c-highlight: var(--grey-dark); }
 </style>

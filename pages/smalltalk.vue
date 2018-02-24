@@ -2,16 +2,8 @@
   <Container class="t-container">
     <h1 slot="headline" tabindex="-1">Developer Smalltalk</h1>
     <ul class="o-list-grid">
-      <li v-for="cast in screenCasts" :key="cast.sys.id">
-        <div class="c-tile c-tile--noHighlight">
-          <!-- this is container is needed because of a FF bug -->
-          <div class="c-tile__image">
-            <lazy-image :asset="cast.fields.coverImage" :ratio="0.5625"></lazy-image>
-          </div>
-          <pretty-date :date="cast.fields.publishDate"></pretty-date>
-          <h3 class="u-noMarginTop" :id="cast.fields.title | idAlize">{{ cast.fields.title }}</h3>
-          <p class="c-tile__footer"><a :href="cast.fields.url" :aria-labelledby="cast.fields.title | idAlize">Watch on YouTube</a></p>
-        </div>
+      <li v-for="screencast in screenCasts" :key="screencast.sys.id">
+        <Screen-cast :screencast="screencast" />
       </li>
     </ul>
   </Container>
@@ -21,6 +13,7 @@
   import Container from '~/components/Container.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
+  import ScreenCast from '~/components/ScreenCast.vue'
   import {createPage} from '~/lib/basepage.js'
 
   export default createPage({
@@ -47,7 +40,8 @@
     components: {
       Container,
       LazyImage,
-      PrettyDate
+      PrettyDate,
+      ScreenCast
     }
   })
 </script>
