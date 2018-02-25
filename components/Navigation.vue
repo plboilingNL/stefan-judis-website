@@ -99,6 +99,7 @@
     z-index : 2;
     background: #fff;
     box-shadow: 0 0 1em #d1d1d1;
+    transform: translateZ(0);
 
     @media (min-width: 47em) {
       bottom: auto;
@@ -273,7 +274,6 @@
   }
 
   .staggered-item-enter-active, .staggered-item-leave-active {
-    // transition: all .0625s;
     transition: all .25s;
   }
 
