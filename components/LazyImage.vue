@@ -9,31 +9,35 @@
 </template>
 
 <script>
+  import {supportsWebp} from '~/plugins/feature-detects.js'
+
   export default {
     mounted () {
-      const neededImageWidth = Math.floor(this.$el.getBoundingClientRect().width * window.devicePixelRatio)
-      this.imageSrc = `${this.asset.fields.file.url}?w=${neededImageWidth}&h=${Math.round(neededImageWidth * this.ratio)}&fit=fill`
+      supportsWebp().then(supportsWebp => {
+        const neededImageWidth = Math.floor(this.$el.getBoundingClientRect().width * window.devicePixelRatio)
+        this.imageSrc = `${this.asset.fields.file.url}?w=${neededImageWidth}&h=${Math.round(neededImageWidth * this.ratio)}&fit=fill${supportsWebp ? '&fm=webp' : ''}`
 
-      if (window.IntersectionObserver) {
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.intersectionRatio > 0) {
-              const image = document.createElement('img')
+        if (window.IntersectionObserver) {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.intersectionRatio > 0) {
+                const image = document.createElement('img')
 
-              image.onload = () => {
-                this.ready = true
+                image.onload = () => {
+                  this.ready = true
+                }
+
+                image.src = this.imageSrc
+                observer.unobserve(this.$el)
               }
+            })
+          }, {threshold: 0})
 
-              image.src = this.imageSrc
-              observer.unobserve(this.$el)
-            }
-          })
-        }, {threshold: 0})
-
-        observer.observe(this.$el)
-      } else {
-        this.ready = true
-      }
+          observer.observe(this.$el)
+        } else {
+          this.ready = true
+        }
+      })
     },
 
     data () {
