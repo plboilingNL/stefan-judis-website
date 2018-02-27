@@ -47,5 +47,10 @@
       color: var(--c-highlight);
       border-radius: .25em;
     }
+
+    img {
+      display: block;
+      margin: 0 auto;
+    }
   }
 </style>
