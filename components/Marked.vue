@@ -52,5 +52,9 @@
       display: block;
       margin: 0 auto;
     }
+
+    hr {
+      border-color: var(--c-highlight);
+    }
   }
 </style>
