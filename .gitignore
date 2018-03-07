@@ -22,3 +22,7 @@ static/sitemap.xml
 
 # generated lambda functions
 .functions
+
+# generated sqip images and map
+.sqip
+plugins/image-map.js

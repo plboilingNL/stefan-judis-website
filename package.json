@@ -37,6 +37,7 @@
     "babel-eslint": "^7.1.1",
     "chalk": "^2.1.0",
     "contentful-management": "^3.7.6",
+    "download": "^6.2.5",
     "es6-promise": "^4.1.1",
     "eslint": "^4.4.0",
     "eslint-config-standard": "^10.2.1",
@@ -52,9 +53,12 @@
     "jsdom": "^11.1.0",
     "netlify-cli": "^1.2.2",
     "node-sass": "^4.5.3",
+    "ora": "^2.0.0",
     "rss": "^1.2.2",
     "sass-loader": "^6.0.6",
+    "sqip": "^0.3.2",
     "svg-inline-loader": "^0.8.0",
+    "time-span": "^2.0.0",
     "webpack": "^3.4.1"
   }
 }

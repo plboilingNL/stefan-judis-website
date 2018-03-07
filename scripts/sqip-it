@@ -1,0 +1,115 @@
+#!/usr/bin/env node
+
+const contentful = require('contentful')
+const { getConfigForKeys } = require('../lib/config.js')
+const ctfConfig = getConfigForKeys([
+  'CTF_SPACE_ID',
+  'CTF_CDA_TOKEN',
+  'CTF_CPA_TOKEN'
+])
+const {exec} = require('child_process');
+const download = require('download')
+const path = require('path')
+const {promisify} = require('util')
+const {writeFile, readFile} = require('fs')
+const timeSpan = require('time-span')
+
+const SQIP_DESTINATION = path.resolve(__dirname, '..', '.sqip')
+const JS_DESTINATION = path.resolve(__dirname, '..', 'plugins', 'image-map.js')
+const SQIP_EXEC = path.resolve(__dirname, '..', 'node_modules', '.bin', 'sqip')
+
+const ora = require('ora')
+
+const write = promisify(writeFile)
+const read = promisify(readFile)
+const execute = promisify(exec)
+
+const client = contentful.createClient({
+  accessToken:
+    process.env.NODE_ENV === 'production'
+      ? ctfConfig.CTF_CDA_TOKEN
+      : ctfConfig.CTF_CPA_TOKEN,
+  host:
+    process.env.NODE_ENV === 'production'
+      ? 'cdn.contentful.com'
+      : 'preview.contentful.com',
+  space: ctfConfig.CTF_SPACE_ID
+})
+
+const spinner = ora({spinner: 'dots12', text: 'Woooohoooooo'})
+
+async function sqipItems () {
+  const end = timeSpan()
+
+  // --------------------------------------------
+
+  spinner.text = 'Getting asset information'
+  spinner.start()
+  const {items} = await client.getAssets({limit: 1000})
+  let images = items
+    .filter(
+      ({fields}) => fields.file && ['image/png', 'image/jpeg'].indexOf(fields.file.contentType) !== -1
+    )
+    .map(({sys, fields}) => ({
+      id: sys.id,
+      url: fields.file.url,
+      filename: `${sys.id}.${fields.file.contentType.split('/')[1]}`
+    }))
+  spinner.succeed('Asset information queried')
+
+  // --------------------------------------------
+
+  spinner.text = 'Downloading images...'
+  spinner.start()
+  await Promise.all(
+    images.map(({url, filename}) => {
+      return download(
+        url.replace(/\/\//, 'https://'),
+        SQIP_DESTINATION,
+        { filename }
+      )
+    })
+  )
+  spinner.succeed('Images downloaded')
+
+  // --------------------------------------------
+
+  spinner.text = 'Creating SVGs...'
+  spinner.start()
+  await Promise.all(images.map(({id, filename}) => {
+    const command = `${SQIP_EXEC} -o ${id}.svg -n 15 -m 0 -b 0 ${filename}`
+
+    return execute(
+      command,
+      {cwd: SQIP_DESTINATION}
+    )
+  }))
+  spinner.succeed('SVGs created')
+
+  // --------------------------------------------
+
+  images = await Promise.all(images.map(async (image) => {
+    spinner.text = `Reading ${image.id}.svg`
+    const data = await read(path.join(SQIP_DESTINATION, `${image.id}.svg`))
+    image.svg = data
+
+    return image
+  }))
+
+  // --------------------------------------------
+
+  spinner.text = 'Writing JS mapping file'
+  spinner.start()
+  write(
+    JS_DESTINATION,
+    `export default {\n  ${images.map(({id, svg}) => `'${id}': '${svg}'`).join(', ')}\n}\n`
+  )
+
+  spinner.succeed('JS file written')
+
+  // --------------------------------------------
+
+  console.log(end.seconds())
+}
+
+sqipItems()

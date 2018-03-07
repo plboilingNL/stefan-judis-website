@@ -1,15 +1,17 @@
 <template>
   <figure role="group" class="c-lazyImage" :style="{ paddingTop: `${ratio * 100}%` }">
-    <div class="c-lazyImage--bg">
+    <div v-if="!preview" class="c-lazyImage--bg">
       <svg role="presentation" width="872" height="872" viewBox="0 0 872 872" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M436 0C195.582 0 0 195.582 0 436c0 240.381 195.582 436 436 436 240.381 0 436-195.619 436-436C872 195.582 676.381 0 436 0zm10.682 653.419c-6.504 4.687-15.042 4.578-21.4 0C416.852 647.279 218 501.327 218 385.75c0-80.442 59.55-128.511 117.102-128.511 34.553 0 75.21 17.876 100.898 64.819 25.615-46.943 66.308-64.819 100.861-64.819C594.45 257.24 654 305.309 654 385.751c0 115.576-198.889 261.527-207.318 267.668z"></path></svg>
       <p>Loading ...</p>
     </div>
+    <div v-if="preview" class="c-lazyImage--sqip" v-html="preview"></div>
     <img v-if="ready" :src="imageSrc" :alt="asset.fields.title">
   </figure>
 </template>
 
 <script>
   import {supportsWebp} from '~/plugins/feature-detects.js'
+  import imageMap from '~/plugins/image-map.js'
 
   export default {
     mounted () {
@@ -43,7 +45,8 @@
     data () {
       return {
         ready: false,
-        imageSrc: null
+        imageSrc: null,
+        preview: imageMap[this.asset.sys.id] || null
       }
     },
 
@@ -52,6 +55,11 @@
 </script>
 
 <style lang="scss">
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+
   .c-lazyImage {
     position: relative;
     margin: 0;
@@ -65,6 +73,8 @@
       right: 0;
       bottom: 0;
       left: 0;
+
+      animation: 1s fadeIn;
     }
 
     &--bg {
@@ -87,6 +97,24 @@
       left: 50%;
 
       transform: translate(-50%, -50%);
+    }
+
+    &--sqip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      svg {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        width: calc(100% + 20px);
+        height: calc(100% + 20px);
+        filter: blur(10px);
+      }
     }
   }
 </style>
