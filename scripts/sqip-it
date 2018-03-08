@@ -7,7 +7,7 @@ const ctfConfig = getConfigForKeys([
   'CTF_CDA_TOKEN',
   'CTF_CPA_TOKEN'
 ])
-const {exec} = require('child_process');
+const {exec} = require('child_process')
 const download = require('download')
 const path = require('path')
 const {promisify} = require('util')
