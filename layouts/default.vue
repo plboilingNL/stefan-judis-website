@@ -51,6 +51,7 @@
     --blue: #1d7cbb;
     --blue-dark: #1a79b8;
     --blue-bright: #3a99d8;
+    --blue-brighter: #dbf1ff;
     --green: #10967a;
     --green-dark: #09795c;
     --green-bright: #39b97c;
