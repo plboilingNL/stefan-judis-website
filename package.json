@@ -34,6 +34,7 @@
   "devDependencies": {
     "a11y.css": "^4.2.2",
     "autoprefixer": "^7.1.1",
+    "aws-sdk": "^2.207.0",
     "babel-eslint": "^7.1.1",
     "chalk": "^2.1.0",
     "contentful-management": "^3.7.6",
@@ -52,6 +53,7 @@
     "htmlparser2": "^3.9.2",
     "jsdom": "^11.1.0",
     "netlify-cli": "^1.2.2",
+    "node-fetch": "^2.1.1",
     "node-sass": "^4.5.3",
     "ora": "^2.0.0",
     "rss": "^1.2.2",
