@@ -3,8 +3,8 @@ echo "Building Lambda Functions"
 ./node_modules/.bin/netlify-lambda build ./functions
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
-echo "Generating Sqip previews"
-NODE_ENV=production ./scripts/sqip-it
+# echo "Generating Sqip previews"
+# NODE_ENV=production ./scripts/sqip-it
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Generating Static Site"
