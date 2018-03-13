@@ -126,6 +126,13 @@ const config = {
           lang: 'en',
           short_name: 'SJ Web Dev',
           theme_color: '#fefff4'
+        },
+        workbox: {
+          runtimeCaching: [
+            {
+              urlPattern: 'https://.*?.contentful.com/.*'
+            }
+          ]
         }
       }
     ],
