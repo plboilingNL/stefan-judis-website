@@ -6,18 +6,18 @@ const {
   CTF_SPACE_ID,
   CTF_CDA_TOKEN,
   CTF_CPA_TOKEN,
-  AWS_ACCESS_KEY_ID,
-  AWS_SECRET_ACCESS_KEY,
-  AWS_S3_REGION,
-  AWS_S3_BUCKET
+  MY_AWS_ACCESS_KEY_ID,
+  MY_AWS_SECRET_ACCESS_KEY,
+  MY_AWS_S3_REGION,
+  MY_AWS_S3_BUCKET
 } = getConfigForKeys([
   'CTF_SPACE_ID',
   'CTF_CDA_TOKEN',
   'CTF_CPA_TOKEN',
-  'AWS_ACCESS_KEY_ID',
-  'AWS_SECRET_ACCESS_KEY',
-  'AWS_S3_REGION',
-  'AWS_S3_BUCKET'
+  'MY_AWS_ACCESS_KEY_ID',
+  'MY_AWS_SECRET_ACCESS_KEY',
+  'MY_AWS_S3_REGION',
+  'MY_AWS_S3_BUCKET'
 ])
 const {exec} = require('child_process')
 const download = require('download')
@@ -47,12 +47,12 @@ const client = contentful.createClient({
 
 const AWS = require('aws-sdk')
 AWS.config.update({
-  accessKeyId: AWS_ACCESS_KEY_ID,
-  secretAccessKey: AWS_SECRET_ACCESS_KEY,
-  region: AWS_S3_REGION
+  accessKeyId: MY_AWS_ACCESS_KEY_ID,
+  secretAccessKey: MY_AWS_SECRET_ACCESS_KEY,
+  region: MY_AWS_S3_REGION
 })
 const s3 = new AWS.S3()
-const baseParams = {Bucket: AWS_S3_BUCKET, ACL: 'public-read'}
+const baseParams = {Bucket: MY_AWS_S3_BUCKET, ACL: 'public-read'}
 const spinner = ora({spinner: 'dots12'})
 
 const write = promisify(writeFile)
