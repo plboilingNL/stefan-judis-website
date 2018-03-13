@@ -25,4 +25,4 @@ static/sitemap.xml
 
 # generated sqip images and map
 .sqip
-plugins/image-map.js
+# plugins/image-map.js
