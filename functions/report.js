@@ -5,17 +5,21 @@ exports.handler = (event, context, callback) => {
     const mailgun = require('mailgun-js')({apiKey, domain})
     const report = JSON.parse(event.body)['csp-report']
 
-    if (report['blocked-uri'] === 'data') {
+    const blockedUri = report['blocked-uri']
+    if (
+      blockedUri === 'data' ||
+      blockedUri === ''
+    ) {
       return callback(null, {
         statusCode: 200,
-        body: 'Didnt send report, "data" as blocked URI is not helpful'
+        body: `Didnt send report, blocked URI (${blockedUri})is not helpful`
       })
     }
 
     var data = {
       from: 'CSP Report Bot <csp@stefanjudis.com>',
       to: 'stefanjudis@gmail.com',
-      subject: `Blocked resource (${report['blocked-uri']}) on ${report['document-uri']}`,
+      subject: `Blocked resource (${blockedUri}) on ${report['document-uri']}`,
       text: JSON.stringify(report, null, 2)
     }
 
