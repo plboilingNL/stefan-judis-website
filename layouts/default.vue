@@ -88,12 +88,6 @@
     @media (min-width: 47em) {
       padding-top: 3.5em;
       padding-bottom: 0;
-      overflow: hidden;
-
-      > div {
-        height: calc(100vh - 3.5em);
-        overflow: scroll;
-      }
     }
   }
 
