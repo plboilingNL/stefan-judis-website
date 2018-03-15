@@ -79,6 +79,10 @@
         background: var(--c-highlight);
         text-shadow: 0 1px 2px var(--grey-very-dark);
       }
+
+      &:focus {
+        outline-offset: -7px;
+      }
     }
   }
 }
