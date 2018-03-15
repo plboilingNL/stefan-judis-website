@@ -96,14 +96,14 @@ export default {
 <style lang="scss">
   .nuxt-progress {
     position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
+    top: 0;
+    left: 0;
+    right: 0;
     height: 3px;
     width: 0%;
     transition: width 0.2s, opacity 0.4s;
     opacity: 1;
-    background-color: #5a5a5a;
+    background-color: #1a79b8;
     z-index: 999999;
   }
 
