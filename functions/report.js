@@ -8,7 +8,8 @@ exports.handler = (event, context, callback) => {
     const blockedUri = report['blocked-uri']
     if (
       blockedUri === 'data' ||
-      blockedUri === ''
+      blockedUri === '' ||
+      blockedUri === 'eval'
     ) {
       return callback(null, {
         statusCode: 200,
