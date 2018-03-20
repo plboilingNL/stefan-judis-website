@@ -1,10 +1,10 @@
 <template>
   <section :class="classes">
     <div>
-      <header v-if="$slots.date || $slots.headline || $slots.readingTime" class="c-container__headline">
+      <header v-if="$slots.date || $slots.headline || $slots.subHeadline" class="c-container__headline">
         <slot name="date"></slot>
         <slot name="headline"></slot>
-        <slot name="readingTime"></slot>
+        <slot name="subHeadline"></slot>
       </header>
       <slot/>
 
@@ -64,6 +64,7 @@
 
   .c-container__headline {
     margin: 1em 0 2em;
+    text-align: center;
 
     @media (min-width: 38em) {
       margin-top: 2em;
@@ -72,7 +73,6 @@
     time, span {
       font-size: .875em;
       display: block;
-      text-align: center;
     }
 
     span {
