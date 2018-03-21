@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden', 'u-positionRelative' ]">
+  <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
     <offline-notice v-if="!isOnline"/>
     <navigation/>
     <main>
@@ -112,6 +112,10 @@
     display: block;
     max-width: 20em;
     margin: 0 auto;
+  }
+
+  .__nuxt {
+    position: relative;
   }
 
   *, *::before, *::after {
