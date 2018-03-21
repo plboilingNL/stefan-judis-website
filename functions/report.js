@@ -9,7 +9,8 @@ exports.handler = (event, context, callback) => {
     if (
       blockedUri === 'data' ||
       blockedUri === '' ||
-      blockedUri === 'eval'
+      blockedUri === 'eval' ||
+      blockedUri === 'self'
     ) {
       return callback(null, {
         statusCode: 200,
