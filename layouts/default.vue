@@ -114,7 +114,7 @@
     margin: 0 auto;
   }
 
-  .__nuxt {
+  #__nuxt {
     position: relative;
   }
 
