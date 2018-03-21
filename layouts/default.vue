@@ -1,11 +1,12 @@
 <template>
-  <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
+  <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden', 'u-positionRelative' ]">
     <offline-notice v-if="!isOnline"/>
     <navigation/>
     <main>
       <nuxt/>
     </main>
     <closing/>
+    <loading-time />
   </div>
 </template>
 
@@ -13,12 +14,14 @@
   import Closing from '~/components/Closing.vue'
   import Navigation from '~/components/Navigation.vue'
   import OfflineNotice from '~/components/OfflineNotice.vue'
+  import LoadingTime from '~/components/LoadingTime.vue'
 
   export default {
     components: {
       Closing,
       Navigation,
-      OfflineNotice
+      OfflineNotice,
+      LoadingTime
     },
     data () {
       return {

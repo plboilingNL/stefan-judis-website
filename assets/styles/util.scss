@@ -92,6 +92,10 @@
   box-shadow: none;
 }
 
+.u-positionRelative {
+  position: relative;
+}
+
 .u-highlight__green { --c-highlight: var(--green-dark);}
 .u-highlight__red { --c-highlight: var(--red-dark);}
 .u-highlight__blue { --c-highlight: var(--blue-dark);}

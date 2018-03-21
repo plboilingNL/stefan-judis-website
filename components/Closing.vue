@@ -22,6 +22,6 @@
 
 <style>
   .c-footer {
-    padding: 1em;
+    padding: 2em;
   }
 </style>
