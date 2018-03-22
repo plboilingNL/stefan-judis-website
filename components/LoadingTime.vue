@@ -1,5 +1,10 @@
 <template>
-  <div class="c-loadingTime">
+  <div class="c-loadTime">
+    <Icon name="Stopwatch"></Icon>
+    <div class="c-loadTime__text">
+      <div class="c-loadTime__number"></div>
+      <div class="c-loadTime__title">Load time</div>
+    </div>
     <script>
       // shamelessly stolen from Tim Kadlec
       // TODO give credits
@@ -14,35 +19,64 @@
           var start = t.navigationStart
           var end = t.loadEventEnd
           var loadTime = (end - start) / 1000
-          var container = document.querySelector('.c-loadingTime')
-          container.innerHTML += 'Loadtime: ' + loadTime + 's.'
-          container.classList.add('is-loaded')
+          var numberContainer = document.querySelector('.c-loadTime__number')
+          numberContainer.innerHTML += loadTime + 's'
+          document.querySelector('.c-loadTime').classList.add('is-loaded')
         }, 0)
       }
     </script>
   </div>
 </template>
 
+<script>
+import Icon from '~/components/Icon.vue'
+
+export default {
+  components: {
+    Icon
+  }
+}
+</script>
+
+
 <style lang="scss">
-.c-loadingTime {
+.c-loadTime {
   display: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
 
   @media (min-width: 47em) {
+    position: absolute;
+    bottom: 0;
     right: 1em;
-    left: auto;
     bottom: 3em;
-    width: 11em;
-    padding: .5em 1em;
-    box-shadow: var(--shadow-tile);
+    width: 8em;
+    padding: .5em 1em .5em .75em;
+    box-shadow: var(--shadow-floating-thing);
+    justify-content: space-between;
   }
 
   &.is-loaded {
-    display: block;
+    display: flex;
+  }
+
+  .icon-Stopwatch {
+    width: 2em;
+    height: 2em;
+    margin-right: .5em;
+  }
+
+  &__number {
+    font-size: 1.25em;
+    font-size: bolder;
+    line-height: 1;
+    color: var(--grey-very-dark);
+  }
+
+  &__title {
+    font-size: .75em;
+    line-height: 1.25;
+    color: var(--c-highlight);
   }
 }
 </style>

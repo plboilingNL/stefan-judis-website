@@ -72,6 +72,7 @@
     --shadow-tile: 0 .5em 3.5em #ddd;
     --shadow-btn: 0 .125em .375em #e1e1e1;
     --shadow-person: var(--shadow-tile);
+    --shadow-floating-thing: 0 .375em 1.5em -.25em #bbb;
 
     --navigation-break: 30em;
 
