@@ -5,8 +5,8 @@
     <main>
       <nuxt/>
     </main>
-    <closing/>
     <loading-time />
+    <closing/>
   </div>
 </template>
 

@@ -44,6 +44,7 @@ export default {
   display: none;
   align-items: center;
   justify-content: center;
+  padding: 2em;
 
   @media (min-width: 47em) {
     position: absolute;
