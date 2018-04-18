@@ -10,7 +10,7 @@
     props: ['item'],
     computed: {
       sharingUrl () {
-        return encodeURI(`https://twitter.com/intent/tweet?text=${this.item.fields.title}&url=${window.location.href}&via=stefanjudis`)
+        return encodeURI(`https://twitter.com/intent/tweet?text=${this.item.fields.title}&url=https://www.stefanjudis.com${this.$route.fullPath}&via=stefanjudis`)
       }
     },
     components: {
