@@ -1,6 +1,10 @@
 #!/bin/sh
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "Unpack last build"
+./scripts/unpack
+
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Building Lambda Functions"
 ./node_modules/.bin/netlify-lambda build ./functions
 
@@ -22,4 +26,4 @@ echo "Creating RSS Feeds"
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Archive dist folder"
-./scripts/archive
+./scripts/pack

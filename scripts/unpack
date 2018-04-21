@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -d ./dist ]; then
+  rm -r ./dist
+fi
+
+wget -qO- -O .tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip .tmp.zip && rm .tmp.zip
+
