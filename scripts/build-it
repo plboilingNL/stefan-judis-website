@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Building Lambda Functions"
 ./node_modules/.bin/netlify-lambda build ./functions
@@ -17,3 +19,7 @@ echo "Validating Markup"
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Creating RSS Feeds"
 ./scripts/create-rss-feed
+
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "Archive dist folder"
+./scripts/archive

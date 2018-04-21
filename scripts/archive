@@ -1,0 +1,5 @@
+if [ ! -d ./dist/archive ]; then
+  mkdir ./dist/archive
+fi
+
+zip -r ./dist/archive/index.zip dist
