@@ -1,8 +1,9 @@
 #!/bin/sh
 
-if [ -d ./dist ]; then
-  rm -r ./dist
+if [ ! -d ./.archive ]; then
+  mkdir .archive
 fi
 
-wget -qO- -O .tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip .tmp.zip && rm .tmp.zip
+wget -qO- -O .archive/.tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip .archive/.tmp.zip -d .archive && rm .archive/.tmp.zip
+mv .archive/dist .archive/old-dist
 
