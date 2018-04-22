@@ -2,6 +2,10 @@
 
 export NODE_ENV=production
 
+
+echo "TRIGGERED BY:"
+echo "$WEBHOOK_TITLE"
+
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Unpack last build"
 ./scripts/unpack
