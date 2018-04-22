@@ -1,7 +1,3 @@
 #!/bin/sh
 
-if [ ! -d ./dist/archive ]; then
-  mkdir ./dist/archive
-fi
-
-zip -r ./dist/archive/index.zip dist
+zip -r ./dist/archive.zip dist
