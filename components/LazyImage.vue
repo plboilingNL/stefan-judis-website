@@ -5,7 +5,7 @@
       <p>Loading ...</p>
     </div>
     <div v-if="preview" class="c-lazyImage--sqip" v-html="preview"></div>
-    <img v-if="ready" :src="imageSrc" :alt="asset.fields.title">
+    <img v-if="ready" :src="imageSrc" :alt="asset.fields.title" :data-id="imageId">
   </figure>
 </template>
 
@@ -46,7 +46,8 @@
       return {
         ready: false,
         imageSrc: null,
-        preview: imageMap[this.asset.sys.id] || null
+        preview: imageMap[this.asset.sys.id] || null,
+        imageId: this.asset.sys.id
       }
     },
 
