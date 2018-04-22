@@ -127,7 +127,8 @@ async function sqipItems () {
   spinner.start()
   images = await Promise.all(images.map(async (image) => {
     if (!image.svg) {
-      image.svg = await read(path.join(SQIP_CACHE, `${image.id}.svg`), 'utf8')
+      const svg = await read(path.join(SQIP_CACHE, `${image.id}.svg`), 'utf8')
+      image.svg = svg.replace('<svg', `<svg id="image.id"`)
     }
 
     return image
