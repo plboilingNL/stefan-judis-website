@@ -65,19 +65,23 @@ async function sqipItems () {
 
   // --------------------------------------------
 
-  spinner.text = 'Reading cached SVGs'
-  spinner.start()
-  images = await Promise.all(images.map(async (image) => {
-    try {
-      const svg = await read(`${SQIP_CACHE}/${image.id}.svg`, 'utf8')
-      if (svg.startsWith('<svg')) {
-        image.svg = svg
-      }
-    } catch (e) {}
+  if (process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE') {
+    spinner.text('Clear webhook detected - skipping cached SVGs')
+  } else {
+    spinner.text = 'Reading cached SVGs'
+    spinner.start()
+    images = await Promise.all(images.map(async (image) => {
+      try {
+        const svg = await read(`${SQIP_CACHE}/${image.id}.svg`, 'utf8')
+        if (svg.startsWith('<svg')) {
+          image.svg = svg
+        }
+      } catch (e) {}
 
-    return image
-  }))
-  spinner.succeed('Cached SVGs downloaded')
+      return image
+    }))
+    spinner.succeed('Cached SVGs downloaded')
+  }
 
   // --------------------------------------------
 
