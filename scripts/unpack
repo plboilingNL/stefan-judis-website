@@ -3,7 +3,7 @@
 if [ "$WEBHOOK_TITLE" = CLEAR_CUSTOM_CACHE ]; then
   echo "Clear webhook detected - skipping unpacking archive"
 else
-  rm -rf ./dist/*
+  rm -r ./dist/*
   mkdir ./dist/archive/
 
   wget -qO- -O ./dist/archive/tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip ./dist/archive/tmp.zip -d ./dist && rm dist/archive/tmp.zip
