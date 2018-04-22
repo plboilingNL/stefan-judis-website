@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ ! -d ./.archive ]; then
-  mkdir .archive
+if [ "$WEBHOOK_TITLE" = CLEAR_CUSTOM_CACHE ]; then
+  echo "Clear webhook detected - skipping unpacking archive"
 else
-  rm -rf ./.archive/dist
-  rm -rf ./.archive/old-dist
+  rm -rf ./dist/*
+  mkdir ./dist/archive/
+
+  wget -qO- -O ./dist/archive/tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip ./dist/archive/tmp.zip -d ./dist && rm dist/archive/tmp.zip
+  mv  dist/dist/* dist
+  rm -r dist/dist
 fi
-
-wget -qO- -O .archive/.tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip .archive/.tmp.zip -d .archive && rm .archive/.tmp.zip
-mv .archive/dist .archive/old-dist
-

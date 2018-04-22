@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+const { Nuxt, Builder, Generator } = require('nuxt')
+const config = require('../nuxt.config.js')
+
+config.mode = 'universal'
+
+const nuxt = new Nuxt(config)
+const builder = new Builder(nuxt)
+const generator = new Generator(nuxt, builder)
+const generateOptions = {
+  init: process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
+  build: true
+}
+
+async function generateRoutes () {
+  await generator.generate(generateOptions)
+}
+
+generateRoutes()

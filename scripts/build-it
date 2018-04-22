@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export NODE_ENV=production
+
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Unpack last build"
 ./scripts/unpack
@@ -10,15 +12,11 @@ echo "Building Lambda Functions"
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Generating Sqip previews"
-NODE_ENV=production ./scripts/sqip-it
+./scripts/sqip-it
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Generating Static Site"
-NODE_ENV=production ./node_modules/.bin/nuxt generate
-
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
-echo "Move sqip cache into public for next runs"
-cp -r ./.archive/old-dist/.sqip ./dist/.sqip
+./scripts/generate
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Validating Markup"
