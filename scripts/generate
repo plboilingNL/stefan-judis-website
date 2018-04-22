@@ -4,6 +4,7 @@ const { Nuxt, Builder, Generator } = require('nuxt')
 const config = require('../nuxt.config.js')
 
 config.mode = 'universal'
+config.dev = false
 
 const nuxt = new Nuxt(config)
 const builder = new Builder(nuxt)
@@ -14,7 +15,11 @@ const generateOptions = {
 }
 
 async function generateRoutes () {
-  await generator.generate(generateOptions)
+  try {
+    await generator.generate(generateOptions)
+  } catch (e) {
+    console.error(e)
+  }
 }
 
 generateRoutes()
