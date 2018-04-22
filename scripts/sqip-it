@@ -19,7 +19,6 @@ const {writeFile, readFile} = require('fs')
 const timeSpan = require('time-span')
 // const fetch = require('node-fetch')
 
-const SQIP_DESTINATION = path.resolve(__dirname, '..', 'dist', '.sqip')
 const SQIP_CACHE = path.resolve(__dirname, '..', '.archive', 'old-dist', '.sqip')
 const JS_DESTINATION = path.resolve(__dirname, '..', 'plugins', 'image-map.js')
 const SQIP_EXEC = path.resolve(__dirname, '..', 'node_modules', '.bin', 'sqip')
@@ -90,7 +89,7 @@ async function sqipItems () {
         console.log(`${filename} is missing -> downloading`)
         return download(
           url.replace(/\/\//, 'https://'),
-          SQIP_DESTINATION,
+          SQIP_CACHE,
           { filename }
         )
       }
@@ -110,13 +109,26 @@ async function sqipItems () {
 
       return execute(
         command,
-        {cwd: SQIP_DESTINATION}
+        {cwd: SQIP_CACHE}
       )
     }
 
     return Promise.resolve()
   }))
   spinner.succeed('SVGs created')
+
+  // --------------------------------------------
+
+  spinner.text = 'Reading missing SVGs...'
+  spinner.start()
+  images = await Promise.all(images.map(async (image) => {
+    if (!image.svg) {
+      image.svg = await read(path.join(SQIP_CACHE, `${image.id}.svg`), 'utf8')
+    }
+
+    return image
+  }))
+  spinner.succeed('SVGs read')
 
   // --------------------------------------------
 

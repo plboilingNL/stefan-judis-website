@@ -2,6 +2,9 @@
 
 if [ ! -d ./.archive ]; then
   mkdir .archive
+else
+  rm -rf ./.archive/dist
+  rm -rf ./.archive/old-dist
 fi
 
 wget -qO- -O .archive/.tmp.zip https://www.stefanjudis.com/archive/index.zip && unzip .archive/.tmp.zip -d .archive && rm .archive/.tmp.zip
