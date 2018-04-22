@@ -4,6 +4,7 @@ const emojiRegex = EmojiRegex()
 const EMOJI_LABELS = {
   '10084': 'Red heart',
   '127881': 'Party popper',
+  '128007': 'Rabbit',
   '128546': 'Crying face',
   '128562': 'Astonished Face',
   '128073': 'Hand pointing right',
