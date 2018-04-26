@@ -23,6 +23,6 @@ static/sitemap.xml
 # generated lambda functions
 .functions
 
-# last build archive
-.archive
+# sqip image cache and generate map
+.sqip
 plugins/image-map.js

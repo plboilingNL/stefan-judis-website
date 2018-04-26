@@ -1,14 +1,7 @@
 #!/bin/sh
 
-export NODE_ENV=production
-
-
 echo "TRIGGERED BY:"
 echo "$WEBHOOK_TITLE"
-
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
-echo "Unpack last build"
-./scripts/unpack
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Building Lambda Functions"
@@ -29,7 +22,3 @@ echo "Validating Markup"
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Creating RSS Feeds"
 ./scripts/create-rss-feed
-
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
-echo "Archive dist folder"
-./scripts/pack

@@ -16,28 +16,25 @@ const download = require('download')
 const path = require('path')
 const {promisify} = require('util')
 const {writeFile, readFile} = require('fs')
+const {emptyDir} = require('fs-extra')
 const timeSpan = require('time-span')
-// const fetch = require('node-fetch')
-
-const SQIP_CACHE = path.resolve(__dirname, '..', 'dist', 'sqip')
+const isProduction = process.env.NODE_ENV === 'production'
+const SQIP_CACHE = isProduction
+  ? path.join('/', 'opt', 'build', 'cache', 'sqip')
+  : path.resolve(__dirname, '..', '.sqip')
 const JS_DESTINATION = path.resolve(__dirname, '..', 'plugins', 'image-map.js')
 const SQIP_EXEC = path.resolve(__dirname, '..', 'node_modules', '.bin', 'sqip')
-
-const ora = require('ora')
-
 const client = contentful.createClient({
   accessToken:
-    process.env.NODE_ENV === 'production'
+    isProduction
       ? CTF_CDA_TOKEN
       : CTF_CPA_TOKEN,
   host:
-    process.env.NODE_ENV === 'production'
+    isProduction
       ? 'cdn.contentful.com'
       : 'preview.contentful.com',
   space: CTF_SPACE_ID
 })
-
-const spinner = ora({spinner: 'dots12'})
 
 const write = promisify(writeFile)
 const read = promisify(readFile)
@@ -46,10 +43,16 @@ const execute = promisify(exec)
 async function sqipItems () {
   const end = timeSpan()
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
-  spinner.text = 'Getting asset information'
-  spinner.start()
+  if (process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE') {
+    console.log(`Clearing ${SQIP_CACHE}`)
+    await emptyDir(SQIP_CACHE)
+  }
+
+  console.log('// --------------------------------------------')
+
+  console.log('Getting asset information')
   const {items} = await client.getAssets({limit: 1000})
   let images = items
     .filter(
@@ -57,36 +60,31 @@ async function sqipItems () {
     )
     .map(({sys, fields}) => ({
       id: sys.id,
+      revision: sys.revision,
       url: fields.file.url,
-      filename: `${sys.id}.${fields.file.contentType.split('/')[1]}`,
+      filename: `${sys.id}-${sys.revision}.${fields.file.contentType.split('/')[1]}`,
       svg: null
     }))
-  spinner.succeed('Asset information queried')
+  console.log('Asset information queried')
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
-  if (process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE') {
-    spinner.text = 'Clear webhook detected - skipping cached SVGs'
-  } else {
-    spinner.text = 'Reading cached SVGs'
-    spinner.start()
-    images = await Promise.all(images.map(async (image) => {
-      try {
-        const svg = await read(`${SQIP_CACHE}/${image.id}.svg`, 'utf8')
-        if (svg.startsWith('<svg')) {
-          image.svg = svg
-        }
-      } catch (e) {}
+  console.log(`Reading cached SVGs from at ${SQIP_CACHE}`)
+  images = await Promise.all(images.map(async (image) => {
+    try {
+      const svg = await read(`${SQIP_CACHE}/${image.id}-${image.revision}.svg`, 'utf8')
+      if (svg.startsWith('<svg')) {
+        image.svg = svg
+      }
+    } catch (e) {}
 
-      return image
-    }))
-    spinner.succeed('Cached SVGs downloaded')
-  }
+    return image
+  }))
+  console.log('Cached SVGs read')
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
-  spinner.text = 'Downloading images for missing SVGs...'
-  spinner.start()
+  console.log('Downloading images for missing SVGs...')
   await Promise.all(
     images.map(({url, filename, svg}) => {
       if (!svg) {
@@ -101,15 +99,14 @@ async function sqipItems () {
       return Promise.resolve()
     })
   )
-  spinner.succeed('Images downloaded')
+  console.log('Images downloaded')
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
-  spinner.text = 'Creating missing SVGs...'
-  spinner.start()
-  await Promise.all(images.map(({id, filename, svg}) => {
+  console.log('Creating missing SVGs...')
+  await Promise.all(images.map(({id, revision, filename, svg}) => {
     if (!svg) {
-      const command = `${SQIP_EXEC} -o ${id}.svg -n 15 -m 0 -b 0 ${filename}`
+      const command = `${SQIP_EXEC} -o ${id}-${revision}.svg -n 15 -m 0 -b 0 ${filename}`
 
       return execute(
         command,
@@ -119,33 +116,31 @@ async function sqipItems () {
 
     return Promise.resolve()
   }))
-  spinner.succeed('SVGs created')
+  console.log('SVGs created')
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
-  spinner.text = 'Reading missing SVGs...'
-  spinner.start()
+  console.log('Reading missing SVGs...')
   images = await Promise.all(images.map(async (image) => {
     if (!image.svg) {
-      const svg = await read(path.join(SQIP_CACHE, `${image.id}.svg`), 'utf8')
-      image.svg = svg.replace('<svg', `<svg id="image.id"`)
+      const svg = await read(path.join(SQIP_CACHE, `${image.id}-${image.revision}.svg`), 'utf8')
+      image.svg = svg.replace('<svg', `<svg id="${image.id}"`)
     }
 
     return image
   }))
-  spinner.succeed('SVGs read')
+  console.log('SVGs read')
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
-  spinner.text = 'Writing JS mapping file'
-  spinner.start()
+  console.log('Writing JS mapping file')
   write(
     JS_DESTINATION,
     `export default {\n  ${images.map(({id, svg}) => `'${id}': '${svg}'`).join(', ')}\n}\n`
   )
-  spinner.succeed('JS file written')
+  console.log('JS file written')
 
-  // --------------------------------------------
+  console.log('// --------------------------------------------')
 
   console.log(end.seconds())
 }
