@@ -10,7 +10,7 @@ const nuxt = new Nuxt(config)
 const builder = new Builder(nuxt)
 const generator = new Generator(nuxt, builder)
 const generateOptions = {
-  init: false, // process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
+  init: true, // process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
   build: true
 }
 
