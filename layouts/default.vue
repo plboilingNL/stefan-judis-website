@@ -30,6 +30,7 @@
     },
     mounted () {
       window.addEventListener('load', () => {
+        this.isOnline = navigator.connectiontype !== 'none'
         window.addEventListener('online', () => { this.isOnline = true })
         window.addEventListener('offline', () => { this.isOnline = false })
       })
