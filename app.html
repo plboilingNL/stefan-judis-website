@@ -6,36 +6,8 @@
       (function() {
         if (window.PerformanceObserver) {
           const entryHandlers = {
-            paint: function(entry) {
-              localStorage.showLogs && console.log(
-                '%c PAINT TIMING TRACKING %c -> ' + entry.name + ' - %c' + entry.startTime,
-                'background: red; color: white; display: block;',
-                'font-style: italic;',
-                'background: white; color: red; text-decoration: underline; font-weight: bold;'
-              )
-            },
-            resource: function(entry) {
-              if (/https:\/\/cdn.contentful.com/.test(entry.name)) {
-                localStorage.showLogs && console.log(
-                  '%c API TRACKING: %c ' + entry.name + ' %c-> %c' + entry.duration,
-                  'background: blue; color: white; display: block;',
-                  '',
-                  '',
-                  'background: white; color: blue; text-decoration: underline; font-weight: bold;'
-                )
-
-                if (window.ga) {
-                  ga('send', {
-                    hitType: 'timing',
-                    timingCategory: 'CDA CALL',
-                    timingVar: entry.name,
-                    timingValue: entry.duration
-                  })
-                }
-              }
-            },
             longtask: function(entry) {
-              localStorage.showLogs && console.log(
+              console.log(
                 '%c LONG TASK TRACKING %c ->',
                 'background: green; color: white; display: block;',
                 '',
@@ -53,7 +25,7 @@
                 }
               })
           })).observe({
-            entryTypes: ['resource', 'paint', 'longtask']
+            entryTypes: ['longtask']
           })
         }
       })()
@@ -61,5 +33,64 @@
   </head>
   <body {{ BODY_ATTRS }}>
     {{ APP }}
+
+    <script>
+      // todo unify this with the client side javascript
+      (function() {
+        const checkWebpSupport = () => {
+          return new Promise((resolve) => {
+            // taken from https://github.com/Modernizr/Modernizr/blob/master/feature-detects/img/webp.js
+            const image = new Image()
+            const uri = 'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAwA0JaQAA3AA/vuUAAA='
+
+            function addResult (event) {
+              const result = event && event.type === 'load' ? image.width === 1 : false
+              resolve(result)
+            }
+
+            image.onerror = addResult
+            image.onload = addResult
+
+            image.src = uri
+          })
+        }
+
+
+        checkWebpSupport().then(supportsWebp => {
+          Array.prototype.slice.call(document.querySelectorAll('.c-lazyImage')).forEach(image => {
+            const neededImageWidth = Math.floor(
+              image.getBoundingClientRect().width * window.devicePixelRatio
+            )
+
+            // something fucks up nuxt with template literals here
+            const imageSrc = image.dataset.url +
+              '?w=' + neededImageWidth +
+              '&h=' + Math.round(neededImageWidth * +image.dataset.ratio) +
+              '&fit=fill' +
+              (supportsWebp ? '&fm=webp' : '')
+
+            if (window.IntersectionObserver) {
+              const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                  if (entry.intersectionRatio > 0) {
+                    const imageToLoad = document.createElement('img')
+                    imageToLoad.alt = image.dataset.alt
+
+                    imageToLoad.onload = () => {
+                      image.appendChild(imageToLoad)
+                    }
+
+                    imageToLoad.src = imageSrc
+                    observer.unobserve(image)
+                  }
+                })
+              }, {threshold: 0})
+
+              observer.observe(image)
+            }
+          })
+        })
+      })()
+    </script>
   </body>
 </html>
