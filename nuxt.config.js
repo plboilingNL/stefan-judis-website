@@ -16,14 +16,8 @@ const ctfConfig = getConfigForKeys([
 
 const cdaContentful = require('contentful')
 const cdaClient = cdaContentful.createClient({
-  accessToken:
-    process.env.NODE_ENV === 'production'
-      ? ctfConfig.CTF_CDA_TOKEN
-      : ctfConfig.CTF_CPA_TOKEN,
-  host:
-    process.env.NODE_ENV === 'production'
-      ? 'cdn.contentful.com'
-      : 'preview.contentful.com',
+  accessToken: ctfConfig.CTF_CDA_TOKEN,
+  host: 'cdn.contentful.com',
   space: ctfConfig.CTF_SPACE_ID
 })
 const cmaContentful = require('contentful-management')
