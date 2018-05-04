@@ -116,22 +116,6 @@ export default ({ app, env, store }) => {
       return posts.list
     },
 
-    async getProjects () {
-      if (!projects.list.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_PROJECT_ID
-          })
-          .then(res => {
-            store.commit('projects/setList', res.items)
-            return res.items
-          })
-          .catch(err => console.log(err))
-      }
-
-      return projects.list
-    },
-
     async getResources () {
       if (!resources.list.length) {
         return client
