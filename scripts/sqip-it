@@ -20,7 +20,6 @@ const download = require('download')
 const path = require('path')
 const {promisify} = require('util')
 const {emptyDir, writeFile, readFile} = require('fs-extra')
-const timeSpan = require('time-span')
 const isProduction = process.env.NODE_ENV === 'production'
 const SQIP_CACHE = isProduction
   ? path.join('/', 'opt', 'build', 'cache', 'sqip')
@@ -31,8 +30,6 @@ const SQIP_EXEC = path.resolve(__dirname, '..', 'node_modules', '.bin', 'sqip')
 const execute = promisify(exec)
 
 async function sqipItems () {
-  const end = timeSpan()
-
   console.log('// --------------------------------------------')
 
   if (process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE') {
@@ -131,8 +128,6 @@ async function sqipItems () {
   console.log('JS file written')
 
   console.log('// --------------------------------------------')
-
-  console.log(end.seconds())
 }
 
 sqipItems()
