@@ -93,7 +93,7 @@ async function sqipItems () {
   console.log('Creating missing SVGs...')
   await Promise.all(images.map(({id, revision, filename, svg}) => {
     if (!svg) {
-      const command = `${SQIP_EXEC} -o ${id}-${revision}.svg -n 15 -m 0 -b 0 ${filename}`
+      const command = `${SQIP_EXEC} -o ${id}-${revision}.svg -n 10 -m 0 -b 0 ${filename}`
 
       return execute(
         command,
