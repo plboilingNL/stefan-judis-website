@@ -181,7 +181,8 @@ const config = {
       'inert-polyfill',
       'wicg-focus-ring',
       'marked',
-      'prismjs'
+      'prismjs',
+      '~/plugins/image-map.js'
     ]
   },
 
