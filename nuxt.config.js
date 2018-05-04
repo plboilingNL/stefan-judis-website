@@ -179,7 +179,9 @@ const config = {
 
     vendor: [
       'inert-polyfill',
-      'wicg-focus-ring'
+      'wicg-focus-ring',
+      'marked',
+      'prismjs'
     ]
   },
 
