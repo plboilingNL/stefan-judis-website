@@ -7,12 +7,15 @@
 
 <script>
   import {supportsWebp} from '~/plugins/feature-detects.js'
-  import imageMap from '~/plugins/image-map.js'
 
   export default {
     mounted () {
-      supportsWebp().then(supportsWebp => {
+      Promise.all([
+        import('~/plugins/image-map.js'),
+        supportsWebp()
+      ]).then((imageMap, supportsWebp) => {
         const neededImageWidth = Math.floor(this.$el.getBoundingClientRect().width * window.devicePixelRatio)
+        this.preview = imageMap[this.asset.sys.id]
         this.imageSrc = `${this.asset.fields.file.url}?w=${neededImageWidth}&h=${Math.round(neededImageWidth * this.ratio)}&fit=fill${supportsWebp ? '&fm=webp' : ''}`
 
         if (window.IntersectionObserver) {
@@ -42,7 +45,7 @@
       return {
         ready: false,
         imageSrc: null,
-        preview: imageMap[this.asset.sys.id] || null
+        preview: null
       }
     },
 
