@@ -28,6 +28,12 @@
         isOnline: true
       }
     },
+    beforeCreate () {
+      if (!this.$isServer) {
+        import('inert-polyfill')
+        import('wicg-focus-ring')
+      }
+    },
     mounted () {
       window.addEventListener('load', () => {
         this.isOnline = navigator.connectiontype !== 'none'

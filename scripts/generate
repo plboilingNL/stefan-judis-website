@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const { Nuxt, Builder, Generator } = require('nuxt')
+const { Nuxt, Builder, Generator } = require('nuxt-edge')
 const config = require('../nuxt.config.js')
 
 config.mode = 'universal'

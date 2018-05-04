@@ -139,35 +139,18 @@ const config = {
   build: {
     analyze: false,
 
-    /*
-    ** Run ESLINT on save
-    */
     extend (config, ctx) {
-      if (ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
-
+      // overwrite nuxt defaults
+      // they inline svg's base64
       config.module.rules.forEach(rule => {
-        // overwrite nuxt defaults
-        // they inline svg's base64
-        if (rule.loader === 'url-loader') {
+        if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg)$/') {
           rule.test = /\.(png|jpe?g|gif)$/
-        }
-
-        // get CSS out of the JS
-        if (rule.loader === 'vue-loader') {
-          rule.options.extractCSS = true
         }
       })
 
       config.module.rules.push({
         test: /\.svg$/,
-        loader: 'svg-inline-loader'
+        use: 'svg-inline-loader'
       })
     },
 
@@ -175,14 +158,6 @@ const config = {
       require('autoprefixer')({
         browsers: ['> 5%']
       })
-    ],
-
-    vendor: [
-      'inert-polyfill',
-      'wicg-focus-ring',
-      'marked',
-      'prismjs',
-      '~/plugins/image-map.js'
     ]
   },
 

@@ -19,7 +19,7 @@
     "mailgun-js": "^0.16.0",
     "marked": "^0.3.12",
     "netlify-lambda": "^0.2.0",
-    "nuxt": "^1.0.0",
+    "nuxt-edge": "^2.0.0-25424165.bd97fae",
     "prismjs": "^1.6.0",
     "rss": "^1.2.2",
     "url": "^0.11.0",
@@ -45,7 +45,7 @@
     "es6-promise": "^4.1.1",
     "eslint": "^4.4.0",
     "eslint-config-standard": "^10.2.1",
-    "eslint-loader": "^1.6.1",
+    "eslint-loader": "^2.0.0",
     "eslint-plugin-html": "^3.0.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-node": "^5.1.1",
@@ -59,6 +59,6 @@
     "sass-loader": "^6.0.6",
     "sqip": "^0.3.2",
     "svg-inline-loader": "^0.8.0",
-    "webpack": "^3.4.1"
+    "webpack": "^4.4.0"
   }
 }

@@ -19,6 +19,7 @@ const FEED_DEFAULTS = {
 }
 
 const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date)
+
 ;(async () => {
   try {
     const feeds = await Promise.all(
