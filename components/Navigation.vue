@@ -23,7 +23,7 @@
         <nuxt-link :to="item.url">{{ item.label }}</nuxt-link>
       </li>
     </ul>
-    <button type="button" class="c-navigation__toggle" @click="toggleNav()" :aria-lable="mainNavIsVisible ? 'Close navigation' : 'Open navigation'">
+    <button type="button" class="c-navigation__toggle" @click="toggleNav()" :aria-label="mainNavIsVisible ? 'Close navigation' : 'Open navigation'">
       {{ mainNavIsVisible ? 'Close' : 'Menu' }}
     </button>
   </nav>
