@@ -15,7 +15,6 @@
 </template>
 
 <script>
-  import Icon from '~/components/Icon.vue'
   import LazyImage from '~/components/LazyImage.vue'
 
   export default {
@@ -31,7 +30,6 @@
       }
     },
     components: {
-      Icon,
       LazyImage
     }
   }

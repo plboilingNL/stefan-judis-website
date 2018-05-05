@@ -15,14 +15,12 @@
 </template>
 
 <script>
-  import Icon from '~/components/Icon.vue'
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
 
   export default {
     props: ['screencast'],
     components: {
-      Icon,
       LazyImage,
       PrettyDate
     }

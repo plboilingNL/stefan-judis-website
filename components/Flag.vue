@@ -1,23 +1,8 @@
-<template>
-  <span class="flag">{{ flag }}</span>
+<template functional>
+  <span class="flag">
+    {{ String.fromCodePoint(...[0, 1].map(i => props.code.codePointAt(i) + '🇦'.codePointAt(0) - 'A'.codePointAt(0) )) }}
+  </span>
 </template>
-
-<script>
-  const diff = '🇦'.codePointAt(0) - 'A'.codePointAt(0)
-
-  function flag (code) {
-    return String.fromCodePoint(...[0, 1].map(i => code.codePointAt(i) + diff))
-  }
-
-  export default {
-    props: ['code'],
-    computed: {
-      flag () {
-        return flag(this.code)
-      }
-    }
-  }
-</script>
 
 <style>
   .flag {

@@ -5,16 +5,12 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
   export default {
     props: ['item'],
     computed: {
       sharingUrl () {
         return encodeURI(`https://twitter.com/intent/tweet?text=${this.item.fields.title}&url=https://www.stefanjudis.com${this.$route.fullPath}&via=stefanjudis`)
       }
-    },
-    components: {
-      Container
     }
   }
 </script>

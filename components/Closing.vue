@@ -1,4 +1,4 @@
-<template>
+<template functional>
   <footer class="c-footer u-textAlignCenter">
     <div class="u-marginBottomSmall">powered with</div>
 
@@ -9,16 +9,6 @@
     </div>
   </footer>
 </template>
-
-<script>
-  import Container from '~/components/Container.vue'
-
-  export default {
-    components: {
-      Container
-    }
-  }
-</script>
 
 <style>
   .c-footer {
