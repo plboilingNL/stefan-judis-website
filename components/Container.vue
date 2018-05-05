@@ -74,6 +74,7 @@
 
     h1, h2 {
       margin: 0;
+      color: var(--grey-darker);
       font-family: 'Georgia', serif;
       font-size: 2em;
       letter-spacing: 1px;

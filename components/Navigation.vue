@@ -136,6 +136,10 @@
 
         &.is-active {
           color: var(--c-highlight);
+
+          path {
+            fill: currentColor;
+          }
         }
       }
 
@@ -145,7 +149,7 @@
         margin: 0 auto .5em;
 
         path {
-          fill: currentColor;
+          fill: #666;
         }
 
         @media (min-width: 38em) {

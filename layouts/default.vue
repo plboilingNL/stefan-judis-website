@@ -71,6 +71,7 @@
     --grey-bright: #f8f8f8;
     --grey: #eee;
     --grey-dark: #5a5a5a;
+    --grey-darker: #444;
     --grey-very-dark: #3a3a3a;
 
     --c-highlight: var(--blue-dark);
