@@ -21,8 +21,7 @@
           </li>
         </ul>
         <div class="c-tile__footer">
-          <a v-if="item.fields.externalUrl" :href="item.fields.externalUrl" :aria-labelledby="item.fields.title | idAlize">Read on {{ item.fields.externalUrl | externalUrl }}</a>
-          <nuxt-link v-if="!item.fields.externalUrl" :to="`/${linkPrefix}/${item.fields.slug}/`" :aria-labelledby="item.fields.title | idAlize">Read more</nuxt-link>
+          <nuxt-link :to="`/${linkPrefix}/${item.fields.slug}/`" :aria-labelledby="item.fields.title | idAlize">Read more</nuxt-link>
         </div>
       </div>
 
