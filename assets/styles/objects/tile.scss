@@ -55,6 +55,15 @@
     justify-content: center;
   }
 
+  &__header {
+    margin-top: -1em;
+    margin-left: -1em;
+    margin-right: -1em;
+    background: var(--grey-bright);
+    padding: 1em;
+    text-align: center;
+  }
+
   &__footer {
     margin-top: auto;
 

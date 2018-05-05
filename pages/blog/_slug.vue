@@ -5,8 +5,8 @@
     <span slot="subHeadline">{{ post.fields.readingTime }} min read</span>
     <div class="c-tile">
       <div class="c-tile__container">
-        <p v-if="post.fields.externalUrl">
-          This post was initially posted on <a :href="post.fields.externalUrl" :aria-labelledby="post.fields.title | idAlize">{{ post.fields.externalUrl | externalUrl }}</a>
+        <p class="c-tile__header" v-if="post.fields.externalUrl">
+          This article was initially posted on <a :href="post.fields.externalUrl" :aria-labelledby="post.fields.title | idAlize">{{ post.fields.externalUrl | externalUrl }}</a>
         </p>
 
         <Marked :markdown="post.fields.body"></Marked>
