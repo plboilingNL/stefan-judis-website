@@ -22,6 +22,15 @@ export default (from, to) => {
     return ''
   }
 
+  if (
+    from.name === 'blog-page-page' &&
+    to.name === 'blog-page-page'
+  ) {
+    return from.params.page < to.params.page
+      ? 't-slide-left'
+      : 't-slide-right'
+  }
+
   if (to.name === 'newsletter') {
     return 't-slide-up'
   }
