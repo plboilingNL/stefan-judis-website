@@ -19,6 +19,7 @@ async function generateRoutes () {
     await generator.generate(generateOptions)
   } catch (e) {
     console.error(e)
+    throw e
   }
 }
 
