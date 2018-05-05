@@ -10,6 +10,7 @@ const EMOJI_LABELS = {
   '128073': 'Hand pointing right',
   '128075': 'Waving hand',
   '128077': 'Thumbs up',
+  '128106': 'Family',
   '128207': 'Straight ruler',
   '128522': 'Smyling face',
   '129315': 'Rolling on the Floor Laughing Emoji'
