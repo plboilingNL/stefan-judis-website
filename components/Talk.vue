@@ -19,16 +19,6 @@
 
   export default {
     props: ['talk'],
-    data () {
-      return {
-        showOverlay: false
-      }
-    },
-    methods: {
-      toggleOverlay () {
-        this.showOverlay = !this.showOverlay
-      }
-    },
     components: {
       LazyImage
     }
