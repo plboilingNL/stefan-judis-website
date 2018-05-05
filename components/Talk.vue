@@ -15,8 +15,8 @@
         <h3 v-if="!showAbstract" class="c-tile__headline o-headline-3">{{ talk.fields.title }}</h3>
       </transition>
 
-      <div v-if="talk.fields.elevatorPitch" class="c-tile__footer">
-        <button type="button" @click="toggleAbstract">{{ showAbstract ? 'Hide pitch' : 'Show pitch'}}</button>
+      <div v-if="talk.fields.elevatorPitch && showPitch" class="c-tile__footer">
+        <button type="button" @click="toggleAbstract">{{ showAbstract ? 'Hide elevator pitch' : 'Show elevator pitch'}}</button>
       </div>
       <transition name="t-overlay-fade">
         <div v-if="showAbstract" class="c-tile__overlay">
@@ -32,7 +32,7 @@
   import Marked from '~/components/Marked.vue'
 
   export default {
-    props: ['talk'],
+    props: ['talk', 'showPitch'],
     methods: {
       toggleAbstract () {
         this.showAbstract = !this.showAbstract

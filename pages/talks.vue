@@ -26,7 +26,7 @@
       <h1 class="o-headline-1">Talks</h1>
       <ul class="o-list-grid">
         <li v-for="talk in talks" class="u-marginBottomLarge" :key="talk.sys.id">
-          <Talk :talk="talk"/>
+          <Talk :talk="talk" :show-pitch="true"/>
         </li>
       </ul>
     </Container>

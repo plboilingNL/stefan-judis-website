@@ -17,7 +17,7 @@
       <h2 slot="headline">Talks</h2>
       <ul class="o-list-thirds">
         <li v-for="talk in talks" :key="talk.sys.id">
-          <Talk :talk="talk"/>
+          <Talk :talk="talk" :show-pitch="false"/>
         </li>
       </ul>
       <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
