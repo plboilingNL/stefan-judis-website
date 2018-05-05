@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container" :full-width="true">
+  <Container animate="true" :full-width="true">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-grid">
       <li v-for="tag in Object.keys(tags).sort()" :key="tag" :class="`area-${tag}`">

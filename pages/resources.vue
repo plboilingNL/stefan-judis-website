@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container">
+  <Container animate="true">
     <h1 slot="headline" tabindex="-1">Resources</h1>
     <ul class="o-list-grid">
       <li v-for="resource in resources" :key="resource.sys.id">

@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container" accessible-line-length="true">
+  <Container animate="true" accessible-line-length="true">
     <h1 slot="headline" tabindex="-1">Hey there! 👋</h1>
     <div class="c-tile">
       <div class="c-tile__container">

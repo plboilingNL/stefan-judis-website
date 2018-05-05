@@ -1,5 +1,15 @@
-<template>
-  <section :class="classes">
+<template functional>
+  <section
+    :class="{
+      'c-container': true,
+      'c-container--noPadding': props.noPadding,
+      'c-container--smallPadding': props.smallPadding,
+      'c-container--accessibleLineLength': props.accessibleLineLength,
+      'c-container--fullWidth': props.fullWidth,
+      't-container': props.animate,
+      [props.additionalClass]: props.additionalClass || false
+    }"
+  >
     <div>
       <header v-if="$slots.date || $slots.headline || $slots.subHeadline" class="c-container__headline">
         <slot name="date"></slot>
@@ -14,23 +24,6 @@
     </div>
   </section>
 </template>
-
-<script>
-  export default {
-    computed: {
-      classes () {
-        return {
-          'c-container': true,
-          'c-container--noPadding': this.noPadding,
-          'c-container--smallPadding': this.smallPadding,
-          'c-container--accessibleLineLength': this.accessibleLineLength,
-          'c-container--fullWidth': this.fullWidth
-        }
-      }
-    },
-    props: ['noPadding', 'smallPadding', 'accessibleLineLength', 'fullWidth']
-  }
-</script>
 
 <style lang="scss">
   .c-container {

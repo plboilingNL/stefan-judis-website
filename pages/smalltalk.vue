@@ -1,5 +1,5 @@
 <template>
-  <Container class="t-container">
+  <Container animate="true">
     <h1 slot="headline" tabindex="-1">Developer Smalltalk</h1>
     <ul class="o-list-grid">
       <li v-for="screencast in screenCasts" :key="screencast.sys.id">

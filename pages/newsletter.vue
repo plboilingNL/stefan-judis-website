@@ -1,5 +1,5 @@
 <template>
-  <Container class="c-newsletter t-container">
+  <Container animate="true" additional-class="c-newsletter">
     <div class="c-tile c-tile--bigHighlight u-heightAuto u-marginBottomMedium">
       <div class="c-tile__container">
         <nuxt-link :to="$route.query.back" v-if="$route.query.back" class="c-newsletter__close" aria-label="Go to preview page">
