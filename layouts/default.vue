@@ -103,8 +103,13 @@
     }
   }
 
-  h1, h2, h3 {
+  h1 {
     font-weight: normal;
+  }
+
+  h2, h3, h4 {
+    font-weight: 500;
+    letter-spacing: .375px;
   }
 
   main {
