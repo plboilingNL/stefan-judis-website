@@ -47,7 +47,7 @@ export default ({ app, env, store }) => {
         return client
           .getEntries({
             content_type: env.CTF_EVENT_ID,
-            order: 'fields.end',
+            order: 'fields.start',
             'fields.state[in]': 'attending,accepted,teaching',
             'fields.end[gte]': new Date(
               +new Date() - 1000 * 60 * 60 * 24
