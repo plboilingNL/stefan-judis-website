@@ -5,8 +5,7 @@
   cache-Control: max-age=31556926
 
 /_nuxt/*.js
-  content-type: text/javascript
-  charset: utf-8
+  content-type: text/javascript; charset=utf-8
 
 /favicon.ico
   cache-Control: max-age=3600000
