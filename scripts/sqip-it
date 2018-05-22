@@ -15,19 +15,15 @@ const client = contentful.createClient({
   space: CTF_SPACE_ID
 })
 
-const {exec} = require('child_process')
 const download = require('download')
 const path = require('path')
-const {promisify} = require('util')
 const {emptyDir, writeFile, readFile} = require('fs-extra')
 const isProduction = process.env.NODE_ENV === 'production'
 const SQIP_CACHE = isProduction
   ? path.join('/', 'opt', 'build', 'cache', 'sqip')
   : path.resolve(__dirname, '..', '.sqip')
 const JS_DESTINATION = path.resolve(__dirname, '..', 'plugins', 'image-map.js')
-const SQIP_EXEC = path.resolve(__dirname, '..', 'node_modules', '.bin', 'sqip')
-
-const execute = promisify(exec)
+const sqip = require('sqip')
 
 async function sqipItems () {
   console.log('// --------------------------------------------')
@@ -93,11 +89,16 @@ async function sqipItems () {
   console.log('Creating missing SVGs...')
   await Promise.all(images.map(({id, revision, filename, svg}) => {
     if (!svg) {
-      const command = `${SQIP_EXEC} -o ${id}-${revision}.svg -n 10 -m 0 -b 0 ${filename}`
+      const {final_svg} = sqip({
+        filename: path.join(SQIP_CACHE, filename),
+        numberOfPrimitives: 10,
+        mode: 0,
+        blur: 0
+      })
 
-      return execute(
-        command,
-        {cwd: SQIP_CACHE}
+      return writeFile(
+        path.join(SQIP_CACHE, `${id}-${revision}.svg`),
+        final_svg
       )
     }
 
@@ -121,7 +122,7 @@ async function sqipItems () {
   console.log('// --------------------------------------------')
 
   console.log('Writing JS mapping file')
-  writeFile(
+  await writeFile(
     JS_DESTINATION,
     `export default {\n  ${images.map(({id, svg}) => `'${id}': '${svg}'`).join(', ')}\n}\n`
   )
