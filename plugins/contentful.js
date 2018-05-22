@@ -4,12 +4,14 @@ export default ({ app, env, store }) => {
   const clientConfig = {
     host: 'preview.contentful.com',
     space: env.CTF_SPACE_ID,
-    accessToken: env.CTF_CPA_TOKEN
+    accessToken: env.CTF_CPA_TOKEN,
+    environment: env.CTF_ENVIRONMENT_ID || 'master'
   }
 
   if (env.IS_PRODUCTION) {
     clientConfig.host = 'cdn.contentful.com'
     clientConfig.accessToken = env.CTF_CDA_TOKEN
+    clientConfig.environment = 'master'
   }
 
   const client = contentful.createClient(clientConfig)

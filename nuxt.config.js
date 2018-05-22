@@ -1,6 +1,7 @@
 const { getConfigForKeys } = require('./lib/config.js')
 const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
+  'CTF_ENVIRONMENT_ID',
   'CTF_CDA_TOKEN',
   'CTF_CPA_TOKEN',
   'CTF_CMA_TOKEN',
@@ -177,6 +178,7 @@ const config = {
   env: {
     IS_PRODUCTION: process.env.NODE_ENV === 'production',
     CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
+    CTF_ENVIRONMENT_ID: ctfConfig.CTF_ENVIRONMENT_ID,
     CTF_CDA_TOKEN: ctfConfig.CTF_CDA_TOKEN,
     CTF_CPA_TOKEN: ctfConfig.CTF_CPA_TOKEN,
     CTF_PERSON_ID: ctfConfig.CTF_PERSON_ID,
