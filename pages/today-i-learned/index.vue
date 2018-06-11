@@ -70,7 +70,6 @@
   .area-javascript {
     @media (min-width: 70em) {
       grid-row: 2 / 5;
-      grid-column: 3;
     }
   }
 </style>
