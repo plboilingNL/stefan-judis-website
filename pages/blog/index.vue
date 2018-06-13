@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1">Blog</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" :key="post.sys.id" class="u-marginBottomLarge">
-        <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2"></ItemPreview>
+        <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2" :include-link="true"></ItemPreview>
       </li>
     </ul>
     <PaginationActions :next-page="nextPage"></PaginationActions>

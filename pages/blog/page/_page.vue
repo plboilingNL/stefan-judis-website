@@ -4,7 +4,7 @@
 
     <ul class="o-list-reset">
       <li v-for="post in posts" class="u-marginBottomLarge" :key="post.sys.id">
-        <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2"></ItemPreview>
+        <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2" include-link="true"></ItemPreview>
       </li>
     </ul>
     <PaginationActions :prev-page="prevPage" :next-page="nextPage"></PaginationActions>
