@@ -20,6 +20,7 @@
     background: transparent;
     box-shadow: var(--shadow-tile);
 
+    transform-origin: center;
     transition: transform .0625s ease-in-out;
 
     content: "";
