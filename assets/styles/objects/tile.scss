@@ -1,16 +1,26 @@
 .c-tile {
   position: relative;
-  background: #fff;
+  background: transparent;
   height: 100%;
+
+  &:hover {
+    transform: translateY(-0.0625em);
+
+    &::before {
+      transform: scale(0.99) translateY(-.125em);
+    }
+  }
 
   &::before {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
+    top: .25em;
+    left: .25em;
+    right: .25em;
+    bottom: .25em;
+    background: transparent;
     box-shadow: var(--shadow-tile);
+
+    transition: transform .0625s ease-in-out;
 
     content: "";
 
@@ -30,12 +40,13 @@
   &__container {
     display: flex;
     flex-direction: column;
+    background: #fff;
     height: 100%;
 
     padding: 1em;
 
     border-top: 0.25em solid var(--c-highlight);
-    border-radius: 0.25em 0.25em 0 0;
+    border-radius: 0.375em;
     overflow: hidden;
   }
 
