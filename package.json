@@ -10,7 +10,6 @@
     "@nuxtjs/sitemap": "^0.1.0",
     "contentful": "^6.1.1",
     "contentful-management": "^3.7.6",
-    "cypress": "^3.0.1",
     "download": "^6.2.5",
     "emoji-regex": "^6.5.1",
     "fs-extra": "^5.0.0",
