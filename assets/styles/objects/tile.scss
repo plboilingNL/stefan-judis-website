@@ -3,11 +3,13 @@
   background: transparent;
   height: 100%;
 
+  transition: transform .125s ease-in-out;
+
   &:hover {
-    transform: translateY(-0.0625em);
+    transform: translateY(-2px);
 
     &::before {
-      transform: scale(0.96) translateY(-.125em);
+      transform: scale(0.98) translateY(-.125em);
     }
   }
 
@@ -21,7 +23,7 @@
     box-shadow: var(--shadow-tile);
 
     transform-origin: center;
-    transition: transform .0625s ease-in-out;
+    transition: transform .125s ease-in-out;
 
     content: "";
 
