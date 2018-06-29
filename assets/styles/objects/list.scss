@@ -73,5 +73,10 @@
   > li {
     margin: 0;
     padding: 0;
+
+    &:only-child {
+      width: 30em;
+      margin: 0 auto;
+    }
   }
 }
