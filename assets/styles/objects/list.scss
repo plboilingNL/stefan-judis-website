@@ -75,6 +75,7 @@
     padding: 0;
 
     &:only-child {
+      width: 100%;
       max-width: 30em;
       margin: 0 auto;
     }
