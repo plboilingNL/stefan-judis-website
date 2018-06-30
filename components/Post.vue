@@ -1,10 +1,6 @@
 <template>
   <div :class="classes">
     <div class="c-tile__container">
-      <div v-if="contentTypeId === 'screenCast'" class="c-tile__image">
-        <lazy-image :asset="post.fields.coverImage" :ratio="0.5625"></lazy-image>
-      </div>
-
       <PrettyDate v-if="post.fields.date && showDate" :date="post.fields.date" class="dt-published"></PrettyDate>
 
       <DynamicHeadline :level="level" :url="`/${linkPrefix}/${post.fields.slug}/`" class="p-name">{{ post.fields.title }}</DynamicHeadline>
@@ -61,8 +57,7 @@ export default {
       return [
         'c-tile',
         `c-tile__${this.color || 'red'}`,
-        isHighlighted ? '' : 'c-tile--noHighlight',
-        this.post.fields.isDraft ? 'is-draft' : null
+        isHighlighted ? '' : 'c-tile--noHighlight'
       ];
     }
   },

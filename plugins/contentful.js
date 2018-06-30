@@ -100,15 +100,40 @@ export default ({ app, env, store }) => {
       return landingpages.list;
     },
 
-    async getPosts() {
-      if (!posts.list.length) {
+    async getPost(slug) {
+      const post = posts.list.find(
+        post => post.fields.slug === slug && post.fields.body
+      );
+
+      if (!post) {
         return client
           .getEntries({
             content_type: env.CTF_POST_ID,
-            order: '-fields.date'
+            'fields.slug': slug
+          })
+          .then(res => {
+            store.commit('posts/setItem', res.items[0]);
+            store.commit('posts/setActiveWithSlug', slug);
+            return res.items;
+          })
+          .catch(err => console.log(err));
+      }
+
+      return posts.list;
+    },
+
+    async getPosts() {
+      if (!posts.list.allFetched) {
+        return client
+          .getEntries({
+            content_type: env.CTF_POST_ID,
+            order: '-fields.date',
+            select:
+              'fields.date,fields.slug,fields.title,fields.description,fields.topics'
           })
           .then(res => {
             store.commit('posts/setList', res.items);
+            store.commit('posts/setAllFetched', true);
             return res.items;
           })
           .catch(err => console.log(err));

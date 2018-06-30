@@ -49,8 +49,7 @@ import { createPage, getHeadForPost } from '~/lib/basepage.js';
 
 export default createPage({
   async fetch({ app, params, store, redirect }) {
-    await app.contentful.getPosts();
-    store.commit('posts/setActiveWithSlug', params.slug);
+    await app.contentful.getPost(params.slug);
 
     if (!store.state.posts.active) {
       return redirect('/404/');
@@ -62,7 +61,7 @@ export default createPage({
     },
     posts() {
       return this.$store.state.posts.list;
-    },
+    }
   },
   head() {
     return getHeadForPost(this.post);
