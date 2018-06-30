@@ -25,44 +25,44 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import Comments from '~/components/Comments.vue'
-  import DynamicHeadline from '~/components/DynamicHeadline.vue'
-  import Marked from '~/components/Marked.vue'
-  import PrettyDate from '~/components/PrettyDate.vue'
-  import RelatedItems from '~/components/RelatedItems.vue'
-  import SharingLine from '~/components/SharingLine.vue'
-  import {createPage, getHeadForPost} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import Comments from '~/components/Comments.vue';
+import DynamicHeadline from '~/components/DynamicHeadline.vue';
+import Marked from '~/components/Marked.vue';
+import PrettyDate from '~/components/PrettyDate.vue';
+import RelatedItems from '~/components/RelatedItems.vue';
+import SharingLine from '~/components/SharingLine.vue';
+import { createPage, getHeadForPost } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app, params, store, redirect }) {
-      await app.contentful.getTil()
+export default createPage({
+  async fetch({ app, params, store, redirect }) {
+    await app.contentful.getTil();
 
-      store.commit('til/setActiveWithSlug', params.slug)
+    store.commit('til/setActiveWithSlug', params.slug);
 
-      if (!store.state.til.active) {
-        return redirect('/404/')
-      }
-    },
-    computed: {
-      post () {
-        return this.$store.state.til.active
-      },
-      posts () {
-        return this.$store.state.til.list
-      }
-    },
-    head () {
-      return getHeadForPost(this.post)
-    },
-    components: {
-      Container,
-      Comments,
-      DynamicHeadline,
-      Marked,
-      PrettyDate,
-      RelatedItems,
-      SharingLine
+    if (!store.state.til.active) {
+      return redirect('/404/');
     }
-  })
+  },
+  computed: {
+    post() {
+      return this.$store.state.til.active;
+    },
+    posts() {
+      return this.$store.state.til.list;
+    }
+  },
+  head() {
+    return getHeadForPost(this.post);
+  },
+  components: {
+    Container,
+    Comments,
+    DynamicHeadline,
+    Marked,
+    PrettyDate,
+    RelatedItems,
+    SharingLine
+  }
+});
 </script>

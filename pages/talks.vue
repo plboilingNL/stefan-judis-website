@@ -34,44 +34,45 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import Flag from '~/components/Flag.vue'
-  import LazyImage from '~/components/LazyImage.vue'
-  import PrettyDate from '~/components/PrettyDate.vue'
-  import Talk from '~/components/Talk.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import Flag from '~/components/Flag.vue';
+import LazyImage from '~/components/LazyImage.vue';
+import PrettyDate from '~/components/PrettyDate.vue';
+import Talk from '~/components/Talk.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app }) {
-      const { getFutureEvents, getTalks } = app.contentful
+export default createPage({
+  async fetch({ app }) {
+    const { getFutureEvents, getTalks } = app.contentful;
 
-      await Promise.all([
-        getFutureEvents(),
-        getTalks()
-      ])
+    await Promise.all([getFutureEvents(), getTalks()]);
+  },
+  computed: {
+    events() {
+      return this.$store.state.events.futureList;
     },
-    computed: {
-      events () {
-        return this.$store.state.events.futureList
-      },
-      talks () {
-        return this.$store.state.talks.list
-      }
-    },
-    head () {
-      return {
-        title: `Talks | Stefan Judis Web Development`,
-        meta: [
-          { hid: 'description', name: 'description', content: `Listing of my upcoming events and talks` }
-        ]
-      }
-    },
-    components: {
-      Container,
-      Flag,
-      LazyImage,
-      PrettyDate,
-      Talk
+    talks() {
+      return this.$store.state.talks.list;
     }
-  })
+  },
+  head() {
+    return {
+      title: `Talks | Stefan Judis Web Development`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Listing of my upcoming events and talks`
+        }
+      ]
+    };
+  },
+  components: {
+    Container,
+    Flag,
+    LazyImage,
+    PrettyDate,
+    Talk
+  }
+});
 </script>

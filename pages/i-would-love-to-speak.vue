@@ -81,51 +81,52 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import Marked from '~/components/Marked.vue'
-  import LazyImage from '~/components/LazyImage.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import Marked from '~/components/Marked.vue';
+import LazyImage from '~/components/LazyImage.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app }) {
-      const { getPastEvents, getMe } = app.contentful
-      await Promise.all([
-        getPastEvents(),
-        getMe()
-      ])
+export default createPage({
+  async fetch({ app }) {
+    const { getPastEvents, getMe } = app.contentful;
+    await Promise.all([getPastEvents(), getMe()]);
+  },
+  computed: {
+    events() {
+      return this.$store.state.events.pastList;
     },
-    computed: {
-      events () {
-        return this.$store.state.events.pastList
-      },
-      me () {
-        return this.$store.state.me.entry
-      }
-    },
-    head () {
-      return {
-        title: `Stefan Judis Web Development - Speaker information`,
-        meta: [
-          { hid: 'description', name: 'description', content: `You want me to speak at your event? Great - here is some basic information` }
-        ]
-      }
-    },
-    components: {
-      Container,
-      Marked,
-      LazyImage
+    me() {
+      return this.$store.state.me.entry;
     }
-  })
+  },
+  head() {
+    return {
+      title: `Stefan Judis Web Development - Speaker information`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `You want me to speak at your event? Great - here is some basic information`
+        }
+      ]
+    };
+  },
+  components: {
+    Container,
+    Marked,
+    LazyImage
+  }
+});
 </script>
 
 <style scoped>
-  dt {
-    font-size: 1.5em;
-    font-family: Georgia,serif;
-    padding: .5em 0;
-  }
+dt {
+  font-size: 1.5em;
+  font-family: Georgia, serif;
+  padding: 0.5em 0;
+}
 
-  dd {
-    margin: .5em 0;
-  }
+dd {
+  margin: 0.5em 0;
+}
 </style>

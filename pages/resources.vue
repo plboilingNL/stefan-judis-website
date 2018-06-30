@@ -18,34 +18,36 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app, store, env }) {
-      const { getResources } = app.contentful
+export default createPage({
+  async fetch({ app, store, env }) {
+    const { getResources } = app.contentful;
 
-      await Promise.all([
-        getResources()
-      ])
-    },
-    computed: {
-      resources () {
-        return this.$store.state.resources.list
-      }
-    },
-    head () {
-      return {
-        title: 'Resources | Stefan Judis Web Development',
-        meta: [
-          { hid: 'description', name: 'description', content: `A collection of resources I keep collecting.` }
-        ]
-      }
-    },
-    components: {
-      Container
+    await Promise.all([getResources()]);
+  },
+  computed: {
+    resources() {
+      return this.$store.state.resources.list;
     }
-  })
+  },
+  head() {
+    return {
+      title: 'Resources | Stefan Judis Web Development',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `A collection of resources I keep collecting.`
+        }
+      ]
+    };
+  },
+  components: {
+    Container
+  }
+});
 </script>
 
 <style scoped>

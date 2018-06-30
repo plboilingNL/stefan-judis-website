@@ -41,56 +41,60 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import Comments from '~/components/Comments.vue'
-  import DynamicHeadline from '~/components/DynamicHeadline.vue'
-  import PrettyDate from '~/components/PrettyDate.vue'
-  import Marked from '~/components/Marked.vue'
-  import ItemPreview from '~/components/ItemPreview.vue'
-  import SharingLine from '~/components/SharingLine.vue'
-  import RelatedItems from '~/components/RelatedItems.vue'
-  import {createPage, getHeadForPost} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import Comments from '~/components/Comments.vue';
+import DynamicHeadline from '~/components/DynamicHeadline.vue';
+import PrettyDate from '~/components/PrettyDate.vue';
+import Marked from '~/components/Marked.vue';
+import ItemPreview from '~/components/ItemPreview.vue';
+import SharingLine from '~/components/SharingLine.vue';
+import RelatedItems from '~/components/RelatedItems.vue';
+import { createPage, getHeadForPost } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app, params, store, redirect }) {
-      await app.contentful.getPosts()
-      store.commit('posts/setActiveWithSlug', params.slug)
+export default createPage({
+  async fetch({ app, params, store, redirect }) {
+    await app.contentful.getPosts();
+    store.commit('posts/setActiveWithSlug', params.slug);
 
-      if (!store.state.posts.active) {
-        return redirect('/404/')
-      }
-    },
-    computed: {
-      post () {
-        return this.$store.state.posts.active
-      },
-      posts () {
-        return this.$store.state.posts.list
-      },
-      relatedPosts () {
-        if (this.post) {
-          return this.$store.state.posts.list.filter(item => {
-            return item.fields.tags.some(tag => {
-              return this.post.fields.tags.some(
-                activeTag => activeTag === tag
-              )
-            }) && item.sys.id !== this.post.sys.id
-          }).slice(0, 3)
-        }
-      }
-    },
-    head () {
-      return getHeadForPost(this.post)
-    },
-    components: {
-      Container,
-      Comments,
-      DynamicHeadline,
-      PrettyDate,
-      Marked,
-      SharingLine,
-      RelatedItems,
-      ItemPreview
+    if (!store.state.posts.active) {
+      return redirect('/404/');
     }
-  })
+  },
+  computed: {
+    post() {
+      return this.$store.state.posts.active;
+    },
+    posts() {
+      return this.$store.state.posts.list;
+    },
+    relatedPosts() {
+      if (this.post) {
+        return this.$store.state.posts.list
+          .filter(item => {
+            return (
+              item.fields.tags.some(tag => {
+                return this.post.fields.tags.some(
+                  activeTag => activeTag === tag
+                );
+              }) && item.sys.id !== this.post.sys.id
+            );
+          })
+          .slice(0, 3);
+      }
+    }
+  },
+  head() {
+    return getHeadForPost(this.post);
+  },
+  components: {
+    Container,
+    Comments,
+    DynamicHeadline,
+    PrettyDate,
+    Marked,
+    SharingLine,
+    RelatedItems,
+    ItemPreview
+  }
+});
 </script>

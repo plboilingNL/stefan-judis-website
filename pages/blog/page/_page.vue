@@ -12,57 +12,67 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import ItemPreview from '~/components/ItemPreview.vue'
-  import PaginationActions from '~/components/PaginationActions.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import ItemPreview from '~/components/ItemPreview.vue';
+import PaginationActions from '~/components/PaginationActions.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  const NR_OF_POSTS = 5
+const NR_OF_POSTS = 5;
 
-  export default createPage({
-    async fetch ({ app, params, store }) {
-      await app.contentful.getPosts()
-      store.commit('posts/setActivePageNumber', +params.page)
+export default createPage({
+  async fetch({ app, params, store }) {
+    await app.contentful.getPosts();
+    store.commit('posts/setActivePageNumber', +params.page);
+  },
+  computed: {
+    page() {
+      return this.$store.state.posts.activePageNumber;
     },
-    computed: {
-      page () {
-        return this.$store.state.posts.activePageNumber
-      },
-      nextPage () {
-        return this.$store.state.posts.list.length > this.$store.state.posts.activePageNumber * NR_OF_POSTS
-          ? `/blog/page/${this.$store.state.posts.activePageNumber + 1}`
-          : null
-      },
-      prevPage () {
-        return this.$store.state.posts.activePageNumber > 2
-          ? `/blog/page/${this.$store.state.posts.activePageNumber - 1}`
-          : `/blog/`
-      },
-      posts () {
-        if ((this.$store.state.posts.activePageNumber - 1) * NR_OF_POSTS > this.$store.state.posts.list.length) {
-          return this.$router.replace({ path: '/404' })
-        }
-
-        return this.$store.state.posts.list.slice(
-          (this.$store.state.posts.activePageNumber - 1) * NR_OF_POSTS,
-          (this.$store.state.posts.activePageNumber) * NR_OF_POSTS
-        )
+    nextPage() {
+      return this.$store.state.posts.list.length >
+        this.$store.state.posts.activePageNumber * NR_OF_POSTS
+        ? `/blog/page/${this.$store.state.posts.activePageNumber + 1}`
+        : null;
+    },
+    prevPage() {
+      return this.$store.state.posts.activePageNumber > 2
+        ? `/blog/page/${this.$store.state.posts.activePageNumber - 1}`
+        : `/blog/`;
+    },
+    posts() {
+      if (
+        (this.$store.state.posts.activePageNumber - 1) * NR_OF_POSTS >
+        this.$store.state.posts.list.length
+      ) {
+        return this.$router.replace({ path: '/404' });
       }
-    },
-    head () {
-      return {
-        title: `Blog - Page ${this.page} | Stefan Judis Web Development`,
-        meta: [
-          { hid: 'description', name: 'description', content: `Writings on web development including mainly JavaScript, web performance and accessibility - Page ${this.page}` }
-        ]
-      }
-    },
-    components: {
-      Container,
-      ItemPreview,
-      PaginationActions
+
+      return this.$store.state.posts.list.slice(
+        (this.$store.state.posts.activePageNumber - 1) * NR_OF_POSTS,
+        this.$store.state.posts.activePageNumber * NR_OF_POSTS
+      );
     }
-  })
+  },
+  head() {
+    return {
+      title: `Blog - Page ${this.page} | Stefan Judis Web Development`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Writings on web development including mainly JavaScript, web performance and accessibility - Page ${
+            this.page
+          }`
+        }
+      ]
+    };
+  },
+  components: {
+    Container,
+    ItemPreview,
+    PaginationActions
+  }
+});
 </script>
 
 <style></style>

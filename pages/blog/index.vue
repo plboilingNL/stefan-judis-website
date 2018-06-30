@@ -11,35 +11,39 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import ItemPreview from '~/components/ItemPreview.vue'
-  import PaginationActions from '~/components/PaginationActions.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import ItemPreview from '~/components/ItemPreview.vue';
+import PaginationActions from '~/components/PaginationActions.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app }) {
-      await app.contentful.getPosts()
+export default createPage({
+  async fetch({ app }) {
+    await app.contentful.getPosts();
+  },
+  computed: {
+    nextPage() {
+      return '/blog/page/2';
     },
-    computed: {
-      nextPage () {
-        return '/blog/page/2'
-      },
-      posts () {
-        return this.$store.state.posts.list.slice(0, 5)
-      }
-    },
-    head () {
-      return {
-        title: 'Blog | Stefan Judis Web Development',
-        meta: [
-          { hid: 'description', name: 'description', content: `Writings on web development including mainly JavaScript, web performance and accessibility.` }
-        ]
-      }
-    },
-    components: {
-      Container,
-      ItemPreview,
-      PaginationActions
+    posts() {
+      return this.$store.state.posts.list.slice(0, 5);
     }
-  })
+  },
+  head() {
+    return {
+      title: 'Blog | Stefan Judis Web Development',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Writings on web development including mainly JavaScript, web performance and accessibility.`
+        }
+      ]
+    };
+  },
+  components: {
+    Container,
+    ItemPreview,
+    PaginationActions
+  }
+});
 </script>

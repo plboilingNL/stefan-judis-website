@@ -14,38 +14,38 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import DynamicHeadline from '~/components/DynamicHeadline.vue'
-  import SharingLine from '~/components/SharingLine.vue'
-  import PrettyDate from '~/components/PrettyDate.vue'
-  import {createPage, getHeadForPost} from '~/lib/basepage.js'
-  import Marked from '~/components/Marked.vue'
+import Container from '~/components/Container.vue';
+import DynamicHeadline from '~/components/DynamicHeadline.vue';
+import SharingLine from '~/components/SharingLine.vue';
+import PrettyDate from '~/components/PrettyDate.vue';
+import { createPage, getHeadForPost } from '~/lib/basepage.js';
+import Marked from '~/components/Marked.vue';
 
-  export default createPage({
-    async fetch ({ app, store, params, redirect }) {
-      await app.contentful.getLandingpages()
-      store.commit('landingpages/setActiveWithSlug', params.slug)
+export default createPage({
+  async fetch({ app, store, params, redirect }) {
+    await app.contentful.getLandingpages();
+    store.commit('landingpages/setActiveWithSlug', params.slug);
 
-      if (!store.state.landingpages.active) {
-        return redirect('/404/')
-      }
-    },
-    computed: {
-      page () {
-        return this.$store.state.landingpages.active
-      }
-    },
-    head () {
-      return getHeadForPost(this.page)
-    },
-    components: {
-      Container,
-      DynamicHeadline,
-      Marked,
-      PrettyDate,
-      SharingLine
+    if (!store.state.landingpages.active) {
+      return redirect('/404/');
     }
-  })
+  },
+  computed: {
+    page() {
+      return this.$store.state.landingpages.active;
+    }
+  },
+  head() {
+    return getHeadForPost(this.page);
+  },
+  components: {
+    Container,
+    DynamicHeadline,
+    Marked,
+    PrettyDate,
+    SharingLine
+  }
+});
 </script>
 
 <style lang="scss">
@@ -54,7 +54,7 @@
     font-weight: bold;
 
     + p {
-      margin: -.5em 0 2em;
+      margin: -0.5em 0 2em;
     }
   }
 }

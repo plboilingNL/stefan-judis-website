@@ -5,14 +5,14 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    components: {
-      Container
-    }
-  })
+export default createPage({
+  components: {
+    Container
+  }
+});
 </script>
 
 <style scoped>

@@ -21,55 +21,59 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import EntryLink from '~/components/EntryLink.vue'
-  import ItemPreview from '~/components/ItemPreview.vue'
-  import PaginationActions from '~/components/PaginationActions.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import EntryLink from '~/components/EntryLink.vue';
+import ItemPreview from '~/components/ItemPreview.vue';
+import PaginationActions from '~/components/PaginationActions.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app }) {
-      await app.contentful.getTil()
-    },
-    computed: {
-      tags () {
-        return this.$store.state.til.list.reduce((acc, post) => {
-          if (post.fields.tags) {
-            post.fields.tags.forEach(tag => {
-              if (!acc[tag]) {
-                acc[tag] = []
-              }
-              acc[tag].push(post)
+export default createPage({
+  async fetch({ app }) {
+    await app.contentful.getTil();
+  },
+  computed: {
+    tags() {
+      return this.$store.state.til.list.reduce((acc, post) => {
+        if (post.fields.tags) {
+          post.fields.tags.forEach(tag => {
+            if (!acc[tag]) {
+              acc[tag] = [];
+            }
+            acc[tag].push(post);
 
-              return acc
-            })
-          }
+            return acc;
+          });
+        }
 
-          return acc
-        }, {})
-      }
-    },
-    head () {
-      return {
-        title: 'Today I learned | Stefan Judis Web Development',
-        meta: [
-          { hid: 'description', name: 'description', content: `My daily Web Development learnings` }
-        ]
-      }
-    },
-    components: {
-      Container,
-      ItemPreview,
-      PaginationActions,
-      EntryLink
+        return acc;
+      }, {});
     }
-  })
+  },
+  head() {
+    return {
+      title: 'Today I learned | Stefan Judis Web Development',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `My daily Web Development learnings`
+        }
+      ]
+    };
+  },
+  components: {
+    Container,
+    ItemPreview,
+    PaginationActions,
+    EntryLink
+  }
+});
 </script>
 
 <style lang="scss">
-  .area-javascript {
-    @media (min-width: 70em) {
-      grid-row: 2 / 5;
-    }
+.area-javascript {
+  @media (min-width: 70em) {
+    grid-row: 2 / 5;
   }
+}
 </style>

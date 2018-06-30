@@ -28,75 +28,79 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    head () {
-      return {
-        title: `Stefan Judis Web Development - Newsletter`,
-        meta: [
-          { hid: 'description', name: 'description', content: `Subscribe to my monthly newsletter` }
-        ]
-      }
-    },
-    components: {
-      Container
-    }
-  })
+export default createPage({
+  head() {
+    return {
+      title: `Stefan Judis Web Development - Newsletter`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Subscribe to my monthly newsletter`
+        }
+      ]
+    };
+  },
+  components: {
+    Container
+  }
+});
 </script>
 
 <style lang="scss">
-  .c-newsletter {
-    text-align: center;
+.c-newsletter {
+  text-align: center;
 
-    @media (min-width: 38em) {
-      position: absolute;
-      top: 3.5em;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &__close {
-      position: absolute;
-      top: 0;
-      right: .25em;
-      line-height: 1;
-
-      font-size: 3em;
-      text-decoration: none;
-    }
-
-    &__letter {
-      position: absolute;
-      width: 180px;
-      height: auto;
-
-      left: 50%;
-      transform: translate(-50%,0 );
-      box-shadow: 0 .0625em .125em #aaa;
-
-      top: -3.5em;
-    }
-
-    input {
-      display: block;
-      width: 100%;
-
-      line-height: 1.75;
-      font-size: 1.5em;
-      padding: .25em .5em;
-      margin: .25em 0 1em;
-      text-align: center;
-      color: currentColor;
-
-      border: none;
-      border-bottom: 2px solid var(--c-text);
-    }
+  @media (min-width: 38em) {
+    position: absolute;
+    top: 3.5em;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0.25em;
+    line-height: 1;
+
+    font-size: 3em;
+    text-decoration: none;
+  }
+
+  &__letter {
+    position: absolute;
+    width: 180px;
+    height: auto;
+
+    left: 50%;
+    transform: translate(-50%, 0);
+    box-shadow: 0 0.0625em 0.125em #aaa;
+
+    top: -3.5em;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+
+    line-height: 1.75;
+    font-size: 1.5em;
+    padding: 0.25em 0.5em;
+    margin: 0.25em 0 1em;
+    text-align: center;
+    color: currentColor;
+
+    border: none;
+    border-bottom: 2px solid var(--c-text);
+  }
+}
 </style>

@@ -11,44 +11,50 @@
 </template>
 
 <script>
-  import Container from '~/components/Container.vue'
-  import ItemPreview from '~/components/ItemPreview.vue'
-  import {createPage} from '~/lib/basepage.js'
+import Container from '~/components/Container.vue';
+import ItemPreview from '~/components/ItemPreview.vue';
+import { createPage } from '~/lib/basepage.js';
 
-  export default createPage({
-    async fetch ({ app, params, store }) {
-      await app.contentful.getPosts()
-      store.commit('posts/setActiveTag', params.tag)
-    },
-    computed: {
-      posts () {
-        return this.$store.state.posts.list.filter(post => {
-          if (post.fields.tags) {
-            return post.fields.tags.some(
-              tag => tag === this.$store.state.posts.activeTag
-            )
-          }
+export default createPage({
+  async fetch({ app, params, store }) {
+    await app.contentful.getPosts();
+    store.commit('posts/setActiveTag', params.tag);
+  },
+  computed: {
+    posts() {
+      return this.$store.state.posts.list.filter(post => {
+        if (post.fields.tags) {
+          return post.fields.tags.some(
+            tag => tag === this.$store.state.posts.activeTag
+          );
+        }
 
-          return false
-        })
-      },
-      tag () {
-        return this.$store.state.posts.activeTag
-      }
+        return false;
+      });
     },
-    head () {
-      return {
-        title: `Blog - #${this.tag} | Stefan Judis Web Development`,
-        meta: [
-          { hid: 'description', name: 'description', content: `Writings on web development including mainly JavaScript, web performance and accessibility - #${this.page}` }
-        ]
-      }
-    },
-    components: {
-      Container,
-      ItemPreview
+    tag() {
+      return this.$store.state.posts.activeTag;
     }
-  })
+  },
+  head() {
+    return {
+      title: `Blog - #${this.tag} | Stefan Judis Web Development`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Writings on web development including mainly JavaScript, web performance and accessibility - #${
+            this.page
+          }`
+        }
+      ]
+    };
+  },
+  components: {
+    Container,
+    ItemPreview
+  }
+});
 </script>
 
 <style></style>
