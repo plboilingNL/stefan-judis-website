@@ -1,51 +1,51 @@
 #!/usr/bin/env node
 
-const htmlparser = require('htmlparser2')
-const { promisify } = require('util')
-const glob = promisify(require('glob'))
-const readFile = promisify(require('fs').readFile)
-const chalk = require('chalk')
+const htmlparser = require('htmlparser2');
+const { promisify } = require('util');
+const glob = promisify(require('glob'));
+const readFile = promisify(require('fs').readFile);
+const chalk = require('chalk');
 
 // TODO get the nuxt folder out of here
-const DIST_HTML = './dist/**/*.html'
+const DIST_HTML = './dist/**/*.html';
 const FILES_TO_IGNORE = [
   './dist/_nuxt/index.spa.html',
   './dist/_nuxt/index.ssr.html'
-]
-;(async () => {
+];
+(async () => {
   try {
-    console.log(chalk.green('---------------------'))
-    console.log(chalk.green('VALIDATING MARKUP'))
+    console.log(chalk.green('---------------------'));
+    console.log(chalk.green('VALIDATING MARKUP'));
 
-    const filePaths = await glob(DIST_HTML)
-    const files = await readFiles(filePaths)
+    const filePaths = await glob(DIST_HTML);
+    const files = await readFiles(filePaths);
 
-    const validatedFiles = await getValidatedFiles(files)
-    const invalidFiles = validatedFiles.filter(file => !file.valid)
+    const validatedFiles = await getValidatedFiles(files);
+    const invalidFiles = validatedFiles.filter(file => !file.valid);
 
     if (invalidFiles.length) {
-      console.log(chalk.red("  The following files don't have a description:"))
-      console.log(invalidFiles.map(file => file.name).join('\n'))
+      console.log(chalk.red("  The following files don't have a description:"));
+      console.log(invalidFiles.map(file => file.name).join('\n'));
 
-      return process.exit(1)
+      return process.exit(1);
     }
 
-    console.log(chalk.green('✔ MARKUP LOOKS GOOD!'))
-    console.log(chalk.green('  - all HTML files have a valid description'))
+    console.log(chalk.green('✔ MARKUP LOOKS GOOD!'));
+    console.log(chalk.green('  - all HTML files have a valid description'));
 
-    process.exit(0)
+    process.exit(0);
   } catch (e) {
-    console.log(e)
+    console.log(e);
   }
-})()
+})();
 
-function getValidatedFiles (files) {
+function getValidatedFiles(files) {
   return Promise.all(
     files
       .filter(file => FILES_TO_IGNORE.indexOf(file.name) === -1)
       .map(file => {
         return new Promise((resolve, reject) => {
-          let hasDescription = false
+          let hasDescription = false;
           const parser = new htmlparser.Parser({
             onopentag: (name, attr) => {
               if (
@@ -54,22 +54,22 @@ function getValidatedFiles (files) {
                 attr.content.length &&
                 attr.content !== 'Nuxt.js project'
               ) {
-                hasDescription = true
+                hasDescription = true;
               }
             },
             onend: () => {
-              file.valid = hasDescription
-              resolve(file)
+              file.valid = hasDescription;
+              resolve(file);
             }
-          })
-          parser.write(file.content)
-          parser.end()
-        })
+          });
+          parser.write(file.content);
+          parser.end();
+        });
       })
-  )
+  );
 }
 
-function readFiles (filePaths) {
+function readFiles(filePaths) {
   return Promise.all(
     filePaths.map(fileName => {
       return new Promise((resolve, reject) => {
@@ -78,10 +78,10 @@ function readFiles (filePaths) {
             resolve({
               name: fileName,
               content
-            })
+            });
           })
-          .catch(reject)
-      })
+          .catch(reject);
+      });
     })
-  )
+  );
 }

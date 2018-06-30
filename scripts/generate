@@ -1,26 +1,26 @@
 #!/usr/bin/env node
 
-const { Nuxt, Builder, Generator } = require('nuxt-edge')
-const config = require('../nuxt.config.js')
+const { Nuxt, Builder, Generator } = require('nuxt-edge');
+const config = require('../nuxt.config.js');
 
-config.mode = 'universal'
-config.dev = false
+config.mode = 'universal';
+config.dev = false;
 
-const nuxt = new Nuxt(config)
-const builder = new Builder(nuxt)
-const generator = new Generator(nuxt, builder)
+const nuxt = new Nuxt(config);
+const builder = new Builder(nuxt);
+const generator = new Generator(nuxt, builder);
 const generateOptions = {
   init: true, // process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
   build: true
-}
+};
 
-async function generateRoutes () {
+async function generateRoutes() {
   try {
-    await generator.generate(generateOptions)
+    await generator.generate(generateOptions);
   } catch (e) {
-    console.error(e)
-    throw e
+    console.error(e);
+    throw e;
   }
 }
 
-generateRoutes()
+generateRoutes();

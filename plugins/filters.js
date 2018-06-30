@@ -1,5 +1,5 @@
-import Vue from 'vue'
-import url from 'url'
+import url from 'url';
+import Vue from 'vue';
 
 Vue.filter('externalUrl', value => {
   return url.parse(value).host

@@ -6,20 +6,24 @@
 </template>
 
 <script>
-import Container from '~/components/Container.vue'
+import Container from '~/components/Container.vue';
 
 export default {
   props: ['error'],
-  head () {
+  head() {
     return {
       title: `Error | Stefan Judis Web Development`,
       meta: [
-        { hid: 'description', name: 'description', content: `Something went wrong here. ;) You shouldn't see it...` }
+        {
+          hid: 'description',
+          name: 'description',
+          content: `Something went wrong here. ;) You shouldn't see it...`
+        }
       ]
-    }
+    };
   },
   components: {
     Container
   }
-}
+};
 </script>
