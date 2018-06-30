@@ -2,7 +2,6 @@ import ReadingTime from '~/plugins/reading-time.js'
 
 export const state = () => ({
   list: [],
-  activeTag: null,
   activePageNumber: null,
   active: null
 })
@@ -11,8 +10,8 @@ export const mutations = {
   setActivePageNumber (state, page) {
     state.activePageNumber = page
   },
-  setActiveTag (state, tag) {
-    state.activeTag = tag
+  setActiveTopic (state, topic) {
+    state.activeTopic = topic
   },
   setActiveWithSlug (state, slug) {
     const item = state.list.find(entry => entry.fields.slug === slug)

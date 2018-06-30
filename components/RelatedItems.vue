@@ -19,9 +19,9 @@ export default {
       const currentItem = this.item
 
       return this.items.filter(item => {
-        return item.fields.tags && item.fields.tags.some(tag => {
-          return currentItem.fields.tags.some(
-            activeCat => activeCat === tag
+        return item.fields.topics && item.fields.topics.some(topic => {
+          return currentItem.fields.topics && currentItem.fields.topics.some(
+            activeTopic => activeTopic.fields.title === topic.fields.title
           )
         }) && item.sys.id !== currentItem.sys.id
       }).slice(0, 3)

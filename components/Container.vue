@@ -73,6 +73,9 @@
     }
 
     h1, h2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin: 0;
       color: var(--grey-darker);
       font-family: 'Georgia', serif;
@@ -82,6 +85,18 @@
 
       @media (min-width: 30em) {
         font-size: 2em;
+      }
+    }
+
+    [class*=icon] {
+      display: inline-block;
+
+      svg {
+        display: block;
+        height: 1.25em;
+        width: auto;
+        max-width: 1.5em;
+        margin-right: 0.675em;
       }
     }
   }

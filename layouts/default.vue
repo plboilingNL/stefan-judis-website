@@ -150,7 +150,7 @@ a {
   text-decoration: underline;
   text-decoration-skip: ink;
 
-  &:hover {
+  &:hover, &:focus {
     color: var(--c-highlight);
   }
 

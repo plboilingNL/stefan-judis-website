@@ -1,8 +1,16 @@
 .o-headline-1, .o-headline-2, .o-headline-3 {
+  display: flex;
+  align-items: center;
   color: var(--grey-darker);
   font-family: 'Georgia', serif;
   font-weight: normal;
   margin: 0 0 .5em;
+
+  svg {
+    width: auto;
+    height: 1em;
+    margin-right: .5em;
+  }
 }
 
 .o-headline-1 {
@@ -20,4 +28,5 @@
 
 .o-headline-1 a, .o-headline-2 a {
   text-decoration: none;
+  display: contents;
 }

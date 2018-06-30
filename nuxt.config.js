@@ -1,10 +1,9 @@
-const { getConfigForKeys } = require('./lib/config.js')
+const { getConfigForKeys } = require('./lib/config.js');
 const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
   'CTF_ENVIRONMENT_ID',
   'CTF_CDA_TOKEN',
   'CTF_CPA_TOKEN',
-  'CTF_CMA_TOKEN',
   'CTF_ME_ID',
   'CTF_POST_ID',
   'CTF_TALK_ID',
@@ -12,19 +11,16 @@ const ctfConfig = getConfigForKeys([
   'CTF_EVENT_ID',
   'CTF_TIL_ID',
   'CTF_SCREENCAST_ID',
-  'CTF_LANDING_PAGE_ID'
-])
+  'CTF_LANDING_PAGE_ID',
+  'CTF_TOPIC_ID'
+]);
 
-const cdaContentful = require('contentful')
+const cdaContentful = require('contentful');
 const cdaClient = cdaContentful.createClient({
   accessToken: ctfConfig.CTF_CDA_TOKEN,
   host: 'cdn.contentful.com',
   space: ctfConfig.CTF_SPACE_ID
-})
-const cmaContentful = require('contentful-management')
-const cmaClient = cmaContentful.createClient({
-  accessToken: ctfConfig.CTF_CMA_TOKEN
-})
+});
 
 const config = {
   /*
@@ -69,9 +65,7 @@ const config = {
         href: 'https://www.stefanjudis.com/til.xml'
       }
     ],
-    script: [
-      { src: 'https://just-comments.com/auth.js', defer: '' }
-    ]
+    script: [{ src: 'https://just-comments.com/auth.js', defer: '' }]
   },
 
   /*
@@ -88,14 +82,14 @@ const config = {
   },
 
   transition: {
-    afterEnter (el) {
-      const h1 = el.querySelector('h1')
+    afterEnter(el) {
+      const h1 = el.querySelector('h1');
 
       if (!h1) {
-        return console.error('No h1 on', el)
+        return console.error('No h1 on', el);
       }
 
-      h1.focus()
+      h1.focus();
     }
   },
 
@@ -140,19 +134,19 @@ const config = {
   build: {
     analyze: false,
 
-    extend (config, ctx) {
+    extend(config, ctx) {
       // overwrite nuxt defaults
       // they inline svg's base64
       config.module.rules.forEach(rule => {
         if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg)$/') {
-          rule.test = /\.(png|jpe?g|gif)$/
+          rule.test = /\.(png|jpe?g|gif)$/;
         }
-      })
+      });
 
       config.module.rules.push({
         test: /\.svg$/,
-        use: 'svg-inline-loader'
-      })
+        use: 'svg-inline-loader?removeSVGTagAttrs=false'
+      });
     },
 
     postcss: [
@@ -189,11 +183,12 @@ const config = {
     CTF_EVENT_ID: ctfConfig.CTF_EVENT_ID,
     CTF_TIL_ID: ctfConfig.CTF_TIL_ID,
     CTF_SCREENCAST_ID: ctfConfig.CTF_SCREENCAST_ID,
-    CTF_LANDING_PAGE_ID: ctfConfig.CTF_LANDING_PAGE_ID
+    CTF_LANDING_PAGE_ID: ctfConfig.CTF_LANDING_PAGE_ID,
+    CTF_TOPIC_ID: ctfConfig.CTF_TOPIC_ID
   }
-}
+};
 
-function getAllRoutes () {
+function getAllRoutes() {
   return Promise.all([
     cdaClient.getEntries({
       content_type: '2wKn6yEnZewu2SCCkus4as',
@@ -206,44 +201,39 @@ function getAllRoutes () {
     cdaClient.getEntries({
       content_type: 'landingPage'
     }),
-    cmaClient
-      .getSpace(ctfConfig.CTF_SPACE_ID)
-      .then(space => space.getContentType('2wKn6yEnZewu2SCCkus4as'))
-  ]).then(([blogPosts, tilPosts, landingPages, postType]) => {
+    cdaClient.getEntries({
+      content_type: 'topic'
+    })
+  ]).then(([blogPosts, tilPosts, landingPages, topics]) => {
     const postPages = blogPosts.items.reduce((pages, entry, index) => {
       // the external posts don't need do be rendered
-      pages.push(`/blog/${entry.fields.slug}`)
+      pages.push(`/blog/${entry.fields.slug}`);
 
       if (index % 5 === 0 && index !== 0) {
-        pages.push(`/blog/page/${Math.floor(index / 5)}`)
+        pages.push(`/blog/page/${Math.floor(index / 5)}`);
       }
 
-      return pages
-    }, [])
+      return pages;
+    }, []);
 
-    const tilPages = tilPosts.items.reduce((pages, entry, index) => {
-      pages.push(`/today-i-learned/${entry.fields.slug}`)
+    const tilPages = tilPosts.items.map(
+      item => `/today-i-learned/${item.fields.slug}`
+    );
 
-      return pages
-    }, [])
+    const landingPageSlugs = landingPages.items.map(
+      item => `/${item.fields.slug}`
+    );
 
-    const landingPageSlugs = landingPages.items.map(item => `/${item.fields.slug}`)
+    const topicSlugs = topics.items.map(
+      item => `/topics/${item.fields.slug}`
+    );
 
-    const tags = postType.fields
-      .find(field => field.id === 'tags')
-      .items.validations[0].in.map(category => `/blog/tag/${category}`)
-
-    return [
-      ...postPages,
-      ...tilPages,
-      ...landingPageSlugs,
-      ...tags
-    ]
-  })
+    return [...postPages, ...tilPages, ...landingPageSlugs, ...topicSlugs];
+  });
 }
 
 if (process.env.NODE_ENV !== 'production') {
   // config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
 }
 
-module.exports = config
+module.exports = config;

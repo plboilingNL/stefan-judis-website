@@ -10,6 +10,9 @@
       </div>
       <pretty-date :date="screencast.fields.publishDate"></pretty-date>
       <h3 class="u-noMarginTop o-headline-3" :id="screencast.fields.title | idAlize">{{ screencast.fields.title }}</h3>
+      <div class="u-marginTopAuto u-paddingTopMedium">
+        <Topics :topics="screencast.fields.topics" />
+      </div>
     </div>
   </div>
 </template>
@@ -17,12 +20,14 @@
 <script>
   import LazyImage from '~/components/LazyImage.vue'
   import PrettyDate from '~/components/PrettyDate.vue'
+  import Topics from '~/components/Topics.vue'
 
   export default {
     props: ['screencast'],
     components: {
       LazyImage,
-      PrettyDate
+      PrettyDate,
+      Topics
     }
   }
 </script>

@@ -16,6 +16,12 @@
             <source v-if="post.fields.video" :src="post.fields.video.fields.file.url" type="video/mp4">
           </video>
         </div>
+
+        <div v-if="post.fields.topics && post.fields.topics.length" class="u-marginBottomMedium">
+          <h3>Tags</h3>
+          <Topics :topics="post.fields.topics" />
+        </div>
+
         <RelatedItems :items="posts" :item="post" />
         <Comments class="u-marginBottomMedium" />
         <SharingLine :item="post"></SharingLine>
@@ -32,6 +38,7 @@ import Marked from '~/components/Marked.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import SharingLine from '~/components/SharingLine.vue';
+import Topics from '~/components/Topics.vue';
 import { createPage, getHeadForPost } from '~/lib/basepage.js';
 
 export default createPage({
@@ -62,7 +69,8 @@ export default createPage({
     Marked,
     PrettyDate,
     RelatedItems,
-    SharingLine
+    SharingLine,
+    Topics
   }
 });
 </script>

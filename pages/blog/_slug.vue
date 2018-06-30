@@ -24,13 +24,9 @@
             </li>
           </ul>
         </div>
-        <div v-if="post.fields.tags && post.fields.tags.length" class="u-marginBottomMedium">
-          <h3>Tags for this post</h3>
-          <ul class="o-list-inline">
-            <li v-for="tag in post.fields.tags" :key="tag">
-              <nuxt-link class="o-tag u-marginRightSmall u-marginBottomSmall" :to="`/blog/tag/${tag}`">{{ tag }}</nuxt-link>
-            </li>
-          </ul>
+        <div v-if="post.fields.topics && post.fields.topics.length" class="u-marginBottomMedium">
+          <h3>Tags</h3>
+          <Topics :topics="post.fields.topics" />
         </div>
         <RelatedItems :items="posts" :item="post" />
         <Comments class="u-marginBottomMedium" />
@@ -46,9 +42,9 @@ import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import Marked from '~/components/Marked.vue';
-import ItemPreview from '~/components/ItemPreview.vue';
 import SharingLine from '~/components/SharingLine.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
+import Topics from '~/components/Topics.vue';
 import { createPage, getHeadForPost } from '~/lib/basepage.js';
 
 export default createPage({
@@ -67,21 +63,6 @@ export default createPage({
     posts() {
       return this.$store.state.posts.list;
     },
-    relatedPosts() {
-      if (this.post) {
-        return this.$store.state.posts.list
-          .filter(item => {
-            return (
-              item.fields.tags.some(tag => {
-                return this.post.fields.tags.some(
-                  activeTag => activeTag === tag
-                );
-              }) && item.sys.id !== this.post.sys.id
-            );
-          })
-          .slice(0, 3);
-      }
-    }
   },
   head() {
     return getHeadForPost(this.post);
@@ -94,7 +75,7 @@ export default createPage({
     Marked,
     SharingLine,
     RelatedItems,
-    ItemPreview
+    Topics
   }
 });
 </script>

@@ -12,7 +12,6 @@
 <script>
 import Container from '~/components/Container.vue';
 import LazyImage from '~/components/LazyImage.vue';
-import PrettyDate from '~/components/PrettyDate.vue';
 import ScreenCast from '~/components/ScreenCast.vue';
 import { createPage } from '~/lib/basepage.js';
 
@@ -29,12 +28,12 @@ export default createPage({
   },
   head() {
     return {
-      title: `Projects | Stefan Judis Web Development`,
+      title: `Smalltalk | Stefan Judis Web Development`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `Listing of my current side projects.`
+          content: `Listing short developer interviews.`
         }
       ]
     };
@@ -42,7 +41,6 @@ export default createPage({
   components: {
     Container,
     LazyImage,
-    PrettyDate,
     ScreenCast
   }
 });

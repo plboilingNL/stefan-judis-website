@@ -9,7 +9,6 @@
     "@nuxtjs/pwa": "^2.0.8",
     "@nuxtjs/sitemap": "^0.1.1",
     "contentful": "^6.1.1",
-    "contentful-management": "^5.1.4",
     "download": "^7.0.0",
     "emoji-regex": "^7.0.0",
     "fs-extra": "^5.0.0",
@@ -34,8 +33,7 @@
     "function:build": "netlify-lambda build ./functions",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "precommit": "npm run lint",
-    "netlify:build": "./scripts/build-it",
-    "ctf:switch-env": "./scripts/switch-environment"
+    "netlify:build": "./scripts/build-it"
   },
   "devDependencies": {
     "a11y.css": "^4.5.2",

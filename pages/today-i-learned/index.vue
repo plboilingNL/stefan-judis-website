@@ -2,14 +2,17 @@
   <Container animate="true" :full-width="true">
     <h1 slot="headline" tabindex="-1">TIL - Today I learned</h1>
     <ul class="o-list-grid">
-      <li v-for="tag in Object.keys(tags).sort()" :key="tag" :class="`area-${tag}`">
-        <div :id="tag | idAlize" class="c-tile">
+      <li v-for="topic in Object.keys(topics).sort()" :key="topic" :class="`area-${topic}`">
+        <div class="c-tile">
           <div class="c-tile__container">
             <h2 class="o-headline-2">
-              <a class="o-anchorHeadline" :href="tag | idAlize({prependHash: true})">{{ tag }}</a>
+              <nuxt-link :to="`/topics/${ topics[topic].slug }`">
+                <Icon :name="topics[topic].title" />
+                {{ topics[topic].name }}
+              </nuxt-link>
             </h2>
             <ul class="o-list-reset">
-              <li v-for="post in tags[tag]" class="u-marginBottomSmall" :key="post.sys.id">
+              <li v-for="post in topics[topic].items" class="u-marginBottomSmall" :key="post.sys.id">
                 <entry-link :entry="post" />
               </li>
             </ul>
@@ -23,8 +26,9 @@
 <script>
 import Container from '~/components/Container.vue';
 import EntryLink from '~/components/EntryLink.vue';
-import ItemPreview from '~/components/ItemPreview.vue';
+import Icon from '~/components/Icon.vue';
 import PaginationActions from '~/components/PaginationActions.vue';
+import { getTopicNameWithSlug } from '~/lib/topics.js';
 import { createPage } from '~/lib/basepage.js';
 
 export default createPage({
@@ -32,14 +36,20 @@ export default createPage({
     await app.contentful.getTil();
   },
   computed: {
-    tags() {
+    topics() {
       return this.$store.state.til.list.reduce((acc, post) => {
-        if (post.fields.tags) {
-          post.fields.tags.forEach(tag => {
-            if (!acc[tag]) {
-              acc[tag] = [];
+        if (post.fields.topics) {
+          post.fields.topics.forEach((topic) => {
+            if (!acc[topic.fields.slug]) {
+              acc[topic.fields.slug] = {
+                items: [],
+                slug: topic.fields.slug,
+                title: topic.fields.title,
+                name: getTopicNameWithSlug(topic.fields.slug)
+              };
             }
-            acc[tag].push(post);
+
+            acc[topic.fields.slug].items.push(post);
 
             return acc;
           });
@@ -63,9 +73,9 @@ export default createPage({
   },
   components: {
     Container,
-    ItemPreview,
     PaginationActions,
-    EntryLink
+    EntryLink,
+    Icon
   }
 });
 </script>

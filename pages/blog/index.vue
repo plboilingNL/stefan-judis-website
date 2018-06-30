@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1">Blog</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" :key="post.sys.id" class="u-marginBottomLarge">
-        <ItemPreview :item="post" :show-excerpt="true" :show-date="true" :level="2" :include-link="true"></ItemPreview>
+        <Post :post="post" :show-excerpt="true" :show-date="true" :level="2" :include-link="true" />
       </li>
     </ul>
     <PaginationActions :next-page="nextPage"></PaginationActions>
@@ -12,7 +12,7 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import ItemPreview from '~/components/ItemPreview.vue';
+import Post from '~/components/Post.vue';
 import PaginationActions from '~/components/PaginationActions.vue';
 import { createPage } from '~/lib/basepage.js';
 
@@ -42,7 +42,7 @@ export default createPage({
   },
   components: {
     Container,
-    ItemPreview,
+    Post,
     PaginationActions
   }
 });
