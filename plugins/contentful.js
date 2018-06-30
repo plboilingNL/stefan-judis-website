@@ -129,7 +129,7 @@ export default ({ app, env, store }) => {
             content_type: env.CTF_POST_ID,
             order: '-fields.date',
             select:
-              'fields.date,fields.slug,fields.title,fields.description,fields.topics'
+              'fields.date,fields.slug,fields.title,fields.excerpt,fields.topics'
           })
           .then(res => {
             store.commit('posts/setList', res.items);
