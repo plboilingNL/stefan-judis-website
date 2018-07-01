@@ -23,7 +23,7 @@
 }
 
 .u-marginBottomTiny {
-  margin-bottom: .25em;
+  margin-bottom: 0.25em;
 }
 
 .u-noMarginBottom {
@@ -31,7 +31,7 @@
 }
 
 .u-marginBottomSmall {
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
 
 .u-marginBottomMedium {
@@ -47,7 +47,7 @@
 }
 
 .u-marginHorizontalSmall {
-  margin: 0 .25em;
+  margin: 0 0.25em;
 }
 
 .u-textAlignCenter {
@@ -95,7 +95,3 @@
 .u-noShadow {
   box-shadow: none;
 }
-
-.u-highlight__green { --c-highlight: var(--green-dark);}
-.u-highlight__red { --c-highlight: var(--red-dark);}
-.u-highlight__blue { --c-highlight: var(--blue-dark);}

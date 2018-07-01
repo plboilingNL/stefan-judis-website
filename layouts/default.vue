@@ -7,11 +7,13 @@
     </main>
     <loading-time />
     <closing/>
+    <cookie-banner />
   </div>
 </template>
 
 <script>
 import Closing from '~/components/Closing.vue';
+import CookieBanner from '~/components/CookieBanner.vue';
 import Navigation from '~/components/Navigation.vue';
 import OfflineNotice from '~/components/OfflineNotice.vue';
 import LoadingTime from '~/components/LoadingTime.vue';
@@ -19,6 +21,7 @@ import LoadingTime from '~/components/LoadingTime.vue';
 export default {
   components: {
     Closing,
+    CookieBanner,
     Navigation,
     OfflineNotice,
     LoadingTime
@@ -150,7 +153,8 @@ a {
   text-decoration: underline;
   text-decoration-skip: ink;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: var(--c-highlight);
   }
 

@@ -125,7 +125,13 @@ const config = {
         }
       }
     ],
-    ['@nuxtjs/google-analytics', { ua: 'UA-104150131-1' }]
+    [
+      '@nuxtjs/google-analytics',
+      {
+        ua: 'UA-104150131-1',
+        disabled: true
+      }
+    ]
   ],
 
   /*
@@ -224,9 +230,7 @@ function getAllRoutes() {
       item => `/${item.fields.slug}`
     );
 
-    const topicSlugs = topics.items.map(
-      item => `/topics/${item.fields.slug}`
-    );
+    const topicSlugs = topics.items.map(item => `/topics/${item.fields.slug}`);
 
     return [...postPages, ...tilPages, ...landingPageSlugs, ...topicSlugs];
   });
