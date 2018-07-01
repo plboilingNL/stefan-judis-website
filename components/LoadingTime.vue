@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import Icon from '~/components/Icon.vue'
+import Icon from '~/components/Icon.vue';
 
 export default {
   components: {
     Icon
   }
-}
+};
 </script>
 
 
@@ -49,10 +49,10 @@ export default {
   @media (min-width: 47em) {
     position: absolute;
     bottom: 0;
-    right: 1em;
+    right: 2em;
     bottom: 2em;
     width: 8em;
-    padding: .5em 1em .5em .75em;
+    padding: 0.5em 1em 0.5em 0.75em;
     box-shadow: var(--shadow-floating-thing);
     justify-content: space-between;
   }
@@ -65,7 +65,7 @@ export default {
     display: block;
     width: 2em;
     height: 2em;
-    margin-right: .5em;
+    margin-right: 0.5em;
   }
 
   &__number {
@@ -76,7 +76,7 @@ export default {
   }
 
   &__title {
-    font-size: .75em;
+    font-size: 0.75em;
     line-height: 1.25;
     color: var(--c-highlight);
   }
