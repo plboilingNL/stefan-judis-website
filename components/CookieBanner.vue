@@ -1,6 +1,6 @@
 <template>
   <div v-if="!cookiesAllowed && !bannerClosed && loaded" class="c-banner u-textAlignCenter">
-    <p>This website uses Cookies and I use cookies only to analyze my traffic using Google Analytics</p>
+    <p>🍪 This website uses Cookies to analyze traffic via Google Analytics. 🍪</p>
     <div>
       <button class="o-btn o-btn--small o-btn--red" type="button" @click="closeBanner">Please don't track me</button>
       <button class="o-btn o-btn--small o-btn--green" type="button" @click="enableCookies">Okay</button>
