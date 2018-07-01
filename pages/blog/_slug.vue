@@ -28,7 +28,7 @@
           <h3>Tags</h3>
           <Topics :topics="post.fields.topics" />
         </div>
-        <RelatedItems :items="posts" :item="post" />
+        <RelatedItems :items="posts" :item="post" slug="blog" />
         <Comments class="u-marginBottomMedium" />
         <SharingLine :item="post"></SharingLine>
       </div>

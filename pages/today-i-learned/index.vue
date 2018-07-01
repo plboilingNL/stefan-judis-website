@@ -13,7 +13,7 @@
             </h2>
             <ul class="o-list-reset">
               <li v-for="post in topics[topic].items" class="u-marginBottomSmall" :key="post.sys.id">
-                <nuxt-link :to="`/today-i-learned/${ post.fields.slug }`">post.fields.title</nuxt-link>
+                <nuxt-link :to="`/today-i-learned/${ post.fields.slug }`">{{ post.fields.title }}</nuxt-link>
               </li>
             </ul>
           </div>

@@ -22,7 +22,7 @@
           <Topics :topics="post.fields.topics" />
         </div>
 
-        <RelatedItems :items="posts" :item="post" />
+        <RelatedItems :items="posts" :item="post" slug="today-i-learned"/>
         <Comments class="u-marginBottomMedium" />
         <SharingLine :item="post"></SharingLine>
       </div>

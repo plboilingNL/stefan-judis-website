@@ -23,7 +23,7 @@
       <nuxt-link slot="footerLine" to="/i-would-love-to-speak/"  class="o-btn u-marginTopLarge">Invite me to your event</nuxt-link>
     </Container>
     <Container>
-      <h1 class="o-headline-1">Talks</h1>
+      <h1 slot="headline" class="o-headline-1">Talks</h1>
       <ul class="o-list-grid">
         <li v-for="talk in talks" class="u-marginBottomLarge" :key="talk.sys.id">
           <Talk :talk="talk"/>
