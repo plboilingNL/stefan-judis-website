@@ -36,7 +36,6 @@
 <script>
 import Container from '~/components/Container.vue';
 import Flag from '~/components/Flag.vue';
-import LazyImage from '~/components/LazyImage.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import Talk from '~/components/Talk.vue';
 import { createPage } from '~/lib/basepage.js';
@@ -70,7 +69,6 @@ export default createPage({
   components: {
     Container,
     Flag,
-    LazyImage,
     PrettyDate,
     Talk
   }

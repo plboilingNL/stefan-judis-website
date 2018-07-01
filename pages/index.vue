@@ -38,10 +38,8 @@
 <script>
 import Container from '~/components/Container.vue';
 import Person from '~/components/Person.vue';
-import PrettyDate from '~/components/PrettyDate.vue';
 import ScreenCast from '~/components/ScreenCast.vue';
 import Post from '~/components/Post.vue';
-import Icon from '~/components/Icon.vue';
 import Talk from '~/components/Talk.vue';
 import { createPage } from '~/lib/basepage.js';
 
@@ -86,9 +84,7 @@ export default createPage({
   components: {
     Post,
     Container,
-    Icon,
     Person,
-    PrettyDate,
     Talk,
     ScreenCast
   }

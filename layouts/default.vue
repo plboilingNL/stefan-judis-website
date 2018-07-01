@@ -23,8 +23,7 @@ export default {
     Closing,
     CookieBanner,
     Navigation,
-    OfflineNotice,
-    LoadingTime
+    OfflineNotice
   },
   data() {
     return {

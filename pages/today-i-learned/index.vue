@@ -25,9 +25,7 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import EntryLink from '~/components/EntryLink.vue';
 import Icon from '~/components/Icon.vue';
-import PaginationActions from '~/components/PaginationActions.vue';
 import { getTopicNameWithSlug } from '~/lib/topics.js';
 import { createPage } from '~/lib/basepage.js';
 
@@ -39,7 +37,7 @@ export default createPage({
     topics() {
       return this.$store.state.til.list.reduce((acc, post) => {
         if (post.fields.topics) {
-          post.fields.topics.forEach((topic) => {
+          post.fields.topics.forEach(topic => {
             if (!acc[topic.fields.slug]) {
               acc[topic.fields.slug] = {
                 items: [],
@@ -73,8 +71,6 @@ export default createPage({
   },
   components: {
     Container,
-    PaginationActions,
-    EntryLink,
     Icon
   }
 });

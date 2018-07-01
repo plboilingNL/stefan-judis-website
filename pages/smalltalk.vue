@@ -11,7 +11,6 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import LazyImage from '~/components/LazyImage.vue';
 import ScreenCast from '~/components/ScreenCast.vue';
 import { createPage } from '~/lib/basepage.js';
 
@@ -40,7 +39,6 @@ export default createPage({
   },
   components: {
     Container,
-    LazyImage,
     ScreenCast
   }
 });
