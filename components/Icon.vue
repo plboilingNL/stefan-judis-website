@@ -36,6 +36,7 @@ import MacOS from '~/assets/icons/macos.svg';
 import Productivity from '~/assets/icons/productivity.svg';
 import Tools from '~/assets/icons/tools.svg';
 import Web from '~/assets/icons/web.svg';
+import Newsletter from '~/assets/icons/newsletter.svg';
 
 const addAriaHiddenToSvg = svg => {
   return svg.replace('<svg', '<svg aria-hidden="true"');
@@ -79,7 +80,7 @@ export default {
         MacOS: addAriaHiddenToSvg(MacOS),
         Productivity: addAriaHiddenToSvg(Productivity),
         Tools: addAriaHiddenToSvg(Tools),
-        Web: addAriaHiddenToSvg(Web)
+        Web: addAriaHiddenToSvg(Web),
         Newsletter: addAriaHiddenToSvg(Newsletter)
       }
     };
