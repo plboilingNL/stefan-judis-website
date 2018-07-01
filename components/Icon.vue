@@ -80,6 +80,7 @@ export default {
         Productivity: addAriaHiddenToSvg(Productivity),
         Tools: addAriaHiddenToSvg(Tools),
         Web: addAriaHiddenToSvg(Web)
+        Newsletter: addAriaHiddenToSvg(Newsletter)
       }
     };
   },
