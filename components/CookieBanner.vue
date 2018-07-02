@@ -3,7 +3,7 @@
     <p class="u-noMarginBottom">🍪 This website uses Cookies to analyze traffic via Google Analytics. 🍪</p>
     <small class="u-marginBottomMedium u-block">(Reads help me to stay motivated writing things)</small>
     <div>
-      <button class="o-btn o-btn--small o-btn--red" type="button" @click="closeBanner">Please don't track me</button>
+      <!-- <button class="o-btn o-btn--small o-btn--red" type="button" @click="closeBanner">Please don't track me</button> -->
       <button class="o-btn o-btn--small o-btn--green" type="button" @click="enableCookies">Okay</button>
     </div>
   </div>
@@ -19,10 +19,10 @@ export default {
     };
   },
   methods: {
-    closeBanner() {
-      localStorage.setItem('gdpr_bannerClosed', true);
-      this.bannerClosed = true;
-    },
+    // closeBanner() {
+    //   localStorage.setItem('gdpr_bannerClosed', true);
+    //   this.bannerClosed = true;
+    // },
     enableCookies() {
       localStorage.setItem('gdpr_iLoveCookies', true);
       this.$ga.enable();
@@ -33,6 +33,9 @@ export default {
   mounted() {
     this.loaded = true;
     this.bannerClosed = localStorage.gdpr_bannerClosed;
+
+    // disable this in case you want to enable opt out again
+    localStorage.removeItem('gdpr_bannerClosed');
 
     if (localStorage.gdpr_iLoveCookies) {
       this.$ga.enable();
