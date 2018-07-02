@@ -1,6 +1,7 @@
 <template>
   <div v-if="!cookiesAllowed && !bannerClosed && loaded" class="c-banner u-textAlignCenter">
-    <p>🍪 This website uses Cookies to analyze traffic via Google Analytics. 🍪</p>
+    <p class="u-noMarginBottom">🍪 This website uses Cookies to analyze traffic via Google Analytics. 🍪</p>
+    <small class="u-marginBottomMedium u-block">(Reads help me to stay motivated writing things)</small>
     <div>
       <button class="o-btn o-btn--small o-btn--red" type="button" @click="closeBanner">Please don't track me</button>
       <button class="o-btn o-btn--small o-btn--green" type="button" @click="enableCookies">Okay</button>
@@ -41,7 +42,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .c-banner {
   position: fixed;
   z-index: 5;
