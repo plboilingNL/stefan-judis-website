@@ -230,7 +230,9 @@ function getAllRoutes() {
       item => `/${item.fields.slug}`
     );
 
-    const topicSlugs = topics.items.map(item => `/topics/${item.fields.slug}`);
+    const topicSlugs = topics.items
+      .filter(item => item.fields.title !== 'Newsletter')
+      .map(item => `/topics/${item.fields.slug}`);
 
     return [...postPages, ...tilPages, ...landingPageSlugs, ...topicSlugs];
   });
