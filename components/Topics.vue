@@ -1,9 +1,9 @@
 <template>
   <ul v-if="topics" class="o-list-inline">
     <li v-for="topic in enrichedTopics" :key="topic.fields.title">
-      <nuxt-link class="c-topic" :to="`/topics/${ topic.fields.slug }`">
+      <nuxt-link class="c-topic" :to="topic.fields.name === 'Newsletter' ? '/newsletter/' : `/topics/${ topic.fields.slug }`">
         <Icon class="c-topic__icon" :name="topic.fields.title" />
-         {{ topic.fields.name }}
+          {{ topic.fields.name }}
       </nuxt-link>
     </li>
   </ul>
@@ -37,7 +37,7 @@ export default {
   font-size: 0.875em;
   text-decoration: none;
   padding: 0.375em 0.875em;
-  margin-right: .75em;
+  margin-right: 0.75em;
   margin-bottom: 0.5em;
   background: #fff;
   box-shadow: 0 0.125em 0.75em #e7e7e7;

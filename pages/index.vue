@@ -44,7 +44,7 @@ import Talk from '~/components/Talk.vue';
 import { createPage } from '~/lib/basepage.js';
 
 export default createPage({
-  async fetch({ app, redirect }) {
+  async fetch({ app }) {
     const { getMe, getPosts, getScreencasts, getTalks } = app.contentful;
 
     await Promise.all([getMe(), getPosts(), getTalks(), getScreencasts()]);

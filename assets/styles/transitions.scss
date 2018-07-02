@@ -1,5 +1,5 @@
 .t-container {
-  transition: all .25s cubic-bezier(.55,0,.1,1);
+  transition: all 0.25s cubic-bezier(0.55, 0, 0.1, 1);
   will-change: transform;
 }
 
@@ -22,66 +22,49 @@
   }
 }
 
-.t-newsletter-slide-up-enter,
-.t-newsletter-slide-down-leave-active {
-  position: absolute;
-  top: 2.5em;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translate(0, 100%);
-  z-index: 1;
+.t-fade-enter-active,
+.t-fade-leave-active {
+  transition: opacity 0.75s;
 }
-
-.t-newsletter-slide-down,
-.t-newsletter-slide-up-leave-active {
-  opacity: 0;
-  position: absolute;
-  top: 2.5em;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translate(0, 0);
-}
-
-.t-fade-enter-active, .t-fade-leave-active {
-  transition: opacity .75s;
-}
-.t-fade-enter, .t-fade-leave-to {
+.t-fade-enter,
+.t-fade-leave-to {
   opacity: 0;
 }
 
 .t-slide-up-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .t-slide-up-leave-active {
-  transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.t-slide-up-enter, .t-slide-up-leave-to {
+.t-slide-up-enter,
+.t-slide-up-leave-to {
   transform: translateY(-100%) translateZ(0);
   opacity: 0;
 }
 
 .t-slide-down-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .t-slide-down-leave-active {
-  transition: all .4s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.t-slide-down-enter, .t-slide-down-leave-to {
+.t-slide-down-enter,
+.t-slide-down-leave-to {
   transform: translateY(100%) translateZ(0);
   opacity: 0;
 }
 
 .t-overlay-fade-enter-active {
-  transition: opacity .275s ease-in-out .3s, transform .275s ease-in-out .3s;
+  transition: opacity 0.275s ease-in-out 0.3s, transform 0.275s ease-in-out 0.3s;
 }
 
 .t-overlay-fade-leave-active {
-  transition: opacity .25s ease-in-out, transform .25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out;
 }
 
-.t-overlay-fade-enter, .t-overlay-fade-leave-to {
+.t-overlay-fade-enter,
+.t-overlay-fade-leave-to {
   opacity: 0;
-  transform: scale(0.90) translateZ(0);
+  transform: scale(0.9) translateZ(0);
 }

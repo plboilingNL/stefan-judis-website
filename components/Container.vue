@@ -26,83 +26,84 @@
 </template>
 
 <style lang="scss">
-  .c-container {
-    & > div {
-      max-width: 65em;
-      margin: 0 auto;
-      padding: 1em;
-    }
+.c-container {
+  & > div {
+    max-width: 65em;
+    margin: 0 auto;
+    padding: 1em;
+  }
+}
+
+.c-container--noPadding > div {
+  padding: 0;
+}
+
+.c-container--smallPadding > div {
+  padding: 1em 2em;
+}
+
+.c-container--accessibleLineLength > div {
+  max-width: 45em;
+  max-width: 65ch;
+}
+
+.c-container--fullWidth > div {
+  max-width: none;
+}
+
+.c-container--noPadding {
+  padding: 0;
+}
+
+.c-container__headline {
+  margin: 1em 0 2em;
+  text-align: center;
+
+  @media (min-width: 38em) {
+    margin-top: 2em;
   }
 
-  .c-container--noPadding > div {
-    padding: 0;
+  time,
+  span {
+    font-size: 0.875em;
+    display: block;
   }
 
-  .c-container--smallPadding > div {
-    padding: 1em 2em;
+  span {
+    margin-top: -0.125em;
   }
 
-  .c-container--accessibleLineLength > div {
-    max-width: 45em;
-    max-width: 65ch;
-  }
-
-  .c-container--fullWidth > div {
-    max-width: none;
-  }
-
-  .c-container--noPadding {
-    padding: 0;
-  }
-
-  .c-container__headline {
-    margin: 1em 0 2em;
+  h1,
+  h2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: var(--grey-darker);
+    font-family: 'Georgia', serif;
+    font-size: 2em;
+    letter-spacing: 1px;
     text-align: center;
 
-    @media (min-width: 38em) {
-      margin-top: 2em;
-    }
-
-    time, span {
-      font-size: .875em;
-      display: block;
-    }
-
-    span {
-      margin-top: -.125em;
-    }
-
-    h1, h2 {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      color: var(--grey-darker);
-      font-family: 'Georgia', serif;
+    @media (min-width: 30em) {
       font-size: 2em;
-      letter-spacing: 1px;
-      text-align: center;
-
-      @media (min-width: 30em) {
-        font-size: 2em;
-      }
-    }
-
-    [class*=icon] {
-      display: inline-block;
-
-      svg {
-        display: block;
-        height: 1.25em;
-        width: auto;
-        max-width: 1.5em;
-        margin-right: 0.675em;
-      }
     }
   }
 
+  [class*='icon'] {
+    display: inline-block;
 
-  .c-container__footerLine {
-    text-align: center;
+    svg {
+      display: block;
+      height: 1.25em;
+      width: auto;
+      max-width: 1.5em;
+      margin-right: 0.675em;
+    }
   }
+}
+
+.c-container__footerLine {
+  text-align: center;
+}
 </style>
