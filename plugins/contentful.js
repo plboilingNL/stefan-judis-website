@@ -1,20 +1,35 @@
-const contentful = require('contentful');
+const fetch = require('cross-fetch');
+let resolveResponse = require('contentful-resolve-response');
+
+// there's something wrong with the package :/ ... investigating...
+if (process.browser) {
+  resolveResponse = resolveResponse.default;
+}
+
+const myFetch = async (url, query) => {
+  const res = await fetch(url).then(res => res.json());
+  return resolveResponse(res);
+};
 
 export default ({ app, env, store }) => {
-  const clientConfig = {
-    host: 'preview.contentful.com',
-    space: env.CTF_SPACE_ID,
-    accessToken: env.CTF_CPA_TOKEN,
-    environment: env.CTF_ENVIRONMENT_ID || 'master'
-  };
+  const space = env.CTF_SPACE_ID;
+
+  let host = 'preview.contentful.com';
+  let accessToken = env.CTF_CPA_TOKEN;
+  let environment = env.CTF_ENVIRONMENT_ID || 'master';
 
   if (env.IS_PRODUCTION) {
-    clientConfig.host = 'cdn.contentful.com';
-    clientConfig.accessToken = env.CTF_CDA_TOKEN;
-    clientConfig.environment = 'master';
+    host = 'cdn.contentful.com';
+    accessToken = env.CTF_CDA_TOKEN;
+    environment = 'master';
   }
 
-  const client = contentful.createClient(clientConfig);
+  const getEntries = query => {
+    return myFetch(
+      `https://${host}/spaces/${space}/environments/${environment}/entries?${query}&access_token=${accessToken}`
+    );
+  };
+
   const {
     events,
     me,
@@ -29,13 +44,10 @@ export default ({ app, env, store }) => {
   app.contentful = {
     async getMe() {
       if (!me.entry.sys) {
-        return client
-          .getEntries({
-            'sys.id': env.CTF_ME_ID
-          })
-          .then(res => {
-            store.commit('me/setMe', res.items[0]);
-            return res.items[0];
+        return getEntries(`sys.id=${env.CTF_ME_ID}`)
+          .then(items => {
+            store.commit('me/setMe', items[0]);
+            return items[0];
           })
           .catch(err => console.log(err));
       }
@@ -45,18 +57,16 @@ export default ({ app, env, store }) => {
 
     async getFutureEvents() {
       if (!events.futureList.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_EVENT_ID,
-            order: 'fields.start',
-            'fields.state[in]': 'attending,accepted,teaching',
-            'fields.end[gte]': new Date(
-              +new Date() - 1000 * 60 * 60 * 24
-            ).toISOString()
-          })
-          .then(res => {
-            store.commit('events/setFutureList', res.items);
-            return res.items;
+        return getEntries(
+          `content_type=${
+            env.CTF_EVENT_ID
+          }&order=fields.start&fields.state[in]=attending,accepted,teaching&fields.end[gte]=${new Date(
+            +new Date() - 1000 * 60 * 60 * 24
+          ).toISOString()}`
+        )
+          .then(items => {
+            store.commit('events/setFutureList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -66,17 +76,14 @@ export default ({ app, env, store }) => {
 
     async getPastEvents() {
       if (!events.pastList.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_EVENT_ID,
-            order: '-fields.end',
-            'fields.state[in]': 'attending,accepted,teaching',
-            'fields.end[lte]': new Date().toISOString(),
-            'fields.state': 'accepted'
-          })
-          .then(res => {
-            store.commit('events/setPastList', res.items);
-            return res.items;
+        return getEntries(
+          `content_type=${
+            env.CTF_EVENT_ID
+          }&order=-fields.end&fields.state[in]=attending,accepted,teaching&fields.end[lte]=${new Date().toISOString()}&fields.state=accepted`
+        )
+          .then(items => {
+            store.commit('events/setPastList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -86,13 +93,10 @@ export default ({ app, env, store }) => {
 
     async getLandingpages() {
       if (!landingpages.list.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_LANDING_PAGE_ID
-          })
-          .then(res => {
-            store.commit('landingpages/setList', res.items);
-            return res.items;
+        return getEntries(`content_type=${env.CTF_LANDING_PAGE_ID}`)
+          .then(items => {
+            store.commit('landingpages/setList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -106,15 +110,11 @@ export default ({ app, env, store }) => {
       );
 
       if (!post) {
-        return client
-          .getEntries({
-            content_type: env.CTF_POST_ID,
-            'fields.slug': slug
-          })
-          .then(res => {
-            store.commit('posts/setItem', res.items[0]);
+        return getEntries(`content_type=${env.CTF_POST_ID}&fields.slug=${slug}`)
+          .then(items => {
+            store.commit('posts/setItem', items[0]);
             store.commit('posts/setActiveWithSlug', slug);
-            return res.items;
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -124,17 +124,15 @@ export default ({ app, env, store }) => {
 
     async getPosts() {
       if (!posts.list.allFetched) {
-        return client
-          .getEntries({
-            content_type: env.CTF_POST_ID,
-            order: '-fields.date',
-            select:
-              'fields.date,fields.slug,fields.title,fields.excerpt,fields.topics'
-          })
-          .then(res => {
-            store.commit('posts/setList', res.items);
+        return getEntries(
+          `content_type=${
+            env.CTF_POST_ID
+          }&order=-fields.date&select=fields.date,fields.slug,fields.title,fields.excerpt,fields.topics,sys`
+        )
+          .then(items => {
+            store.commit('posts/setList', items);
             store.commit('posts/setAllFetched', true);
-            return res.items;
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -144,14 +142,12 @@ export default ({ app, env, store }) => {
 
     async getResources() {
       if (!resources.list.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_LANDING_PAGE_ID,
-            'fields.isResource': 'true'
-          })
-          .then(res => {
-            store.commit('resources/setList', res.items);
-            return res.items;
+        return getEntries(
+          `content_type=${env.CTF_LANDING_PAGE_ID}&fields.isResource=true`
+        )
+          .then(items => {
+            store.commit('resources/setList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -161,14 +157,12 @@ export default ({ app, env, store }) => {
 
     async getScreencasts() {
       if (!screencasts.list.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_SCREENCAST_ID,
-            order: '-fields.publishDate'
-          })
-          .then(res => {
-            store.commit('screencasts/setList', res.items);
-            return res.items;
+        return getEntries(
+          `content_type=${env.CTF_SCREENCAST_ID}&order=-fields.publishDate`
+        )
+          .then(items => {
+            store.commit('screencasts/setList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -178,14 +172,10 @@ export default ({ app, env, store }) => {
 
     async getTalks() {
       if (!talks.list.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_TALK_ID,
-            order: '-fields.date'
-          })
-          .then(res => {
-            store.commit('talks/setList', res.items);
-            return res.items;
+        return getEntries(`content_type=${env.CTF_TALK_ID}&order=-fields.date`)
+          .then(items => {
+            store.commit('talks/setList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
@@ -195,14 +185,10 @@ export default ({ app, env, store }) => {
 
     async getTil() {
       if (!til.list.length) {
-        return client
-          .getEntries({
-            content_type: env.CTF_TIL_ID,
-            order: '-fields.date'
-          })
-          .then(res => {
-            store.commit('til/setList', res.items);
-            return res.items;
+        return getEntries(`content_type=${env.CTF_TIL_ID}&order=-fields.date`)
+          .then(items => {
+            store.commit('til/setList', items);
+            return items;
           })
           .catch(err => console.log(err));
       }
