@@ -1,7 +1,8 @@
 <template>
   <figure role="group" class="c-lazyImage" :style="{ paddingTop: `${ratio * 100}%` }">
     <div class="c-lazyImage--sqip" v-html="preview"></div>
-    <img v-if="ready || load" :src="imageSrc" :alt="asset.fields.title">
+    <img v-if="ready && !load" :src="imageSrc" :alt="asset.fields.title">
+    <img v-if="load" :src="asset.fields.file.url" :alt="asset.fields.title">
   </figure>
 </template>
 
