@@ -1,26 +1,24 @@
 <template>
   <div class="c-person u-marginTopLarge">
     <div class="c-person__image">
-      <div>
-        <img class="c-person__image" :src="person.fields.profilePhoto.fields.file.url" :alt="person.fields.profilePhoto.fields.title" />
-        <ul class="c-person__social">
-          <li>
-            <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">
-              <Icon name="Twitter"></Icon>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/stefanjudis" rel="me" aria-label="Follow me on GitHub">
-              <Icon name="GitHub"></Icon>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/stefans_little_planet/" rel="me" aria-label="Follow me on Instagram">
-              <Icon name="Instagram"></Icon>
-            </a>
-          </li>
-        </ul>
-      </div>
+      <img :src="person.fields.profilePhoto.fields.file.url" :alt="person.fields.profilePhoto.fields.title" />
+      <ul class="c-person__social">
+        <li>
+          <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">
+            <Icon name="Twitter"></Icon>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/stefanjudis" rel="me" aria-label="Follow me on GitHub">
+            <Icon name="GitHub"></Icon>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/stefans_little_planet/" rel="me" aria-label="Follow me on Instagram">
+            <Icon name="Instagram"></Icon>
+          </a>
+        </li>
+      </ul>
     </div>
     <div class="c-person__details">
       <div v-html="bio"></div>
@@ -77,8 +75,8 @@ export default {
 .c-person__image {
   width: 100%;
   display: block;
-  overflow: hidden;
   position: relative;
+  padding-bottom: 100%;
 
   border-radius: 0.125em 0.25em 0 0;
   overflow: hidden;
@@ -87,11 +85,22 @@ export default {
     margin: 0 1em 0 0;
     flex: 0 0 50%;
     flex-direction: row;
+    padding-bottom: 50%;
     border-radius: 0;
   }
 
   @media (min-width: 56em) {
     flex: 0 0 33.333%;
+    padding-bottom: 33.333%;
+  }
+
+  img {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
 }
 
