@@ -7,13 +7,13 @@
     </main>
     <loading-time />
     <closing/>
-    <cookie-banner />
+    <!-- <cookie-banner /> -->
   </div>
 </template>
 
 <script>
 import Closing from '~/components/Closing.vue';
-import CookieBanner from '~/components/CookieBanner.vue';
+// import CookieBanner from '~/components/CookieBanner.vue';
 import Navigation from '~/components/Navigation.vue';
 import OfflineNotice from '~/components/OfflineNotice.vue';
 import LoadingTime from '~/components/LoadingTime.vue';
@@ -21,7 +21,7 @@ import LoadingTime from '~/components/LoadingTime.vue';
 export default {
   components: {
     Closing,
-    CookieBanner,
+    // CookieBanner,
     Navigation,
     OfflineNotice,
     LoadingTime
