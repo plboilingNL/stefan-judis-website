@@ -128,8 +128,8 @@ const config = {
     [
       '@nuxtjs/google-analytics',
       {
-        ua: 'UA-104150131-1',
-        disabled: true
+        ua: 'UA-104150131-1'
+        // disabled: true
       }
     ]
   ],
