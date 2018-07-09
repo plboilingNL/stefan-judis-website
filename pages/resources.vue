@@ -5,7 +5,7 @@
       <li v-for="resource in resources" :key="resource.sys.id">
         <div class="c-tile">
           <div class="c-tile__container">
-            <h2 class="o-headline-2">{{ resource.fields.title }}</h2>
+            <h2 class="o-headline-2" :id="resource.fields.title | idAlize">{{ resource.fields.title }}</h2>
             <p class="u-marginTopAuto">{{ resource.fields.description }}</p>
             <div class="c-tile__footer">
               <nuxt-link :to="`/${resource.fields.slug}/`" :aria-labelledby="resource.fields.title | idAlize">Read more</nuxt-link>
