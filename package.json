@@ -55,6 +55,7 @@
     "netlify-cli": "^1.2.2",
     "node-fetch": "^2.1.2",
     "node-sass": "^4.9.0",
+    "preload-webpack-plugin": "^2.3.0",
     "sass-loader": "^7.0.3",
     "sqip": "^0.3.3",
     "svg-inline-loader": "^0.8.0",

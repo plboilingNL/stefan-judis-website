@@ -82,11 +82,12 @@ export default {
     },
     prefetchRoute(url) {
       //! todo make me pretty
-      console.log(this.$route.path);
+      // console.log(this.$router.options.routes[0].component);
+      // import(this.$router.options.routes[0].component.name);
       if (this.$route.path !== url) {
-        this.$router
-          .getMatchedComponents(url)
-          .forEach(initComponent => initComponent());
+        this.$router.getMatchedComponents(url).forEach(initComponent => {
+          console.log(initComponent.toString()), initComponent();
+        });
       }
     }
   },

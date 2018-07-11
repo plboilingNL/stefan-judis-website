@@ -1,3 +1,4 @@
+const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { getConfigForKeys } = require('./lib/config.js');
 const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
@@ -159,7 +160,9 @@ const config = {
       require('autoprefixer')({
         browsers: ['> 5%']
       })
-    ]
+    ],
+
+    plugins: [new PreloadWebpackPlugin()]
   },
 
   // related to
