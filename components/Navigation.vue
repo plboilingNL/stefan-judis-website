@@ -84,11 +84,11 @@ export default {
       //! todo make me pretty
       // console.log(this.$router.options.routes[0].component);
       // import(this.$router.options.routes[0].component.name);
-      if (this.$route.path !== url) {
-        this.$router.getMatchedComponents(url).forEach(initComponent => {
-          console.log(initComponent.toString()), initComponent();
-        });
-      }
+      // if (this.$route.path !== url) {
+      //   this.$router.getMatchedComponents(url).forEach(initComponent => {
+      //     console.log(initComponent.toString()), initComponent();
+      //   });
+      // }
     }
   },
   components: {
