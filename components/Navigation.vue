@@ -11,7 +11,6 @@
         v-for="(item, index) in menu"
         :key="item.label"
         :data-index="index"
-        @mouseenter="prefetchRoute(item.url)"
       >
         <nuxt-link  :to="item.url">
           <Icon v-if="item.icon" :name="item.icon"></Icon>

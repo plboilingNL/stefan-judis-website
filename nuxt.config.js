@@ -1,4 +1,4 @@
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
+// const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const { getConfigForKeys } = require('./lib/config.js');
 const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
@@ -154,15 +154,15 @@ const config = {
         test: /\.svg$/,
         use: 'svg-inline-loader?removeSVGTagAttrs=false'
       });
+      // console.log(config);
+      // config.plugins.push(new PreloadWebpackPlugin());
     },
 
     postcss: [
       require('autoprefixer')({
         browsers: ['> 5%']
       })
-    ],
-
-    plugins: [new PreloadWebpackPlugin()]
+    ]
   },
 
   // related to
