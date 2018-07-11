@@ -19,6 +19,10 @@
     transform: translate(0, -0.0625em);
   }
 
+  &:focus {
+    color: #fff;
+  }
+
   &:active {
     filter: brightness(0.75);
   }
