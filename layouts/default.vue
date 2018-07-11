@@ -34,7 +34,7 @@ export default {
   beforeCreate() {
     if (!this.$isServer) {
       import('inert-polyfill');
-      import('wicg-focus-ring');
+      import('focus-visible');
     }
   },
   mounted() {
@@ -169,7 +169,7 @@ a {
   outline-offset: 2px;
   outline-color: var(--c-highlight);
 
-  .js-focus-ring &:not(.focus-ring) {
+  .js-focus-visible &:not(.focus-visible) {
     outline: none;
   }
 }
