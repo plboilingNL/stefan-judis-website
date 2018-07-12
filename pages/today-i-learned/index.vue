@@ -81,5 +81,9 @@ export default createPage({
   @media (min-width: 70em) {
     grid-row: 2 / 5;
   }
+
+  @media (min-width: 106em) {
+    grid-row: 2 / 4;
+  }
 }
 </style>
