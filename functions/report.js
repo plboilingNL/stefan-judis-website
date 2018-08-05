@@ -1,3 +1,5 @@
+const IGNORED_URL_PATTERNS = [/\.(woff2?|ttf)/];
+
 exports.handler = (event, context, callback) => {
   if (event.body) {
     const apiKey = process.env.MG_TOKEN;
@@ -25,16 +27,27 @@ exports.handler = (event, context, callback) => {
       text: JSON.stringify(report, null, 2)
     };
 
-    mailgun.messages().send(data, (error, body) => {
-      if (error) {
-        return callback(error);
-      }
+    const sendNotificationEmail = IGNORED_URL_PATTERNS.some(pattern => {
+      return pattern.test(blockedUri);
+    });
 
+    if (sendNotificationEmail) {
+      mailgun.messages().send(data, (error, body) => {
+        if (error) {
+          return callback(error);
+        }
+
+        callback(null, {
+          statusCode: 200,
+          body: 'Sent'
+        });
+      });
+    } else {
       callback(null, {
         statusCode: 200,
-        body: 'Sent'
+        body: 'Not sent because it was included in the ignored patterns'
       });
-    });
+    }
   } else {
     callback(null, {
       statusCode: 400,
