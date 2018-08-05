@@ -1,4 +1,8 @@
-const IGNORED_URL_PATTERNS = [/\.(woff2?|ttf)/];
+const IGNORED_URL_PATTERNS = [
+  // I don't care about weird fonts that should be loaded
+  // -> I'm not loading any fonts
+  /\.(woff2?|ttf)/
+];
 
 exports.handler = (event, context, callback) => {
   if (event.body) {
@@ -27,7 +31,7 @@ exports.handler = (event, context, callback) => {
       text: JSON.stringify(report, null, 2)
     };
 
-    const sendNotificationEmail = IGNORED_URL_PATTERNS.some(pattern => {
+    const sendNotificationEmail = !IGNORED_URL_PATTERNS.some(pattern => {
       return pattern.test(blockedUri);
     });
 
