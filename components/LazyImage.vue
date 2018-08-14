@@ -22,7 +22,7 @@ export default {
         neededImageWidth * this.ratio
       )}&fit=fill${supportsWebp ? '&fm=webp' : ''}`;
 
-      if (window.IntersectionObserver) {
+      if (window.IntersectionObserver && !this.load) {
         const observer = new IntersectionObserver(
           entries => {
             entries.forEach(entry => {
