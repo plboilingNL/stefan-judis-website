@@ -82,10 +82,11 @@ body {
   --grey-very-dark: #3a3a3a;
 
   --c-highlight: var(--blue-dark);
+  --c-highlight-light: var(--blue-bright);
   --c-text: var(--grey-dark);
 
   --shadow-tile: 0 0.5em 2.5em #bbb;
-  --shadow-btn: 0 0.125em 0.375em #e1e1e1;
+  --shadow-btn: 0 0.25em 1.5em #bbb;
   --shadow-person: var(--shadow-tile);
   --shadow-floating-thing: 0 0.375em 1.5em -0.25em #bbb;
 
@@ -100,7 +101,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
 
-  background: #fff;
+  background: #fbfbfb;
   color: var(--c-text);
 
   padding-bottom: 5em;
