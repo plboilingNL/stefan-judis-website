@@ -83,6 +83,11 @@ body {
 
   --c-highlight: var(--blue-dark);
   --c-highlight-light: var(--blue-bright);
+  --c-highlight-gradien: linear-gradient(
+    125deg,
+    var(--c-highlight) 0,
+    var(--c-highlight-light)
+  );
   --c-text: var(--grey-dark);
 
   --shadow-tile: 0 0.5em 2.5em #bbb;
