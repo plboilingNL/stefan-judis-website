@@ -31,12 +31,12 @@ export default createPage({
     nextPage() {
       return this.$store.state.posts.list.length >
         this.$store.state.posts.activePageNumber * NR_OF_POSTS
-        ? `/blog/page/${this.$store.state.posts.activePageNumber + 1}`
+        ? `/blog/page/${this.$store.state.posts.activePageNumber + 1}/`
         : null;
     },
     prevPage() {
       return this.$store.state.posts.activePageNumber > 2
-        ? `/blog/page/${this.$store.state.posts.activePageNumber - 1}`
+        ? `/blog/page/${this.$store.state.posts.activePageNumber - 1}/`
         : `/blog/`;
     },
     posts() {
