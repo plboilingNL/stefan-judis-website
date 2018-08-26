@@ -215,7 +215,6 @@ function getAllRoutes() {
     })
   ]).then(([blogPosts, tilPosts, landingPages, topics]) => {
     const postPages = blogPosts.items.reduce((pages, entry, index) => {
-      // the external posts don't need do be rendered
       pages.push(`/blog/${entry.fields.slug}`);
 
       if (index % 5 === 0 && index !== 0) {
