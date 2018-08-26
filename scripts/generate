@@ -73,7 +73,7 @@ async function getRoutesToUpdate() {
     lastToken = config.lastToken;
     console.log('SYNC TOKEN FOUND');
   } catch (e) {
-    console.log(`NO BUILD CONFIG FOUND AT ${BUILD_CONFIG_PATH}`);
+    console.log(`NO SYNC TOKEN FOUND AT ${BUILD_CONFIG_PATH}`);
   }
 
   const { nextSyncToken, entries } = await cdaClient.sync(
@@ -107,6 +107,7 @@ async function getRoutesToUpdate() {
 }
 
 async function getRoutesForEntry(entry) {
+  console.log(`Getting routes for "${entry.fields.title}"`);
   const getSlug = entry => entry.fields.slug['en-US'];
   const getTopicUrls = async entry => {
     const entryWithLinkedItems = await cdaClient.getEntry(entry.sys.id);
@@ -143,7 +144,7 @@ async function getRoutesForEntry(entry) {
     case 'landingPage':
       return ['/resources', `/${getSlug(entry)}`];
     case 'topic':
-      return `/topics/${getSlug(entry)}`;
+      return [`/topics/${getSlug(entry)}`];
     default:
       null;
   }
