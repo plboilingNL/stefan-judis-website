@@ -15,17 +15,15 @@ const client = contentful.createClient({
 const download = require('download');
 const path = require('path');
 const { emptyDir, writeFile, readFile } = require('fs-extra');
-const isProduction = process.env.NODE_ENV === 'production';
-const SQIP_CACHE = isProduction
-  ? path.join('/', 'opt', 'build', 'cache', 'sqip')
-  : path.resolve(__dirname, '..', '.sqip');
+const { getCachePath, shouldClearCache } = require('./utils/index.js');
+const SQIP_CACHE = getCachePath('sqip');
 const JS_DESTINATION = path.resolve(__dirname, '..', 'plugins', 'image-map.js');
 const sqip = require('sqip');
 
 async function sqipItems() {
   console.log('// --------------------------------------------');
 
-  if (process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE') {
+  if (shouldClearCache) {
     console.log(`Clearing ${SQIP_CACHE}`);
     await emptyDir(SQIP_CACHE);
   }

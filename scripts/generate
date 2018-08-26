@@ -1,26 +1,153 @@
 #!/usr/bin/env node
-
+const cdaContentful = require('contentful');
+const flat = require('array.prototype.flat');
+const copydir = require('copy-dir');
 const { Nuxt, Builder, Generator } = require('nuxt-edge');
-const config = require('../nuxt.config.js');
+const { emptyDir, writeFileSync } = require('fs-extra');
 
-config.mode = 'universal';
-config.dev = false;
+const path = require('path');
 
-const nuxt = new Nuxt(config);
-const builder = new Builder(nuxt);
-const generator = new Generator(nuxt, builder);
-const generateOptions = {
-  init: true, // process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
-  build: true
-};
+// enforce prod environment for local debugging
+// generating with preview data doesn't make much sense anyway
+process.env.NODE_ENV = 'production';
 
-async function generateRoutes() {
+const { getConfig } = require('../lib/config.js');
+const {
+  getCachePath,
+  isCodeUpdate,
+  isContentUpdate,
+  shouldClearCache
+} = require('./utils/index.js');
+const ctfConfig = getConfig();
+const cdaClient = cdaContentful.createClient({
+  accessToken: ctfConfig.CTF_CDA_TOKEN,
+  host: 'cdn.contentful.com',
+  space: ctfConfig.CTF_SPACE_ID
+});
+
+const BUILD_CACHE = getCachePath('dist');
+const BUILD_CONFIG_PATH = path.join(BUILD_CACHE, 'build.json');
+
+async function generate() {
+  if (shouldClearCache) {
+    console.log(`Clearing ${BUILD_CACHE}`);
+    await emptyDir(BUILD_CACHE);
+  }
+
+  const nuxt = new Nuxt(getNuxtConfig());
+  const builder = new Builder(nuxt);
+  const generator = new Generator(nuxt, builder);
+
   try {
-    await generator.generate(generateOptions);
+    await generator.generate(getGenerateOptions());
   } catch (e) {
     console.error(e);
     throw e;
   }
+
+  copydir.sync(BUILD_CACHE, path.join(__dirname, '..', 'dist'));
+  console.log(`Files from ${BUILD_CONFIG_PATH} copied to 'dist'...`);
 }
 
-generateRoutes();
+function getGenerateOptions() {
+  return {
+    init: shouldClearCache || isCodeUpdate,
+    build: shouldClearCache || isCodeUpdate
+  };
+}
+
+function getNuxtConfig() {
+  const config = require('../nuxt.config.js');
+  config.mode = 'universal';
+  config.dev = false;
+  config.generate = {
+    routes: getRoutesToUpdate,
+    dir: BUILD_CACHE
+  };
+  return config;
+}
+
+async function getRoutesToUpdate() {
+  let lastToken;
+  try {
+    const config = require(BUILD_CONFIG_PATH);
+    lastToken = config.lastToken;
+    console.log('SYNC TOKEN FOUND');
+  } catch (e) {
+    console.log(`NO BUILD CONFIG FOUND AT ${BUILD_CONFIG_PATH}`);
+  }
+
+  const { nextSyncToken, entries } = await cdaClient.sync(
+    Object.assign(
+      { type: 'Entry' },
+      !!lastToken
+        ? {
+            nextSyncToken: lastToken
+          }
+        : {
+            initial: true
+          }
+    )
+  );
+
+  const routes = [
+    ...(!lastToken ? ['/404'] : []),
+    ...flat(await Promise.all(entries.map(entry => getRoutesForEntry(entry))))
+      // filter out false routes for entries
+      // that don't have their own route
+      .filter(route => !!route)
+  ];
+
+  writeFileSync(
+    BUILD_CONFIG_PATH,
+    JSON.stringify({ lastToken: nextSyncToken })
+  );
+  console.log(`${BUILD_CONFIG_PATH} written...`);
+
+  return routes;
+}
+
+async function getRoutesForEntry(entry) {
+  const getSlug = entry => entry.fields.slug['en-US'];
+  const getTopicUrls = async entry => {
+    const entryWithLinkedItems = await cdaClient.getEntry(entry.sys.id);
+    return entryWithLinkedItems.fields.topics.map(
+      topic => `/topics/${topic.fields.slug}`
+    );
+  };
+  const getPostPages = async entry => {
+    const { items } = await cdaClient.getEntries({
+      content_type: '2wKn6yEnZewu2SCCkus4as'
+    });
+
+    // ignore page /blog/page/1 because that's /blog
+    return Array.apply(null, Array(Math.ceil(18 / 5 - 1))).map(function(x, i) {
+      return `/blog/page/${i + 2}`;
+    });
+  };
+
+  switch (entry.sys.contentType.sys.id) {
+    case '2wKn6yEnZewu2SCCkus4as':
+      return [
+        '/',
+        '/blog',
+        `/blog/${getSlug(entry)}`,
+        ...(await getTopicUrls(entry)),
+        ...(await getPostPages(entry))
+      ];
+    case 'tilPost':
+      return [
+        '/today-i-learned',
+        `/today-i-learned/${getSlug(entry)}`,
+        ...(await getTopicUrls(entry))
+      ];
+    case 'landingPage':
+      return ['/resources', `/${getSlug(entry)}`];
+    case 'topic':
+      return `/topics/${getSlug(entry)}`;
+    default:
+      null;
+  }
+}
+
+generate();
