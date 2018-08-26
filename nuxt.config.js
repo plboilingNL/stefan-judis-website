@@ -1,22 +1,8 @@
 // const PreloadWebpackPlugin = require('preload-webpack-plugin');
-const { getConfigForKeys } = require('./lib/config.js');
-const ctfConfig = getConfigForKeys([
-  'CTF_SPACE_ID',
-  'CTF_ENVIRONMENT_ID',
-  'CTF_CDA_TOKEN',
-  'CTF_CPA_TOKEN',
-  'CTF_ME_ID',
-  'CTF_POST_ID',
-  'CTF_TALK_ID',
-  'CTF_PROJECT_ID',
-  'CTF_EVENT_ID',
-  'CTF_TIL_ID',
-  'CTF_SCREENCAST_ID',
-  'CTF_LANDING_PAGE_ID',
-  'CTF_TOPIC_ID'
-]);
-
 const cdaContentful = require('contentful');
+
+const { getConfig } = require('./lib/config.js');
+const ctfConfig = getConfig();
 const cdaClient = cdaContentful.createClient({
   accessToken: ctfConfig.CTF_CDA_TOKEN,
   host: 'cdn.contentful.com',
@@ -174,26 +160,13 @@ const config = {
     exclude: ['/404']
   },
 
-  generate: {
-    routes: getAllRoutes
-  },
+  // generate: {
+  //   routes: getAllRoutes
+  // },
 
   env: {
     IS_PRODUCTION: process.env.NODE_ENV === 'production',
-    CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
-    CTF_ENVIRONMENT_ID: ctfConfig.CTF_ENVIRONMENT_ID,
-    CTF_CDA_TOKEN: ctfConfig.CTF_CDA_TOKEN,
-    CTF_CPA_TOKEN: ctfConfig.CTF_CPA_TOKEN,
-    CTF_PERSON_ID: ctfConfig.CTF_PERSON_ID,
-    CTF_ME_ID: ctfConfig.CTF_ME_ID,
-    CTF_POST_ID: ctfConfig.CTF_POST_ID,
-    CTF_TALK_ID: ctfConfig.CTF_TALK_ID,
-    CTF_PROJECT_ID: ctfConfig.CTF_PROJECT_ID,
-    CTF_EVENT_ID: ctfConfig.CTF_EVENT_ID,
-    CTF_TIL_ID: ctfConfig.CTF_TIL_ID,
-    CTF_SCREENCAST_ID: ctfConfig.CTF_SCREENCAST_ID,
-    CTF_LANDING_PAGE_ID: ctfConfig.CTF_LANDING_PAGE_ID,
-    CTF_TOPIC_ID: ctfConfig.CTF_TOPIC_ID
+    ...ctfConfig
   }
 };
 
