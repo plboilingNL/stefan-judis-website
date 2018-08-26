@@ -140,8 +140,6 @@ const config = {
         test: /\.svg$/,
         use: 'svg-inline-loader?removeSVGTagAttrs=false'
       });
-      // console.log(config);
-      // config.plugins.push(new PreloadWebpackPlugin());
     },
 
     postcss: [
@@ -160,6 +158,7 @@ const config = {
     exclude: ['/404']
   },
 
+  // will be set in ./scripts/generate
   // generate: {
   //   routes: getAllRoutes
   // },

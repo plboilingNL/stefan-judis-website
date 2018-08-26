@@ -1,23 +1,39 @@
 #!/usr/bin/env node
 const cdaContentful = require('contentful');
+const flat = require('array.prototype.flat');
+const copydir = require('copy-dir');
 const { Nuxt, Builder, Generator } = require('nuxt-edge');
+const { emptyDir, writeFileSync } = require('fs-extra');
+
 const path = require('path');
 
+// enforce prod environment for local debugging
+// generating with preview data doesn't make much sense anyway
+process.env.NODE_ENV = 'production';
+
 const { getConfig } = require('../lib/config.js');
+const {
+  getCachePath,
+  isCodeUpdate,
+  isContentUpdate,
+  shouldClearCache
+} = require('./utils/index.js');
 const ctfConfig = getConfig();
 const cdaClient = cdaContentful.createClient({
   accessToken: ctfConfig.CTF_CDA_TOKEN,
   host: 'cdn.contentful.com',
   space: ctfConfig.CTF_SPACE_ID
 });
-const isProduction = process.env.NODE_ENV === 'production';
-const isContentUpdate = process.env.WEBHOOK_TITLE === 'CONTENT_UPDATE';
 
-const BUILD_CACHE = isProduction
-  ? path.join('/', 'opt', 'build', 'cache', 'dist')
-  : path.resolve(__dirname, '..', '.dist');
+const BUILD_CACHE = getCachePath('dist');
+const BUILD_CONFIG_PATH = path.join(BUILD_CACHE, 'build.json');
 
 async function generate() {
+  if (shouldClearCache) {
+    console.log(`Clearing ${BUILD_CACHE}`);
+    await emptyDir(BUILD_CACHE);
+  }
+
   const nuxt = new Nuxt(getNuxtConfig());
   const builder = new Builder(nuxt);
   const generator = new Generator(nuxt, builder);
@@ -28,12 +44,15 @@ async function generate() {
     console.error(e);
     throw e;
   }
+
+  copydir.sync(BUILD_CACHE, path.join(__dirname, '..', 'dist'));
+  console.log(`Files from ${BUILD_CONFIG_PATH} copied to 'dist'...`);
 }
 
 function getGenerateOptions() {
   return {
-    init: true,
-    build: true
+    init: shouldClearCache || isCodeUpdate,
+    build: shouldClearCache || isCodeUpdate
   };
 }
 
@@ -42,96 +61,93 @@ function getNuxtConfig() {
   config.mode = 'universal';
   config.dev = false;
   config.generate = {
-    routes: getRoutes
+    routes: getRoutesToUpdate,
+    dir: BUILD_CACHE
   };
   return config;
 }
 
-function getRoutes() {
-  if (isContentUpdate) {
-    return getRoutesToUpdate();
-  } else {
-    return getAllRoutes();
-  }
-}
-
 async function getRoutesToUpdate() {
-  const syncResult = await cdaClient.sync({
-    initial: true,
-    type: 'Entry'
-  });
+  let lastToken;
+  try {
+    const config = require(BUILD_CONFIG_PATH);
+    lastToken = config.lastToken;
+    console.log('SYNC TOKEN FOUND');
+  } catch (e) {
+    console.log(`NO BUILD CONFIG FOUND AT ${BUILD_CONFIG_PATH}`);
+  }
+
+  const { nextSyncToken, entries } = await cdaClient.sync(
+    Object.assign(
+      { type: 'Entry' },
+      !!lastToken
+        ? {
+            nextSyncToken: lastToken
+          }
+        : {
+            initial: true
+          }
+    )
+  );
 
   const routes = [
-    '404',
-    ...syncResult.entries
-      .map(entry => getRouteForEntry(entry))
+    ...(!lastToken ? ['/404'] : []),
+    ...flat(await Promise.all(entries.map(entry => getRoutesForEntry(entry))))
       // filter out false routes for entries
       // that don't have their own route
       .filter(route => !!route)
   ];
 
-  console.log(routes);
+  writeFileSync(
+    BUILD_CONFIG_PATH,
+    JSON.stringify({ lastToken: nextSyncToken })
+  );
+  console.log(`${BUILD_CONFIG_PATH} written...`);
+
   return routes;
 }
 
-function getRouteForEntry(entry) {
+async function getRoutesForEntry(entry) {
   const getSlug = entry => entry.fields.slug['en-US'];
+  const getTopicUrls = async entry => {
+    const entryWithLinkedItems = await cdaClient.getEntry(entry.sys.id);
+    return entryWithLinkedItems.fields.topics.map(
+      topic => `/topics/${topic.fields.slug}`
+    );
+  };
+  const getPostPages = async entry => {
+    const { items } = await cdaClient.getEntries({
+      content_type: '2wKn6yEnZewu2SCCkus4as'
+    });
+
+    // ignore page /blog/page/1 because that's /blog
+    return Array.apply(null, Array(Math.ceil(18 / 5 - 1))).map(function(x, i) {
+      return `/blog/page/${i + 2}`;
+    });
+  };
 
   switch (entry.sys.contentType.sys.id) {
     case '2wKn6yEnZewu2SCCkus4as':
-      return `/blog/${getSlug(entry)}`;
+      return [
+        '/',
+        '/blog',
+        `/blog/${getSlug(entry)}`,
+        ...(await getTopicUrls(entry)),
+        ...(await getPostPages(entry))
+      ];
     case 'tilPost':
-      return `/today-i-learned/${getSlug(entry)}`;
+      return [
+        '/today-i-learned',
+        `/today-i-learned/${getSlug(entry)}`,
+        ...(await getTopicUrls(entry))
+      ];
     case 'landingPage':
-      return `/${getSlug(entry)}`;
+      return ['/resources', `/${getSlug(entry)}`];
     case 'topic':
       return `/topics/${getSlug(entry)}`;
     default:
       null;
   }
-}
-
-function getAllRoutes() {
-  return Promise.all([
-    cdaClient.getEntries({
-      content_type: '2wKn6yEnZewu2SCCkus4as',
-      order: '-fields.date'
-    }),
-    cdaClient.getEntries({
-      content_type: 'tilPost',
-      order: '-fields.date'
-    }),
-    cdaClient.getEntries({
-      content_type: 'landingPage'
-    }),
-    cdaClient.getEntries({
-      content_type: 'topic'
-    })
-  ]).then(([blogPosts, tilPosts, landingPages, topics]) => {
-    const postPages = blogPosts.items.reduce((pages, entry, index) => {
-      pages.push(`/blog/${entry.fields.slug}`);
-
-      if (index % 5 === 0 && index !== 0) {
-        pages.push(`/blog/page/${Math.floor(index / 5)}`);
-      }
-
-      return pages;
-    }, []);
-
-    const tilPages = tilPosts.items.map(
-      item => `/today-i-learned/${item.fields.slug}`
-    );
-
-    const landingPageSlugs = landingPages.items.map(
-      item => `/${item.fields.slug}`
-    );
-
-    const topicSlugs = topics.items
-      .filter(item => item.fields.title !== 'Newsletter')
-      .map(item => `/topics/${item.fields.slug}`);
-
-    return [...postPages, ...tilPages, ...landingPageSlugs, ...topicSlugs];
-  });
 }
 
 generate();

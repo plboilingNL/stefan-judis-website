@@ -110,7 +110,6 @@ export default ({ app, env, store }) => {
       );
 
       if (!post) {
-        console.log(slug);
         return getEntries(`content_type=${env.CTF_POST_ID}&fields.slug=${slug}`)
           .then(items => {
             store.commit('posts/setItem', items[0]);
