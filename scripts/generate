@@ -45,7 +45,7 @@ async function generate() {
   }
 
   copydir.sync(BUILD_CACHE, path.join(__dirname, '..', 'dist'));
-  console.log(`Files from ${BUILD_CONFIG_PATH} copied to 'dist'...`);
+  console.log(`Files from ${BUILD_CACHE} copied to 'dist'...`);
 }
 
 function getGenerateOptions() {
