@@ -107,7 +107,7 @@ async function getRoutesToUpdate() {
 }
 
 async function getRoutesForEntry(entry) {
-  console.log(`Getting routes for "${entry.fields.title}"`);
+  console.log(`Getting routes for "${entry.fields.title['en-US']}"`);
   const getSlug = entry => entry.fields.slug['en-US'];
   const getTopicUrls = async entry => {
     const entryWithLinkedItems = await cdaClient.getEntry(entry.sys.id);
