@@ -86,7 +86,6 @@ function getFeedItemsForFiles(files) {
         }).window;
 
         const isTil = /today-i-learned/.test(filePath);
-
         return {
           date: document.querySelector('.c-prettyDate').innerHTML,
           title: `${isTil ? 'TIL: ' : ''}${

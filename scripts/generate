@@ -15,7 +15,6 @@ const { getConfig } = require('../lib/config.js');
 const {
   getCachePath,
   isCodeUpdate,
-  isContentUpdate,
   shouldClearCache
 } = require('./utils/index.js');
 const ctfConfig = getConfig();
