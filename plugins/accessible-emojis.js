@@ -1,6 +1,6 @@
-import EmojiRegex from 'emoji-regex'
+import EmojiRegex from 'emoji-regex';
 
-const emojiRegex = EmojiRegex()
+const emojiRegex = EmojiRegex();
 const EMOJI_LABELS = {
   '10084': 'Red heart',
   '127881': 'Party popper',
@@ -13,21 +13,24 @@ const EMOJI_LABELS = {
   '128106': 'Family',
   '128207': 'Straight ruler',
   '128522': 'Smyling face',
+  '129310': 'Fingers crossed',
   '129315': 'Rolling on the Floor Laughing Emoji'
-}
+};
 
-export function makeEmojisAccessible (text) {
-  return text && text.replace(
-    emojiRegex,
-    emoji => {
-      const emojiCodePoint = emoji.codePointAt(0)
-      const label = EMOJI_LABELS[emojiCodePoint]
+export function makeEmojisAccessible(text) {
+  return (
+    text &&
+    text.replace(emojiRegex, emoji => {
+      const emojiCodePoint = emoji.codePointAt(0);
+      const label = EMOJI_LABELS[emojiCodePoint];
 
       if (!label) {
-        console.warn(`Label for CodePoint ${emojiCodePoint} is not defined`)
+        console.warn(`Label for CodePoint ${emojiCodePoint} is not defined`);
       }
 
-      return `<span role="img" aria-label="${EMOJI_LABELS[emoji.codePointAt(0)]}" tabindex="0">${emoji}</span>`
-    }
-  )
+      return `<span role="img" aria-label="${
+        EMOJI_LABELS[emoji.codePointAt(0)]
+      }" tabindex="0">${emoji}</span>`;
+    })
+  );
 }
