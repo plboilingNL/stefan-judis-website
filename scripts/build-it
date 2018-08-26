@@ -1,6 +1,7 @@
 #!/bin/sh
 
-echo "TRIGGERED BY:"
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "BUILD TRIGGERED BY:"
 echo "$WEBHOOK_TITLE"
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
