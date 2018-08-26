@@ -7,7 +7,7 @@ module.exports = {
   isContentUpdate: process.env.WEBHOOK_TITLE === 'CONTENTFUL_UPDATE',
   getCachePath: name =>
     isNetlify()
-      ? path.join('/', 'opt', 'build', 'cache', 'dist', name)
+      ? path.join('/', 'opt', 'build', 'cache', name)
       : path.resolve(__dirname, '..', '..', `.${name}`),
   shouldClearCache: process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE'
 };
