@@ -32,8 +32,8 @@ async function generate() {
 
 function getGenerateOptions() {
   return {
-    init: !isContentUpdate,
-    build: !isContentUpdate
+    init: true,
+    build: true
   };
 }
 
@@ -48,7 +48,7 @@ function getNuxtConfig() {
 }
 
 function getRoutes() {
-  if (!isContentUpdate) {
+  if (isContentUpdate) {
     return getRoutesToUpdate();
   } else {
     return getAllRoutes();
@@ -78,12 +78,12 @@ function getRouteForEntry(entry) {
   const getSlug = entry => entry.fields.slug['en-US'];
 
   switch (entry.sys.contentType.sys.id) {
-    // case '2wKn6yEnZewu2SCCkus4as':
-    //   return `/blog/${getSlug(entry)}`;
-    // case 'tilPost':
-    //   return `/today-i-learned/${getSlug(entry)}`;
-    // case 'landingPage':
-    //   return `/${getSlug(entry)}`;
+    case '2wKn6yEnZewu2SCCkus4as':
+      return `/blog/${getSlug(entry)}`;
+    case 'tilPost':
+      return `/today-i-learned/${getSlug(entry)}`;
+    case 'landingPage':
+      return `/${getSlug(entry)}`;
     case 'topic':
       return `/topics/${getSlug(entry)}`;
     default:
