@@ -1,11 +1,8 @@
 #!/usr/bin/env node
 
 const contentful = require('contentful');
-const { getConfigForKeys } = require('../lib/config.js');
-const { CTF_SPACE_ID, CTF_CDA_TOKEN } = getConfigForKeys([
-  'CTF_SPACE_ID',
-  'CTF_CDA_TOKEN'
-]);
+const { getConfig } = require('../lib/config.js');
+const { CTF_SPACE_ID, CTF_CDA_TOKEN } = getConfig();
 const client = contentful.createClient({
   accessToken: CTF_CDA_TOKEN,
   host: 'cdn.contentful.com',
