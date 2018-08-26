@@ -218,7 +218,7 @@ function getAllRoutes() {
       pages.push(`/blog/${entry.fields.slug}`);
 
       if (index % 5 === 0 && index !== 0) {
-        pages.push(`/blog/page/${Math.floor(index / 5)}`);
+        pages.push(`/blog/page/${Math.floor(index / 5) + 1}`);
       }
 
       return pages;
