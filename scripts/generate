@@ -101,13 +101,13 @@ async function getRoutesToUpdate() {
     BUILD_CONFIG_PATH,
     JSON.stringify({ lastToken: nextSyncToken })
   );
-  console.log(`${BUILD_CONFIG_PATH} written...`);
+  console.log(`SYNC TOKEN WRITTEN`);
 
   return routes;
 }
 
 async function getRoutesForEntry(entry) {
-  console.log(`Getting routes for "${entry.fields.title['en-US']}"`);
+  console.log(`Getting routes for updated entry "${entry.sys.id}"`);
   const getSlug = entry => entry.fields.slug['en-US'];
   const getTopicUrls = async entry => {
     const entryWithLinkedItems = await cdaClient.getEntry(entry.sys.id);
