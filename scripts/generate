@@ -49,10 +49,13 @@ async function generate() {
 }
 
 function getGenerateOptions() {
-  return {
+  const options = {
     init: shouldClearCache || isCodeUpdate,
     build: shouldClearCache || isCodeUpdate
   };
+
+  console.log('generateOptions', options);
+  return options;
 }
 
 function getNuxtConfig() {
