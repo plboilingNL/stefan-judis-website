@@ -51,7 +51,7 @@ async function generate() {
 function getGenerateOptions() {
   const options = {
     init: shouldClearCache || isCodeUpdate,
-    build: shouldClearCache || isCodeUpdate
+    build: true
   };
 
   console.log('generateOptions', options);
