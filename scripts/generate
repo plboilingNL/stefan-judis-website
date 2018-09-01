@@ -24,13 +24,16 @@ const cdaClient = cdaContentful.createClient({
   space: ctfConfig.CTF_SPACE_ID
 });
 
-const BUILD_CACHE = getCachePath('dist');
-const BUILD_CONFIG_PATH = path.join(BUILD_CACHE, 'build.json');
+const GLOBAL_BUILD_CACHE = getCachePath('dist');
+const DIST_DIRECTORY = path.resolve(__dirname, '..', 'dist');
 
 async function generate() {
-  if (shouldClearCache) {
-    console.log(`Clearing ${BUILD_CACHE}`);
-    await emptyDir(BUILD_CACHE);
+  if (shouldClearCache || isCodeUpdate) {
+    console.log(`Clearing ${GLOBAL_BUILD_CACHE}`);
+    await emptyDir(GLOBAL_BUILD_CACHE);
+  } else {
+    console.log(`Copying ${GLOBAL_BUILD_CACHE} to ${DIST_DIRECTORY}`);
+    copydir.sync(GLOBAL_BUILD_CACHE, DIST_DIRECTORY);
   }
 
   const nuxt = new Nuxt(getNuxtConfig());
@@ -44,14 +47,14 @@ async function generate() {
     throw e;
   }
 
-  copydir.sync(BUILD_CACHE, path.join(__dirname, '..', 'dist'));
-  console.log(`Files from ${BUILD_CACHE} copied to 'dist'...`);
+  copydir.sync(DIST_DIRECTORY, GLOBAL_BUILD_CACHE);
+  console.log(`Files from ${GLOBAL_BUILD_CACHE} copied to 'dist'...`);
 }
 
 function getGenerateOptions() {
   const options = {
     init: shouldClearCache || isCodeUpdate,
-    build: true
+    build: shouldClearCache || isCodeUpdate
   };
 
   console.log('generateOptions', options);
@@ -64,19 +67,20 @@ function getNuxtConfig() {
   config.dev = false;
   config.generate = {
     routes: getRoutesToUpdate,
-    dir: BUILD_CACHE
+    dir: DIST_DIRECTORY
   };
   return config;
 }
 
 async function getRoutesToUpdate() {
+  const buildConfigPath = path.join(DIST_DIRECTORY, 'build.json');
   let lastToken;
   try {
-    const config = require(BUILD_CONFIG_PATH);
+    const config = require(buildConfigPath);
     lastToken = config.lastToken;
     console.log('SYNC TOKEN FOUND');
   } catch (e) {
-    console.log(`NO SYNC TOKEN FOUND AT ${BUILD_CONFIG_PATH}`);
+    console.log(`NO SYNC TOKEN FOUND AT ${buildConfigPath}`);
   }
 
   const { nextSyncToken, entries } = await cdaClient.sync(
@@ -100,10 +104,9 @@ async function getRoutesToUpdate() {
       .filter(route => !!route)
   ];
 
-  writeFileSync(
-    BUILD_CONFIG_PATH,
-    JSON.stringify({ lastToken: nextSyncToken })
-  );
+  // we can write it to build folder because
+  // it will be copied to cache folder later
+  writeFileSync(buildConfigPath, JSON.stringify({ lastToken: nextSyncToken }));
   console.log(`SYNC TOKEN WRITTEN`);
 
   return routes;
