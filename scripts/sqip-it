@@ -1,6 +1,11 @@
 #!/usr/bin/env node
 
 const contentful = require('contentful');
+const sqip = require('sqip');
+const download = require('download');
+const path = require('path');
+const { emptyDir, writeFile, readFile } = require('fs-extra');
+
 const { getConfig } = require('../lib/config.js');
 const { CTF_SPACE_ID, CTF_CDA_TOKEN } = getConfig();
 const client = contentful.createClient({
@@ -9,14 +14,9 @@ const client = contentful.createClient({
   space: CTF_SPACE_ID
 });
 
-const download = require('download');
-const path = require('path');
-const { emptyDir, writeFile, readFile } = require('fs-extra');
 const { getCachePath, shouldClearCache } = require('./utils/index.js');
 const SQIP_CACHE = getCachePath('sqip');
 const JS_DESTINATION = path.resolve(__dirname, '..', 'plugins', 'image-map.js');
-const sqip = require('sqip');
-
 async function sqipItems() {
   console.log('// --------------------------------------------');
 

@@ -3,7 +3,7 @@ const cdaContentful = require('contentful');
 const flat = require('array.prototype.flat');
 const copydir = require('copy-dir');
 const { Nuxt, Builder, Generator } = require('nuxt-edge');
-const { emptyDir, writeFileSync } = require('fs-extra');
+const { emptyDir, writeFileSync, existsSync } = require('fs-extra');
 
 const path = require('path');
 
@@ -33,7 +33,8 @@ async function generate() {
     await emptyDir(GLOBAL_BUILD_CACHE);
   } else {
     console.log(`Copying ${GLOBAL_BUILD_CACHE} to ${DIST_DIRECTORY}`);
-    copydir.sync(GLOBAL_BUILD_CACHE, DIST_DIRECTORY);
+    existsSync(GLOBAL_BUILD_CACHE) &&
+      copydir.sync(GLOBAL_BUILD_CACHE, DIST_DIRECTORY);
   }
 
   const nuxt = new Nuxt(getNuxtConfig());
