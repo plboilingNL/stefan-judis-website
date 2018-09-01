@@ -6,9 +6,6 @@
 
 <style lang="scss">
 .c-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding: 1em;
   margin-bottom: 1em;
 }
