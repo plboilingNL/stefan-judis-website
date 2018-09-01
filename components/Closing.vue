@@ -11,9 +11,5 @@
   align-items: center;
   padding: 1em;
   margin-bottom: 1em;
-
-  svg {
-    display: block;
-  }
 }
 </style>
