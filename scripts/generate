@@ -3,7 +3,7 @@ const cdaContentful = require('contentful');
 const flat = require('array.prototype.flat');
 const copydir = require('copy-dir');
 const { Nuxt, Builder, Generator } = require('nuxt-edge');
-const { emptyDir, writeFileSync, existsSync } = require('fs-extra');
+const { emptyDir, mkdirSync, writeFileSync, existsSync } = require('fs-extra');
 
 const path = require('path');
 
@@ -107,6 +107,7 @@ async function getRoutesToUpdate() {
 
   // we can write it to build folder because
   // it will be copied to cache folder later
+  !existsSync(DIST_DIRECTORY) && mkdirSync(DIST_DIRECTORY);
   writeFileSync(buildConfigPath, JSON.stringify({ lastToken: nextSyncToken }));
   console.log(`SYNC TOKEN WRITTEN`);
 
