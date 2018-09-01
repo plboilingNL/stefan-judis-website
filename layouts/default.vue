@@ -83,7 +83,7 @@ body {
 
   --c-highlight: var(--blue-dark);
   --c-highlight-light: var(--blue-bright);
-  --c-highlight-gradien: linear-gradient(
+  --c-highlight-gradient: linear-gradient(
     125deg,
     var(--c-highlight) 0,
     var(--c-highlight-light)

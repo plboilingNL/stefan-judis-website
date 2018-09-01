@@ -24,6 +24,7 @@ export default {
 <style lang="scss">
 .c-sharingLine {
   background: var(--c-highlight);
+  background: var(--c-highlight-gradient);
   color: #fff;
   padding: 1em;
   margin: 0 -1em -1em;
