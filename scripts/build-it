@@ -1,5 +1,7 @@
 #!/bin/sh
 
+npm cache clean
+
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "BUILD TRIGGERED BY:"
 echo "$WEBHOOK_TITLE"
