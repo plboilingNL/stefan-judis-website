@@ -29,7 +29,7 @@ export default {
   padding: 1em;
   margin: 0 -1em -1em;
 
-  a:hover {
+  a:hover, a:active, a:focus {
     color: currentColor;
   }
 

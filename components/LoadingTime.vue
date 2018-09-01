@@ -50,7 +50,7 @@ export default {
     position: absolute;
     bottom: 0;
     right: 2em;
-    bottom: 2em;
+    bottom: 1.5em;
     width: 8em;
     padding: 0.5em 1em 0.5em 0.75em;
     box-shadow: var(--shadow-floating-thing);
