@@ -49,13 +49,13 @@ async function generate() {
   }
 
   copydir.sync(DIST_DIRECTORY, GLOBAL_BUILD_CACHE);
-  console.log(`Files from ${GLOBAL_BUILD_CACHE} copied to 'dist'...`);
+  console.log(`Files from ${DIST_DIRECTORY} copied to ${GLOBAL_BUILD_CACHE}`);
 }
 
 function getGenerateOptions() {
   const options = {
     init: shouldClearCache || isCodeUpdate,
-    build: shouldClearCache || isCodeUpdate
+    build: true
   };
 
   console.log('generateOptions', options);
