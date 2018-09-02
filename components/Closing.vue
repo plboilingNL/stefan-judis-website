@@ -7,6 +7,6 @@
 <style lang="scss">
 .c-footer {
   padding: 1em;
-  margin-bottom: 1em;
+  margin: 1em 0;
 }
 </style>
