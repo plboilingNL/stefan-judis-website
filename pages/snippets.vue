@@ -14,6 +14,3 @@ export default createPage({
   }
 });
 </script>
-
-<style scoped>
-</style>
