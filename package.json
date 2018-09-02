@@ -46,7 +46,6 @@
     "rss": "^1.2.2",
     "sass-loader": "^7.1.0",
     "sqip": "^0.3.3",
-    "svg-inline-loader": "^0.8.0",
-    "webpack": "^4.17.1"
+    "svg-inline-loader": "^0.8.0"
   }
 }
