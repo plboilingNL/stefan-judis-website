@@ -158,10 +158,9 @@ const config = {
     exclude: ['/404']
   },
 
-  // will be set in ./scripts/generate
-  // generate: {
-  //   routes: getAllRoutes
-  // },
+  generate: {
+    routes: getAllRoutes
+  },
 
   env: {
     IS_PRODUCTION: process.env.NODE_ENV === 'production',

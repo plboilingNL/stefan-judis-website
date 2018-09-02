@@ -1,161 +1,30 @@
 #!/usr/bin/env node
-const cdaContentful = require('contentful');
-const flat = require('array.prototype.flat');
-const copydir = require('copy-dir');
-const { Nuxt, Builder, Generator } = require('nuxt-edge');
-const { emptyDir, mkdirSync, writeFileSync, existsSync } = require('fs-extra');
-
-const path = require('path');
 
 // enforce prod environment for local debugging
 // generating with preview data doesn't make much sense anyway
 process.env.NODE_ENV = 'production';
 
-const { getConfig } = require('../lib/config.js');
-const {
-  getCachePath,
-  isCodeUpdate,
-  shouldClearCache
-} = require('./utils/index.js');
-const ctfConfig = getConfig();
-const cdaClient = cdaContentful.createClient({
-  accessToken: ctfConfig.CTF_CDA_TOKEN,
-  host: 'cdn.contentful.com',
-  space: ctfConfig.CTF_SPACE_ID
-});
+const { Nuxt, Builder, Generator } = require('nuxt-edge');
+const config = require('../nuxt.config.js');
 
-const GLOBAL_BUILD_CACHE = getCachePath('dist');
-const DIST_DIRECTORY = path.resolve(__dirname, '..', 'dist');
+config.mode = 'universal';
+config.dev = false;
 
-async function generate() {
-  if (shouldClearCache || isCodeUpdate) {
-    console.log(`Clearing ${GLOBAL_BUILD_CACHE}`);
-    await emptyDir(GLOBAL_BUILD_CACHE);
-  } else {
-    console.log(`Copying ${GLOBAL_BUILD_CACHE} to ${DIST_DIRECTORY}`);
-    existsSync(GLOBAL_BUILD_CACHE) &&
-      copydir.sync(GLOBAL_BUILD_CACHE, DIST_DIRECTORY);
-  }
+const nuxt = new Nuxt(config);
+const builder = new Builder(nuxt);
+const generator = new Generator(nuxt, builder);
+const generateOptions = {
+  init: true, // process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
+  build: true
+};
 
-  const nuxt = new Nuxt(getNuxtConfig());
-  const builder = new Builder(nuxt);
-  const generator = new Generator(nuxt, builder);
-
+async function generateRoutes() {
   try {
-    await generator.generate(getGenerateOptions());
+    await generator.generate(generateOptions);
   } catch (e) {
     console.error(e);
     throw e;
   }
-
-  copydir.sync(DIST_DIRECTORY, GLOBAL_BUILD_CACHE);
-  console.log(`Files from ${DIST_DIRECTORY} copied to ${GLOBAL_BUILD_CACHE}`);
 }
 
-function getGenerateOptions() {
-  const options = {
-    init: shouldClearCache || isCodeUpdate,
-    build: true
-  };
-
-  console.log('generateOptions', options);
-  return options;
-}
-
-function getNuxtConfig() {
-  const config = require('../nuxt.config.js');
-  config.mode = 'universal';
-  config.dev = false;
-  config.generate = {
-    routes: getRoutesToUpdate,
-    dir: DIST_DIRECTORY
-  };
-  return config;
-}
-
-async function getRoutesToUpdate() {
-  const buildConfigPath = path.join(DIST_DIRECTORY, 'build.json');
-  let lastToken;
-  try {
-    const config = require(buildConfigPath);
-    lastToken = config.lastToken;
-    console.log('SYNC TOKEN FOUND');
-  } catch (e) {
-    console.log(`NO SYNC TOKEN FOUND AT ${buildConfigPath}`);
-  }
-
-  const { nextSyncToken, entries } = await cdaClient.sync(
-    Object.assign(
-      { type: 'Entry' },
-      !!lastToken
-        ? {
-            nextSyncToken: lastToken
-          }
-        : {
-            initial: true
-          }
-    )
-  );
-
-  const routes = [
-    ...(!lastToken ? ['/404'] : []),
-    ...flat(await Promise.all(entries.map(entry => getRoutesForEntry(entry))))
-      // filter out false routes for entries
-      // that don't have their own route
-      .filter(route => !!route)
-  ];
-
-  // we can write it to build folder because
-  // it will be copied to cache folder later
-  !existsSync(DIST_DIRECTORY) && mkdirSync(DIST_DIRECTORY);
-  writeFileSync(buildConfigPath, JSON.stringify({ lastToken: nextSyncToken }));
-  console.log(`SYNC TOKEN WRITTEN`);
-
-  return routes;
-}
-
-async function getRoutesForEntry(entry) {
-  console.log(`Getting routes for updated entry "${entry.sys.id}"`);
-  const getSlug = entry => entry.fields.slug['en-US'];
-  const getTopicUrls = async entry => {
-    const entryWithLinkedItems = await cdaClient.getEntry(entry.sys.id);
-    return entryWithLinkedItems.fields.topics.map(
-      topic => `/topics/${topic.fields.slug}`
-    );
-  };
-  const getPostPages = async entry => {
-    const { items } = await cdaClient.getEntries({
-      content_type: '2wKn6yEnZewu2SCCkus4as'
-    });
-
-    // ignore page /blog/page/1 because that's /blog
-    return Array.apply(null, Array(Math.ceil(18 / 5 - 1))).map(function(x, i) {
-      return `/blog/page/${i + 2}`;
-    });
-  };
-
-  switch (entry.sys.contentType.sys.id) {
-    case '2wKn6yEnZewu2SCCkus4as':
-      return [
-        '/',
-        '/blog',
-        `/blog/${getSlug(entry)}`,
-        ...(await getTopicUrls(entry)),
-        ...(await getPostPages(entry))
-      ];
-    case 'tilPost':
-      return [
-        '/today-i-learned',
-        `/today-i-learned/${getSlug(entry)}`,
-        ...(await getTopicUrls(entry))
-      ];
-    case 'landingPage':
-      return ['/resources', `/${getSlug(entry)}`];
-    case 'topic':
-      return [`/topics/${getSlug(entry)}`];
-    default:
-      null;
-  }
-}
-
-generate();
+generateRoutes();

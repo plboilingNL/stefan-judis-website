@@ -34,7 +34,7 @@
             <ul class="o-list-thirds">
               <li v-for="image in me.fields.images" class="u-marginBottomLarge" :key="image.sys.id">
                 <div class="u-flex-column u-height-100">
-                  <!-- this is container is needed because of a FF bug -->
+                  <!-- this container is needed because of a FF bug -->
                   <div>
                     <a :href="image.fields.file.url">
                       <lazy-image :asset="image" :ratio="0.65"></lazy-image>

@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style>
-  [class*=icon] {
-    display: contents;
-  }
+[class*='icon'] {
+  display: contents;
+}
 </style>
