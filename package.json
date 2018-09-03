@@ -29,6 +29,7 @@
     "contentful": "^7.0.3",
     "download": "^7.1.0",
     "jsdom": "^12.0.0",
+    "netlify-lambda": "^0.4.0",
     "postcss-import": "^12.0.0",
     "postcss-nested": "^3.0.0",
     "rss": "^1.2.2",
