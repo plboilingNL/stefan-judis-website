@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 
-// enforce prod environment for local debugging
-// generating with preview data doesn't make much sense anyway
-// process.env.NODE_ENV = 'production';
-
 const { Nuxt, Builder, Generator } = require('nuxt-edge');
 const config = require('../nuxt.config.js');
 

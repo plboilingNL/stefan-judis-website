@@ -5,6 +5,13 @@ echo "BUILD TRIGGERED BY:"
 echo "$WEBHOOK_TITLE"
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+# enforce prod environment for local debugging
+# generating with preview data doesn't make much sense anyway
+# also when you define NODE_ENV on Netlify they won't install
+# devDeps which is counter intuitive IMO
+export NODE_ENV='production'
+
+echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Building Lambda Functions"
 ./node_modules/.bin/netlify-lambda build ./functions
 
