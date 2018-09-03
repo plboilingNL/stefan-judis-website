@@ -76,7 +76,7 @@ export default createPage({
 });
 </script>
 
-<style lang="scss">
+<style>
 .area-javascript {
   @media (min-width: 70em) {
     grid-row: 2 / 5;

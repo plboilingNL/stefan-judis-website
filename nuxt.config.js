@@ -131,8 +131,8 @@ const config = {
       // overwrite nuxt defaults
       // they inline svg's base64
       config.module.rules.forEach(rule => {
-        if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg)$/') {
-          rule.test = /\.(png|jpe?g|gif)$/;
+        if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg|webp)$/') {
+          rule.test = /\.(png|jpe?g|gif|webp)$/;
         }
       });
 
@@ -143,6 +143,8 @@ const config = {
     },
 
     postcss: [
+      require('postcss-import')(),
+      require('postcss-nested')(),
       require('autoprefixer')({
         browsers: ['> 5%']
       })
@@ -209,10 +211,6 @@ function getAllRoutes() {
 
     return [...postPages, ...tilPages, ...landingPageSlugs, ...topicSlugs];
   });
-}
-
-if (process.env.NODE_ENV !== 'production') {
-  // config.css = [{ src: '~/node_modules/a11y.css/css/a11y-en.css' }]
 }
 
 module.exports = config;

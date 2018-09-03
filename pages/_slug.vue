@@ -48,7 +48,7 @@ export default createPage({
 });
 </script>
 
-<style lang="scss">
+<style>
 .useful-talk-quotes {
   blockquote {
     font-weight: bold;

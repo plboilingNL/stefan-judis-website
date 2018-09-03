@@ -93,7 +93,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .nuxt-progress {
   position: fixed;
   top: 0;

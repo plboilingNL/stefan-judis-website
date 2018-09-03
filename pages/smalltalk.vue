@@ -44,7 +44,7 @@ export default createPage({
 });
 </script>
 
-<style lang="scss">
+<style>
 .c-project {
   img {
     display: block;

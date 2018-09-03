@@ -4,7 +4,7 @@
   </footer>
 </template>
 
-<style lang="scss">
+<style>
 .c-footer {
   padding: 1em;
   margin: 1em 0;

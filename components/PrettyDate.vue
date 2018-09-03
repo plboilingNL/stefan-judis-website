@@ -13,7 +13,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .c-prettyDate {
   display: block;
   font-size: 0.875em;

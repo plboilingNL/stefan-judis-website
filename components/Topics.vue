@@ -30,7 +30,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .c-topic {
   display: flex;
   align-items: center;

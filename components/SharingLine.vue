@@ -21,7 +21,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .c-sharingLine {
   background: var(--c-highlight);
   background: var(--c-highlight-gradient);
@@ -29,7 +29,9 @@ export default {
   padding: 1em;
   margin: 0 -1em -1em;
 
-  a:hover, a:active, a:focus {
+  a:hover,
+  a:active,
+  a:focus {
     color: currentColor;
   }
 

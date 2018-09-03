@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .c-person {
   display: flex;
   flex-direction: column;

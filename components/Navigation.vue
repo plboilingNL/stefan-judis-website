@@ -78,16 +78,6 @@ export default {
     beforeEnter(el) {
       el.style.transitionDelay = `${0.05 *
         (this.menu.length / 2 - el.dataset.index % 3)}s`;
-    },
-    prefetchRoute(url) {
-      //! todo make me pretty
-      // console.log(this.$router.options.routes[0].component);
-      // import(this.$router.options.routes[0].component.name);
-      // if (this.$route.path !== url) {
-      //   this.$router.getMatchedComponents(url).forEach(initComponent => {
-      //     console.log(initComponent.toString()), initComponent();
-      //   });
-      // }
     }
   },
   components: {
@@ -97,7 +87,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .c-navigation {
   position: fixed;
   width: 100%;
@@ -188,9 +178,6 @@ export default {
       transform: scale(1) translate(0, 0);
     }
 
-    //
-    // mobile nav full
-    //
     @media (min-width: 38em) {
       position: static;
       display: flex;
@@ -246,9 +233,6 @@ export default {
       }
     }
 
-    //
-    // desktop nav
-    //
     @media (min-width: 38em) {
       display: none;
     }
@@ -267,9 +251,6 @@ export default {
     border: none;
     color: currentColor;
 
-    //
-    // desktop nav
-    //
     @media (min-width: 38em) {
       display: none;
     }

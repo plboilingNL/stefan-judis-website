@@ -39,7 +39,7 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style>
 .c-loadTime {
   display: none;
   align-items: center;

@@ -72,7 +72,7 @@ export default createPage({
 });
 </script>
 
-<style lang="scss">
+<style>
 .c-newsletter {
   text-align: center;
 

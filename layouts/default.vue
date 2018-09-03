@@ -13,7 +13,6 @@
 
 <script>
 import Closing from '~/components/Closing.vue';
-// import CookieBanner from '~/components/CookieBanner.vue';
 import Navigation from '~/components/Navigation.vue';
 import OfflineNotice from '~/components/OfflineNotice.vue';
 import LoadingTime from '~/components/LoadingTime.vue';
@@ -21,7 +20,6 @@ import LoadingTime from '~/components/LoadingTime.vue';
 export default {
   components: {
     Closing,
-    // CookieBanner,
     Navigation,
     OfflineNotice,
     LoadingTime
@@ -51,18 +49,18 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../assets/styles/objects/anchor.scss';
-@import '../assets/styles/objects/button.scss';
-@import '../assets/styles/objects/code.scss';
-@import '../assets/styles/objects/emoji.scss';
-@import '../assets/styles/objects/headline.scss';
-@import '../assets/styles/objects/grid.scss';
-@import '../assets/styles/objects/list.scss';
-@import '../assets/styles/objects/tile.scss';
-@import '../assets/styles/objects/tag.scss';
-@import '../assets/styles/transitions.scss';
-@import '../assets/styles/util.scss';
+<style>
+@import '../assets/styles/objects/anchor.css';
+@import '../assets/styles/objects/button.css';
+@import '../assets/styles/objects/code.css';
+@import '../assets/styles/objects/emoji.css';
+@import '../assets/styles/objects/headline.css';
+@import '../assets/styles/objects/grid.css';
+@import '../assets/styles/objects/list.css';
+@import '../assets/styles/objects/tile.css';
+@import '../assets/styles/objects/tag.css';
+@import '../assets/styles/transitions.css';
+@import '../assets/styles/util.css';
 
 body {
   --blue: #1d7cbb;

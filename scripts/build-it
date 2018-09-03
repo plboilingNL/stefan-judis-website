@@ -6,7 +6,7 @@ echo "$WEBHOOK_TITLE"
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Building Lambda Functions"
-npm run function:build
+./node_modules/.bin/netlify-lambda build ./functions
 
 echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
 echo "Generating Sqip previews"

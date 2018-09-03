@@ -25,7 +25,7 @@
   </section>
 </template>
 
-<style lang="scss">
+<style>
 .c-container {
   & > div {
     max-width: 65em;
