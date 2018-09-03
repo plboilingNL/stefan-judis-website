@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// enforce production build even when you're local
+// otherwise CPA is used
+process.env.NODE_ENV = 'production';
+
 const { Nuxt, Builder, Generator } = require('nuxt-edge');
 const config = require('../nuxt.config.js');
 
