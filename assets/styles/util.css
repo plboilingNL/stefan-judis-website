@@ -6,6 +6,10 @@
   margin-top: 0;
 }
 
+.u-marginTopSmall {
+  margin-top: 0.5em;
+}
+
 .u-marginTopMedium {
   margin-top: 1em;
 }
@@ -20,6 +24,10 @@
 
 .u-marginLeftAuto {
   margin-left: auto;
+}
+
+.u-marginLeftMedium {
+  margin-left: 1em;
 }
 
 .u-marginBottomTiny {

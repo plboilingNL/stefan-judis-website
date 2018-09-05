@@ -1,6 +1,7 @@
 .o-btn {
   display: inline-block;
   font-size: 1em;
+  line-height: 1.5;
   border: none;
   background: var(--c-highlight);
   background: var(--c-highlight-gradient);
@@ -11,8 +12,9 @@
   text-shadow: 0 1px 1px var(--grey-dark);
   transition: transform 0.125s ease-in-out;
   box-shadow: var(--shadow-btn);
+  cursor: pointer;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: var(--c-highlight);
     color: #fff;
     text-shadow: 0 1px 2px var(--grey-dark);
@@ -26,6 +28,13 @@
 
   &:active {
     filter: brightness(0.75);
+  }
+
+  &:disabled {
+    box-shadow: none;
+    background: var(--grey);
+    color: var(--grey-dark);
+    text-shadow: none;
   }
 }
 
@@ -41,11 +50,19 @@
   }
 }
 
-.o-btn--red {
-  background: var(--red-dark);
+.o-btn--ghost {
+  background: var(--grey-bright);
+  color: var(--c-highlight);
+  text-shadow: none;
 
-  &:hover {
-    background: var(--red-dark);
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      color: var(--c-highlight);
+      background: var(--grey-bright);
+      text-shadow: none;
+      text-decoration: underline;
+    }
   }
 }
 

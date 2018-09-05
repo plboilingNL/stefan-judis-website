@@ -7,7 +7,6 @@
     <div class="c-tile">
       <div class="c-tile__container">
         <Marked :markdown="page.fields.body" class="e-content"></Marked>
-        <SharingLine v-if="page.fields.slug !== '404'" :item="page"></SharingLine>
       </div>
     </div>
   </Container>
@@ -16,7 +15,6 @@
 <script>
 import Container from '~/components/Container.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
-import SharingLine from '~/components/SharingLine.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import { createPage, getHeadForPost } from '~/lib/basepage.js';
 import Marked from '~/components/Marked.vue';
@@ -42,8 +40,7 @@ export default createPage({
     Container,
     DynamicHeadline,
     Marked,
-    PrettyDate,
-    SharingLine
+    PrettyDate
   }
 });
 </script>

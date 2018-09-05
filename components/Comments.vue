@@ -1,6 +1,5 @@
 <template>
   <div class="c-comments">
-    <button v-if="!commentsAreLoaded" class="o-btn" type="button" @click="loadComments">Load comments</button>
     <div
       class="just-comments"
       data-allowguests="true"
@@ -11,25 +10,17 @@
 
 <script>
 export default {
+  mounted() {
+    const s = document.createElement('script');
+    // TODO put this into config
+    s.src = '//just-comments.com/w.js';
+    s.setAttribute('data-timestamp', +new Date());
+    this.$el.appendChild(s);
+  },
   data() {
     return {
       commentsAreLoaded: false
     };
-  },
-  methods: {
-    loadComments() {
-      this.$el.querySelector('button').disabled = true;
-
-      const s = document.createElement('script');
-      // TODO put this into config
-      s.src = '//just-comments.com/w.js';
-      s.setAttribute('data-timestamp', +new Date());
-      s.onload = () => {
-        this.commentsAreLoaded = true;
-      };
-
-      this.$el.appendChild(s);
-    }
   }
 };
 </script>

@@ -29,8 +29,15 @@
           <Topics :topics="post.fields.topics" />
         </div>
         <RelatedItems :items="posts" :item="post" slug="blog" />
-        <Comments class="u-marginBottomMedium" />
-        <SharingLine :item="post"></SharingLine>
+        <div class="u-marginTopMedium u-marginBottomMedium">
+          <ul class="o-list-reset o-list-flex-end">
+            <li class="u-marginTopSmall"><button class="o-btn" type="button" :disabled="showComments" @click="loadComments">Load comments</button></li>
+            <li class="u-marginTopSmall u-marginLeftAuto"><a :href="sharingUrl" class="o-btn o-btn--ghost" target="_blank" rel="noopener noreferrer">Share article</a></li>
+            <li class="u-marginTopSmall u-marginLeftMedium"><nuxt-link to="/newsletter/" class="o-btn o-btn--ghost">Subscribe to newsletter</nuxt-link></li>
+          </ul>
+
+          <Comments v-if="showComments" class="u-marginBottomMedium" />
+        </div>
       </div>
     </div>
   </Container>
@@ -42,10 +49,10 @@ import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import Marked from '~/components/Marked.vue';
-import SharingLine from '~/components/SharingLine.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import Topics from '~/components/Topics.vue';
 import { createPage, getHeadForPost } from '~/lib/basepage.js';
+import { getSharingUrl } from '~/lib/util.js';
 
 export default createPage({
   async fetch({ app, params, store, redirect }) {
@@ -55,16 +62,29 @@ export default createPage({
       return redirect('/404/');
     }
   },
+  data() {
+    return {
+      showComments: false
+    };
+  },
   computed: {
     post() {
       return this.$store.state.posts.active;
     },
     posts() {
       return this.$store.state.posts.list;
+    },
+    sharingUrl() {
+      return getSharingUrl(this.post.fields.title, this.$route.fullPath);
     }
   },
   head() {
     return getHeadForPost(this.post);
+  },
+  methods: {
+    loadComments() {
+      this.showComments = true;
+    }
   },
   components: {
     Container,
@@ -72,7 +92,6 @@ export default createPage({
     DynamicHeadline,
     PrettyDate,
     Marked,
-    SharingLine,
     RelatedItems,
     Topics
   }
