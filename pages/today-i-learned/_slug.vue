@@ -24,10 +24,10 @@
 
         <RelatedItems :items="posts" :item="post" slug="today-i-learned"/>
         <div class="u-marginTopMedium u-marginBottomMedium">
-          <ul class="o-list-reset o-list-flex">
-            <li><button class="o-btn" type="button" :disabled="showComments" @click="loadComments">Load comments</button></li>
-            <li class="u-marginLeftAuto"><a :href="sharingUrl" class="o-btn o-btn--ghost" target="_blank" rel="noopener noreferrer">Share article</a></li>
-            <li class="u-marginLeftMedium"><nuxt-link to="/newsletter/" class="o-btn o-btn--ghost">Subscribe to newsletter</nuxt-link></li>
+          <ul class="o-list-reset o-list-flex-end">
+            <li class="u-marginTopSmall"><button class="o-btn" type="button" :disabled="showComments" @click="loadComments">Load comments</button></li>
+            <li class="u-marginTopSmall u-marginLeftAuto"><a :href="sharingUrl" class="o-btn o-btn--ghost" target="_blank" rel="noopener noreferrer">Share article</a></li>
+            <li class="u-marginTopSmall u-marginLeftMedium"><nuxt-link to="/newsletter/" class="o-btn o-btn--ghost">Subscribe to newsletter</nuxt-link></li>
           </ul>
 
           <Comments v-if="showComments" class="u-marginBottomMedium" />
