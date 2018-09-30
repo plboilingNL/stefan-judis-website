@@ -17,23 +17,22 @@
     "jsdom": "^12.0.0",
     "mailgun-js": "^0.20.0",
     "marked": "^0.5.0",
-    "netlify-lambda": "^0.4.0",
-    "nuxt-edge": "2.0.0-25513462.d31aeaa",
+    "nuxt": "^2.1.0",
     "postcss-import": "^12.0.0",
-    "postcss-nested": "^3.0.0",
+    "postcss-nested": "^4.1.0",
     "prismjs": "^1.15.0",
     "rss": "^1.2.2",
     "sqip": "^0.3.3",
     "svg-inline-loader": "^0.8.0",
-    "webpack": "^4.17.2"
+    "webpack-cli": "^3.1.2"
   },
   "scripts": {
     "analyze": "nuxt build --analyze",
     "dev": "nuxt",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "function:serve": "netlify-lambda serve ./functions",
-    "function:build": "netlify-lambda build ./functions",
+    "function:serve": "// TODO (dropped netlify lambdas due to webpack conflicts)",
+    "function:build": "webpack ./functions/report.js --output-path ./.functions/ --output-filename report.js --target node --mode production",
     "netlify:build": "./scripts/build-it"
   },
   "devDependencies": {}
