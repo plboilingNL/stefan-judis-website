@@ -29,7 +29,6 @@
   </nav>
 </template>
 <script>
-import Icon from '~/components/Icon.vue';
 import Container from '~/components/Container.vue';
 
 export default {
@@ -77,12 +76,12 @@ export default {
     },
     beforeEnter(el) {
       el.style.transitionDelay = `${0.05 *
-        (this.menu.length / 2 - el.dataset.index % 3)}s`;
+        (this.menu.length / 2 - (el.dataset.index % 3))}s`;
     }
   },
   components: {
     Container,
-    Icon
+    Icon: () => import('~/components/Icon.vue')
   }
 };
 </script>

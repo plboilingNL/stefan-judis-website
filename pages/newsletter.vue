@@ -34,7 +34,6 @@
 <script>
 import Container from '~/components/Container.vue';
 import Post from '~/components/Post.vue';
-import Icon from '~/components/Icon.vue';
 import { createPage } from '~/lib/basepage.js';
 
 export default createPage({
@@ -66,7 +65,7 @@ export default createPage({
   },
   components: {
     Container,
-    Icon,
+    Icon: () => import('~/components/Icon.vue'),
     Post
   }
 });

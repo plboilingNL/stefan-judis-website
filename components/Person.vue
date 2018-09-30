@@ -31,7 +31,6 @@
 
 <script>
 import marked from '~/plugins/marked.js';
-import Icon from '~/components/Icon.vue';
 import LazyImage from '~/components/LazyImage.vue';
 
 export default {
@@ -41,7 +40,7 @@ export default {
     }
   },
   components: {
-    Icon,
+    Icon: () => import('~/components/Icon.vue'),
     LazyImage
   },
   props: ['person']

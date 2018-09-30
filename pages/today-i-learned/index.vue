@@ -25,7 +25,6 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import Icon from '~/components/Icon.vue';
 import { getTopicNameWithSlug } from '~/lib/topics.js';
 import { createPage } from '~/lib/basepage.js';
 
@@ -71,7 +70,7 @@ export default createPage({
   },
   components: {
     Container,
-    Icon
+    Icon: () => import('~/components/Icon.vue')
   }
 });
 </script>

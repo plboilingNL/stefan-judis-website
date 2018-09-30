@@ -38,7 +38,6 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import Icon from '~/components/Icon.vue';
 import Post from '~/components/Post.vue';
 import Talk from '~/components/Talk.vue';
 import ScreenCast from '~/components/ScreenCast.vue';
@@ -64,7 +63,7 @@ export default createPage({
 
             return false;
           })
-          .sort((itemA, itemB) => itemA.fields.date < itemB.fields.date)
+          .sort((itemA, itemB) => itemA.fields.date < itemB.fields.date);
 
       return {
         articles: getMatchingItems([...posts.list, ...til.list], this.topic),
@@ -97,7 +96,7 @@ export default createPage({
   },
   components: {
     Container,
-    Icon,
+    Icon: () => import('~/components/Icon.vue'),
     Talk,
     ScreenCast,
     Post

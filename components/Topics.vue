@@ -11,7 +11,6 @@
 
 
 <script>
-import Icon from './Icon.vue';
 import { getTopicNameWithSlug } from '~/lib/topics.js';
 
 export default {
@@ -25,7 +24,7 @@ export default {
     }
   },
   components: {
-    Icon
+    Icon: () => import('~/components/Icon.vue')
   }
 };
 </script>
