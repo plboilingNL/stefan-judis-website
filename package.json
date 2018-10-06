@@ -21,10 +21,10 @@
     "postcss-import": "^12.0.0",
     "postcss-nested": "^4.1.0",
     "prismjs": "^1.15.0",
+    "rollup": "^0.66.4",
     "rss": "^1.2.2",
     "sqip": "^0.3.3",
-    "svg-inline-loader": "^0.8.0",
-    "webpack-cli": "^3.1.2"
+    "svg-inline-loader": "^0.8.0"
   },
   "scripts": {
     "analyze": "nuxt build --analyze",
@@ -32,7 +32,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "function:serve": "// TODO (dropped netlify lambdas due to webpack conflicts)",
-    "function:build": "webpack ./functions/report.js --output-path ./.functions/ --output-filename report.js --target node --mode production",
+    "function:build": "rollup -i functions/report.js -f cjs -o .functions/report.js",
     "netlify:build": "./scripts/build-it"
   },
   "devDependencies": {}
