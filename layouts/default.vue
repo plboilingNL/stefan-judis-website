@@ -4,7 +4,7 @@
     <navigation/>
     <Container>
       <div class="a11yclub">
-        <p>My friend Joschi and I are organizing a one-day community conference all about accessibility – the accessibility club.</p>
+        <p>My friend Joschi and I are organizing a one-day community conference all about accessibility – the Accessibility Club.</p>
         <p><a href="https://accessibility-club.org/">Come and join us Nov 5th in Berlin.</a></p>
       </div>
     </Container>
