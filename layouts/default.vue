@@ -168,6 +168,7 @@ a {
   &:hover,
   &:focus {
     color: var(--c-highlight);
+    background: var(--grey-bright);
   }
 
   &:active {
