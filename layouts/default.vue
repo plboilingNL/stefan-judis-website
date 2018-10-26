@@ -221,6 +221,7 @@ img {
     &:focus {
       color: white;
       outline-color: #fff;
+      background: transparent;
     }
   }
 }
