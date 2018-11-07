@@ -2,12 +2,6 @@
   <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
     <offline-notice v-if="!isOnline"/>
     <navigation/>
-    <Container>
-      <div class="a11yclub">
-        <p>My friend Joschi and I are organizing a one-day community conference all about accessibility – the Accessibility Club.</p>
-        <p><a href="https://accessibility-club.org/">Come and join us Nov 5th in Berlin.</a></p>
-      </div>
-    </Container>
     <main>
       <nuxt/>
     </main>
@@ -202,27 +196,5 @@ img {
 
 .is-offline {
   --c-highlight: var(--grey-dark);
-}
-
-.a11yclub {
-  padding: 1em;
-  background: var(--c-highlight-gradient);
-  color: #fff;
-  margin: 1em 1em 0;
-  border-radius: 0.25em;
-  box-shadow: var(--shadow-tile);
-
-  p {
-    margin: 0 0 0.25em;
-  }
-
-  a {
-    &:hover,
-    &:focus {
-      color: white;
-      outline-color: #fff;
-      background: transparent;
-    }
-  }
 }
 </style>
