@@ -11,8 +11,8 @@ const cdaClient = cdaContentful.createClient({
 
 const config = {
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
     htmlAttrs: {
       lang: 'en'
@@ -56,13 +56,13 @@ const config = {
   },
 
   /*
-  ** Custom heart loader
-  */
+   ** Custom heart loader
+   */
   loading: '~/components/Loading.vue',
 
   /*
-  ** Router configuration
-  */
+   ** Router configuration
+   */
   router: {
     linkActiveClass: 'is-almost-active',
     linkExactActiveClass: 'is-active'
@@ -81,17 +81,19 @@ const config = {
   },
 
   /*
-  ** Plugin configuration
-  */
+   ** Plugin configuration
+   */
   plugins: [
     '~plugins/contentful.js',
     '~plugins/filters.js',
     '~plugins/transition.js'
   ],
 
+  modern: 'client',
+
   /*
-  ** Nuxt modules
-  */
+   ** Nuxt modules
+   */
   modules: [
     '@nuxtjs/sitemap',
     [
@@ -122,8 +124,8 @@ const config = {
   ],
 
   /*
-  ** Build configuration
-  */
+   ** Build configuration
+   */
   build: {
     analyze: false,
 
