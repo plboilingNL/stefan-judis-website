@@ -108,7 +108,7 @@ const config = {
         workbox: {
           runtimeCaching: [
             {
-              urlPattern: 'https://.*?.contentful.com/.*'
+              urlPattern: 'https://.*?.(contentful|ctfassets).(com|net)/.*'
             }
           ]
         }
