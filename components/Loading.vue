@@ -126,12 +126,12 @@ export default {
 
 @media (min-width: 47em) {
   .c-logo {
-    --logo-size: 1.75em;
+    --logo-size: 1.5em;
 
     position: fixed;
     z-index: 3;
     left: 0;
-    top: 0.875em;
+    top: 1em;
     margin: 0;
   }
 }
