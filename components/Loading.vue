@@ -131,7 +131,7 @@ export default {
     position: fixed;
     z-index: 3;
     left: 0;
-    top: 1em;
+    top: 0.875em;
     margin: 0;
   }
 }
