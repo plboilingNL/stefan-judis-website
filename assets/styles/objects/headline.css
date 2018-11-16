@@ -1,7 +1,7 @@
 .o-headline-1,
 .o-headline-2,
 .o-headline-3 {
-  color: var(--grey-darker);
+  color: var(--c-text-contrast);
   font-family: 'Georgia', serif;
   font-weight: normal;
   margin: 0 0 0.5em;

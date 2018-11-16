@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html {{ HTML_ATTRS }}>
-  <head>
-    {{ HEAD }}
-    <script>
-      (function() {
-        if (window.PerformanceObserver) {
-          const entryHandlers = {
-            longtask: function(entry) {
-              console.log(
-                '%c LONG TASK TRACKING %c ->',
-                'background: green; color: white; display: block;',
-                '',
-                entry
-              )
-            }
-          };
 
-          (new PerformanceObserver(list => {
-            list
-              .getEntries()
-              .forEach(entry => {
-                if (entryHandlers[entry.entryType]) {
-                  entryHandlers[entry.entryType](entry)
-                }
-              })
-          })).observe({
-            entryTypes: ['longtask']
-          })
-        }
-      })()
-    </script>
-  </head>
-  <body {{ BODY_ATTRS }}>
-    {{ APP }}
-  </body>
+<head>
+  {{ HEAD }}
+  <script>
+    (function () {
+      if (window.PerformanceObserver) {
+        const entryHandlers = {
+          longtask: function (entry) {
+            console.log(
+              '%c LONG TASK TRACKING %c ->',
+              'background: green; color: white; display: block;',
+              '',
+              entry
+            )
+          }
+        };
+
+        (new PerformanceObserver(list => {
+          list
+            .getEntries()
+            .forEach(entry => {
+              if (entryHandlers[entry.entryType]) {
+                entryHandlers[entry.entryType](entry)
+              }
+            })
+        })).observe({
+          entryTypes: ['longtask']
+        })
+      }
+    })()
+  </script>
+</head>
+
+<body {{ BODY_ATTRS }}>
+  {{ APP }}
+</body>
+
 </html>

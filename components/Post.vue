@@ -11,10 +11,6 @@
       <div class="u-marginTopAuto u-paddingTopMedium">
         <Topics :topics="post.fields.topics" />
       </div>
-
-      <div class="c-tile__footer">
-        <nuxt-link :to="`/${linkPrefix}/${post.fields.slug}/`" :aria-labelledby="post.fields.title | idAlize">Read more</nuxt-link>
-      </div>
     </div>
   </div>
 </template>

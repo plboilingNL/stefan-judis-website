@@ -79,7 +79,7 @@
     align-items: center;
     justify-content: center;
     margin: 0;
-    color: var(--grey-darker);
+    color: var(--c-text-contrast);
     font-family: 'Georgia', serif;
     font-size: 2em;
     letter-spacing: 1px;

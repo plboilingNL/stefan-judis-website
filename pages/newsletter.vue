@@ -95,9 +95,7 @@ export default createPage({
     position: relative;
     padding: 0.5em;
     margin: 1em 1em;
-    box-shadow: var(--shadow-btn);
-    border: none;
-    border: 1px solid var(--grey);
+    border-bottom: 2px solid var(--c-highlight);
 
     button {
       position: absolute;
@@ -110,11 +108,12 @@ export default createPage({
     display: block;
     width: 100%;
 
-    line-height: 2;
+    line-height: 2.5;
     font-size: 1em;
     padding: 0.25em 0.5em;
     text-align: left;
-    color: currentColor;
+    background: transparent;
+    color: var(--c-text);
     border: none;
   }
 }

@@ -22,6 +22,8 @@
     "postcss-nested": "^4.1.0",
     "prismjs": "^1.15.0",
     "rollup": "^0.66.4",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-node-resolve": "^3.4.0",
     "rss": "^1.2.2",
     "sqip": "^0.3.3",
     "svg-inline-loader": "^0.8.0"
@@ -32,7 +34,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "function:serve": "// TODO (dropped netlify lambdas due to webpack conflicts)",
-    "function:build": "rollup -i functions/report.js -f cjs -o .functions/report.js",
+    "function:build": "rollup -c functions.config.js",
     "netlify:build": "./scripts/build-it"
   },
   "devDependencies": {}

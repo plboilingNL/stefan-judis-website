@@ -38,8 +38,9 @@ export default {
   padding: 0.375em 0.875em;
   margin-right: 0.75em;
   margin-bottom: 0.5em;
-  background: #fff;
-  box-shadow: 0 0.125em 0.75em #e7e7e7;
+  background: var(--c-background);
+
+  box-shadow: 0 0.125em 0.75em var(--c-shadow-color);
   border-radius: 0.375em;
 
   transition: transform 0.125s ease-in-out;

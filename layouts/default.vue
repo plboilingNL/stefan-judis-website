@@ -60,27 +60,31 @@ export default {
 @import '../assets/styles/objects/grid.css';
 @import '../assets/styles/objects/list.css';
 @import '../assets/styles/objects/tile.css';
-@import '../assets/styles/objects/tag.css';
 @import '../assets/styles/transitions.css';
 @import '../assets/styles/util.css';
 
 body {
+  --blue-brighter: #dbf1ff;
+  --blue-bright: #4aa9e8;
   --blue: #1d7cbb;
   --blue-dark: #1a79b8;
-  --blue-bright: #3a99d8;
-  --blue-brighter: #dbf1ff;
+  --green-bright: #39b97c;
   --green: #10967a;
   --green-dark: #09795c;
-  --green-bright: #39b97c;
+  --red-bright: #f55d52;
   --red: #d73f34;
   --red-dark: #c52d22;
-  --red-bright: #f55d52;
   --grey-bright: #f8f8f8;
   --grey: #eee;
   --grey-dark: #5a5a5a;
   --grey-darker: #444;
-  --grey-very-dark: #3a3a3a;
+  --grey-very-dark: #343434;
 
+  --c-background: var(--grey-bright);
+  --c-background-contrast: var(--grey);
+  --c-text: var(--grey-dark);
+  --c-text-contrast: var(--grey-darker);
+  --c-text-hover-background: var(--grey-bright);
   --c-highlight: var(--blue-dark);
   --c-highlight-light: var(--blue-bright);
   --c-highlight-gradient: linear-gradient(
@@ -88,14 +92,27 @@ body {
     var(--c-highlight) 0,
     var(--c-highlight-light)
   );
-  --c-text: var(--grey-dark);
 
-  --shadow-tile: 0 0.5em 2.5em #bbb;
-  --shadow-btn: 0 0.25em 1.5em #bbb;
+  --c-shadow-color: #bbb;
+  --shadow-tile: 0 0.5em 2.5em var(--c-shadow-color);
+  --shadow-btn: 0 0.25em 1.5em var(--c-shadow-color);
   --shadow-person: var(--shadow-tile);
-  --shadow-floating-thing: 0 0.375em 1.5em -0.25em #bbb;
+  --shadow-floating-thing: 0 0.375em 1.5em -0.25em var(--c-shadow-color);
+
+  --c-tile-border: var(--c-background);
 
   --navigation-break: 30em;
+
+  @media (prefers-color-scheme: dark) {
+    --c-background: var(--grey-darker);
+    --c-background-contrast: var(--grey-very-dark);
+    --c-text: #eee;
+    --c-text-contrast: #fff;
+    --c-text-hover-background: var(--grey-very-dark);
+    --c-shadow-color: #1a1a1a;
+    --c-highlight: var(--blue-bright);
+    --c-tile-border: var(--grey-very-dark);
+  }
 
   margin: 0;
   padding: 0;
@@ -106,7 +123,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
 
-  background: #fbfbfb;
+  background: var(--c-background);
   color: var(--c-text);
 
   padding-bottom: 5em;
@@ -162,7 +179,7 @@ a {
   &:hover,
   &:focus {
     color: var(--c-highlight);
-    background: var(--grey-bright);
+    background: var(--c-text-hover-background);
   }
 
   &:active {

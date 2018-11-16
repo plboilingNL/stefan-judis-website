@@ -53,7 +53,6 @@ export default {
   flex-direction: column;
   align-items: center;
 
-  background-color: #fff;
   box-shadow: var(--shadow-person);
 }
 

@@ -70,7 +70,7 @@ export default {
     font-size: 1.25em;
     font-size: bolder;
     line-height: 1;
-    color: var(--grey-very-dark);
+    color: var(--c-text-contrast);
   }
 
   &__title {

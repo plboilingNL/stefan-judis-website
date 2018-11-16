@@ -12,7 +12,9 @@ export default {
       },
       [
         this.url
-          ? h('nuxt-link', { props: { to: this.url } }, this.$slots.default)
+          ? this.url.startsWith('http://')
+            ? h( 'a', { attrs: { href: this.url } }, this.$slots.default)
+            : h('nuxt-link', { props: { to: this.url } }, this.$slots.default)
           : this.$slots.default
       ]
     );

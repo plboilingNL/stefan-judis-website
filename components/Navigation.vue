@@ -93,8 +93,8 @@ export default {
   bottom: 0;
   padding: 0;
   z-index: 2;
-  background: #fff;
-  box-shadow: 0 0 1em #d1d1d1;
+  background: var(--c-background);
+  box-shadow: 0 0 1em var(--c-shadow-color);
   transform: translateZ(0);
 
   @media (min-width: 47em) {
@@ -164,8 +164,8 @@ export default {
     z-index: 2;
     bottom: 0;
     padding: 2em 0.75em 4em;
-    background: #fff;
-    box-shadow: 0 0 2em #d1d1d1;
+    background: var(--c-background);
+    box-shadow: 0 0 2em var(--c-shadow-color);
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 4em);
 
@@ -246,7 +246,7 @@ export default {
     width: 20%;
     height: 100%;
     font-size: 1em;
-    background: #fff;
+    background: var(--c-background);
     border: none;
     color: currentColor;
 

@@ -7,15 +7,12 @@
           <div class="c-tile">
             <div class="c-tile__container">
               <pretty-date :date="event.fields.start" class="dt-start"></pretty-date>
-              <h3 class="o-headline-3 u-marginBottomTiny p-name">{{event.fields.name}}</h3>
+              <DynamicHeadline :level="3" :url="event.fields.website" class="o-headline-3 u-marginBottomTiny" :id="event.fields.name | idAlize">{{ event.fields.name }}</DynamicHeadline>
               <p class="u-inline-block u-marginTopAuto p-location">
                 <flag :code="event.fields.conference.fields.country"/>
                 {{ event.fields.conference.fields.city }}
               </p>
               <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
-              <div class="c-tile__footer">
-                <a :href="event.fields.website" :aria-label="`Visit ${event.fields.name}`">Go to event</a>
-              </div>
             </div>
           </div>
         </li>
@@ -35,6 +32,7 @@
 
 <script>
 import Container from '~/components/Container.vue';
+import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import Flag from '~/components/Flag.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import Talk from '~/components/Talk.vue';
@@ -68,6 +66,7 @@ export default createPage({
   },
   components: {
     Container,
+    DynamicHeadline,
     Flag,
     PrettyDate,
     Talk
