@@ -29,10 +29,10 @@ const config = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'dns-prefetch', href: 'https://cdn.contentful.com' },
-      { rel: 'dns-prefetch', href: 'https://videos.contentful.com' },
-      { rel: 'dns-prefetch', href: 'https://images.contentful.com' },
-      { rel: 'dns-prefetch', href: 'https://www.google-analytics.com' },
+      { rel: 'preconnect', href: 'https://cdn.contentful.com' },
+      { rel: 'preconnect', href: 'https://videos.contentful.com' },
+      { rel: 'preconnect', href: 'https://images.contentful.com' },
+      { rel: 'preconnect', href: 'https://www.google-analytics.com' },
       {
         rel: 'alternate',
         type: 'application/rss+xml',
