@@ -53,20 +53,23 @@ export default createPage({
     items() {
       const { posts, talks, screencasts, til } = this.$store.state;
       const getMatchingItems = (items, topic) =>
-        items
-          .filter(item => {
-            if (item.fields.topics) {
-              return item.fields.topics.some(
-                itemTopic => itemTopic.fields.slug === topic
-              );
-            }
+        items.filter(item => {
+          if (item.fields.topics) {
+            return item.fields.topics.some(
+              itemTopic => itemTopic.fields.slug === topic
+            );
+          }
 
-            return false;
-          })
-          .sort((itemA, itemB) => itemA.fields.date < itemB.fields.date);
+          return false;
+        });
 
       return {
-        articles: getMatchingItems([...posts.list, ...til.list], this.topic),
+        articles: getMatchingItems(
+          [...posts.list, ...til.list],
+          this.topic
+        ).sort(
+          (itemA, itemB) => (itemA.fields.date > itemB.fields.date ? -1 : 1)
+        ),
         others: getMatchingItems(
           [...talks.list, ...screencasts.list],
           this.topic
