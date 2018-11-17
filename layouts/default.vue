@@ -67,7 +67,7 @@ body {
   --blue-brighter: #dbf1ff;
   --blue-bright: #4aa9e8;
   --blue: #1d7cbb;
-  --blue-dark: #1a79b8;
+  --blue-dark: #1877b6;
   --green-bright: #39b97c;
   --green: #10967a;
   --green-dark: #09795c;
