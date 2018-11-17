@@ -19,17 +19,16 @@
 </template>
 
 <script>
-  import LazyImage from '~/components/LazyImage.vue'
-  import Marked from '~/components/Marked.vue'
-  import Topics from '~/components/Topics.vue'
+import LazyImage from '~/components/LazyImage.vue';
+import Topics from '~/components/Topics.vue';
 
-  export default {
-    props: ['talk'],
-    components: {
-      LazyImage,
-      Marked,
-      Topics
-    }
+export default {
+  props: ['talk'],
+  components: {
+    LazyImage,
+    Marked: () => import('~/components/Marked.vue'),
+    Topics
   }
+};
 </script>
 

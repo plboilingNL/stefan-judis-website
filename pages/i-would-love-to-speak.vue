@@ -82,7 +82,6 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import Marked from '~/components/Marked.vue';
 import LazyImage from '~/components/LazyImage.vue';
 import { createPage } from '~/lib/basepage.js';
 
@@ -113,7 +112,7 @@ export default createPage({
   },
   components: {
     Container,
-    Marked,
+    Marked: () => import('~/components/Marked.vue'),
     LazyImage
   }
 });

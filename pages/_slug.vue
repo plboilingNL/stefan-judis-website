@@ -17,7 +17,6 @@ import Container from '~/components/Container.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import { createPage, getHeadForPost } from '~/lib/basepage.js';
-import Marked from '~/components/Marked.vue';
 
 export default createPage({
   async fetch({ app, store, params, redirect }) {
@@ -39,7 +38,7 @@ export default createPage({
   components: {
     Container,
     DynamicHeadline,
-    Marked,
+    Marked: () => import('~/components/Marked.vue'),
     PrettyDate
   }
 });

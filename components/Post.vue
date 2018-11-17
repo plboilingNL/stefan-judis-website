@@ -17,7 +17,6 @@
 
 <script>
 import PrettyDate from '~/components/PrettyDate.vue';
-import Marked from '~/components/Marked.vue';
 import LazyImage from '~/components/LazyImage.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import Topics from '~/components/Topics.vue';
@@ -61,7 +60,7 @@ export default {
     DynamicHeadline,
     PrettyDate,
     LazyImage,
-    Marked,
+    Marked: () => import('~/components/Marked.vue'),
     Topics
   }
 };

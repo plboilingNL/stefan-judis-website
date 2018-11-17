@@ -41,7 +41,6 @@
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
-import Marked from '~/components/Marked.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import Topics from '~/components/Topics.vue';
@@ -86,7 +85,7 @@ export default createPage({
     Container,
     Comments,
     DynamicHeadline,
-    Marked,
+    Marked: () => import('~/components/Marked.vue'),
     PrettyDate,
     RelatedItems,
     Topics
