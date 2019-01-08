@@ -158,12 +158,20 @@ const config = {
   sitemap: {
     generate: true,
     hostname: 'https://www.stefanjudis.com',
-    routes: getAllRoutes,
+    routes: async () => {
+      return await getAllRoutes().then(routes =>
+        routes.filter(({ noIndex }) => !noIndex).map(({ path }) => path)
+      );
+    },
     exclude: ['/404']
   },
 
   generate: {
-    routes: getAllRoutes
+    routes: async () => {
+      return await getAllRoutes().then(routes =>
+        routes.map(({ path }) => path)
+      );
+    }
   },
 
   env: {
@@ -190,26 +198,29 @@ function getAllRoutes() {
     })
   ]).then(([blogPosts, tilPosts, landingPages, topics]) => {
     const postPages = blogPosts.items.reduce((pages, entry, index) => {
-      pages.push(`/blog/${entry.fields.slug}`);
+      pages.push({
+        path: `/blog/${entry.fields.slug}`,
+        noIndex: !!entry.fields.externalUrl
+      });
 
       if (index % 5 === 0 && index !== 0) {
-        pages.push(`/blog/page/${Math.floor(index / 5) + 1}`);
+        pages.push({ path: `/blog/page/${Math.floor(index / 5) + 1}` });
       }
 
       return pages;
     }, []);
 
-    const tilPages = tilPosts.items.map(
-      item => `/today-i-learned/${item.fields.slug}`
-    );
+    const tilPages = tilPosts.items.map(item => ({
+      path: `/today-i-learned/${item.fields.slug}`
+    }));
 
-    const landingPageSlugs = landingPages.items.map(
-      item => `/${item.fields.slug}`
-    );
+    const landingPageSlugs = landingPages.items.map(item => ({
+      path: `/${item.fields.slug}`
+    }));
 
     const topicSlugs = topics.items
       .filter(item => item.fields.title !== 'Newsletter')
-      .map(item => `/topics/${item.fields.slug}`);
+      .map(item => ({ path: `/topics/${item.fields.slug}` }));
 
     return [...postPages, ...tilPages, ...landingPageSlugs, ...topicSlugs];
   });
