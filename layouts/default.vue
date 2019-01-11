@@ -115,6 +115,8 @@ body {
     --c-highlight: var(--blue-bright);
     --c-tile-border: var(--grey-very-dark);
     --c-tile-background: var(--c-background);
+    --c-tile-contrast: var(--c-background-contrast);
+    --c-navigation-background: var(--c-background);
   }
 
   margin: 0;
