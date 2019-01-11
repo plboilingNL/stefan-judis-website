@@ -3,10 +3,11 @@
   background: transparent;
   height: 100%;
 
+  transform: translate3d(0, 0, 0);
   transition: transform 0.125s ease-in-out;
 
   &:hover {
-    transform: translateY(-1px);
+    transform: translate3d(0, -1px, 0);
 
     &::before {
       transform: scale(0.985, 1) translateY(-0.25em);
@@ -24,6 +25,7 @@
 
     transform-origin: center;
     transition: transform 0.1s ease-in-out;
+    will-change: tranform;
 
     content: '';
 
