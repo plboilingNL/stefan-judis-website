@@ -6,10 +6,10 @@
   transition: transform 0.125s ease-in-out;
 
   &:hover {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 
     &::before {
-      transform: scale(0.98, 1) translateY(-0.25em);
+      transform: scale(0.985, 1) translateY(-0.25em);
     }
   }
 
@@ -23,28 +23,18 @@
     box-shadow: var(--shadow-tile);
 
     transform-origin: center;
-    transition: transform 0.125s ease-in-out;
+    transition: transform 0.1s ease-in-out;
 
     content: '';
 
     z-index: -1;
   }
 
-  &--noHighlight {
-    .c-tile__container {
-      border-top: none;
-    }
-  }
-
-  &--bigHighlight {
-    border-top-width: 8em;
-  }
-
   &__container {
     display: flex;
     position: relative;
     flex-direction: column;
-    background: var(--c-background);
+    background: var(--c-tile-background);
     border: 1px solid var(--c-tile-border);
     color: var(--c-text);
     height: 100%;
@@ -95,7 +85,7 @@
     margin-top: -1em;
     margin-left: -1em;
     margin-right: -1em;
-    background: var(--c-background-contrast);
+    background: var(--c-tile-contrast);
     padding: 1em;
     text-align: center;
   }

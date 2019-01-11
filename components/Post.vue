@@ -3,13 +3,18 @@
     <div class="c-tile__container">
       <PrettyDate v-if="post.fields.date && showDate" :date="post.fields.date" class="dt-published"></PrettyDate>
 
-      <DynamicHeadline :level="level" :url="`/${linkPrefix}/${post.fields.slug}/`" class="p-name" :id="post.fields.title | idAlize">{{ post.fields.title }}</DynamicHeadline>
+      <DynamicHeadline
+        :level="level"
+        :url="`/${linkPrefix}/${post.fields.slug}/`"
+        class="p-name"
+        :id="post.fields.title | idAlize"
+      >{{ post.fields.title }}</DynamicHeadline>
 
       <p v-if="showDescription">{{ post.fields.description }}</p>
       <Marked v-if="showExcerpt" :markdown="post.fields.excerpt"></Marked>
 
       <div class="u-marginTopAuto u-paddingTopMedium">
-        <Topics :topics="post.fields.topics" />
+        <Topics :topics="post.fields.topics"/>
       </div>
     </div>
   </div>
@@ -46,14 +51,7 @@ export default {
       return PREFIXES[this.contentTypeId];
     },
     classes() {
-      const isHighlighted =
-        this.contentTypeId !== 'screenCast' && this.contentTypeId !== 'talk';
-
-      return [
-        'c-tile',
-        `c-tile__${this.color || 'red'}`,
-        isHighlighted ? '' : 'c-tile--noHighlight'
-      ];
+      return ['c-tile', `c-tile__${this.color || 'red'}`];
     }
   },
   components: {

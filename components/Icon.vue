@@ -93,7 +93,7 @@ export default {
 </script>
 
 <style>
-[class*='icon'] {
+[class*='-icon'] {
   display: contents;
 }
 </style>

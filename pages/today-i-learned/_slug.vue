@@ -4,36 +4,63 @@
     <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
     <span slot="subHeadline">{{ post.fields.readingTime }} min read</span>
     <div class="c-tile">
-
       <div class="c-tile__container">
-        <p class="c-tile__header">
-          This post is part of my <nuxt-link to="/today-i-learned/">Today I learned</nuxt-link> series in which I share all my learnings regarding web development.
+        <p class="c-tile__header">This post is part of my
+          <nuxt-link to="/today-i-learned/">Today I learned</nuxt-link>series in which I share all my learnings regarding web development.
         </p>
         <Marked :markdown="post.fields.body"></Marked>
         <div v-if="(post.fields.video || post.fields.videoWebm)">
-          <video autoplay muted loop playsinline preload="metadata" :class="{ 'is-mobile-video': post.fields.isMobileVideo }">
-            <source v-if="post.fields.videoWebm" :src="post.fields.videoWebm.fields.file.url" type="video/webm">
-            <source v-if="post.fields.video" :src="post.fields.video.fields.file.url" type="video/mp4">
+          <video
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            :class="{ 'is-mobile-video': post.fields.isMobileVideo }"
+          >
+            <source
+              v-if="post.fields.videoWebm"
+              :src="post.fields.videoWebm.fields.file.url"
+              type="video/webm"
+            >
+            <source
+              v-if="post.fields.video"
+              :src="post.fields.video.fields.file.url"
+              type="video/mp4"
+            >
           </video>
         </div>
 
         <div v-if="post.fields.topics && post.fields.topics.length" class="u-marginBottomMedium">
           <h3>Tags</h3>
-          <Topics :topics="post.fields.topics" />
+          <Topics :topics="post.fields.topics"/>
         </div>
 
         <RelatedItems :items="posts" :item="post" slug="today-i-learned"/>
         <div class="u-marginTopMedium u-marginBottomMedium">
           <ul class="o-list-reset o-list-flex-end">
-            <li class="u-marginTopSmall"><button class="o-btn" type="button" :disabled="showComments" @click="loadComments">Load comments</button></li>
-            <li class="u-marginTopSmall u-marginLeftAuto"><a :href="sharingUrl" class="o-btn o-btn--ghost" target="_blank" rel="noopener noreferrer">Share article</a></li>
-            <li class="u-marginTopSmall u-marginLeftMedium"><nuxt-link to="/newsletter/" class="o-btn o-btn--ghost">Subscribe to newsletter</nuxt-link></li>
+            <li class="u-marginTopSmall">
+              <button
+                class="o-btn"
+                type="button"
+                :disabled="showComments"
+                @click="loadComments"
+              >Load comments</button>
+            </li>
+            <li class="u-marginTopSmall u-marginLeftAuto">
+              <a
+                :href="sharingUrl"
+                class="o-btn o-btn--ghost"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Share article</a>
+            </li>
           </ul>
-
-          <Comments v-if="showComments" class="u-marginBottomMedium" />
+          <Comments v-if="showComments" class="u-marginBottomMedium"/>
         </div>
       </div>
     </div>
+    <newsletter-form class="u-marginTopMedium"/>
   </Container>
 </template>
 
@@ -41,6 +68,7 @@
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
+import NewsletterForm from '~/components/NewsletterForm.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import Topics from '~/components/Topics.vue';
@@ -86,6 +114,7 @@ export default createPage({
     Comments,
     DynamicHeadline,
     Marked: () => import('~/components/Marked.vue'),
+    NewsletterForm,
     PrettyDate,
     RelatedItems,
     Topics

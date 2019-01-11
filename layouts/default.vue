@@ -5,7 +5,7 @@
     <main>
       <nuxt/>
     </main>
-    <loading-time />
+    <loading-time/>
     <closing/>
     <!-- <cookie-banner /> -->
   </div>
@@ -57,7 +57,6 @@ export default {
 @import '../assets/styles/objects/code.css';
 @import '../assets/styles/objects/emoji.css';
 @import '../assets/styles/objects/headline.css';
-@import '../assets/styles/objects/grid.css';
 @import '../assets/styles/objects/list.css';
 @import '../assets/styles/objects/tile.css';
 @import '../assets/styles/transitions.css';
@@ -74,8 +73,9 @@ body {
   --red-bright: #f55d52;
   --red: #d73f34;
   --red-dark: #c52d22;
+  --white: #fff;
   --grey-bright: #f8f8f8;
-  --grey: #eee;
+  --grey: #e3e3e3;
   --grey-dark: #5a5a5a;
   --grey-darker: #444;
   --grey-very-dark: #343434;
@@ -99,7 +99,9 @@ body {
   --shadow-person: var(--shadow-tile);
   --shadow-floating-thing: 0 0.375em 1.5em -0.25em var(--c-shadow-color);
 
-  --c-tile-border: var(--c-background);
+  --c-tile-border: var(--grey);
+  --c-tile-background: var(--white);
+  --c-tile-contrast: var(--grey-bright);
 
   --navigation-break: 30em;
 
@@ -112,6 +114,7 @@ body {
     --c-shadow-color: #1a1a1a;
     --c-highlight: var(--blue-bright);
     --c-tile-border: var(--grey-very-dark);
+    --c-tile-background: var(--c-background);
   }
 
   margin: 0;
