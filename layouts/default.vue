@@ -103,7 +103,7 @@ body {
   --c-tile-background: var(--white);
   --c-tile-contrast: var(--grey-bright);
 
-  --navigation-break: 30em;
+  --c-navigation-background: var(--white);
 
   @media (prefers-color-scheme: dark) {
     --c-background: var(--grey-darker);

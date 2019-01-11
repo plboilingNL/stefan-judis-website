@@ -7,12 +7,8 @@
       v-on:before-enter="beforeEnter"
       :inert="!mainNavIsVisible && !showFullNav"
     >
-      <li
-        v-for="(item, index) in menu"
-        :key="item.label"
-        :data-index="index"
-      >
-        <nuxt-link  :to="item.url">
+      <li v-for="(item, index) in menu" :key="item.label" :data-index="index">
+        <nuxt-link :to="item.url">
           <Icon v-if="item.icon" :name="item.icon"></Icon>
           {{ item.label }}
         </nuxt-link>
@@ -23,9 +19,12 @@
         <nuxt-link :to="item.url">{{ item.label }}</nuxt-link>
       </li>
     </ul>
-    <button type="button" class="c-navigation__toggle" @click="toggleNav()" :aria-label="mainNavIsVisible ? 'Close navigation' : 'Open navigation'">
-      {{ mainNavIsVisible ? 'Close' : 'Menu' }}
-    </button>
+    <button
+      type="button"
+      class="c-navigation__toggle"
+      @click="toggleNav()"
+      :aria-label="mainNavIsVisible ? 'Close navigation' : 'Open navigation'"
+    >{{ mainNavIsVisible ? 'Close' : 'Menu' }}</button>
   </nav>
 </template>
 <script>
@@ -93,7 +92,7 @@ export default {
   bottom: 0;
   padding: 0;
   z-index: 2;
-  background: var(--c-background);
+  background: var(--c-navigation-background);
   box-shadow: 0 0 1em var(--c-shadow-color);
   transform: translateZ(0);
 
@@ -164,7 +163,7 @@ export default {
     z-index: 2;
     bottom: 0;
     padding: 2em 0.75em 4em;
-    background: var(--c-background);
+    background: var(--c-navigation-background);
     box-shadow: 0 0 2em var(--c-shadow-color);
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 4em);
@@ -246,7 +245,7 @@ export default {
     width: 20%;
     height: 100%;
     font-size: 1em;
-    background: var(--c-background);
+    background: var(--c-navigation-background);
     border: none;
     color: currentColor;
 
