@@ -57,24 +57,29 @@
 <style>
 .c-newsletter {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 2em 1em;
 
   &__container {
-    flex: 1 0;
+    flex: 1 0 75%;
   }
 
   &__controls {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin: 0;
 
     input {
       padding: 0.25em;
       font-size: 1em;
-      width: calc(75% - 1em);
-      margin-right: 1em;
-
+      width: calc(80% - 1em);
       border: 2px solid var(--grey);
+    }
+
+    * {
+      margin: 0.25em 0;
     }
   }
 
@@ -89,7 +94,7 @@
   &__icon {
     width: 4em;
     height: auto;
-    margin-right: 2em;
+    margin: 1em 2em 1em 0;
   }
 }
 </style>
