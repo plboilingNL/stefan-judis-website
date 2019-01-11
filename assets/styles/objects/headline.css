@@ -29,8 +29,3 @@
 .o-headline-3 {
   font-size: 1.25em;
 }
-
-.o-headline-1 a,
-.o-headline-2 a {
-  display: contents;
-}
