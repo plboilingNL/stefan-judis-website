@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div class="c-tile">
     <div class="c-tile__container">
       <PrettyDate v-if="post.fields.date && showDate" :date="post.fields.date" class="dt-published"></PrettyDate>
 
@@ -27,14 +27,7 @@ import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import Topics from '~/components/Topics.vue';
 
 export default {
-  props: [
-    'post',
-    'showDescription',
-    'showExcerpt',
-    'showDate',
-    'level',
-    'color'
-  ],
+  props: ['post', 'showDescription', 'showExcerpt', 'showDate', 'level'],
   computed: {
     contentTypeId() {
       return this.post.sys.contentType.sys.id;
@@ -49,9 +42,6 @@ export default {
         tilPost: 'today-i-learned'
       };
       return PREFIXES[this.contentTypeId];
-    },
-    classes() {
-      return ['c-tile', `c-tile__${this.color || 'red'}`];
     }
   },
   components: {
