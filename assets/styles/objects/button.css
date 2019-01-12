@@ -24,6 +24,8 @@
 
   &:focus {
     color: #fff;
+    background: var(--c-highlight);
+    background: var(--c-highlight-gradient);
   }
 
   &:active {
