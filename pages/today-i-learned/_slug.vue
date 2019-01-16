@@ -6,7 +6,8 @@
     <div class="c-tile">
       <div class="c-tile__container">
         <p class="c-tile__header">This post is part of my
-          <nuxt-link to="/today-i-learned/">Today I learned</nuxt-link>series in which I share all my learnings regarding web development.
+          <nuxt-link to="/today-i-learned/">Today I learned</nuxt-link>
+          {{' '}}series in which I share all my learnings regarding web development.
         </p>
         <Marked :markdown="post.fields.body"></Marked>
         <div v-if="(post.fields.video || post.fields.videoWebm)">
