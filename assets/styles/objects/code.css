@@ -62,6 +62,7 @@
   font-weight: bold;
 }
 .o-code .token.string,
+.o-code .token.property,
 .o-code .token.template-string {
   color: var(--red-bright);
 }
