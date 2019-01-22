@@ -148,6 +148,10 @@ h4 {
   letter-spacing: 0.375px;
 }
 
+p {
+  margin: 0 0 0.75em;
+}
+
 main {
   min-height: calc(100vh - 2.5em);
 }
