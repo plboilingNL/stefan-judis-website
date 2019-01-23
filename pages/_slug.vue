@@ -1,8 +1,10 @@
 <template>
   <Container animate="true" :additional-class="page.fields.slug" accessible-line-length="true">
-    <DynamicHeadline slot="headline" :level="1" :id="page.fields.title | idAlize" class="p-name">{{ page.fields.title }}</DynamicHeadline>
+    <DynamicHeadline slot="headline" :level="1" id="main-headline">{{ page.fields.title }}</DynamicHeadline>
     <p slot="subHeadline" v-if="page.fields.isResource">
-      <strong>Last updated at: <PrettyDate v-if="page.fields.isResource" slot="date" :date="page.sys.updatedAt"></PrettyDate></strong>
+      <strong>Last updated at:
+        <PrettyDate v-if="page.fields.isResource" slot="date" :date="page.sys.updatedAt"></PrettyDate>
+      </strong>
     </p>
     <div class="c-tile">
       <div class="c-tile__container">

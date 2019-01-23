@@ -1,7 +1,7 @@
 <template>
   <div class="t-container">
     <Container additional-class="c-newsletter">
-      <h1 slot="headline" tabindex="-1">Monthly Newsletter</h1>
+      <h1 slot="headline" tabindex="-1" id="main-headline">Monthly Newsletter</h1>
       <div class="c-tile c-tile--bigHighlight u-heightAuto u-marginBottomMedium">
         <div class="c-tile__container">
           <NewsletterForm/>

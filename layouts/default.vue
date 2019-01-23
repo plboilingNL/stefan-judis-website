@@ -2,7 +2,7 @@
   <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
     <offline-notice v-if="!isOnline"/>
     <navigation/>
-    <main>
+    <main aria-labelledby="main-headline">
       <nuxt/>
     </main>
     <loading-time/>

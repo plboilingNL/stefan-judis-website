@@ -7,20 +7,31 @@
           <div class="c-tile">
             <div class="c-tile__container">
               <pretty-date :date="event.fields.start" class="dt-start"></pretty-date>
-              <DynamicHeadline :level="3" :url="event.fields.website" class="o-headline-3 u-marginBottomTiny" :id="event.fields.name | idAlize">{{ event.fields.name }}</DynamicHeadline>
+              <DynamicHeadline
+                :level="3"
+                :url="event.fields.website"
+                class="o-headline-3 u-marginBottomTiny"
+                :id="event.fields.name | idAlize"
+              >{{ event.fields.name }}</DynamicHeadline>
               <p class="u-inline-block u-marginTopAuto p-location">
                 <flag :code="event.fields.conference.fields.country"/>
                 {{ event.fields.conference.fields.city }}
               </p>
-              <span class="u-marginBottomMedium u-fontStyleItalic">({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
+              <span
+                class="u-marginBottomMedium u-fontStyleItalic"
+              >({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
             </div>
           </div>
         </li>
       </ul>
-      <nuxt-link slot="footerLine" to="/i-would-love-to-speak/"  class="o-btn u-marginTopLarge">Invite me to your event</nuxt-link>
+      <nuxt-link
+        slot="footerLine"
+        to="/i-would-love-to-speak/"
+        class="o-btn u-marginTopLarge"
+      >Invite me to your event</nuxt-link>
     </Container>
     <Container>
-      <h1 slot="headline" class="o-headline-1">Talks</h1>
+      <h1 slot="headline" class="o-headline-1" id="main-headline">Talks</h1>
       <ul class="o-list-grid">
         <li v-for="talk in talks" class="u-marginBottomLarge" :key="talk.sys.id">
           <Talk :talk="talk"/>

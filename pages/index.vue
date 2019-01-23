@@ -1,14 +1,19 @@
 <template>
   <div class="t-container">
     <Container>
-      <h1 slot="headline" class="o-headline-1" tabindex="-1">Hey, I'm Stefan. I develop digital services and products.</h1>
+      <h1
+        slot="headline"
+        class="o-headline-1"
+        tabindex="-1"
+        id="main-headline"
+      >Hey, I'm Stefan. I develop digital services and products.</h1>
       <Person :person="me"></Person>
     </Container>
     <Container>
       <h2 slot="headline">Blog</h2>
       <ul class="o-list-thirds">
         <li v-for="post in posts" :key="post.sys.id">
-          <Post :post="post" :level="3" :show-date="true" />
+          <Post :post="post" :level="3" :show-date="true"/>
         </li>
       </ul>
       <nuxt-link slot="footerLine" to="/blog/" class="o-btn">See all posts</nuxt-link>
@@ -20,13 +25,13 @@
           <Talk :talk="talk"/>
         </li>
       </ul>
-      <nuxt-link slot="footerLine" to="/talks/"  class="o-btn">See my past and upcoming talks</nuxt-link>
+      <nuxt-link slot="footerLine" to="/talks/" class="o-btn">See my past and upcoming talks</nuxt-link>
     </Container>
     <Container>
       <h2 slot="headline">Developer Smalltalk</h2>
       <ul class="o-list-thirds">
         <li v-for="screencast in screencasts" :key="screencast.sys.id">
-          <Screen-cast :screencast="screencast" />
+          <Screen-cast :screencast="screencast"/>
         </li>
       </ul>
 

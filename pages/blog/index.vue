@@ -1,9 +1,9 @@
 <template>
   <Container animate="true" accessible-line-length="true">
-    <h1 slot="headline" tabindex="-1">Blog</h1>
+    <h1 slot="headline" tabindex="-1" id="main-headline">Blog</h1>
     <ul class="o-list-reset">
       <li v-for="post in posts" :key="post.sys.id" class="u-marginBottomLarge">
-        <Post :post="post" :show-excerpt="true" :show-date="true" :level="2" :include-link="true" />
+        <Post :post="post" :show-excerpt="true" :show-date="true" :level="2" :include-link="true"/>
       </li>
     </ul>
     <PaginationActions :next-page="nextPage"></PaginationActions>

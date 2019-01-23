@@ -1,7 +1,7 @@
 <template>
   <Container animate="true" accessible-line-length="true">
     <PrettyDate slot="date" :date="post.fields.date"></PrettyDate>
-    <h1 slot="headline" tabindex="-1">{{ post.fields.title }}</h1>
+    <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.fields.title }}</h1>
     <span slot="subHeadline">{{ post.fields.readingTime }} min read</span>
     <div class="c-tile">
       <div class="c-tile__container">
