@@ -2,7 +2,12 @@
   <div class="c-person u-marginTopLarge">
     <div class="c-person__image">
       <div>
-        <lazy-image class="c-person__image" :asset="person.fields.profilePhoto" :ratio="1" :load="true"></lazy-image>
+        <lazy-image
+          class="c-person__image"
+          :asset="person.fields.profilePhoto"
+          :ratio="1"
+          :load="true"
+        ></lazy-image>
         <ul class="c-person__social">
           <li>
             <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">
@@ -15,7 +20,11 @@
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/stefans_little_planet/" rel="me" aria-label="Follow me on Instagram">
+            <a
+              href="https://www.instagram.com/stefans_little_planet/"
+              rel="me"
+              aria-label="Follow me on Instagram"
+            >
               <Icon name="Instagram"></Icon>
             </a>
           </li>
@@ -24,7 +33,11 @@
     </div>
     <div class="c-person__details">
       <div v-html="bio"></div>
-      <p>I also <nuxt-link to="/staying-up-to-date/">read a lot of newsletters and listen to a few podcasts</nuxt-link>, document <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link> and write <nuxt-link to="/newsletter/">a monthly newsletter</nuxt-link>.</p>
+      <p>I also
+        <nuxt-link to="/staying-up-to-date/">read a lot of newsletters and listen to a few podcasts</nuxt-link>, document
+        <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link>and write
+        <nuxt-link to="/newsletter/">a monthly newsletter</nuxt-link>.
+      </p>
     </div>
   </div>
 </template>
@@ -47,13 +60,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 .c-person {
   display: flex;
   flex-direction: column;
   align-items: center;
 
   box-shadow: var(--shadow-person);
+  background: var(--c-tile-background);
 }
 
 @media (min-width: 45.5em) {
