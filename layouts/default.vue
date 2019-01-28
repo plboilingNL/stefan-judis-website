@@ -51,7 +51,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 @import '../assets/styles/objects/anchor.css';
 @import '../assets/styles/objects/button.css';
 @import '../assets/styles/objects/code.css';
@@ -180,8 +180,6 @@ video.is-mobile-video {
 
 a {
   color: currentColor;
-  text-decoration: underline;
-  text-decoration-skip: ink;
 
   &:hover,
   &:focus {
