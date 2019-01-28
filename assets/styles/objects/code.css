@@ -4,7 +4,7 @@
   background: #333;
 
   padding: 1em;
-  margin: 0.25em -1em;
+  margin: 1em -1em;
 
   &:not(.o-code-whatevs) {
     padding-top: 3em;
