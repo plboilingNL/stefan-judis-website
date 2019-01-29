@@ -19,7 +19,7 @@
               </p>
               <span
                 class="u-marginBottomMedium u-fontStyleItalic"
-              >({{event.fields.state === 'accepted' ? 'speaking' : 'attending'}})</span>
+              >({{event.fields.state === 'accepted' ? 'speaking' : event.fields.state}})</span>
             </div>
           </div>
         </li>
