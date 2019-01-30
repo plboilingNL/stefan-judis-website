@@ -28,7 +28,7 @@
   </section>
 </template>
 
-<style>
+<style lang="postcss">
 .c-container {
   & > div {
     max-width: 65em;
