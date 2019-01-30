@@ -4,7 +4,7 @@
 // otherwise CPA is used
 process.env.NODE_ENV = 'production';
 
-const { Nuxt, Builder, Generator } = require('nuxt');
+const { Nuxt, Builder, Generator } = require('nuxt-edge');
 const config = require('../nuxt.config.js');
 
 config.mode = 'universal';
