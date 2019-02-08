@@ -38,6 +38,12 @@ export default {
     }
   }
 
+  p {
+    &:only-child {
+      margin: 0.5em 0;
+    }
+  }
+
   code {
     font-size: 1.125em;
     font-family: monospace;

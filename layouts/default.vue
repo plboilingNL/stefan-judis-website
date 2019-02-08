@@ -93,7 +93,7 @@ body {
     var(--c-highlight)
   );
 
-  --grid-gap: 3em;
+  --grid-gap: 3.5em;
 
   --grid-outer-padding: 1em;
   @media (min-width: 38em) {
