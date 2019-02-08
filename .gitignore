@@ -31,5 +31,6 @@ static/sitemap.xml
 .dist
 
 # generated data
-data
+data/image-map.js
+data/popular-posts.js
 
