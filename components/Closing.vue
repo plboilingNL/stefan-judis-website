@@ -130,7 +130,7 @@ export default {
   }
 
   &__headline {
-    font-size: 2em;
+    font-size: 1.875em;
   }
 
   &__divider {
