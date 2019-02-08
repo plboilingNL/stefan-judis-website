@@ -33,6 +33,7 @@
     margin: 0 auto;
     padding: 1em;
 
+    /* TODO fix that magic number */
     @media (min-width: 30em) {
       padding: 1em 2em;
     }
