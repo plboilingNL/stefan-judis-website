@@ -28,7 +28,7 @@ export default createPage({
   async fetch({ app, store, env }) {
     const { getResources } = app.contentful;
 
-    await Promise.all([getResources()]);
+    await getResources();
   },
   computed: {
     resources() {
@@ -42,7 +42,7 @@ export default createPage({
         {
           hid: 'description',
           name: 'description',
-          content: `A collection of resources I keep collecting.`
+          content: `A collection of resources I think are valuable.`
         }
       ]
     };

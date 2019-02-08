@@ -85,7 +85,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 .c-navigation {
   position: fixed;
   width: 100%;
@@ -93,12 +93,10 @@ export default {
   padding: 0;
   z-index: 2;
   background: var(--c-navigation-background);
-  box-shadow: 0 0 1em var(--c-shadow-color);
   transform: translateZ(0);
 
-  @media (min-width: 47em) {
-    bottom: auto;
-    top: 0;
+  @media (min-width: 50em) {
+    position: static;
   }
 
   &__complete,
@@ -168,7 +166,7 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 4em);
 
-    transform: scale(0.2, 0.225) translate(0, 0);
+    transform: scale(0.2, 0.2) translate(0, 0);
     transform-origin: bottom right;
     transition: transform 0.225s ease-in-out;
 
@@ -194,7 +192,7 @@ export default {
       }
     }
 
-    @media (min-width: 47em) {
+    @media (min-width: 50em) {
       justify-content: flex-end;
 
       > li {
@@ -245,9 +243,20 @@ export default {
     width: 20%;
     height: 100%;
     font-size: 1em;
+    font-weight: 800;
     background: var(--c-navigation-background);
     border: none;
     color: currentColor;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      bottom: 30%;
+      left: 0;
+      width: 2px;
+      background: var(--grey);
+    }
 
     @media (min-width: 38em) {
       display: none;

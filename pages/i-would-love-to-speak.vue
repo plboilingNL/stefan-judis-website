@@ -3,36 +3,29 @@
     <h1 slot="headline" tabindex="-1">Hey there! 👋</h1>
     <div class="c-tile">
       <div class="c-tile__container">
-
         <p>
           In case you're considering to let me speak at your event you probably need some information.
-          First of all, I'm really happy about any invitation to speak somewhere... so <strong>thank you!</strong>
+          First of all, I'm really happy about any invitation to speak somewhere... so
+          <strong>thank you!</strong>
         </p>
         <p>
-          You can find slides and recordings of my recent talks in the <a href="/talks/">speak section</a>.
+          You can find slides and recordings of my recent talks in the
+          <a
+            href="/talks/"
+          >speak section</a>.
         </p>
-        <p>
-          But here we go with some basic information:
-        </p>
+        <p>But here we go with some basic information:</p>
         <dl>
-          <dt>
-            Short bio
-          </dt>
+          <dt>Short bio</dt>
           <dd>
             <Marked :markdown="me.fields.speakerBio"></Marked>
           </dd>
-          <dt>
-            Favorite talk topics
-          </dt>
+          <dt>Favorite talk topics</dt>
+          <dd>{{ me.fields.favoriteSpeakerTopics.join(', ') }}</dd>
+          <dt>Images</dt>
           <dd>
-            {{ me.fields.favoriteSpeakerTopics.join(', ') }}
-          </dd>
-          <dt>
-            Images
-          </dt>
-          <dd>
-            <ul class="o-list-thirds">
-              <li v-for="image in me.fields.images" class="u-marginBottomLarge" :key="image.sys.id">
+            <ul class="o-list-gridSmall">
+              <li v-for="image in me.fields.images" :key="image.sys.id">
                 <div class="u-flex-column u-height-100">
                   <!-- this container is needed because of a FF bug -->
                   <div>
@@ -44,9 +37,7 @@
               </li>
             </ul>
           </dd>
-          <dt>
-            Past talks
-          </dt>
+          <dt>Past talks</dt>
           <dd>
             <ul>
               <li v-for="event in events" :key="event.sys.id">
@@ -54,24 +45,19 @@
               </li>
             </ul>
           </dd>
-          <dt>
-            Technical equipment
-          </dt>
+          <dt>Technical equipment</dt>
           <dd>
             <ul>
-              <li v-for="(tech, index) in me.fields.speakerEquipment" :key="index">
-                {{ tech }}
-              </li>
+              <li v-for="(tech, index) in me.fields.speakerEquipment" :key="index">{{ tech }}</li>
             </ul>
           </dd>
-          <dt>
-            Additional info
-          </dt>
+          <dt>Additional info</dt>
           <dd>
             <ul>
-              <li v-for="(pref, index) in me.fields.additionalSpeakerInformation" :key="index">
-                {{ pref }}
-              </li>
+              <li
+                v-for="(pref, index) in me.fields.additionalSpeakerInformation"
+                :key="index"
+              >{{ pref }}</li>
             </ul>
           </dd>
         </dl>
@@ -118,14 +104,18 @@ export default createPage({
 });
 </script>
 
-<style scoped>
+<style scoped lang="postcss">
 dt {
   font-size: 1.5em;
-  font-family: Georgia, serif;
-  padding: 0.5em 0;
+  padding: 0.25em 0;
+  margin: 0 0 0.25em;
 }
 
 dd {
-  margin: 0.5em 0;
+  margin: 0 0 0.5em;
+
+  ul {
+    margin-top: 0;
+  }
 }
 </style>

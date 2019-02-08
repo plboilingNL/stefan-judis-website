@@ -1,25 +1,34 @@
 #!/bin/sh
 
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "⭐⭐⭐"
 echo "BUILD TRIGGERED BY:"
 echo "$WEBHOOK_TITLE"
 
-# echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+# echo "⭐⭐⭐"
 # echo "Building Lambda Functions"
 # npm run function:build
 
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "⭐⭐⭐"
 echo "Generating Sqip previews"
+echo ""
 ./scripts/sqip-it
 
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "⭐⭐⭐"
+echo "Writing analytics data"
+echo ""
+./scripts/write-analytics-data
+
+echo "⭐⭐⭐"
 echo "Generating Static Site"
+echo ""
 ./scripts/generate
 
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "⭐⭐⭐"
 echo "Validating Markup"
+echo ""
 ./scripts/check-markup
 
-echo "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐"
+echo "⭐⭐⭐"
 echo "Creating RSS Feeds"
+echo ""
 ./scripts/create-rss-feed

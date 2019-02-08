@@ -1,10 +1,11 @@
 import ReadingTime from '~/plugins/reading-time.js';
+import { enrichItemWithGA } from './util.js';
 
 export const state = () => ({
   list: [],
   activePageNumber: null,
   active: null,
-  allFetched: false
+  fullyLoaded: false
 });
 
 export const mutations = {
@@ -18,12 +19,14 @@ export const mutations = {
     const item = state.list.find(entry => entry.fields.slug === slug);
     state.active = item;
   },
-  setAllFetched(state, allFetched) {
-    state.allFetched = allFetched;
+  setFullyLoaded(state, loaded) {
+    state.fullyLoaded = loaded;
   },
   setItem(state, item) {
     const post = state.list.find(post => post.sys.id === item.sys.id);
     item.fields.readingTime = ReadingTime(item);
+    enrichItemWithGA(item);
+
     if (post) {
       Object.assign(post, item);
     } else {
@@ -33,9 +36,10 @@ export const mutations = {
   setList(state, posts) {
     state.list.length = 0;
     state.list.push(
-      ...posts.map(entry => {
-        entry.fields.readingTime = ReadingTime(entry);
-        return entry;
+      ...posts.map(item => {
+        item.fields.readingTime = ReadingTime(item);
+        enrichItemWithGA(item);
+        return item;
       })
     );
   }

@@ -6,63 +6,129 @@
         class="o-headline-1"
         tabindex="-1"
         id="main-headline"
-      >Hey, I'm Stefan. I develop digital services and products.</h1>
-      <Person :person="me"></Person>
-    </Container>
-    <Container>
-      <h2 slot="headline">Blog</h2>
-      <ul class="o-list-thirds">
-        <li v-for="post in posts" :key="post.sys.id">
-          <Post :post="post" :level="3" :show-date="true"/>
-        </li>
-      </ul>
-      <nuxt-link slot="footerLine" to="/blog/" class="o-btn">See all posts</nuxt-link>
-    </Container>
-    <Container>
-      <h2 slot="headline">Talks</h2>
-      <ul class="o-list-thirds">
-        <li v-for="talk in talks" :key="talk.sys.id">
-          <Talk :talk="talk"/>
-        </li>
-      </ul>
-      <nuxt-link slot="footerLine" to="/talks/" class="o-btn">See my past and upcoming talks</nuxt-link>
-    </Container>
-    <Container>
-      <h2 slot="headline">Developer Smalltalk</h2>
-      <ul class="o-list-thirds">
-        <li v-for="screencast in screencasts" :key="screencast.sys.id">
-          <Screen-cast :screencast="screencast"/>
-        </li>
-      </ul>
+      >Heyo, I'm Stefan! I write and speak about web technology.</h1>
+      <div class="magazine-grid">
+        <div class="magazine-grid__column">
+          <h2 class="o-headline-4 o-headline__highlighted">
+            <nuxt-link to="/blog">Blog</nuxt-link>
+          </h2>
+          <ul class="o-list-reset magazine-grid__list">
+            <li v-for="post in posts" :key="post.sys.id">
+              <Post
+                :post="post"
+                :level="3"
+                :style-level="2"
+                :show-date="true"
+                :show-excerpt="true"
+              />
+            </li>
+          </ul>
+        </div>
 
-      <nuxt-link slot="footerLine" to="/smalltalk/" class="o-btn">See all episodes</nuxt-link>
+        <div class="magazine-grid__column">
+          <h2 class="o-headline-4 o-headline__highlighted">
+            <nuxt-link to="/today-i-learned/">Today I learned</nuxt-link>
+          </h2>
+          <ul class="o-list-reset magazine-grid__list">
+            <li v-for="post in til" :key="post.sys.id">
+              <Post :post="post" :level="3" :show-date="true" :show-excerpt="false"/>
+            </li>
+          </ul>
+        </div>
+
+        <div class="magazine-grid__column">
+          <h2 class="o-headline-4 o-headline__highlighted">Popular posts</h2>
+          <ul class="o-list-reset magazine-grid__list">
+            <li v-for="post in popularPosts" :key="post.sys.id">
+              <Post :post="post" :level="3" :style-level="3" :show-date="true"/>
+            </li>
+          </ul>
+        </div>
+
+        <div class="magazine-grid__column">
+          <h2 class="o-headline-4 o-headline__highlighted">
+            <nuxt-link to="/projects/">Projects</nuxt-link>
+          </h2>
+          <ul class="o-list-reset magazine-grid__list">
+            <li v-for="project in projects" :key="project.sys.id">
+              <Project :project="project" :level="3" :style-level="2"/>
+            </li>
+          </ul>
+        </div>
+
+        <div class="magazine-grid__column">
+          <h2 class="o-headline-4 o-headline__highlighted">
+            <nuxt-link to="/smalltalk/">Developer Smalltalk</nuxt-link>
+          </h2>
+          <ul class="o-list-reset magazine-grid__list">
+            <li v-for="screencast in screencasts" :key="screencast.sys.id">
+              <Screen-cast :screencast="screencast"/>
+            </li>
+          </ul>
+        </div>
+
+        <div class="magazine-grid__column">
+          <h2 class="o-headline-4 o-headline__highlighted">
+            <nuxt-link to="/talks/">Latest talks</nuxt-link>
+          </h2>
+          <ul class="o-list-reset magazine-grid__list">
+            <li v-for="talk in talks" :key="talk.sys.id">
+              <Talk :talk="talk"/>
+            </li>
+          </ul>
+        </div>
+      </div>
     </Container>
   </div>
 </template>
 
 <script>
 import Container from '~/components/Container.vue';
-import Person from '~/components/Person.vue';
+// import Person from '~/components/Person.vue';
 import ScreenCast from '~/components/ScreenCast.vue';
 import Post from '~/components/Post.vue';
+import Project from '~/components/Project.vue';
 import Talk from '~/components/Talk.vue';
 import { createPage } from '~/lib/basepage.js';
 
 export default createPage({
   async fetch({ app }) {
-    const { getMe, getPosts, getScreencasts, getTalks } = app.contentful;
+    const {
+      getPosts,
+      getProjects,
+      getTil,
+      getScreencasts,
+      getTalks
+    } = app.contentful;
 
-    await Promise.all([getMe(), getPosts(), getTalks(), getScreencasts()]);
+    await Promise.all([
+      getPosts(),
+      getProjects(),
+      getTil(),
+      getTalks(),
+      getScreencasts()
+    ]);
   },
   computed: {
-    me() {
-      return this.$store.state.me.entry;
+    popularPosts() {
+      return [...this.$store.state.posts.list, ...this.$store.state.til.list]
+        .filter(({ fields }) => !!fields.gaCount)
+        .sort((itemA, itemB) => {
+          return itemB.fields.gaCount - itemA.fields.gaCount;
+        })
+        .slice(0, 4);
     },
     posts() {
-      return this.$store.state.posts.list.slice(0, 3);
+      return this.$store.state.posts.list.slice(0, 2);
+    },
+    projects() {
+      return this.$store.state.projects.list.slice(0, 3);
+    },
+    til() {
+      return this.$store.state.til.list.slice(0, 4);
     },
     talks() {
-      return this.$store.state.talks.list.slice(0, 3);
+      return this.$store.state.talks.list.slice(0, 4);
     },
     screencasts() {
       return this.$store.state.screencasts.list.slice(0, 3);
@@ -89,7 +155,7 @@ export default createPage({
   components: {
     Post,
     Container,
-    Person,
+    Project,
     Talk,
     ScreenCast
   }

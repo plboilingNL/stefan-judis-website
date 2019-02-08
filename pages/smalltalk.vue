@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1" id="main-headline">Developer Smalltalk</h1>
     <ul class="o-list-grid">
       <li v-for="screencast in screenCasts" :key="screencast.sys.id">
-        <Screen-cast :screencast="screencast"/>
+        <Screen-cast :screencast="screencast" :show-image="true"/>
       </li>
     </ul>
   </Container>

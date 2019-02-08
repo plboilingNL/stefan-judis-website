@@ -5,7 +5,6 @@
       'c-container--noPadding': props.noPadding,
       'c-container--smallPadding': props.smallPadding,
       'c-container--accessibleLineLength': props.accessibleLineLength,
-      'c-container--fullWidth': props.fullWidth,
       't-container': props.animate,
       [props.additionalClass]: props.additionalClass || false
     }"
@@ -15,7 +14,6 @@
         v-if="$slots.date || $slots.headline || $slots.subHeadline"
         class="c-container__headline"
       >
-        <slot name="date"></slot>
         <slot name="headline"></slot>
         <slot name="subHeadline"></slot>
       </header>
@@ -31,9 +29,9 @@
 <style lang="postcss">
 .c-container {
   & > div {
-    max-width: 65em;
+    max-width: 78em;
     margin: 0 auto;
-    padding: 1em;
+    padding: 1em 2em;
   }
 }
 
@@ -47,11 +45,7 @@
 
 .c-container--accessibleLineLength > div {
   max-width: 45em;
-  max-width: 65ch;
-}
-
-.c-container--fullWidth > div {
-  max-width: none;
+  max-width: 62ch;
 }
 
 .c-container--noPadding {
@@ -59,16 +53,9 @@
 }
 
 .c-container__headline {
-  margin: 1em 0 2em;
-  text-align: center;
+  margin: 3em 0;
 
-  @media (min-width: 38em) {
-    margin-top: 2em;
-  }
-
-  time,
-  span {
-    font-size: 0.875em;
+  > span {
     display: block;
   }
 
@@ -78,18 +65,14 @@
 
   h1,
   h2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     margin: 0;
-    color: var(--c-text-contrast);
-    font-family: 'Georgia', serif;
-    font-size: 2em;
-    letter-spacing: 1px;
-    text-align: center;
+    color: var(--c-text-catchy);
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.75em;
+    max-width: 25ch;
 
     @media (min-width: 30em) {
-      font-size: 2em;
+      font-size: 3.5em;
     }
   }
 

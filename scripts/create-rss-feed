@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { promisify } = require('util');
-const chalk = require('chalk');
+const { logSeparator, logSuccess } = require('./utils');
 const glob = promisify(require('glob'));
 const readFile = promisify(require('fs').readFile);
 const writeFile = promisify(require('fs').writeFile);
@@ -21,6 +21,8 @@ const FEED_DEFAULTS = {
 const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date);
 (async () => {
   try {
+    logSeparator('Reading blog and til files');
+
     const feeds = await Promise.all(
       [
         {
@@ -43,6 +45,9 @@ const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date);
       })
     );
 
+    logSuccess('blog.xml and til.xml RSS feed written');
+    logSeparator('Combining RSS feeds');
+
     const allItems = feeds
       .reduce((items, current) => {
         return items.concat(current.items);
@@ -54,7 +59,7 @@ const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date);
       items: allItems
     });
 
-    console.log(chalk.green('---------------------'));
+    logSuccess('rss.xml written');
   } catch (e) {
     console.error(e);
   }
@@ -71,7 +76,6 @@ async function writeRssFeed(feed) {
   feed.items.forEach(item => rssFeed.item(item));
 
   await writeFile(`./dist/${feed.file}`, rssFeed.xml());
-  console.log(chalk.green(`✔ ${feed.file} written`));
 }
 
 function getFeedItemsForFiles(files) {

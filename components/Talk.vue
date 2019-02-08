@@ -1,27 +1,38 @@
 <template>
-  <div class="c-tile">
-    <div class="c-tile__container">
-      <!-- this is container is needed because of a FF bug -->
-      <div class="c-tile__image">
-        <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
-        <div class="c-tile__imageActions">
+  <div class="u-flex-column u-height-100">
+    <div class="u-marginBottomSmall" v-if="showImage">
+      <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
+    </div>
+
+    <div class="u-marginBottomSmall">
+      <h3
+        :id="talk.fields.title | idAlize"
+        class="o-headline-3 o-headline__inline"
+      >{{ talk.fields.title }}</h3>
+      <span class="u-noWrap">
+        <span>
+          (
           <a
             v-if="talk.fields.slideUrl"
             :href="talk.fields.slideUrl"
-            class="o-btn o-btn--floating u-marginHorizontalSmall"
+            class="fancy-link"
+            :aria-describedby="talk.fields.title | idAlize"
           >Slides</a>
-          <a
-            v-if="talk.fields.videoUrl"
-            :href="talk.fields.videoUrl"
-            class="o-btn o-btn--floating u-marginHorizontalSmall"
-          >Recording</a>
-        </div>
-      </div>
-      <h3 class="c-tile__headline o-headline-3">{{ talk.fields.title }}</h3>
+          <span v-if="talk.fields.videoUrl">
+            /
+            <a
+              :href="talk.fields.videoUrl"
+              class="fancy-link"
+              :aria-describedby="talk.fields.title | idAlize"
+            >Recording</a>
+          </span>
+          )
+        </span>
+      </span>
+    </div>
 
-      <div class="u-marginTopAuto u-paddingTopMedium">
-        <Topics :topics="talk.fields.topics"/>
-      </div>
+    <div class="u-marginTopAuto">
+      <Topics :topics="talk.fields.topics"/>
     </div>
   </div>
 </template>
@@ -31,7 +42,7 @@ import LazyImage from '~/components/LazyImage.vue';
 import Topics from '~/components/Topics.vue';
 
 export default {
-  props: ['talk'],
+  props: ['talk', 'showImage'],
   components: {
     LazyImage,
     Marked: () => import('~/components/Marked.vue'),

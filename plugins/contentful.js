@@ -35,6 +35,7 @@ export default ({ app, env, store }) => {
     me,
     landingpages,
     posts,
+    projects,
     resources,
     screencasts,
     talks,
@@ -123,7 +124,7 @@ export default ({ app, env, store }) => {
     },
 
     async getPosts() {
-      if (!posts.list.allFetched) {
+      if (!posts.fullyLoaded) {
         return getEntries(
           `content_type=${
             env.CTF_POST_ID
@@ -131,7 +132,25 @@ export default ({ app, env, store }) => {
         )
           .then(items => {
             store.commit('posts/setList', items);
-            store.commit('posts/setAllFetched', true);
+            store.commit('posts/setFullyLoaded', true);
+            return items;
+          })
+          .catch(err => console.log(err));
+      }
+
+      return posts.list;
+    },
+
+    async getProjects() {
+      if (!projects.list.length) {
+        return getEntries(
+          `content_type=${
+            env.CTF_PROJECT_ID
+          }&select=fields.title,fields.description,fields.topics,fields.url,sys`
+        )
+          .then(items => {
+            store.commit('projects/setList', items);
+            // store.commit('posts/setAllFetched', true);
             return items;
           })
           .catch(err => console.log(err));
@@ -143,7 +162,9 @@ export default ({ app, env, store }) => {
     async getResources() {
       if (!resources.list.length) {
         return getEntries(
-          `content_type=${env.CTF_LANDING_PAGE_ID}&fields.isResource=true`
+          `content_type=${
+            env.CTF_LANDING_PAGE_ID
+          }&fields.isResource=true&order=fields.title`
         )
           .then(items => {
             store.commit('resources/setList', items);

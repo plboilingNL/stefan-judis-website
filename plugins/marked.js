@@ -14,10 +14,12 @@ renderer.heading = function(text, level) {
   const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 
   return `
-    <h${level} class="o-anchorContainer o-headline-${level}" id="${escapedText}">
-      <a href="#${escapedText}" aria-label="Anchor link for '${text}'">#</a>
-      ${makeEmojisAccessible(text)}
-    </h${level}>
+    <div class="o-anchorContainer" id="${escapedText}">
+    <a href="#${escapedText}" aria-label="Anchor link for '${text}'">#</a>
+    <h${level} class="o-headline-${level}">${makeEmojisAccessible(
+    text
+  )}</h${level}>
+    </div>
   `;
 };
 
@@ -32,6 +34,9 @@ renderer.image = (href, title, text) => {
 
   return `<a href="${href}"><img src="${href}" alt="${text}"></a>`;
 };
+
+renderer.link = (href, title, text) =>
+  `<a href="${href}" class="fancy-link">${text}</a>`;
 
 renderer.paragraph = text => `<p>${makeEmojisAccessible(text)}</p>\n`;
 

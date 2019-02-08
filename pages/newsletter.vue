@@ -1,21 +1,10 @@
 <template>
   <div class="t-container">
     <Container additional-class="c-newsletter">
-      <h1 slot="headline" tabindex="-1" id="main-headline">Monthly Newsletter</h1>
-      <div class="c-tile c-tile--bigHighlight u-heightAuto u-marginBottomMedium">
-        <div class="c-tile__container">
-          <NewsletterForm/>
-        </div>
-      </div>
-      <div class="u-textAlignCenter">
-        <a href="https://tinyletter.com">powered by TinyLetter</a>
-      </div>
-    </Container>
-    <Container>
-      <h2 slot="headline">Past editions</h2>
-      <ul class="o-list-thirds">
+      <h1 slot="headline" tabindex="-1" id="main-headline">Past newsletter editions</h1>
+      <ul class="o-list-grid">
         <li v-for="newsletter in newsletters" :key="newsletter.sys.id">
-          <Post :post="newsletter" :level="3" :show-date="true"/>
+          <Post :post="newsletter" :level="2" :show-date="true"/>
         </li>
       </ul>
     </Container>

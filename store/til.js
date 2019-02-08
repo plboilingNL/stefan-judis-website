@@ -1,4 +1,5 @@
 import ReadingTime from '~/plugins/reading-time.js';
+import { enrichItemWithGA } from './util.js';
 
 export const state = () => ({
   list: [],
@@ -15,9 +16,10 @@ export const mutations = {
   },
   setList(state, posts) {
     state.list.push(
-      ...posts.map(entry => {
-        entry.fields.readingTime = ReadingTime(entry);
-        return entry;
+      ...posts.map(item => {
+        item.fields.readingTime = ReadingTime(item);
+        enrichItemWithGA(item);
+        return item;
       })
     );
   }

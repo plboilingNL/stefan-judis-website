@@ -1,11 +1,11 @@
 <script>
 export default {
-  props: ['level', 'url'],
+  props: ['level', 'url', 'styleLevel'],
   render: function(h) {
     return h(
       'h' + this.level,
       {
-        class: `o-headline-${this.level}`,
+        class: `o-headline-${this.styleLevel || this.level}`,
         attrs: {
           ...(this.level === 1 && { tabindex: '-1' })
         }
@@ -13,7 +13,7 @@ export default {
       [
         this.url
           ? this.url.startsWith('http')
-            ? h( 'a', { attrs: { href: this.url } }, this.$slots.default)
+            ? h('a', { attrs: { href: this.url } }, this.$slots.default)
             : h('nuxt-link', { props: { to: this.url } }, this.$slots.default)
           : this.$slots.default
       ]

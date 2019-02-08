@@ -1,6 +1,4 @@
-// const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const cdaContentful = require('contentful');
-
 const { getConfig } = require('./lib/config.js');
 const ctfConfig = getConfig();
 const cdaClient = cdaContentful.createClient({
@@ -118,9 +116,9 @@ const config = {
       '@nuxtjs/google-analytics',
       {
         ua: 'UA-104150131-1'
-        // disabled: true
       }
-    ]
+    ],
+    'nuxt-webfontloader'
   ],
 
   /*
@@ -177,6 +175,12 @@ const config = {
   env: {
     IS_PRODUCTION: process.env.NODE_ENV === 'production',
     ...ctfConfig
+  },
+
+  webfontloader: {
+    google: {
+      families: ['Oswald:600']
+    }
   }
 };
 

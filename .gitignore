@@ -29,4 +29,7 @@ static/sitemap.xml
 # sqip image cache and generate map
 .sqip
 .dist
-plugins/image-map.js
+
+# generated data
+data
+

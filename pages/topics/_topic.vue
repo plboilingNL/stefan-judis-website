@@ -1,35 +1,39 @@
 <template>
   <Container animate="true">
     <h1 slot="headline" tabindex="-1">
-      <Icon class="c-topic__icon" :name="topicName.replace(' ', '')" />
+      <Icon class="c-topic__icon" :name="topicName.replace(' ', '')"/>
       {{ topicName }}
     </h1>
-    <div v-if="items.articles.length">
-      <div class="c-container__headline">
-        <h2>Articles</h2>
-      </div>
+    <div v-if="items.articles.length" class="u-marginBottomLarge">
+      <h2 class="o-headline-2 o-headline__highlighted">Articles</h2>
       <ul class="o-list-grid">
         <li v-for="item in items.articles" :key="item.sys.id">
-          <Talk v-if="item.sys.contentType.sys.id === 'talk'" :talk="item" />
-          <ScreenCast v-if="item.sys.contentType.sys.id === 'screenCast'" :screencast="item" />
+          <Talk v-if="item.sys.contentType.sys.id === 'talk'" :talk="item"/>
+          <ScreenCast v-if="item.sys.contentType.sys.id === 'screenCast'" :screencast="item"/>
           <Post
             v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as' || item.sys.contentType.sys.id === 'tilPost'"
-            :post="item" :show-excerpt="false" :show-date="true" :level="2" />
+            :post="item"
+            :show-excerpt="false"
+            :show-date="true"
+            :level="3"
+          />
         </li>
       </ul>
     </div>
 
     <div v-if="items.others.length">
-      <div class="c-container__headline">
-        <h2>Talks and Screencasts</h2>
-      </div>
+      <h2 class="o-headline-2 o-headline__highlighted">Talks and Screencasts</h2>
       <ul class="o-list-grid">
         <li v-for="item in items.others" :key="item.sys.id">
-          <Talk v-if="item.sys.contentType.sys.id === 'talk'" :talk="item" />
-          <ScreenCast v-if="item.sys.contentType.sys.id === 'screenCast'" :screencast="item" />
+          <Talk v-if="item.sys.contentType.sys.id === 'talk'" :talk="item"/>
+          <ScreenCast v-if="item.sys.contentType.sys.id === 'screenCast'" :screencast="item"/>
           <Post
             v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as' || item.sys.contentType.sys.id === 'tilPost'"
-            :post="item" :show-excerpt="false" :show-date="true" :level="2" />
+            :post="item"
+            :show-excerpt="false"
+            :show-date="true"
+            :level="3"
+          />
         </li>
       </ul>
     </div>
@@ -67,8 +71,8 @@ export default createPage({
         articles: getMatchingItems(
           [...posts.list, ...til.list],
           this.topic
-        ).sort(
-          (itemA, itemB) => (itemA.fields.date > itemB.fields.date ? -1 : 1)
+        ).sort((itemA, itemB) =>
+          itemA.fields.date > itemB.fields.date ? -1 : 1
         ),
         others: getMatchingItems(
           [...talks.list, ...screencasts.list],

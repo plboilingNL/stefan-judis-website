@@ -4,7 +4,7 @@ const htmlparser = require('htmlparser2');
 const { promisify } = require('util');
 const glob = promisify(require('glob'));
 const readFile = promisify(require('fs').readFile);
-const chalk = require('chalk');
+const { logError, logSeparator, logSuccess } = require('./utils');
 
 // TODO get the nuxt folder out of here
 const DIST_HTML = './dist/**/*.html';
@@ -15,8 +15,7 @@ const FILES_TO_IGNORE = [
 ];
 (async () => {
   try {
-    console.log(chalk.green('---------------------'));
-    console.log(chalk.green('VALIDATING MARKUP'));
+    logSeparator('Validating markup');
 
     const filePaths = await glob(DIST_HTML);
     const files = await readFiles(filePaths);
@@ -25,14 +24,13 @@ const FILES_TO_IGNORE = [
     const invalidFiles = validatedFiles.filter(file => !file.valid);
 
     if (invalidFiles.length) {
-      console.log(chalk.red("  The following files don't have a description:"));
+      logError("The following files don't have a description:");
       console.log(invalidFiles.map(file => file.name).join('\n'));
 
       return process.exit(1);
     }
 
-    console.log(chalk.green('✔ MARKUP LOOKS GOOD!'));
-    console.log(chalk.green('  - all HTML files have a valid description'));
+    logSuccess('Markup looks good (all thml files have a valid description');
 
     process.exit(0);
   } catch (e) {

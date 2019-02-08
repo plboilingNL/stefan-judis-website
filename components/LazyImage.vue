@@ -11,7 +11,7 @@
 
 <script>
 import { supportsWebp } from '~/plugins/feature-detects.js';
-import imageMap from '~/plugins/image-map.js';
+import imageMap from '~/data/image-map.js';
 
 export default {
   mounted() {
@@ -63,7 +63,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 @keyframes fadeIn {
   from {
     opacity: 0;

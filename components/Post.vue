@@ -1,22 +1,17 @@
 <template>
-  <div class="c-tile">
-    <div class="c-tile__container">
-      <PrettyDate v-if="post.fields.date && showDate" :date="post.fields.date" class="dt-published"></PrettyDate>
+  <div class="c-post">
+    <PrettyDate v-if="post.fields.date && showDate" :date="post.fields.date" class="dt-published"></PrettyDate>
 
-      <DynamicHeadline
-        :level="level"
-        :url="`/${linkPrefix}/${post.fields.slug}/`"
-        class="p-name"
-        :id="post.fields.title | idAlize"
-      >{{ post.fields.title }}</DynamicHeadline>
+    <DynamicHeadline
+      :level="level"
+      :style-level="styleLevel"
+      :url="`/${linkPrefix}/${post.fields.slug}/`"
+      :id="post.fields.title | idAlize"
+    >{{ post.fields.title }}</DynamicHeadline>
 
-      <p v-if="showDescription">{{ post.fields.description }}</p>
-      <Marked v-if="showExcerpt" :markdown="post.fields.excerpt"></Marked>
+    <Marked v-if="showExcerpt" :markdown="post.fields.excerpt"></Marked>
 
-      <div class="u-marginTopAuto u-paddingTopMedium">
-        <Topics :topics="post.fields.topics"/>
-      </div>
-    </div>
+    <Topics :topics="post.fields.topics"/>
   </div>
 </template>
 
@@ -27,7 +22,7 @@ import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import Topics from '~/components/Topics.vue';
 
 export default {
-  props: ['post', 'showDescription', 'showExcerpt', 'showDate', 'level'],
+  props: ['post', 'showExcerpt', 'showDate', 'level', 'styleLevel'],
   computed: {
     contentTypeId() {
       return this.post.sys.contentType.sys.id;
@@ -53,3 +48,12 @@ export default {
   }
 };
 </script>
+
+<style lang="postcss">
+.c-post {
+  time {
+    font-size: 0.875em;
+    color: var(--grey);
+  }
+}
+</style>

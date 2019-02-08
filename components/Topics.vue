@@ -1,5 +1,5 @@
 <template>
-  <ul v-if="topics" class="o-list-inline">
+  <ul v-if="topics" class="c-topics o-list-inline">
     <li v-for="topic in enrichedTopics" :key="topic.fields.title">
       <nuxt-link
         class="c-topic"
@@ -32,24 +32,28 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
+.c-topics {
+  li {
+    &:not(last-child) {
+      margin-right: 0.75em;
+    }
+  }
+}
+
 .c-topic {
   display: flex;
   align-items: center;
   font-size: 0.875em;
   text-decoration: none;
-  padding: 0.375em 0.875em;
-  margin-right: 0.75em;
+  padding: 0.27em 0.75em;
   margin-bottom: 0.5em;
-  background: var(--c-tile-background);
-
-  box-shadow: 0 0.062em 0.5em var(--c-shadow-color);
-  border-radius: 0.375em;
-
-  transition: transform 0.125s ease-in-out;
+  border-radius: 0.125em;
+  border: 2px solid var(--grey-brighter);
+  background: var(--grey-brighter);
 
   &:hover {
-    transform: translateY(-1px);
+    border-color: var(--c-highlight);
   }
 
   svg {

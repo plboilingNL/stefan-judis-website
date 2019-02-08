@@ -15,7 +15,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 .c-markdown {
   blockquote {
     position: relative;
@@ -27,11 +27,11 @@ export default {
       &::before {
         position: absolute;
 
-        left: 0;
-        top: 0;
+        left: -0.125em;
+        top: -0.25em;
 
         font-family: 'Georgia', serif;
-        font-size: 3em;
+        font-size: 4em;
         font-weight: normal;
         content: '“';
       }
@@ -55,6 +55,10 @@ export default {
 
   hr {
     border-color: var(--c-highlight);
+  }
+
+  ul {
+    margin: 0.25em 0 1em;
   }
 }
 </style>

@@ -1,27 +1,19 @@
 <template>
-  <Container animate="true" :full-width="true">
+  <Container animate="true">
     <h1 slot="headline" tabindex="-1" id="main-headline">TIL - Today I learned</h1>
     <ul class="o-list-grid">
       <li v-for="topic in Object.keys(topics).sort()" :key="topic" :class="`area-${topic}`">
-        <div class="c-tile">
-          <div class="c-tile__container">
-            <h2 class="o-headline-2">
-              <nuxt-link :to="`/topics/${ topics[topic].slug }`">
-                <Icon :name="topics[topic].title"/>
-                {{ topics[topic].name }}
-              </nuxt-link>
-            </h2>
-            <ul class="o-list-reset">
-              <li
-                v-for="post in topics[topic].items"
-                class="u-marginBottomSmall"
-                :key="post.sys.id"
-              >
-                <nuxt-link :to="`/today-i-learned/${ post.fields.slug }/`">{{ post.fields.title }}</nuxt-link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <h2 class="o-headline-2 o-headline__highlighted">
+          <nuxt-link :to="`/topics/${ topics[topic].slug }`">
+            <Icon :name="topics[topic].title"/>
+            {{ topics[topic].name }}
+          </nuxt-link>
+        </h2>
+        <ul class="o-list-reset">
+          <li v-for="post in topics[topic].items" class="u-marginBottomSmall" :key="post.sys.id">
+            <nuxt-link :to="`/today-i-learned/${ post.fields.slug }/`">{{ post.fields.title }}</nuxt-link>
+          </li>
+        </ul>
       </li>
     </ul>
   </Container>
@@ -82,11 +74,15 @@ export default createPage({
 <style lang="postcss">
 .area-javascript {
   @media (min-width: 70em) {
+    grid-column: 2;
     grid-row: 2 / 5;
   }
+}
 
-  @media (min-width: 106em) {
-    grid-row: 2 / 4;
+.area-css {
+  @media (min-width: 70em) {
+    grid-column: 3;
+    grid-row: 1 / 3;
   }
 }
 </style>

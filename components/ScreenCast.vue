@@ -1,41 +1,63 @@
 <template>
-  <div class="c-tile">
-    <div class="c-tile__container">
-      <!-- this is container is needed because of a FF bug -->
-      <div class="c-tile__image">
-        <lazy-image :asset="screencast.fields.coverImage" :ratio="0.5625"/>
-        <div class="c-tile__imageActions">
-          <a
-            class="o-btn o-btn--floating"
-            :href="screencast.fields.url"
-            :aria-labelledby="screencast.fields.title | idAlize"
-            rel="noopener"
-          >Watch on YouTube</a>
-        </div>
+  <div class="c-screencast u-flex-column u-height-100">
+    <div class="u-marginBottomSmall" v-if="showImage">
+      <lazy-image :asset="screencast.fields.coverImage" :ratio="0.5625"/>
+      <div class="c-screencast__date c-screencast__Imagedate">
+        <pretty-date :date="screencast.fields.publishDate"></pretty-date>
       </div>
-      <pretty-date :date="screencast.fields.publishDate"></pretty-date>
-      <h3
-        class="u-noMarginTop o-headline-3"
-        :id="screencast.fields.title | idAlize"
-      >{{ screencast.fields.title }}</h3>
-      <div class="u-marginTopAuto u-paddingTopMedium">
-        <Topics :topics="screencast.fields.topics"/>
-      </div>
+    </div>
+
+    <pretty-date v-if="!showImage" class="c-screencast__date" :date="screencast.fields.publishDate"></pretty-date>
+    <DynamicHeadline
+      :level="3"
+      :url="screencast.fields.url"
+      :id="screencast.fields.title | idAlize"
+    >{{ screencast.fields.title }}</DynamicHeadline>
+    <!-- <a :href="" rel="noopener">
+        <h3
+          class="u-noMarginTop o-headline-3"
+          :id="screencast.fields.title | idAlize"
+        >{{ screencast.fields.title }}</h3>
+    </a>-->
+    <div class="u-marginTopAuto">
+      <Topics :topics="screencast.fields.topics"/>
     </div>
   </div>
 </template>
 
 <script>
+import DynamicHeadline from '~/components/DynamicHeadline.vue';
 import LazyImage from '~/components/LazyImage.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import Topics from '~/components/Topics.vue';
 
 export default {
-  props: ['screencast'],
+  props: ['screencast', 'showImage'],
   components: {
+    DynamicHeadline,
     LazyImage,
     PrettyDate,
     Topics
   }
 };
 </script>
+
+<style lang="postcss">
+.c-screencast {
+  position: relative;
+
+  &__date {
+    font-size: 0.875em;
+  }
+
+  &__Imagedate {
+    position: absolute;
+    top: 0.5em;
+    left: 0.5em;
+    padding: 0.125em 0.375em;
+    background: var(--white);
+    border-radius: 0.125em;
+  }
+}
+</style>
+

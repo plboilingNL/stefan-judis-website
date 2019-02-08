@@ -1,0 +1,56 @@
+#!/usr/bin/env node
+
+const { google } = require('googleapis');
+const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
+const jwt = new google.auth.JWT(
+  process.env.GOOGLE_CLIENT_EMAIL,
+  null,
+  // there's some character escaping going on
+  // so we have to invert that
+  process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  scopes
+);
+
+const { logSeparator, logSuccess, writeData } = require('./utils');
+const view_id = '157258229';
+
+async function getData() {
+  await jwt.authorize();
+
+  logSeparator('Fetching Analytics data');
+
+  const { data } = await google.analytics('v3').data.ga.get({
+    auth: jwt,
+    ids: 'ga:' + view_id,
+    'start-date': '150daysAgo',
+    'end-date': 'today',
+    metrics: 'ga:uniquePageviews',
+    dimensions: 'ga:pagePath',
+    sort: '-ga:uniquePageviews',
+    'max-results': '15'
+  });
+
+  logSuccess('Analytics data fetched');
+  logSeparator('Enriching data with Contentful data');
+
+  const pages = await Promise.all(
+    data.rows
+      .filter(([path]) => path.match(/^\/(blog|today-i-learned)\/.+?\/$/g))
+      .map(([path, count]) => ({
+        path,
+        count
+      }))
+  );
+
+  logSuccess('Data enriched');
+  logSeparator('Writing JS data file');
+
+  writeData(
+    'popular-posts.js',
+    `export default ${JSON.stringify(pages.slice(0, 4))}`
+  );
+
+  logSuccess('JS file written');
+}
+
+getData();
