@@ -131,7 +131,7 @@ export default createPage({
       return this.$store.state.talks.list.slice(0, 4);
     },
     screencasts() {
-      return this.$store.state.screencasts.list.slice(0, 3);
+      return this.$store.state.screencasts.list.slice(0, 4);
     }
   },
   head() {
