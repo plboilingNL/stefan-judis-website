@@ -4,9 +4,8 @@
   background: #333;
   border-radius: 0.25em;
 
-  padding: 1em 2em;
-  /* TODO make this out spacing depening on a variable */
-  margin: 2em -1em;
+  padding: 1em var(--grid-outer-padding);
+  margin: 2em calc(var(--grid-outer-padding) * -1);
 
   &:not(.o-code-whatevs) {
     padding-top: 3em;
@@ -16,7 +15,7 @@
 .o-code::before {
   position: absolute;
   top: 0.5em;
-  right: 1em;
+  right: var(--grid-outer-padding);
 
   z-index: 1;
 

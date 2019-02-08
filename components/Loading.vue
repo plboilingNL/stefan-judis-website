@@ -131,20 +131,15 @@ export default {
 }
 
 .c-logo {
-  display: none;
+  position: absolute;
+  top: 1em;
+  left: var(--grid-outer-padding);
+  display: block;
+  z-index: 3;
 
-  @media (min-width: 47em) {
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    margin-left: 1em;
-    display: block;
-    z-index: 3;
-
-    svg {
-      height: 1.75em;
-      width: auto;
-    }
+  svg {
+    height: 1.75em;
+    width: auto;
   }
 }
 </style>

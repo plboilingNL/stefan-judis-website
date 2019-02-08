@@ -95,7 +95,7 @@ export default {
   background: var(--c-navigation-background);
   transform: translateZ(0);
 
-  @media (min-width: 50em) {
+  @media (min-width: 52em) {
     position: static;
   }
 
@@ -192,7 +192,7 @@ export default {
       }
     }
 
-    @media (min-width: 50em) {
+    @media (min-width: 52em) {
       justify-content: flex-end;
 
       > li {

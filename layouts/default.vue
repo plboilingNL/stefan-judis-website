@@ -95,6 +95,11 @@ body {
 
   --grid-gap: 3em;
 
+  --grid-outer-padding: 1em;
+  @media (min-width: 38em) {
+    --grid-outer-padding: 2em;
+  }
+
   /* --c-shadow-color: #bbb;
   --shadow-tile: 0 1em 4em -0.75em var(--c-shadow-color);
   --shadow-btn: 0 0.25em 1.5em var(--c-shadow-color);

@@ -31,17 +31,12 @@
   & > div {
     max-width: 78em;
     margin: 0 auto;
-    padding: 1em;
-
-    /* TODO fix that magic number */
-    @media (min-width: 30em) {
-      padding: 1em 2em;
-    }
+    padding: 1em var(--grid-outer-padding);
   }
 }
 
 .c-container--noPadding > div {
-  padding: 0;
+  padding: 0 var(--grid-outer-padding);
 }
 
 .c-container--smallPadding > div {
@@ -76,7 +71,7 @@
     font-size: 2.75em;
     max-width: 25ch;
 
-    @media (min-width: 30em) {
+    @media (min-width: 38em) {
       font-size: 3.5em;
     }
   }
