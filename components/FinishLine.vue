@@ -59,7 +59,7 @@ export default {
   text-align: center;
   background: var(--c-background-contrast);
   color: var(--c-text-contrast);
-  border-top: 2px solid var(--grey-bright);
+  border-top: 1px solid var(--grey-bright);
 
   > * {
     margin-top: 1em;
