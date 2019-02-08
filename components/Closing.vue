@@ -72,7 +72,9 @@
           </a>
         </li>
       </ul>
-      <finish-line/>
+      <Container :no-padding="true">
+        <finish-line/>
+      </Container>
     </div>
   </footer>
 </template>
