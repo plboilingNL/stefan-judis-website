@@ -2,7 +2,7 @@
   <div class="c-finishLine">
     <div class="c-finishLine__text">
       <span class="c-finishLine__title">
-        This page is build with the CNN stack (
+        This page is built with the CNN stack (
         <a href="https://www.contentful.com">Contentful</a>,
         <a href="https://nuxtjs.org/">Nuxt</a> &amp;
         <a href="https://www.netlify.com">Netlify</a> )
