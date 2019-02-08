@@ -104,13 +104,13 @@ export default {
   }
 
   &__light {
-    padding: 1em 1em 2em;
+    padding: 1em 0 2em;
     background: var(--grey-brighter);
   }
 
   &__dark {
     position: relative;
-    padding: 2.5em 1em 1em;
+    padding: 2.5em 0 1em;
     background: var(--grey-darker);
     color: var(--white);
 

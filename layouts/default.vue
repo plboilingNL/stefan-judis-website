@@ -138,7 +138,7 @@ body {
 
   padding-bottom: 3em;
 
-  @media (min-width: 47em) {
+  @media (min-width: 52em) {
     padding-bottom: 0;
   }
 }
