@@ -5,7 +5,8 @@
   border-radius: 0.25em;
 
   padding: 1em 2em;
-  margin: 2em -2em;
+  /* TODO make this out spacing depening on a variable */
+  margin: 2em -1em;
 
   &:not(.o-code-whatevs) {
     padding-top: 3em;
