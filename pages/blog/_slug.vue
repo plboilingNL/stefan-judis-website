@@ -19,39 +19,6 @@
     </p>
 
     <Marked :markdown="post.fields.body"></Marked>
-    <div v-if="post.fields.isTmil">
-      <ul class="o-list-reset u-marginBottomLarge">
-        <li v-for="tilPost in post.fields.tilPosts" :key="tilPost.sys.id">
-          <DynamicHeadline
-            :level="2"
-            :id="tilPost.fields.title | idAlize"
-            class="p-name"
-          >{{ tilPost.fields.title }}</DynamicHeadline>
-          <Marked :markdown="tilPost.fields.body"></Marked>
-          <div v-if="(tilPost.fields.video || tilPost.fields.videoWebm)">
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              preload="metadata"
-              :class="{ 'is-mobile-video': tilPost.fields.isMobileVideo }"
-            >
-              <source
-                v-if="tilPost.fields.videoWebm"
-                :src="tilPost.fields.videoWebm.fields.file.url"
-                type="video/webm"
-              >
-              <source
-                v-if="tilPost.fields.video"
-                :src="tilPost.fields.video.fields.file.url"
-                type="video/mp4"
-              >
-            </video>
-          </div>
-        </li>
-      </ul>
-    </div>
     <div v-if="post.fields.topics && post.fields.topics.length" class="u-marginBottomMedium">
       <h3>Topics</h3>
       <Topics :topics="post.fields.topics"/>

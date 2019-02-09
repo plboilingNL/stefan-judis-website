@@ -84,7 +84,6 @@
 
 <script>
 import Container from '~/components/Container.vue';
-// import Person from '~/components/Person.vue';
 import ScreenCast from '~/components/ScreenCast.vue';
 import Post from '~/components/Post.vue';
 import Project from '~/components/Project.vue';
