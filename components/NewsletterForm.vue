@@ -57,8 +57,4 @@
     margin: 1em auto 1em;
   }
 }
-
-.svg-stroke-text-color {
-  stroke: var(--c-text);
-}
 </style>

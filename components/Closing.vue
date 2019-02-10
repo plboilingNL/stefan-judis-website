@@ -26,7 +26,6 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="svg-stroke-text-color"
             ></path>
             <path
               d="M62.1 41.5H3.9c-1.6 0-2.9-1.3-2.9-2.9V3.2C1 2 2 1 3.2 1h59.4c1.3 0 2.3 1 2.3 2.3v35.3c.1 1.6-1.2 2.9-2.8 2.9z"
@@ -34,16 +33,9 @@
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-              class="svg-stroke-text-color"
             ></path>
           </g>
-          <path
-            d="M2 2l15 16M64 2L49 18"
-            stroke="#5A5A5A"
-            stroke-width="2"
-            stroke-linecap="round"
-            class="svg-stroke-text-color"
-          ></path>
+          <path d="M2 2l15 16M64 2L49 18" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round"></path>
         </svg>
         <h4 class="c-footer__headline">Get the latest content right in your inbox ...</h4>
         <span>(
