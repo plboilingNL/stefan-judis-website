@@ -50,17 +50,17 @@
       <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
         <li>
           <a href="https://twitter.com/stefanjudis" rel="me">
-            <svg-icon name="twitter"/>Twitter
+            <svg-icon name="twitter" aria-hidden="true"/>Twitter
           </a>
         </li>
         <li>
           <a href="https://github.com/stefanjudis" rel="me">
-            <svg-icon name="github"/>GitHub
+            <svg-icon name="github" aria-hidden="true"/>GitHub
           </a>
         </li>
         <li>
           <a href="https://www.instagram.com/stefans_little_planet/" rel="me">
-            <svg-icon name="instagram"/>Instagram
+            <svg-icon name="instagram" aria-hidden="true"/>Instagram
           </a>
         </li>
       </ul>
