@@ -70,7 +70,7 @@
     margin: 0;
     color: var(--c-text-catchy);
     font-size: 2.75em;
-    max-width: 25ch;
+    max-width: 12em;
 
     @media (min-width: 38em) {
       font-size: 3.5em;
