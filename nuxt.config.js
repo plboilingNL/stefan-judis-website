@@ -31,7 +31,7 @@ const config = {
       { rel: 'preconnect', href: 'https://videos.contentful.com' },
       { rel: 'preconnect', href: 'https://images.contentful.com' },
       { rel: 'preconnect', href: 'https://www.google-analytics.com' },
-      { rel: 'preload', href: '/fancy.css' },
+      { rel: 'preload', as: 'font', href: '/fancy.css' },
       {
         rel: 'alternate',
         type: 'application/rss+xml',
