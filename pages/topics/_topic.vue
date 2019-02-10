@@ -7,11 +7,11 @@
     <div v-if="items.articles.length" class="u-marginBottomLarge">
       <h2 class="o-headline-2 o-headline__highlighted">Articles</h2>
       <ul class="o-list-grid">
-        <li v-for="item in items.articles" :key="item.sys.id">
-          <Talk v-if="item.sys.contentType.sys.id === 'talk'" :talk="item"/>
-          <ScreenCast v-if="item.sys.contentType.sys.id === 'screenCast'" :screencast="item"/>
+        <li v-for="item in items.articles" :key="item._id">
+          <Talk v-if="item._ctId === 'talk'" :talk="item"/>
+          <ScreenCast v-if="item._ctId === 'screenCast'" :screencast="item"/>
           <Post
-            v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as' || item.sys.contentType.sys.id === 'tilPost'"
+            v-if="item._ctId === '2wKn6yEnZewu2SCCkus4as' || item._ctId === 'tilPost'"
             :post="item"
             :show-excerpt="false"
             :show-date="true"
@@ -24,11 +24,11 @@
     <div v-if="items.others.length">
       <h2 class="o-headline-2 o-headline__highlighted">Talks and Screencasts</h2>
       <ul class="o-list-grid">
-        <li v-for="item in items.others" :key="item.sys.id">
-          <Talk v-if="item.sys.contentType.sys.id === 'talk'" :talk="item"/>
-          <ScreenCast v-if="item.sys.contentType.sys.id === 'screenCast'" :screencast="item"/>
+        <li v-for="item in items.others" :key="item._id">
+          <Talk v-if="item._ctId === 'talk'" :talk="item"/>
+          <ScreenCast v-if="item._ctId === 'screenCast'" :screencast="item"/>
           <Post
-            v-if="item.sys.contentType.sys.id === '2wKn6yEnZewu2SCCkus4as' || item.sys.contentType.sys.id === 'tilPost'"
+            v-if="item._ctId === '2wKn6yEnZewu2SCCkus4as' || item._ctId === 'tilPost'"
             :post="item"
             :show-excerpt="false"
             :show-date="true"
@@ -58,10 +58,8 @@ export default createPage({
       const { posts, talks, screencasts, til } = this.$store.state;
       const getMatchingItems = (items, topic) =>
         items.filter(item => {
-          if (item.fields.topics) {
-            return item.fields.topics.some(
-              itemTopic => itemTopic.fields.slug === topic
-            );
+          if (item.topics) {
+            return item.topics.some(itemTopic => itemTopic.slug === topic);
           }
 
           return false;
@@ -71,9 +69,7 @@ export default createPage({
         articles: getMatchingItems(
           [...posts.list, ...til.list],
           this.topic
-        ).sort((itemA, itemB) =>
-          itemA.fields.date > itemB.fields.date ? -1 : 1
-        ),
+        ).sort((itemA, itemB) => (itemA.date > itemB.date ? -1 : 1)),
         others: getMatchingItems(
           [...talks.list, ...screencasts.list],
           this.topic

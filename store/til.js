@@ -11,13 +11,13 @@ export const mutations = {
     state.active = post;
   },
   setActiveWithSlug(state, slug) {
-    const item = state.list.find(entry => entry.fields.slug === slug);
+    const item = state.list.find(entry => entry.slug === slug);
     state.active = item;
   },
   setList(state, posts) {
     state.list.push(
       ...posts.map(item => {
-        item.fields.readingTime = ReadingTime(item);
+        item.readingTime = ReadingTime(item);
         enrichItemWithGA(item);
         return item;
       })

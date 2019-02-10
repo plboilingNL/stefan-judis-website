@@ -2,7 +2,7 @@
   <Container animate="true">
     <h1 slot="headline" tabindex="-1" id="main-headline">Projects</h1>
     <ul class="o-list-grid">
-      <li v-for="project in projects" :key="project.sys.id">
+      <li v-for="project in projects" :key="project._id">
         <Project :project="project" :level="2" :style-level="2"/>
       </li>
     </ul>

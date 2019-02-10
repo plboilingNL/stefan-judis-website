@@ -2,8 +2,8 @@
   <div v-if="relatedItems.length">
     <h3>Related posts</h3>
     <ul>
-      <li v-for="related in relatedItems" :key="related.sys.id">
-        <nuxt-link :to="`/${ slug }/${ related.fields.slug }`">{{ related.fields.title }}</nuxt-link>
+      <li v-for="related in relatedItems" :key="related._id">
+        <nuxt-link :to="`/${ slug }/${ related.slug }`">{{ related.title }}</nuxt-link>
       </li>
     </ul>
   </div>
@@ -19,16 +19,16 @@ export default {
       return this.items
         .filter(item => {
           return (
-            item.fields.topics &&
-            item.fields.topics.some(topic => {
+            item.topics &&
+            item.topics.some(topic => {
               return (
-                currentItem.fields.topics &&
-                currentItem.fields.topics.some(
-                  activeTopic => activeTopic.fields.title === topic.fields.title
+                currentItem.topics &&
+                currentItem.topics.some(
+                  activeTopic => activeTopic.title === topic.title
                 )
               );
             }) &&
-            item.sys.id !== currentItem.sys.id
+            item._id !== currentItem._id
           );
         })
         .slice(0, 3);

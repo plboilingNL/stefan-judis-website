@@ -1,27 +1,27 @@
 <template>
   <Container animate="true" accessible-line-length="true">
-    <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.fields.title }}</h1>
+    <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
-      <PrettyDate :date="post.fields.date"/>
+      <PrettyDate :date="post.date"/>
       <span aria-hidden="true">•</span>
-      {{ post.fields.readingTime }} min read
+      {{ post.readingTime }} min read
     </span>
-    <p v-if="post.fields.externalUrl" class="o-highlightBox">
+    <p v-if="post.externalUrl" class="o-highlightBox">
       <Icon class="o-highlightBox__icon" name="Attention"/>
       <span>
         This article was initially posted on
         <a
-          :href="post.fields.externalUrl"
-          :aria-labelledby="post.fields.title | idAlize"
+          :href="post.externalUrl"
+          :aria-labelledby="post.title | idAlize"
           class="fancy-link"
-        >{{ post.fields.externalUrl | externalUrl }}</a>.
+        >{{ post.externalUrl | externalUrl }}</a>.
       </span>
     </p>
 
-    <Marked :markdown="post.fields.body"></Marked>
-    <div v-if="post.fields.topics && post.fields.topics.length" class="u-marginBottomMedium">
+    <Marked :markdown="post.body"></Marked>
+    <div v-if="post.topics && post.topics.length" class="u-marginBottomMedium">
       <h3>Topics</h3>
-      <Topics :topics="post.fields.topics"/>
+      <Topics :topics="post.topics"/>
     </div>
     <RelatedItems :items="posts" :item="post" slug="blog"/>
     <div class="u-marginTopMedium u-marginBottomMedium">
@@ -83,7 +83,7 @@ export default createPage({
       return this.$store.state.posts.list;
     },
     sharingUrl() {
-      return getSharingUrl(this.post.fields.title, this.$route.fullPath);
+      return getSharingUrl(this.post.title, this.$route.fullPath);
     }
   },
   head() {

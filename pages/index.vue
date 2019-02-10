@@ -13,7 +13,7 @@
             <nuxt-link to="/blog">Blog</nuxt-link>
           </h2>
           <ul class="o-list-reset magazine-grid__list">
-            <li v-for="post in posts" :key="post.sys.id">
+            <li v-for="post in posts" :key="post._id">
               <Post
                 :post="post"
                 :level="3"
@@ -30,7 +30,7 @@
             <nuxt-link to="/today-i-learned/">Today I learned</nuxt-link>
           </h2>
           <ul class="o-list-reset magazine-grid__list">
-            <li v-for="post in til" :key="post.sys.id">
+            <li v-for="post in til" :key="post._id">
               <Post :post="post" :level="3" :show-date="true" :show-excerpt="false"/>
             </li>
           </ul>
@@ -39,7 +39,7 @@
         <div class="magazine-grid__column">
           <h2 class="o-headline-4 o-headline__highlighted">Popular posts</h2>
           <ul class="o-list-reset magazine-grid__list">
-            <li v-for="post in popularPosts" :key="post.sys.id">
+            <li v-for="post in popularPosts" :key="post._id">
               <Post :post="post" :level="3" :style-level="3" :show-date="true"/>
             </li>
           </ul>
@@ -50,7 +50,7 @@
             <nuxt-link to="/projects/">Projects</nuxt-link>
           </h2>
           <ul class="o-list-reset magazine-grid__list">
-            <li v-for="project in projects" :key="project.sys.id">
+            <li v-for="project in projects" :key="project._id">
               <Project :project="project" :level="3" :style-level="2"/>
             </li>
           </ul>
@@ -61,7 +61,7 @@
             <nuxt-link to="/smalltalk/">Developer Smalltalk</nuxt-link>
           </h2>
           <ul class="o-list-reset magazine-grid__list">
-            <li v-for="screencast in screencasts" :key="screencast.sys.id">
+            <li v-for="screencast in screencasts" :key="screencast._id">
               <Screen-cast :screencast="screencast"/>
             </li>
           </ul>
@@ -72,7 +72,7 @@
             <nuxt-link to="/talks/">Latest talks</nuxt-link>
           </h2>
           <ul class="o-list-reset magazine-grid__list">
-            <li v-for="talk in talks" :key="talk.sys.id">
+            <li v-for="talk in talks" :key="talk._id">
               <Talk :talk="talk"/>
             </li>
           </ul>
@@ -111,9 +111,9 @@ export default createPage({
   computed: {
     popularPosts() {
       return [...this.$store.state.posts.list, ...this.$store.state.til.list]
-        .filter(({ fields }) => !!fields.gaCount)
+        .filter(({ gaCount }) => !!gaCount)
         .sort((itemA, itemB) => {
-          return itemB.fields.gaCount - itemA.fields.gaCount;
+          return itemB.gaCount - itemA.gaCount;
         })
         .slice(0, 4);
     },

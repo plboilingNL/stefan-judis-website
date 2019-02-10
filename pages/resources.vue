@@ -2,16 +2,16 @@
   <Container animate="true">
     <h1 slot="headline" tabindex="-1" id="main-headline">Resources</h1>
     <ul class="o-list-grid">
-      <li v-for="resource in resources" :key="resource.sys.id">
+      <li v-for="resource in resources" :key="resource._id">
         <div class="c-tile">
           <div class="c-tile__container">
             <DynamicHeadline
               :level="2"
-              :url="`/${resource.fields.slug}/`"
+              :url="`/${resource.slug}/`"
               class="o-headline-2"
-              :id="resource.fields.title | idAlize"
-            >{{ resource.fields.title }}</DynamicHeadline>
-            <p class="u-marginTopAuto">{{ resource.fields.description }}</p>
+              :id="resource.title | idAlize"
+            >{{ resource.title }}</DynamicHeadline>
+            <p class="u-marginTopAuto">{{ resource.description }}</p>
           </div>
         </div>
       </li>

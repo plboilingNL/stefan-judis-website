@@ -1,10 +1,10 @@
 <template>
   <Container animate="true" accessible-line-length="true">
-    <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.fields.title }}</h1>
+    <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
-      <PrettyDate :date="post.fields.date"/>
+      <PrettyDate :date="post.date"/>
       <span aria-hidden="true">•</span>
-      {{ post.fields.readingTime }} min read
+      {{ post.readingTime }} min read
     </span>
     <div>
       <p class="o-highlightBox">
@@ -14,32 +14,24 @@
           {{' '}}series in which I share all my learnings regarding web development.
         </span>
       </p>
-      <Marked :markdown="post.fields.body"></Marked>
-      <div v-if="(post.fields.video || post.fields.videoWebm)">
+      <Marked :markdown="post.body"></Marked>
+      <div v-if="(post.video || post.videoWebm)">
         <video
           autoplay
           muted
           loop
           playsinline
           preload="metadata"
-          :class="{ 'is-mobile-video': post.fields.isMobileVideo }"
+          :class="{ 'is-mobile-video': post.isMobileVideo }"
         >
-          <source
-            v-if="post.fields.videoWebm"
-            :src="post.fields.videoWebm.fields.file.url"
-            type="video/webm"
-          >
-          <source
-            v-if="post.fields.video"
-            :src="post.fields.video.fields.file.url"
-            type="video/mp4"
-          >
+          <source v-if="post.videoWebm" :src="post.videoWebm.file.url" type="video/webm">
+          <source v-if="post.video" :src="post.video.file.url" type="video/mp4">
         </video>
       </div>
 
-      <div v-if="post.fields.topics && post.fields.topics.length" class="u-marginBottomMedium">
+      <div v-if="post.topics && post.topics.length" class="u-marginBottomMedium">
         <h3>Topics</h3>
-        <Topics :topics="post.fields.topics"/>
+        <Topics :topics="post.topics"/>
       </div>
 
       <RelatedItems :items="posts" :item="post" slug="today-i-learned"/>
@@ -99,7 +91,7 @@ export default createPage({
       return this.$store.state.til.list;
     },
     sharingUrl() {
-      return getSharingUrl(this.post.fields.title, this.$route.fullPath);
+      return getSharingUrl(this.post.title, this.$route.fullPath);
     }
   },
   data() {

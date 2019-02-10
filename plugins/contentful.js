@@ -6,9 +6,35 @@ if (process.browser) {
   resolveResponse = resolveResponse.default;
 }
 
+const normalizeEntry = entry => {
+  return typeof entry === 'object'
+    ? Object.entries(entry.fields).reduce(
+        (acc, [key, value]) => {
+          if (value.map) {
+            acc[key] = value.map(normalizeEntry);
+          } else if (!!value.sys) {
+            acc[key] = normalizeEntry(value);
+          } else {
+            acc[key] = value;
+          }
+
+          return acc;
+        },
+        {
+          _id: entry.sys.id,
+          ...(entry.sys.contentType
+            ? { _ctId: entry.sys.contentType.sys.id }
+            : {}),
+          _updatedAt: entry.sys.updatedAt
+        }
+      )
+    : entry;
+};
+
 const myFetch = async (url, query) => {
-  const res = await fetch(url).then(res => res.json());
-  return resolveResponse(res);
+  return resolveResponse(await fetch(url).then(res => res.json())).map(
+    normalizeEntry
+  );
 };
 
 export default ({ app, env, store }) => {
@@ -44,7 +70,7 @@ export default ({ app, env, store }) => {
 
   app.contentful = {
     async getMe() {
-      if (!me.entry.sys) {
+      if (!me.entry._id) {
         return getEntries(`sys.id=${env.CTF_ME_ID}`)
           .then(items => {
             store.commit('me/setMe', items[0]);
@@ -106,9 +132,7 @@ export default ({ app, env, store }) => {
     },
 
     async getPost(slug) {
-      const post = posts.list.find(
-        post => post.fields.slug === slug && post.fields.body
-      );
+      const post = posts.list.find(post => post.slug === slug && post.body);
 
       if (!post) {
         return getEntries(`content_type=${env.CTF_POST_ID}&fields.slug=${slug}`)

@@ -3,21 +3,21 @@
     <Container>
       <h2 slot="headline" tabindex="-1">Upcoming events</h2>
       <ul class="o-list-grid">
-        <li v-for="event in events" :key="event.sys.id">
-          <pretty-date :date="event.fields.start" class="dt-start"></pretty-date>
+        <li v-for="event in events" :key="event._id">
+          <pretty-date :date="event.start" class="dt-start"></pretty-date>
           <DynamicHeadline
             :level="3"
-            :url="event.fields.website"
+            :url="event.website"
             class="o-headline-3 u-marginBottomTiny"
-            :id="event.fields.name | idAlize"
-          >{{ event.fields.name }}</DynamicHeadline>
+            :id="event.name | idAlize"
+          >{{ event.name }}</DynamicHeadline>
           <p class="u-inline-block u-marginTopAuto p-location">
-            <flag :code="event.fields.conference.fields.country"/>
-            {{ event.fields.conference.fields.city }}
+            <flag :code="event.conference.country"/>
+            {{ event.conference.city }}
           </p>
           <span
             class="u-marginBottomMedium u-fontStyleItalic"
-          >({{event.fields.state === 'accepted' ? 'speaking' : event.fields.state}})</span>
+          >({{event.state === 'accepted' ? 'speaking' : event.state}})</span>
         </li>
       </ul>
       <nuxt-link
@@ -29,7 +29,7 @@
     <Container>
       <h1 slot="headline" class="o-headline-1" id="main-headline">Talks</h1>
       <ul class="o-list-grid">
-        <li v-for="talk in talks" :key="talk.sys.id">
+        <li v-for="talk in talks" :key="talk._id">
           <Talk :talk="talk" :show-image="true"/>
         </li>
       </ul>

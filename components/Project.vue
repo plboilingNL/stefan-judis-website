@@ -1,14 +1,10 @@
 
 <template>
   <div class="u-flex-column u-height-100">
-    <DynamicHeadline
-      :url="project.fields.url"
-      :level="level"
-      :style-level="styleLevel"
-    >{{ project.fields.title }}</DynamicHeadline>
-    <Marked :markdown="project.fields.description"></Marked>
+    <DynamicHeadline :url="project.url" :level="level" :style-level="styleLevel">{{ project.title }}</DynamicHeadline>
+    <Marked :markdown="project.description"></Marked>
 
-    <Topics :topics="project.fields.topics" class="u-marginTopAuto"/>
+    <Topics :topics="project.topics" class="u-marginTopAuto"/>
   </div>
 </template>
 

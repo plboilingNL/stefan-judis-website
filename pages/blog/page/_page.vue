@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1">Blog - Page {{ page }}</h1>
 
     <ul class="o-list-reset">
-      <li v-for="post in posts" class="u-marginBottomLarge" :key="post.sys.id">
+      <li v-for="post in posts" class="u-marginBottomLarge" :key="post._id">
         <Post :post="post" :show-excerpt="true" :show-date="true" :level="2" include-link="true"/>
       </li>
     </ul>

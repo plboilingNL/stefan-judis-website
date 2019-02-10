@@ -18,18 +18,18 @@
         <dl>
           <dt>Short bio</dt>
           <dd>
-            <Marked :markdown="me.fields.speakerBio"></Marked>
+            <Marked :markdown="me.speakerBio"></Marked>
           </dd>
           <dt>Favorite talk topics</dt>
-          <dd>{{ me.fields.favoriteSpeakerTopics.join(', ') }}</dd>
+          <dd>{{ me.favoriteSpeakerTopics.join(', ') }}</dd>
           <dt>Images</dt>
           <dd>
             <ul class="o-list-gridSmall">
-              <li v-for="image in me.fields.images" :key="image.sys.id">
+              <li v-for="image in me.images" :key="image._id">
                 <div class="u-flex-column u-height-100">
                   <!-- this container is needed because of a FF bug -->
                   <div>
-                    <a :href="image.fields.file.url">
+                    <a :href="image.file.url">
                       <lazy-image :asset="image" :ratio="0.65"></lazy-image>
                     </a>
                   </div>
@@ -40,24 +40,21 @@
           <dt>Past talks</dt>
           <dd>
             <ul>
-              <li v-for="event in events" :key="event.sys.id">
-                <a :href="event.fields.website">{{ event.fields.name }}</a>
+              <li v-for="event in events" :key="event._id">
+                <a :href="event.website">{{ event.name }}</a>
               </li>
             </ul>
           </dd>
           <dt>Technical equipment</dt>
           <dd>
             <ul>
-              <li v-for="(tech, index) in me.fields.speakerEquipment" :key="index">{{ tech }}</li>
+              <li v-for="(tech, index) in me.speakerEquipment" :key="index">{{ tech }}</li>
             </ul>
           </dd>
           <dt>Additional info</dt>
           <dd>
             <ul>
-              <li
-                v-for="(pref, index) in me.fields.additionalSpeakerInformation"
-                :key="index"
-              >{{ pref }}</li>
+              <li v-for="(pref, index) in me.additionalSpeakerInformation" :key="index">{{ pref }}</li>
             </ul>
           </dd>
         </dl>

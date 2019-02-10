@@ -10,8 +10,8 @@
           </nuxt-link>
         </h2>
         <ul class="o-list-reset">
-          <li v-for="post in topics[topic].items" class="u-marginBottomSmall" :key="post.sys.id">
-            <nuxt-link :to="`/today-i-learned/${ post.fields.slug }/`">{{ post.fields.title }}</nuxt-link>
+          <li v-for="post in topics[topic].items" class="u-marginBottomSmall" :key="post._id">
+            <nuxt-link :to="`/today-i-learned/${ post.slug }/`">{{ post.title }}</nuxt-link>
           </li>
         </ul>
       </li>
@@ -31,18 +31,18 @@ export default createPage({
   computed: {
     topics() {
       return this.$store.state.til.list.reduce((acc, post) => {
-        if (post.fields.topics) {
-          post.fields.topics.forEach(topic => {
-            if (!acc[topic.fields.slug]) {
-              acc[topic.fields.slug] = {
+        if (post.topics) {
+          post.topics.forEach(topic => {
+            if (!acc[topic.slug]) {
+              acc[topic.slug] = {
                 items: [],
-                slug: topic.fields.slug,
-                title: topic.fields.title,
-                name: getTopicNameWithSlug(topic.fields.slug)
+                slug: topic.slug,
+                title: topic.title,
+                name: getTopicNameWithSlug(topic.slug)
               };
             }
 
-            acc[topic.fields.slug].items.push(post);
+            acc[topic.slug].items.push(post);
 
             return acc;
           });

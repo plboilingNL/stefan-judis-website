@@ -3,7 +3,7 @@
     <Container additional-class="c-newsletter">
       <h1 slot="headline" tabindex="-1" id="main-headline">Past newsletter editions</h1>
       <ul class="o-list-grid">
-        <li v-for="newsletter in newsletters" :key="newsletter.sys.id">
+        <li v-for="newsletter in newsletters" :key="newsletter._id">
           <Post :post="newsletter" :level="2" :show-date="true"/>
         </li>
       </ul>
@@ -26,9 +26,8 @@ export default createPage({
   computed: {
     newsletters() {
       return this.$store.state.posts.list.filter(
-        ({ fields }) =>
-          fields.topics &&
-          fields.topics.some(topic => topic.fields.title === 'Newsletter')
+        ({ topics }) =>
+          topics && topics.some(topic => topic.title === 'Newsletter')
       );
     }
   },

@@ -1,29 +1,26 @@
 <template>
   <div class="u-flex-column u-height-100">
     <div class="u-marginBottomSmall" v-if="showImage">
-      <lazy-image :asset="talk.fields.thumbnail" :ratio="0.5625"></lazy-image>
+      <lazy-image :asset="talk.thumbnail" :ratio="0.5625"></lazy-image>
     </div>
 
     <div class="u-marginBottomSmall">
-      <h3
-        :id="talk.fields.title | idAlize"
-        class="o-headline-3 o-headline__inline"
-      >{{ talk.fields.title }}</h3>
+      <h3 :id="talk.title | idAlize" class="o-headline-3 o-headline__inline">{{ talk.title }}</h3>
       <span class="u-noWrap">
         <span>
           (
           <a
-            v-if="talk.fields.slideUrl"
-            :href="talk.fields.slideUrl"
+            v-if="talk.slideUrl"
+            :href="talk.slideUrl"
             class="fancy-link"
-            :aria-describedby="talk.fields.title | idAlize"
+            :aria-describedby="talk.title | idAlize"
           >Slides</a>
-          <span v-if="talk.fields.videoUrl">
+          <span v-if="talk.videoUrl">
             /
             <a
-              :href="talk.fields.videoUrl"
+              :href="talk.videoUrl"
               class="fancy-link"
-              :aria-describedby="talk.fields.title | idAlize"
+              :aria-describedby="talk.title | idAlize"
             >Recording</a>
           </span>
           )
@@ -32,7 +29,7 @@
     </div>
 
     <div class="u-marginTopAuto">
-      <Topics :topics="talk.fields.topics"/>
+      <Topics :topics="talk.topics"/>
     </div>
   </div>
 </template>

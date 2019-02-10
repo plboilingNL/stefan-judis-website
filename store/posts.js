@@ -16,15 +16,15 @@ export const mutations = {
     state.activeTopic = topic;
   },
   setActiveWithSlug(state, slug) {
-    const item = state.list.find(entry => entry.fields.slug === slug);
+    const item = state.list.find(entry => entry.slug === slug);
     state.active = item;
   },
   setFullyLoaded(state, loaded) {
     state.fullyLoaded = loaded;
   },
   setItem(state, item) {
-    const post = state.list.find(post => post.sys.id === item.sys.id);
-    item.fields.readingTime = ReadingTime(item);
+    const post = state.list.find(post => post._id === item._id);
+    item.readingTime = ReadingTime(item);
     enrichItemWithGA(item);
 
     if (post) {
@@ -37,7 +37,7 @@ export const mutations = {
     state.list.length = 0;
     state.list.push(
       ...posts.map(item => {
-        item.fields.readingTime = ReadingTime(item);
+        item.readingTime = ReadingTime(item);
         enrichItemWithGA(item);
         return item;
       })

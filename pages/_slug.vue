@@ -1,14 +1,14 @@
 <template>
-  <Container animate="true" :additional-class="page.fields.slug" accessible-line-length="true">
-    <DynamicHeadline slot="headline" :level="1" id="main-headline">{{ page.fields.title }}</DynamicHeadline>
-    <p slot="subHeadline" v-if="page.fields.isResource">
+  <Container animate="true" :additional-class="page.slug" accessible-line-length="true">
+    <DynamicHeadline slot="headline" :level="1" id="main-headline">{{ page.title }}</DynamicHeadline>
+    <p slot="subHeadline" v-if="page.isResource">
       <strong>Last updated at:
-        <PrettyDate v-if="page.fields.isResource" slot="date" :date="page.sys.updatedAt"></PrettyDate>
+        <PrettyDate v-if="page.isResource" slot="date" :date="page._updatedAt"></PrettyDate>
       </strong>
     </p>
     <div class="c-tile">
       <div class="c-tile__container">
-        <Marked :markdown="page.fields.body" class="e-content"></Marked>
+        <Marked :markdown="page.body" class="e-content"></Marked>
       </div>
     </div>
   </Container>

@@ -1,12 +1,12 @@
 <template>
   <ul v-if="topics" class="c-topics o-list-inline">
-    <li v-for="topic in enrichedTopics" :key="topic.fields.title">
+    <li v-for="topic in enrichedTopics" :key="topic.title">
       <nuxt-link
         class="c-topic"
-        :to="topic.fields.name === 'Newsletter' ? '/newsletter/' : `/topics/${ topic.fields.slug }`"
+        :to="topic.name === 'Newsletter' ? '/newsletter/' : `/topics/${ topic.slug }`"
       >
-        <Icon class="c-topic__icon" :name="topic.fields.title"/>
-        {{ topic.fields.name }}
+        <Icon class="c-topic__icon" :name="topic.title"/>
+        {{ topic.name }}
       </nuxt-link>
     </li>
   </ul>
@@ -21,7 +21,7 @@ export default {
   computed: {
     enrichedTopics() {
       return this.topics.map(topic => {
-        topic.fields.name = getTopicNameWithSlug(topic.fields.slug);
+        topic.name = getTopicNameWithSlug(topic.slug);
         return topic;
       });
     }

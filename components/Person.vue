@@ -2,12 +2,7 @@
   <div class="c-person u-marginTopLarge">
     <div class="c-person__image">
       <div>
-        <lazy-image
-          class="c-person__image"
-          :asset="person.fields.profilePhoto"
-          :ratio="1"
-          :load="true"
-        ></lazy-image>
+        <lazy-image class="c-person__image" :asset="person.profilePhoto" :ratio="1" :load="true"></lazy-image>
         <ul class="c-person__social">
           <li>
             <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">
@@ -35,7 +30,7 @@
       <div v-html="bio"></div>
       <p>I also
         <nuxt-link to="/staying-up-to-date/">read a lot of newsletters and listen to a few podcasts</nuxt-link>, document
-        <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link> and write
+        <nuxt-link to="/today-I-learned/">my web dev learnings constantly</nuxt-link>&nbsp;and write
         <nuxt-link to="/newsletter/">a monthly newsletter</nuxt-link>.
       </p>
     </div>
@@ -49,7 +44,7 @@ import LazyImage from '~/components/LazyImage.vue';
 export default {
   computed: {
     bio: function() {
-      return marked(this.person.fields.biography);
+      return marked(this.person.biography);
     }
   },
   components: {

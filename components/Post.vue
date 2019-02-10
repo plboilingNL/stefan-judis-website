@@ -1,17 +1,17 @@
 <template>
   <div class="c-post">
-    <PrettyDate v-if="post.fields.date && showDate" :date="post.fields.date" class="dt-published"></PrettyDate>
+    <PrettyDate v-if="post.date && showDate" :date="post.date" class="dt-published"></PrettyDate>
 
     <DynamicHeadline
       :level="level"
       :style-level="styleLevel"
-      :url="`/${linkPrefix}/${post.fields.slug}/`"
-      :id="post.fields.title | idAlize"
-    >{{ post.fields.title }}</DynamicHeadline>
+      :url="`/${linkPrefix}/${post.slug}/`"
+      :id="post.title | idAlize"
+    >{{ post.title }}</DynamicHeadline>
 
-    <Marked v-if="showExcerpt" :markdown="post.fields.excerpt"></Marked>
+    <Marked v-if="showExcerpt" :markdown="post.excerpt"></Marked>
 
-    <Topics :topics="post.fields.topics"/>
+    <Topics :topics="post.topics"/>
   </div>
 </template>
 
@@ -24,9 +24,6 @@ import Topics from '~/components/Topics.vue';
 export default {
   props: ['post', 'showExcerpt', 'showDate', 'level', 'styleLevel'],
   computed: {
-    contentTypeId() {
-      return this.post.sys.contentType.sys.id;
-    },
     headingLevel() {
       return this.level || 2;
     },
@@ -36,7 +33,7 @@ export default {
         '2wKn6yEnZewu2SCCkus4as': 'blog',
         tilPost: 'today-i-learned'
       };
-      return PREFIXES[this.contentTypeId];
+      return PREFIXES[this.post._ctId];
     }
   },
   components: {
