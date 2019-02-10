@@ -69,7 +69,6 @@
     color: var(--c-text-catchy);
     font-family: 'Oswald', sans-serif;
     font-size: 2.75em;
-    font-display: swap;
     max-width: 25ch;
 
     @media (min-width: 38em) {

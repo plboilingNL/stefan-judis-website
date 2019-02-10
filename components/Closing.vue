@@ -129,7 +129,6 @@ export default {
   &__headline {
     margin: 0;
     font-family: 'Oswald', sans-serif;
-    font-display: swap;
   }
 
   &__headline {
