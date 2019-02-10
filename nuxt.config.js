@@ -178,8 +178,9 @@ const config = {
   },
 
   webfontloader: {
-    google: {
-      families: ['Oswald:600']
+    custom: {
+      families: ['Oswald:600'],
+      urls: ['/fancy.css']
     }
   }
 };
