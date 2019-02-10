@@ -14,7 +14,9 @@
         v-if="$slots.date || $slots.headline || $slots.subHeadline"
         class="c-container__headline"
       >
-        <slot name="headline"></slot>
+        <div class="fancy-font">
+          <slot name="headline"></slot>
+        </div>
         <slot name="subHeadline"></slot>
       </header>
       <slot/>
@@ -67,7 +69,6 @@
   h2 {
     margin: 0;
     color: var(--c-text-catchy);
-    font-family: 'Oswald', sans-serif;
     font-size: 2.75em;
     max-width: 25ch;
 

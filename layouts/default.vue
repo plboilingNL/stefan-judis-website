@@ -222,4 +222,21 @@ img {
   background-repeat: no-repeat;
   background-position: left 0 bottom 0;
 }
+
+.fancy-font {
+  > h1,
+  > h2 {
+    letter-spacing: -3.5px;
+  }
+}
+
+.wf-active {
+  .fancy-font {
+    > h1,
+    > h2 {
+      letter-spacing: 0;
+      font-family: 'Oswald', sans-serif;
+    }
+  }
+}
 </style>
