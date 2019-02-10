@@ -134,21 +134,6 @@ const config = {
   build: {
     analyze: false,
 
-    // extend(config, ctx) {
-    //   // overwrite nuxt defaults
-    //   // they inline svg's base64
-    //   config.module.rules.forEach(rule => {
-    //     if (rule.test.toString() === '/\\.(png|jpe?g|gif|svg|webp)$/i') {
-    //       rule.test = /\.(png|jpe?g|gif|webp)$/;
-    //     }
-    //   });
-
-    //   config.module.rules.push({
-    //     test: /\.svg$/,
-    //     use: 'svg-inline-loader?removeSVGTagAttrs=false'
-    //   });
-    // },
-
     postcss: [
       require('postcss-import')(),
       require('postcss-nested')(),
