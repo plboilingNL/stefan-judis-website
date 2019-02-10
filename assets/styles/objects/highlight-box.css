@@ -6,8 +6,8 @@
 
   &__icon {
     flex-shrink: 0;
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     margin-right: 1em;
 
     svg {
