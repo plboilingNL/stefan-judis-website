@@ -41,15 +41,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  components: {
-    Icon: () => import('~/components/Icon.vue')
-  }
-};
-</script>
-
-
 <style lang="postcss">
 .c-finishLine {
   display: flex;

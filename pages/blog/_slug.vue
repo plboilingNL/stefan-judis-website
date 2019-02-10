@@ -7,7 +7,7 @@
       {{ post.readingTime }} min read
     </span>
     <p v-if="post.externalUrl" class="o-highlightBox">
-      <Icon class="o-highlightBox__icon" name="Attention"/>
+      <svg-icon class="o-highlightBox__icon" name="attention"/>
       <span>
         This article was initially posted on
         <a
@@ -41,7 +41,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Icon name="Share"/>Share article
+            <svg-icon name="share" aria-hidden="true"/>Share article
           </a>
         </li>
       </ul>
@@ -55,7 +55,6 @@
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
-import Icon from '~/components/Icon.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import Topics from '~/components/Topics.vue';
@@ -98,7 +97,6 @@ export default createPage({
     Container,
     Comments,
     DynamicHeadline,
-    Icon,
     PrettyDate,
     Marked: () => import('~/components/Marked.vue'),
     RelatedItems,

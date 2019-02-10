@@ -77,16 +77,13 @@
     }
   }
 
-  [class*='icon'] {
+  svg {
     display: inline-block;
-
-    svg {
-      display: block;
-      height: 1.25em;
-      width: auto;
-      max-width: 1.5em;
-      margin-right: 0.675em;
-    }
+    vertical-align: middle;
+    height: 1em;
+    width: auto;
+    max-width: 1em;
+    margin: -0.25em 0.125em 0 0;
   }
 }
 

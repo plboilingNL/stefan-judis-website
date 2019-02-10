@@ -9,7 +9,7 @@
     >
       <li v-for="(item, index) in menu" :key="item.label" :data-index="index">
         <nuxt-link :to="item.url">
-          <Icon v-if="item.icon" :name="item.icon"></Icon>
+          <svg-icon v-if="item.icon" :name="item.icon"/>
           {{ item.label }}
         </nuxt-link>
       </li>
@@ -45,12 +45,12 @@ export default {
     return {
       mainNavIsVisible: false,
       mainNav: [
-        { label: 'Home', url: '/', icon: 'Home' },
-        { label: 'Blog', url: '/blog/', icon: 'Blog' },
-        { label: 'Resources', url: '/resources/', icon: 'Resources' },
-        { label: 'Talks', url: '/talks/', icon: 'Talk' },
-        { label: 'Smalltalk', url: '/smalltalk/', icon: 'Smalltalk' },
-        { label: 'Today I learned', url: '/today-i-learned/', icon: 'Learn' }
+        { label: 'Home', url: '/', icon: 'home' },
+        { label: 'Blog', url: '/blog/', icon: 'blog' },
+        { label: 'Resources', url: '/resources/', icon: 'resources' },
+        { label: 'Talks', url: '/talks/', icon: 'talk' },
+        { label: 'Smalltalk', url: '/smalltalk/', icon: 'smalltalk' },
+        { label: 'Today I learned', url: '/today-i-learned/', icon: 'learn' }
       ],
       reducedNav: [
         { label: 'Home', url: '/' },
@@ -79,8 +79,7 @@ export default {
     }
   },
   components: {
-    Container,
-    Icon: () => import('~/components/Icon.vue')
+    Container
   }
 };
 </script>
@@ -142,11 +141,9 @@ export default {
     svg {
       display: block;
       width: 1.5em;
+      height: 1.5em;
       margin: 0 auto 0.5em;
-
-      path {
-        fill: #666;
-      }
+      fill: currentColor;
 
       @media (min-width: 38em) {
         display: none;

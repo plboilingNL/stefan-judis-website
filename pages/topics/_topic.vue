@@ -1,7 +1,7 @@
 <template>
   <Container animate="true">
     <h1 slot="headline" tabindex="-1">
-      <Icon class="c-topic__icon" :name="topicName.replace(' ', '')"/>
+      <svg-icon :name="topic" aria-hidden="true"/>
       {{ topicName }}
     </h1>
     <div v-if="items.articles.length" class="u-marginBottomLarge">
@@ -99,7 +99,6 @@ export default createPage({
   },
   components: {
     Container,
-    Icon: () => import('~/components/Icon.vue'),
     Talk,
     ScreenCast,
     Post

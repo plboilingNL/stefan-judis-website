@@ -58,17 +58,17 @@
       <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
         <li>
           <a href="https://twitter.com/stefanjudis" rel="me">
-            <Icon name="Twitter"></Icon>Twitter
+            <svg-icon name="twitter"/>Twitter
           </a>
         </li>
         <li>
           <a href="https://github.com/stefanjudis" rel="me">
-            <Icon name="GitHub"></Icon>GitHub
+            <svg-icon name="github"/>GitHub
           </a>
         </li>
         <li>
           <a href="https://www.instagram.com/stefans_little_planet/" rel="me">
-            <Icon name="Instagram"></Icon>Instagram
+            <svg-icon name="instagram"/>Instagram
           </a>
         </li>
       </ul>
@@ -81,14 +81,12 @@
 
 <script>
 import Container from '~/components/Container.vue';
-import Icon from '~/components/Icon.vue';
 import FinishLine from '~/components/FinishLine.vue';
 import NewsletterForm from '~/components/NewsletterForm.vue';
 
 export default {
   components: {
     Container,
-    Icon,
     NewsletterForm,
     FinishLine
   }
@@ -177,7 +175,7 @@ export default {
       display: block;
       margin: 0 auto 0.5em;
       height: 2em;
-      width: auto;
+      width: 2em;
       fill: #fff;
     }
   }

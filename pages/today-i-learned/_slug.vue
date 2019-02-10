@@ -8,7 +8,7 @@
     </span>
     <div>
       <p class="o-highlightBox">
-        <Icon class="o-highlightBox__icon" name="Megaphone"/>
+        <svg-icon class="o-highlightBox__icon" name="megaphone"/>
         <span>This post is part of my
           <nuxt-link to="/today-i-learned/" class="fancy-link">Today I learned</nuxt-link>
           {{' '}}series in which I share all my learnings regarding web development.
@@ -52,7 +52,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Icon name="Share"/>Share article
+              <svg-icon name="share" aria-hidden="true"/>Share article
             </a>
           </li>
         </ul>
@@ -66,7 +66,6 @@
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
-import Icon from '~/components/Icon.vue';
 import PrettyDate from '~/components/PrettyDate.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import Topics from '~/components/Topics.vue';
@@ -111,7 +110,6 @@ export default createPage({
     Container,
     Comments,
     DynamicHeadline,
-    Icon,
     Marked: () => import('~/components/Marked.vue'),
     PrettyDate,
     RelatedItems,

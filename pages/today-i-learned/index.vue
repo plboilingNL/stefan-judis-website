@@ -5,7 +5,7 @@
       <li v-for="topic in Object.keys(topics).sort()" :key="topic" :class="`area-${topic}`">
         <h2 class="o-headline-2 o-headline__highlighted">
           <nuxt-link :to="`/topics/${ topics[topic].slug }`">
-            <Icon :name="topics[topic].title"/>
+            <svg-icon :name="topics[topic].slug"/>
             {{ topics[topic].name }}
           </nuxt-link>
         </h2>
@@ -65,8 +65,7 @@ export default createPage({
     };
   },
   components: {
-    Container,
-    Icon: () => import('~/components/Icon.vue')
+    Container
   }
 });
 </script>

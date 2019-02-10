@@ -5,23 +5,17 @@
         <lazy-image class="c-person__image" :asset="person.profilePhoto" :ratio="1" :load="true"></lazy-image>
         <ul class="c-person__social">
           <li>
-            <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter">
-              <Icon name="Twitter"></Icon>
-            </a>
+            <a href="https://twitter.com/stefanjudis" rel="me" aria-label="Follow me on Twitter"></a>
           </li>
           <li>
-            <a href="https://github.com/stefanjudis" rel="me" aria-label="Follow me on GitHub">
-              <Icon name="GitHub"></Icon>
-            </a>
+            <a href="https://github.com/stefanjudis" rel="me" aria-label="Follow me on GitHub"></a>
           </li>
           <li>
             <a
               href="https://www.instagram.com/stefans_little_planet/"
               rel="me"
               aria-label="Follow me on Instagram"
-            >
-              <Icon name="Instagram"></Icon>
-            </a>
+            ></a>
           </li>
         </ul>
       </div>
@@ -48,7 +42,6 @@ export default {
     }
   },
   components: {
-    Icon: () => import('~/components/Icon.vue'),
     LazyImage
   },
   props: ['person']

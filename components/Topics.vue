@@ -5,7 +5,7 @@
         class="c-topic"
         :to="topic.name === 'Newsletter' ? '/newsletter/' : `/topics/${ topic.slug }`"
       >
-        <Icon class="c-topic__icon" :name="topic.title"/>
+        <svg-icon :name="topic.slug" aria-hidden="true"/>
         {{ topic.name }}
       </nuxt-link>
     </li>
@@ -25,9 +25,6 @@ export default {
         return topic;
       });
     }
-  },
-  components: {
-    Icon: () => import('~/components/Icon.vue')
   }
 };
 </script>
