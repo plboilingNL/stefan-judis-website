@@ -140,7 +140,26 @@ const config = {
       require('autoprefixer')({
         browsers: ['> 5%']
       })
-    ]
+    ],
+
+    // https://github.com/nuxt-community/svg-sprite-module/issues/8
+    extend(config) {
+      const urlLoader = config.module.rules.find(rule =>
+        String(rule.test).includes('svg')
+      );
+      urlLoader.test = /\.(png|jpe?g|gif)$/;
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 12
+            }
+          }
+        ]
+      });
+    }
   },
 
   // related to
