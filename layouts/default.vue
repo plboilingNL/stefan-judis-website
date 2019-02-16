@@ -248,7 +248,7 @@ img {
   z-index: 20;
   left: 5em;
   right: 0;
-  top: 0.875em;
+  top: 1em;
   width: 10em;
   text-align: center;
   opacity: 1;
