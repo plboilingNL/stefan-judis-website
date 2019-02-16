@@ -52,7 +52,6 @@ export default {
 @import '../assets/styles/objects/anchor.css';
 @import '../assets/styles/objects/button.css';
 @import '../assets/styles/objects/code.css';
-@import '../assets/styles/objects/emoji.css';
 @import '../assets/styles/objects/grid.css';
 @import '../assets/styles/objects/headline.css';
 @import '../assets/styles/objects/highlight-box.css';
