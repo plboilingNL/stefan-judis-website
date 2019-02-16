@@ -1,8 +1,9 @@
 <template>
   <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
+    <a href="#main" class="skip-link o-btn">Skip to content</a>
     <offline-notice v-if="!isOnline"/>
     <navigation/>
-    <main aria-labelledby="main-headline" class="u-marginBottomLarge">
+    <main id="main" aria-labelledby="main-headline" class="u-marginBottomLarge">
       <nuxt/>
     </main>
     <closing/>
@@ -237,6 +238,22 @@ img {
       letter-spacing: 0;
       font-family: 'Oswald', sans-serif;
     }
+  }
+}
+
+.skip-link {
+  position: absolute;
+  z-index: 20;
+  left: 5em;
+  right: 0;
+  top: 0.875em;
+  width: 10em;
+  text-align: center;
+  opacity: 1;
+
+  &:not(:focus):not(:hover) {
+    transform: translateY(-4em);
+    opacity: 0;
   }
 }
 </style>
