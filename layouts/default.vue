@@ -101,29 +101,7 @@ body {
     --grid-outer-padding: 2em;
   }
 
-  /* --c-shadow-color: #bbb;
-  --shadow-tile: 0 1em 4em -0.75em var(--c-shadow-color);
-  --shadow-btn: 0 0.25em 1.5em var(--c-shadow-color);
-  --shadow-person: var(--shadow-tile);
-  --shadow-floating-thing: 0 0.375em 1.5em -0.25em var(--c-shadow-color); */
-
-  /* --c-tile-background: var(--white);
-  --c-tile-contrast: var(--grey-bright); */
-
   --c-navigation-background: var(--white);
-
-  /* @media (prefers-color-scheme: dark) {
-    --c-background: var(--grey-darker);
-    --c-background-contrast: var(--grey-very-dark);
-    --c-text: #eee;
-    --c-text-contrast: #fff;
-    --c-text-hover-background: var(--grey-very-dark);
-    --c-shadow-color: #1a1a1a;
-    --c-highlight: var(--blue-bright);
-    --c-tile-background: var(--c-background);
-    --c-tile-contrast: var(--c-background-contrast);
-    --c-navigation-background: var(--c-background);
-  } */
 
   margin: 0;
   padding: 0;
