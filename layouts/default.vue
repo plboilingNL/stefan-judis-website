@@ -139,8 +139,6 @@ body {
 
   padding-bottom: 3em;
 
-  scroll-behavior: smooth;
-
   @media (min-width: 52em) {
     padding-bottom: 0;
   }
