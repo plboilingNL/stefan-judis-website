@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="c-logo">
-      <nuxt-link :to="'/'" aria-label="Home" :class="[loading ? 'is-loading': '']">
+      <nuxt-link :to="'/'" aria-label="Home">
         <svg width="26" height="25" viewBox="0 0 26 25" xmlns="http://www.w3.org/2000/svg">
           <g fill="none" fill-rule="evenodd">
             <path
