@@ -90,8 +90,12 @@ function getFeedItemsForFiles(files) {
         }).window;
 
         const isTil = /today-i-learned/.test(filePath);
+
         return {
-          date: document.querySelector('.c-prettyDate').innerHTML,
+          date: document
+            .querySelector('.c-prettyDate')
+            .getAttribute('datetime')
+            .substring(0, 10),
           title: `${isTil ? 'TIL: ' : ''}${
             document.querySelector('h1').innerHTML
           }`,
