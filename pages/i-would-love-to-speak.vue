@@ -29,7 +29,7 @@
                 <div class="u-flex-column u-height-100">
                   <!-- this container is needed because of a FF bug -->
                   <div>
-                    <a :href="image.file.url">
+                    <a :href="image.file.url" :aria-label="image.title">
                       <lazy-image :asset="image" :ratio="0.65"></lazy-image>
                     </a>
                   </div>
