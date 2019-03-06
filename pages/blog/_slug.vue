@@ -19,11 +19,11 @@
     </p>
 
     <Marked :markdown="post.body"></Marked>
-    <div v-if="post.topics && post.topics.length" class="u-marginBottomMedium">
+    <div v-if="post.topics && post.topics.length" class="u-marginBottomLarge">
       <h3>Topics</h3>
       <Topics :topics="post.topics"/>
     </div>
-    <RelatedItems :items="posts" :item="post" slug="blog"/>
+    <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomLarge"/>
     <div class="u-marginTopMedium u-marginBottomMedium">
       <ul class="o-list-reset o-list-flex-end">
         <li class="u-marginTopSmall">
