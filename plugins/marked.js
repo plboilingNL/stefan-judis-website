@@ -14,7 +14,7 @@ renderer.heading = function(text, level) {
   const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
 
   return `
-    <div class="o-anchorContainer" id="${escapedText}">
+    <div class="o-anchorContainer o-anchorContainer--${level}" id="${escapedText}">
     <a href="#${escapedText}" aria-label="Anchor link for '${text}'">#</a>
     <h${level} class="o-headline-${level}">${makeEmojisAccessible(
     text

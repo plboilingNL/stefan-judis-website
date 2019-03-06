@@ -5,7 +5,7 @@
   border-radius: 0.25em;
 
   padding: 1em var(--grid-outer-padding);
-  margin: 2em calc(var(--grid-outer-padding) * -1);
+  margin: 2em 0;
 
   &:not(.o-code-whatevs) {
     padding-top: 3em;
@@ -14,7 +14,7 @@
 
 .o-code::before {
   position: absolute;
-  top: 0.5em;
+  top: 1em;
   right: var(--grid-outer-padding);
 
   z-index: 1;

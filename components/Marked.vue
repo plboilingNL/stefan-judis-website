@@ -66,5 +66,9 @@ export default {
   ul {
     margin: 0.25em 0 1em;
   }
+
+  .o-anchorContainer--2 {
+    margin-top: 3em;
+  }
 }
 </style>
