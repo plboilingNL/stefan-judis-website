@@ -80,7 +80,7 @@
   font-weight: normal;
 }
 .o-code .token.attr-value .punctuation {
-  color: var(--grey);
+  color: #9a9a9a;
 }
 .o-code .token.atrule .rule {
   color: var(--red-bright);
@@ -89,5 +89,6 @@
   color: var(--blue-bright);
 }
 .o-code .token.comment {
-  color: #aaa;
+  color: #9a9a9a;
+  font-style: italic;
 }
