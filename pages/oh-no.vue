@@ -11,7 +11,8 @@ import { createPage } from '~/lib/basepage.js';
 export default createPage({
   mounted() {
     if (window.opener) {
-      window.opener.location = 'https://list25.com/25-cutest-puppies-ever/';
+      window.opener.location =
+        'https://s3.amazonaws.com/ceblog/wp-content/uploads/2016/04/22110359/youve-been-hacked.png';
     } else {
       console.log('no opener');
     }
