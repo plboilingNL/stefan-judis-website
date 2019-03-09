@@ -16,7 +16,8 @@ const EMOJI_LABELS = {
   '128522': 'Smyling face',
   '128584': 'See no evil monkey',
   '129310': 'Fingers crossed',
-  '129315': 'Rolling on the Floor Laughing'
+  '129315': 'Rolling on the Floor Laughing',
+  '129335': 'Shrug'
 };
 
 export function makeEmojisAccessible(text) {
