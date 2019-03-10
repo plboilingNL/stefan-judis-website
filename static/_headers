@@ -5,7 +5,7 @@
   X-Content-Type-Options: nosniff
 
 /_nuxt/*
-  cache-Control: max-age=31556926
+  cache-Control: max-age=31536000, public, immutable
 
 /_nuxt/*.js
   content-type: text/javascript; charset=utf-8
