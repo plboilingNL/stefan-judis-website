@@ -124,8 +124,7 @@ const config = {
       {
         ua: 'UA-104150131-1'
       }
-    ],
-    'nuxt-webfontloader'
+    ]
   ],
 
   /*
@@ -186,13 +185,6 @@ const config = {
   env: {
     IS_PRODUCTION: process.env.NODE_ENV === 'production',
     ...ctfConfig
-  },
-
-  webfontloader: {
-    custom: {
-      families: ['Oswald:600'],
-      urls: ['/fancy.css']
-    }
   }
 };
 

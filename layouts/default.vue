@@ -15,6 +15,7 @@ import Closing from '~/components/Closing.vue';
 import Navigation from '~/components/Navigation.vue';
 import OfflineNotice from '~/components/OfflineNotice.vue';
 import Container from '~/components/Container.vue';
+import { loadCSS, onloadCSS } from '~/plugins/load-css.js';
 
 export default {
   components: {
@@ -32,6 +33,15 @@ export default {
     if (!this.$isServer) {
       import('inert-polyfill');
       import('focus-visible');
+
+      const saveDataIsEnabled =
+        navigator.connection && navigator.connection.saveData === true;
+
+      if (!saveDataIsEnabled) {
+        onloadCSS(loadCSS('/fancy.css'), () =>
+          document.body.classList.add('wf-active')
+        );
+      }
     }
   },
   mounted() {
