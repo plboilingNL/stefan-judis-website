@@ -36,7 +36,6 @@ export default {
 
       const saveDataIsEnabled =
         navigator.connection && navigator.connection.saveData === true;
-
       if (!saveDataIsEnabled) {
         onloadCSS(loadCSS('/fancy.css'), () =>
           document.body.classList.add('wf-active')

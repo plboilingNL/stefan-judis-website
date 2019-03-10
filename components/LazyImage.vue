@@ -19,11 +19,16 @@ export default {
       const neededImageWidth = Math.floor(
         this.$el.getBoundingClientRect().width * window.devicePixelRatio
       );
+      const saveDataIsEnabled =
+        window.navigator.connection && navigator.connection.saveData === true;
+
       this.imageSrc = `${
         this.asset.file.url
       }?w=${neededImageWidth}&h=${Math.round(
         neededImageWidth * this.ratio
-      )}&fit=fill${supportsWebp ? '&fm=webp' : ''}`;
+      )}&fit=fill${supportsWebp ? '&fm=webp' : ''}${
+        saveDataIsEnabled ? '&q=10' : ''
+      }`;
 
       if (window.IntersectionObserver && !this.load) {
         const observer = new IntersectionObserver(
