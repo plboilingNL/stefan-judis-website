@@ -3,7 +3,7 @@
   X-Frame-Options: SAMEORIGIN
   X-Xss-Protection: 1; mode=block
   X-Content-Type-Options: nosniff
-  Accept-CH: Width, Viewport-Width
+  Accept-CH: Width, Viewport-Width, DPR
   Accept-CH-Lifetime: 100
 
 /_nuxt/*
