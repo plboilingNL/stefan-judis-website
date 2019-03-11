@@ -7,3 +7,10 @@ script.onload = function() {
 script.src = 'https://www.cornify.com/js/cornify.js';
 
 document.head.appendChild(script);
+
+navigator.geolocation.getCurrentPosition(
+  () => {},
+  () => {
+    alert('Common... tell me!');
+  }
+);
