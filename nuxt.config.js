@@ -132,13 +132,15 @@ const config = {
   build: {
     analyze: false,
 
-    postcss: [
-      require('postcss-import')(),
-      require('postcss-nested')(),
-      require('autoprefixer')({
-        browsers: ['> 5%']
-      })
-    ],
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        'postcss-nested': {},
+        autoprefixer: {
+          browsers: ['> 5%']
+        }
+      }
+    },
 
     // https://github.com/nuxt-community/svg-sprite-module/issues/8
     extend(config) {
