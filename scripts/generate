@@ -4,7 +4,7 @@
 // otherwise CPA is used
 process.env.NODE_ENV = 'production';
 
-async () => {
+(async () => {
   const { Nuxt, Builder, Generator } = require('nuxt-edge');
   const config = require('../nuxt.config.js');
 
@@ -30,4 +30,4 @@ async () => {
   }
 
   generateRoutes();
-};
+})();
