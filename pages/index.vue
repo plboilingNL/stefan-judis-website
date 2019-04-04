@@ -118,7 +118,7 @@ export default createPage({
         .slice(0, 4);
     },
     posts() {
-      return this.$store.state.posts.list.slice(0, 2);
+      return this.$store.state.posts.list.slice(0, 3);
     },
     projects() {
       return this.$store.state.projects.list.slice(0, 3);
