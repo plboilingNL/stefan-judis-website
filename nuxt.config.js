@@ -112,9 +112,10 @@ const config = {
         workbox: {
           runtimeCaching: [
             {
-              urlPattern: 'https://.*?.(contentful|ctfassets).(com|net)/.*'
+              urlPattern: 'https://cdn.contentful.com/.*'
             }
-          ]
+          ],
+          importScripts: ['custom-sw.js']
         }
       }
     ],
