@@ -1,5 +1,5 @@
 <template>
-  <div :class="[ !isOnline ? 'is-offline' : '', 'u-overflowHidden' ]">
+  <div class="u-overflowHidden">
     <a href="#main" class="skip-link o-btn">Skip to content</a>
     <offline-notice v-if="!isOnline"/>
     <navigation/>
@@ -27,6 +27,13 @@ export default {
   data() {
     return {
       isOnline: true
+    };
+  },
+  head() {
+    return {
+      bodyAttrs: {
+        class: `${this.isOnline ? '' : 'is-offline'}`
+      }
     };
   },
   beforeCreate() {
