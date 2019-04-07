@@ -114,8 +114,7 @@ const config = {
             {
               urlPattern: 'https://cdn.contentful.com/.*'
             }
-          ],
-          importScripts: ['custom-sw.js']
+          ]
         }
       }
     ],
