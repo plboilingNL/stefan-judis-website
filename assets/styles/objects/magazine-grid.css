@@ -5,7 +5,7 @@
   padding: 0;
   grid-template-columns: repeat(auto-fit, minmax(18em, 1fr));
   grid-template-rows: 1fr;
-  grid-gap: var(--grid-gap);
+  grid-gap: calc(2 * var(--grid-gap)) var(--grid-gap);
 
   &__column {
     display: flex;
