@@ -29,13 +29,6 @@ export default {
       isOnline: true
     };
   },
-  head() {
-    return {
-      bodyAttrs: {
-        class: `${this.isOnline ? '' : 'is-offline'}`
-      }
-    };
-  },
   beforeCreate() {
     if (!this.$isServer) {
       import('inert-polyfill');
@@ -54,9 +47,11 @@ export default {
     window.addEventListener('load', () => {
       this.isOnline = navigator.connectiontype !== 'none';
       window.addEventListener('online', () => {
+        document.body.classList.remove('is-offline');
         this.isOnline = true;
       });
       window.addEventListener('offline', () => {
+        document.body.classList.add('is-offline');
         this.isOnline = false;
       });
     });
