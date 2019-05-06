@@ -8,13 +8,13 @@
   Accept-CH-Lifetime: 100
 
 /_nuxt/*
-  cache-Control: max-age=31536000, public, immutable
+  Cache-Control: max-age=31536000, public, immutable
 
 /_nuxt/*.js
   content-type: text/javascript; charset=utf-8
 
 /favicon.ico
-  cache-Control: max-age=3600000
+  Cache-Control: max-age=3600000
 
 /sw.js
-  cache-Control: max-age=100000
+  Cache-Control: no-cache
