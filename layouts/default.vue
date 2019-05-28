@@ -215,7 +215,8 @@ img {
 .fancy-font {
   > h1,
   > h2 {
-    letter-spacing: -3.5px;
+    letter-spacing: -4.5px;
+    word-spacing: 2px;
   }
 }
 
@@ -225,6 +226,7 @@ img {
     > h2 {
       letter-spacing: 0;
       font-family: 'Oswald', sans-serif;
+      word-spacing: normal;
     }
   }
 }
