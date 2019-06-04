@@ -71,7 +71,7 @@ const config = {
     linkExactActiveClass: 'is-active'
   },
 
-  transition: {
+  pageTransition: {
     afterEnter(el) {
       const h1 = el.querySelector('h1');
 
@@ -136,9 +136,7 @@ const config = {
       plugins: {
         'postcss-import': {},
         'postcss-nested': {},
-        autoprefixer: {
-          browsers: ['> 5%']
-        }
+        autoprefixer: {}
       }
     },
 

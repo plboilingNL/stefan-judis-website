@@ -3,8 +3,8 @@
     <div
       class="just-comments"
       data-allowguests="true"
-      data-apikey="04cc7e14-5182-4838-94a6-fe6c84ffa546">
-    </div>
+      data-apikey="04cc7e14-5182-4838-94a6-fe6c84ffa546"
+    ></div>
   </div>
 </template>
 
