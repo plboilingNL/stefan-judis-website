@@ -222,8 +222,7 @@ img {
 
 .wf-active {
   .fancy-font {
-    > h1,
-    > h2 {
+    > * {
       letter-spacing: 0;
       font-family: 'Oswald', sans-serif;
       word-spacing: normal;

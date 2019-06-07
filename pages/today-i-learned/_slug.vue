@@ -9,7 +9,8 @@
     <div>
       <p class="o-highlightBox">
         <svg-icon class="o-highlightBox__icon" name="megaphone"/>
-        <span>This post is part of my
+        <span>
+          This post is part of my
           <nuxt-link to="/today-i-learned/" class="fancy-link">Today I learned</nuxt-link>
           {{' '}}series in which I share all my learnings regarding web development.
         </span>
@@ -30,34 +31,19 @@
       </div>
 
       <div v-if="post.topics && post.topics.length" class="u-marginBottomLarge">
-        <h3>Topics</h3>
+        <h3>Related Topics</h3>
         <Topics :topics="post.topics"/>
       </div>
 
-      <RelatedItems :items="posts" :item="post" slug="today-i-learned" class="u-marginBottomLarge"/>
-      <div class="u-marginTopMedium u-marginBottomMedium">
-        <ul class="o-list-reset o-list-flex-end">
-          <li class="u-marginTopSmall">
-            <button
-              class="o-btn"
-              type="button"
-              :disabled="showComments"
-              @click="loadComments"
-            >Load comments</button>
-          </li>
-          <li class="u-marginTopSmall u-marginLeftAuto">
-            <a
-              :href="sharingUrl"
-              class="o-btn o-btn--ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg-icon name="share" aria-hidden="true"/>Share article
-            </a>
-          </li>
-        </ul>
-        <Comments v-if="showComments" class="u-marginBottomMedium"/>
+      <div class="u-marginTopLarge u-marginBottomLarge u-textAlignCenter">
+        <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
+          <svg-icon name="share" aria-hidden="true"/>Share article on Twitter
+        </a>
       </div>
+
+      <RelatedItems :items="posts" :item="post" slug="today-i-learned" class="u-marginBottomLarge"/>
+
+      <Comments class="u-marginTopLarge u-marginBottomMedium"/>
     </div>
   </Container>
 </template>
@@ -91,16 +77,6 @@ export default createPage({
     },
     sharingUrl() {
       return getSharingUrl(this.post.title, this.$route.fullPath);
-    }
-  },
-  data() {
-    return {
-      showComments: false
-    };
-  },
-  methods: {
-    loadComments() {
-      this.showComments = true;
     }
   },
   head() {

@@ -19,35 +19,21 @@
     </p>
 
     <Marked :markdown="post.body"></Marked>
-    <div v-if="post.topics && post.topics.length" class="u-marginBottomLarge">
-      <h3>Topics</h3>
+
+    <div class="u-marginTopLarge u-marginBottomLarge u-textAlignCenter">
+      <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
+        <svg-icon name="share" aria-hidden="true"/>Share article on Twitter
+      </a>
+    </div>
+
+    <div v-if="post.topics && post.topics.length" class="u-marginBottomSmall">
+      <h3>Related Topics</h3>
       <Topics :topics="post.topics"/>
     </div>
-    <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomLarge"/>
-    <div class="u-marginTopMedium u-marginBottomMedium">
-      <ul class="o-list-reset o-list-flex-end">
-        <li class="u-marginTopSmall">
-          <button
-            class="o-btn"
-            type="button"
-            :disabled="showComments"
-            @click="loadComments"
-          >Load comments</button>
-        </li>
-        <li class="u-marginTopSmall u-marginLeftAuto">
-          <a
-            :href="sharingUrl"
-            class="o-btn o-btn--ghost"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <svg-icon name="share" aria-hidden="true"/>Share article
-          </a>
-        </li>
-      </ul>
 
-      <Comments v-if="showComments" class="u-marginBottomMedium"/>
-    </div>
+    <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomSmall"/>
+
+    <Comments class="u-marginTopLarge u-marginBottomMedium"/>
   </Container>
 </template>
 
@@ -69,11 +55,6 @@ export default createPage({
       return redirect('/404/');
     }
   },
-  data() {
-    return {
-      showComments: false
-    };
-  },
   computed: {
     post() {
       return this.$store.state.posts.active;
@@ -87,11 +68,6 @@ export default createPage({
   },
   head() {
     return getHeadForPost(this.post);
-  },
-  methods: {
-    loadComments() {
-      this.showComments = true;
-    }
   },
   components: {
     Container,
