@@ -27,9 +27,10 @@ import fetch from 'cross-fetch';
 export default {
   async mounted() {
     const response = await fetch(
-      `https://service.just-comments.com/prod/v2/counts?pageId=${
-        window.location.href
-      }&apiKey=04cc7e14-5182-4838-94a6-fe6c84ffa546`
+      `https://service.just-comments.com/prod/v2/counts?pageId=${window.location.href.replace(
+        'https://',
+        ''
+      )}&apiKey=04cc7e14-5182-4838-94a6-fe6c84ffa546`
     );
     const result = await response.json();
     this.commentCount = result.counts[0].count;
