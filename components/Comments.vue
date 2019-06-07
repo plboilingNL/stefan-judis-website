@@ -1,10 +1,10 @@
 <template>
-  <div class="c-comments">
+  <div :class="{'c-comments': true, 'comments-loaded': this.commentCount !== null}">
     <div class="u-textAlignCenter">
       <div class="fancy-font u-marginBottomMedium">
         <div
           class="c-comments__teaser"
-        >{{this.commentCount === 0 ? "Be the first to comment!" : `See ${this.commentCount} comment(s).`}}</div>
+        >{{this.commentCount === 0 ? "Be the first to comment!" : `See ${this.commentCount} comment${ this.commentCount > 1 ? '(s)' : ''}.`}}</div>
       </div>
       <button
         class="o-btn u-marginBottomMedium"
@@ -87,7 +87,14 @@ export default {
   }
 
   &__teaser {
+    opacity: 0;
     font-size: 1.875em;
+  }
+
+  &.comments-loaded {
+    .c-comments__teaser {
+      opacity: 1;
+    }
   }
 
   [class^='src-ui-Comments__comments__header-'] h3 {
