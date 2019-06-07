@@ -95,10 +95,6 @@ export default {
 
   .jcCommentsHeader {
     display: none;
-
-    + div {
-      display: none;
-    }
   }
 }
 </style>
