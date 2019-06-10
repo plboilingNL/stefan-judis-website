@@ -1,11 +1,7 @@
 <template>
   <figure role="group" class="c-lazyImage" :style="{ paddingTop: `${ratio * 100}%` }">
     <div class="c-lazyImage--sqip" v-html="preview"></div>
-    <img v-if="ready && !load" :src="imageSrc" :alt="asset.title">
-    <picture v-if="load">
-      <source type="image/webp" :srcset="`${asset.file.url}?fm=webp`">
-      <img :src="asset.file.url" :alt="asset.title">
-    </picture>
+    <img v-if="ready" :src="imageSrc" :alt="asset.title">
   </figure>
 </template>
 
@@ -64,7 +60,7 @@ export default {
     };
   },
 
-  props: ['asset', 'ratio', 'load']
+  props: ['asset', 'ratio']
 };
 </script>
 
