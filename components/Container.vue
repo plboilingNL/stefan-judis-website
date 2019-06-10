@@ -67,10 +67,11 @@
 
   h1,
   h2 {
-    margin: 0;
+    margin: 0 0 0.375em;
     color: var(--c-text-catchy);
     font-size: 2.75em;
     max-width: 12em;
+    line-height: 1.2;
 
     @media (min-width: 38em) {
       font-size: 3.5em;
