@@ -13,7 +13,7 @@ const EMOJI_LABELS = {
   '128077': 'Thumbs up',
   '128106': 'Family',
   '128207': 'Straight ruler',
-  '128521': 'Smiling face',
+  '128516': 'Smiling face',
   '128521': 'Winking face',
   '128522': 'Smiling face',
   '128584': 'See no evil monkey',
