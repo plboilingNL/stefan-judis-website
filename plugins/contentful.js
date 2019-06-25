@@ -1,4 +1,4 @@
-const fetch = require('cross-fetch');
+const fetch = require('isomorphic-unfetch');
 let resolveResponse = require('contentful-resolve-response');
 
 // there's something wrong with the package :/ ... investigating...
