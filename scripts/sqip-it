@@ -4,8 +4,8 @@ const contentful = require('contentful');
 const sqip = require('sqip');
 const download = require('download');
 const path = require('path');
-const { emptyDir, writeFile, readFile } = require('fs-extra');
-const { logSeparator, logSuccess, writeData } = require('./utils');
+const { copy, emptyDir, writeFile, readFile } = require('fs-extra');
+const { logSeparator, logSuccess } = require('./utils');
 
 const { getConfig } = require('../lib/config.js');
 const { CTF_SPACE_ID, CTF_CDA_TOKEN } = getConfig();
@@ -17,6 +17,7 @@ const client = contentful.createClient({
 
 const { getCachePath, shouldClearCache } = require('./utils/index.js');
 const SQIP_CACHE = getCachePath('sqip');
+const SQIP_DIR = path.resolve(__dirname, '..', `sqip`);
 
 async function sqipItems() {
   if (shouldClearCache) {
@@ -103,6 +104,10 @@ async function sqipItems() {
   );
 
   logSuccess('SVGs created');
+
+  logSeparator('Copying SVGs into deploy dir');
+  await copy(SQIP_CACHE, SQIP_DIR);
+  logSuccess('Copied SVGs over to be read by webpack');
 }
 
 sqipItems();

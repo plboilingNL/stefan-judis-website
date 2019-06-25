@@ -27,8 +27,10 @@ static/sitemap.xml
 .functions
 
 # sqip image cache and generate map
+#### cache to have environment like netlify
 .sqip
-.dist
+#### dir to be read by webpack
+sqip
 
 # generated data
 data/image-map.js

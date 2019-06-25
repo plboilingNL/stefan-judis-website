@@ -1,6 +1,6 @@
 <template>
   <figure role="group" class="c-lazyImage" :style="{ paddingTop: `${ratio * 100}%` }">
-    <img :src="preview" class="c-lazyImage--sqip" alt aria-hidden="true">
+    <img v-if="prewiew" :src="preview" class="c-lazyImage--sqip" alt aria-hidden="true">
     <img v-if="ready" :src="imageSrc" :alt="asset.title">
   </figure>
 </template>
@@ -10,12 +10,12 @@ import { supportsWebp } from '~/plugins/feature-detects.js';
 
 export default {
   mounted() {
-    import(`~/.sqip/${this.asset._id}-${this.asset._revision}.svg`).then(
-      svgPath => {
-        console.log(svgPath);
-        this.preview = svgPath.default;
-      }
-    );
+    import(/* webpackMode: "eager" */ `~/sqip/${this.asset._id}-${
+      this.asset._revision
+    }.svg`).then(svgPath => {
+      console.log(svgPath);
+      this.preview = svgPath.default;
+    });
 
     supportsWebp().then(supportsWebp => {
       const neededImageWidth = Math.floor(
@@ -85,7 +85,7 @@ export default {
   margin: 0;
   padding: 0;
 
-  background: #fff;
+  background: #eee;
 
   img {
     position: absolute;
