@@ -19,7 +19,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jsdom": "^12.0.0",
     "marked": "^0.6.2",
-    "nuxt-edge": "^2.8.0-25993448.f2c08897",
+    "nuxt-edge": "^2.9.0-26023689.1b634779",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.1.2",
     "prismjs": "^1.16.0",
