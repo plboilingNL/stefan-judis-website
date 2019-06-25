@@ -9,6 +9,13 @@ echo "$WEBHOOK_TITLE"
 # npm run function:build
 
 echo "⭐⭐⭐"
+echo "Making sure dist exists"
+if [ ! -d "./dist" ]; then
+  echo "Creating new dist directory"
+  mkdir ./dist
+fi
+
+echo "⭐⭐⭐"
 echo "Generating Sqip previews"
 echo ""
 ./scripts/sqip-it
