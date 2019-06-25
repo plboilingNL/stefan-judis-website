@@ -25,7 +25,8 @@ const normalizeEntry = entry => {
           ...(entry.sys.contentType
             ? { _ctId: entry.sys.contentType.sys.id }
             : {}),
-          _updatedAt: entry.sys.updatedAt
+          _updatedAt: entry.sys.updatedAt,
+          _revision: entry.sys.revision
         }
       )
     : entry;

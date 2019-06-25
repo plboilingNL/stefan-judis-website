@@ -87,7 +87,7 @@ async function sqipItems() {
       if (!svg) {
         const { final_svg } = sqip({
           filename: path.join(SQIP_CACHE, filename),
-          numberOfPrimitives: 10,
+          numberOfPrimitives: 8,
           mode: 0,
           blur: 0
         });
@@ -101,35 +101,6 @@ async function sqipItems() {
       return Promise.resolve();
     })
   );
-
-  logSuccess('SVGs created');
-  logSeparator('Reading missing SVGs');
-
-  images = await Promise.all(
-    images.map(async image => {
-      if (!image.svg) {
-        const svg = await readFile(
-          path.join(SQIP_CACHE, `${image.id}-${image.revision}.svg`),
-          'utf8'
-        );
-        image.svg = svg.replace('<svg', `<svg id="${image.id}"`);
-      }
-
-      return image;
-    })
-  );
-
-  logSuccess('SVGs read');
-  logSeparator('Writing JS mapping file');
-
-  await writeData(
-    'image-map.js',
-    `export default {\n  ${images
-      .map(({ id, svg }) => `'${id}': '${svg}'`)
-      .join(', ')}\n}\n`
-  );
-
-  logSuccess('JS file written');
 }
 
 sqipItems();

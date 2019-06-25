@@ -1,16 +1,22 @@
 <template>
   <figure role="group" class="c-lazyImage" :style="{ paddingTop: `${ratio * 100}%` }">
-    <div class="c-lazyImage--sqip" v-html="preview"></div>
+    <img :src="preview" class="c-lazyImage--sqip" alt aria-hidden="true">
     <img v-if="ready" :src="imageSrc" :alt="asset.title">
   </figure>
 </template>
 
 <script>
 import { supportsWebp } from '~/plugins/feature-detects.js';
-import imageMap from '~/data/image-map.js';
 
 export default {
   mounted() {
+    import(`~/.sqip/${this.asset._id}-${this.asset._revision}.svg`).then(
+      svgPath => {
+        console.log(svgPath);
+        this.preview = svgPath.default;
+      }
+    );
+
     supportsWebp().then(supportsWebp => {
       const neededImageWidth = Math.floor(
         this.$el.getBoundingClientRect().width * window.devicePixelRatio
@@ -56,7 +62,7 @@ export default {
     return {
       ready: false,
       imageSrc: null,
-      preview: imageMap[this.asset._id] || null
+      preview: null
     };
   },
 
@@ -114,21 +120,7 @@ export default {
   }
 
   &--sqip {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-
-    svg {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      width: calc(100% + 20px);
-      height: calc(100% + 20px);
-      filter: blur(10px);
-    }
+    filter: blur(10px);
   }
 }
 </style>
