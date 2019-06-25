@@ -34,3 +34,5 @@ static/sitemap.xml
 data/image-map.js
 data/popular-posts.js
 
+# mac shizzle
+.DS_Store
