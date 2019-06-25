@@ -101,6 +101,8 @@ async function sqipItems() {
       return Promise.resolve();
     })
   );
+
+  logSuccess('SVGs created');
 }
 
 sqipItems();
