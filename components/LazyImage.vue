@@ -1,6 +1,6 @@
 <template>
   <figure role="group" class="c-lazyImage" :style="{ paddingTop: `${ratio * 100}%` }">
-    <img v-if="prewiew" :src="preview" class="c-lazyImage--sqip" alt aria-hidden="true">
+    <img v-if="preview" :src="preview" class="c-lazyImage--sqip" alt aria-hidden="true">
     <img v-if="ready" :src="imageSrc" :alt="asset.title">
   </figure>
 </template>
