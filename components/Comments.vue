@@ -77,6 +77,7 @@ export default {
 
   .just-comments {
     --primary-color: var(--c-highlight);
+    --primary-text-color: var(--c-text);
     --primary-button-bg-color: var(--grey-dark);
   }
 }
