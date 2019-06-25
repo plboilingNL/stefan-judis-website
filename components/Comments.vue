@@ -28,14 +28,18 @@ import fetch from 'isomorphic-unfetch';
 
 export default {
   async mounted() {
+    const url = new URL(window.location.href);
+
     const response = await fetch(
-      `https://service.just-comments.com/prod/v2/counts?pageId=${window.location.href.replace(
-        'https://',
-        ''
-      )}&apiKey=04cc7e14-5182-4838-94a6-fe6c84ffa546`
+      `https://service.just-comments.com/prod/v2/counts?pageId=${url.hostname +
+        url.pathname}&apiKey=04cc7e14-5182-4838-94a6-fe6c84ffa546`
     );
     const result = await response.json();
     this.commentCount = result.counts[0].count;
+
+    if (url.hash && url.hash.startsWith('#jc')) {
+      this.loadComments();
+    }
   },
   data() {
     return {

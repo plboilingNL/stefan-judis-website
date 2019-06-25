@@ -50,7 +50,7 @@ const config = {
         href: 'https://www.stefanjudis.com/til.xml'
       }
     ],
-    script: [{ src: 'https://just-comments.com/auth.js', defer: '' }]
+    script: [{ src: 'https://just-comments.com/auth2.js', defer: '' }]
   },
 
   /*
