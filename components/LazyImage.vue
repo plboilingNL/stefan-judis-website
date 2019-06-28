@@ -85,7 +85,16 @@ export default {
   margin: 0;
   padding: 0;
 
-  background: #eee;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: #f4f4f4;
+    filter: blur(10px);
+  }
 
   img {
     position: absolute;
