@@ -1,6 +1,6 @@
 <template>
   <div class="u-flex-column u-height-100">
-    <div class="u-marginBottomSmall" v-if="showImage">
+    <div class="u-marginBottomMedium" v-if="showImage">
       <lazy-image :asset="talk.thumbnail" :ratio="0.5625"></lazy-image>
     </div>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="c-screencast u-flex-column u-height-100">
-    <div class="u-marginBottomSmall" v-if="showImage">
+    <div class="u-marginBottomMedium" v-if="showImage">
       <lazy-image :asset="screencast.coverImage" :ratio="0.5625"/>
       <div class="c-screencast__date c-screencast__Imagedate">
         <pretty-date :date="screencast.publishDate"></pretty-date>
