@@ -51,26 +51,21 @@
 
       <div class="h-card">
         <!-- only here for indie web stuff -->
-        <a
-          cclass="u-email"
-          href="mailto:stefanjudis@gmail.com"
-          rel="me"
-          hidden
-        >stefanjudis@gmail.com</a>
+        <a class="u-email" href="mailto:stefanjudis@gmail.com" rel="me" hidden>stefanjudis@gmail.com</a>
 
         <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
           <li>
-            <a href="https://twitter.com/stefanjudis" rel="me">
+            <a class="u-url" href="https://twitter.com/stefanjudis" rel="me">
               <svg-icon name="twitter" aria-hidden="true"/>Twitter
             </a>
           </li>
           <li>
-            <a href="https://github.com/stefanjudis" rel="me">
+            <a class="u-url" href="https://github.com/stefanjudis" rel="me">
               <svg-icon name="github" aria-hidden="true"/>GitHub
             </a>
           </li>
           <li>
-            <a href="https://www.instagram.com/stefans_little_planet/" rel="me">
+            <a class="u-url" href="https://www.instagram.com/stefans_little_planet/" rel="me">
               <svg-icon name="instagram" aria-hidden="true"/>Instagram
             </a>
           </li>
