@@ -48,6 +48,14 @@ const config = {
         type: 'application/rss+xml',
         title: 'Stefan Judis Web Development (only TIL)',
         href: 'https://www.stefanjudis.com/til.xml'
+      },
+      {
+        rel: 'webmention',
+        href: 'https://webmention.io/www.stefanjudis.com/webmention'
+      },
+      {
+        rel: 'pingback',
+        href: 'https://webmention.io/www.stefanjudis.com/xmlrpc'
       }
     ],
     script: [{ src: 'https://just-comments.com/auth2.js', defer: '' }]
