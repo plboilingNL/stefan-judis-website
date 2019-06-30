@@ -38,7 +38,8 @@
           <path d="M2 2l15 16M64 2L49 18" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round"></path>
         </svg>
         <h4 class="c-footer__headline">Get the latest content right in your inbox ...</h4>
-        <span>(
+        <span>
+          (
           <nuxt-link to="/newsletter/">View past newsletters</nuxt-link>&nbsp;)
         </span>
         <newsletter-form/>
@@ -49,17 +50,17 @@
       <p class="u-marginBottomMedium">... say Hi somewhere in the internet!</p>
       <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
         <li>
-          <a href="https://twitter.com/stefanjudis" rel="me">
+          <a class="h-card" href="https://twitter.com/stefanjudis" rel="me">
             <svg-icon name="twitter" aria-hidden="true"/>Twitter
           </a>
         </li>
         <li>
-          <a href="https://github.com/stefanjudis" rel="me">
+          <a class="h-card" href="https://github.com/stefanjudis" rel="me">
             <svg-icon name="github" aria-hidden="true"/>GitHub
           </a>
         </li>
         <li>
-          <a href="https://www.instagram.com/stefans_little_planet/" rel="me">
+          <a class="h-card" href="https://www.instagram.com/stefans_little_planet/" rel="me">
             <svg-icon name="instagram" aria-hidden="true"/>Instagram
           </a>
         </li>
