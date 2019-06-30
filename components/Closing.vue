@@ -45,30 +45,37 @@
         <newsletter-form/>
       </Container>
     </div>
-    <div class="c-footer__dark h-card">
+    <div class="c-footer__dark">
       <div class="c-footer__divider">or</div>
       <p class="u-marginBottomMedium">... say Hi somewhere in the internet!</p>
 
-      <!-- only here for indie web stuff -->
-      <a cclass="u-email" href="mailto:stefanjudis@gmail.com" rel="me" hidden>stefanjudis@gmail.com</a>
+      <div class="h-card">
+        <!-- only here for indie web stuff -->
+        <a
+          cclass="u-email"
+          href="mailto:stefanjudis@gmail.com"
+          rel="me"
+          hidden
+        >stefanjudis@gmail.com</a>
 
-      <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
-        <li>
-          <a href="https://twitter.com/stefanjudis" rel="me">
-            <svg-icon name="twitter" aria-hidden="true"/>Twitter
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/stefanjudis" rel="me">
-            <svg-icon name="github" aria-hidden="true"/>GitHub
-          </a>
-        </li>
-        <li>
-          <a href="https://www.instagram.com/stefans_little_planet/" rel="me">
-            <svg-icon name="instagram" aria-hidden="true"/>Instagram
-          </a>
-        </li>
-      </ul>
+        <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
+          <li>
+            <a href="https://twitter.com/stefanjudis" rel="me">
+              <svg-icon name="twitter" aria-hidden="true"/>Twitter
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/stefanjudis" rel="me">
+              <svg-icon name="github" aria-hidden="true"/>GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/stefans_little_planet/" rel="me">
+              <svg-icon name="instagram" aria-hidden="true"/>Instagram
+            </a>
+          </li>
+        </ul>
+      </div>
       <Container :no-padding="true">
         <finish-line/>
       </Container>
