@@ -1,41 +1,39 @@
 <template>
-  <Container animate="true" accessible-line-length="true">
-    <article class="h-entry">
-      <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
-      <span slot="subHeadline">
-        <PrettyDate :date="post.date"/>
-        <span aria-hidden="true">•</span>
-        {{ post.readingTime }} min read
+  <Container animate="true" accessible-line-length="true" additional-class="h-entry">
+    <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
+    <span slot="subHeadline">
+      <PrettyDate :date="post.date"/>
+      <span aria-hidden="true">•</span>
+      {{ post.readingTime }} min read
+    </span>
+    <p v-if="post.externalUrl" class="o-highlightBox">
+      <svg-icon class="o-highlightBox__icon" name="attention"/>
+      <span>
+        This article was initially posted on
+        <a
+          :href="post.externalUrl"
+          :aria-labelledby="post.title | idAlize"
+          class="fancy-link"
+        >{{ post.externalUrl | externalUrl }}</a>.
       </span>
-      <p v-if="post.externalUrl" class="o-highlightBox">
-        <svg-icon class="o-highlightBox__icon" name="attention"/>
-        <span>
-          This article was initially posted on
-          <a
-            :href="post.externalUrl"
-            :aria-labelledby="post.title | idAlize"
-            class="fancy-link"
-          >{{ post.externalUrl | externalUrl }}</a>.
-        </span>
-      </p>
+    </p>
 
-      <Marked :markdown="post.body"></Marked>
+    <Marked :markdown="post.body"></Marked>
 
-      <div class="u-marginTopLarge u-marginBottomLarge u-textAlignCenter">
-        <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
-          <svg-icon name="share" aria-hidden="true"/>Share article on Twitter
-        </a>
-      </div>
+    <div class="u-marginTopLarge u-marginBottomLarge u-textAlignCenter">
+      <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
+        <svg-icon name="share" aria-hidden="true"/>Share article on Twitter
+      </a>
+    </div>
 
-      <div v-if="post.topics && post.topics.length" class="u-marginBottomSmall">
-        <h3>Related Topics</h3>
-        <Topics :topics="post.topics"/>
-      </div>
+    <div v-if="post.topics && post.topics.length" class="u-marginBottomSmall">
+      <h3>Related Topics</h3>
+      <Topics :topics="post.topics"/>
+    </div>
 
-      <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomSmall"/>
+    <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomSmall"/>
 
-      <Comments class="u-marginTopLarge u-marginBottomMedium"/>
-    </article>
+    <Comments class="u-marginTopLarge u-marginBottomMedium"/>
   </Container>
 </template>
 
