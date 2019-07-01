@@ -12,10 +12,7 @@ export default {
   mounted() {
     import(/* webpackMode: "eager" */ `~/sqip/${this.asset._id}-${
       this.asset._revision
-    }.svg`).then(svgPath => {
-      console.log(svgPath);
-      this.preview = svgPath.default;
-    });
+    }.svg`).then(svgPath => (this.preview = svgPath.default));
 
     supportsWebp().then(supportsWebp => {
       const neededImageWidth = Math.floor(
