@@ -46,6 +46,11 @@
   grid-gap: var(--grid-gap);
 }
 
+.o-list-grid > li {
+  /* fix that when you have time!!! */
+  max-width: 416px;
+}
+
 .o-list-gridSmall {
   display: grid;
   list-style: none;

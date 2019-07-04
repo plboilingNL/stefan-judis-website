@@ -1,9 +1,16 @@
 <template>
   <Container animate="true">
     <h1 slot="headline" tabindex="-1" id="main-headline">Developer Smalltalk</h1>
+    <h2>Tools, tools, tools</h2>
     <ul class="o-list-grid">
-      <li v-for="screencast in screenCasts" :key="screencast._id">
-        <Screen-cast :screencast="screencast" :show-image="true"/>
+      <li v-for="screencast in tools" :key="screencast._id">
+        <Screen-cast :screencast="screencast" :show-image="true" />
+      </li>
+    </ul>
+    <h2 class="u-marginTopLarge">Learning emacs</h2>
+    <ul class="o-list-grid">
+      <li v-for="screencast in emacs" :key="screencast._id">
+        <Screen-cast :screencast="screencast" :show-image="true" />
       </li>
     </ul>
   </Container>
@@ -21,8 +28,15 @@ export default createPage({
     await Promise.all([getScreencasts()]);
   },
   computed: {
-    screenCasts() {
-      return this.$store.state.screencasts.list;
+    emacs() {
+      return this.$store.state.screencasts.list.filter(
+        entry => entry.list === 'emacs'
+      );
+    },
+    tools() {
+      return this.$store.state.screencasts.list.filter(
+        entry => entry.list === 'tools'
+      );
     }
   },
   head() {
