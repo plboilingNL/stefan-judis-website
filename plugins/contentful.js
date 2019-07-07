@@ -143,6 +143,8 @@ export default ({ app, env, store }) => {
             return items;
           })
           .catch(err => console.log(err));
+      } else {
+        store.commit('posts/setActiveWithSlug', post.slug);
       }
 
       return posts.list;
