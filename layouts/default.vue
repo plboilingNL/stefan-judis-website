@@ -1,12 +1,12 @@
 <template>
   <div class="u-overflowHidden">
     <a href="#main" class="skip-link o-btn">Skip to content</a>
-    <offline-notice v-if="!isOnline"/>
-    <navigation/>
+    <offline-notice v-if="!isOnline" />
+    <navigation />
     <main id="main" aria-labelledby="main-headline" class="u-marginBottomLarge">
-      <nuxt/>
+      <nuxt />
     </main>
-    <closing/>
+    <closing />
   </div>
 </template>
 
@@ -72,10 +72,10 @@ export default {
 @import '../assets/styles/util.css';
 
 body {
-  --blue-brighter: #90d0fa;
-  --blue-bright: #54b2ea;
+  --blue-brighter: #e4f4ff;
+  --blue-bright: #8cd1ff;
   --blue: #1d7cbb;
-  --blue-dark: #1f87c3;
+  --blue-dark: #1d5a88;
   --green-bright: #39b97c;
   --green: #10967a;
   --green-dark: #09795c;
@@ -206,8 +206,8 @@ img {
 .fancy-link {
   text-decoration: none;
 
-  background: linear-gradient(var(--blue-brighter), var(--blue-brighter));
-  background-size: 100% 4px;
+  background: linear-gradient(90deg, var(--blue-bright), var(--blue-brighter));
+  background-size: 100% 2px;
   background-repeat: no-repeat;
   background-position: left 0 bottom 0;
 }

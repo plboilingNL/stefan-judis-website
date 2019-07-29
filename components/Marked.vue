@@ -44,14 +44,21 @@ export default {
     }
   }
 
-  code {
-    font-size: 1.125em;
-    font-family: monospace;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: 0.125em;
-    color: var(--c-highlight);
-    border-radius: 0.25em;
+  p > {
+    code {
+      font-size: 1.125em;
+      font-family: monospace;
+      font-weight: 400;
+      line-height: 1.5;
+      padding: 0.125em 0.5em;
+      color: var(--grey-darker);
+      background: linear-gradient(
+        90deg,
+        var(--blue-bright),
+        var(--blue-brighter)
+      );
+      border-radius: 0.75em 0.25em 0.25em 0.25em;
+    }
   }
 
   img {
