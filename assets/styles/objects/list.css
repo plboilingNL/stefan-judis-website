@@ -47,6 +47,10 @@
   @media (min-width: 80em) {
     grid-template-columns: 1fr 1fr 1fr;
   }
+
+  &__small {
+    grid-gap: var(--grid-gap-small) var(--grid-gap);
+  }
 }
 
 .o-list-gridSmall {

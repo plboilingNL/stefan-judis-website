@@ -73,8 +73,8 @@ export default {
 
 body {
   --blue-brighter: #e4f4ff;
-  --blue-bright: #8cd1ff;
-  --blue: #1d7cbb;
+  --blue-bright: #4aa9e8;
+  --blue: #1c7cbb;
   --blue-dark: #1d5a88;
   --green-bright: #39b97c;
   --green: #10967a;
@@ -96,15 +96,16 @@ body {
   --c-text-contrast: var(--grey-brighter);
   --c-text-catchy: var(--grey-very-dark);
   --c-text-hover-background: var(--grey-bright);
-  --c-highlight: var(--blue);
-  --c-highlight-light: var(--blue-dark);
+  --c-highlight: var(--blue-dark);
+  --c-highlight-light: var(--blue-bright);
   --c-highlight-gradient: linear-gradient(
     125deg,
-    var(--c-highlight-light) 0,
-    var(--c-highlight)
+    var(--c-highlight) 0,
+    var(--c-highlight-light)
   );
 
   --grid-gap: 4.5em;
+  --grid-gap-small: 2.5em;
 
   --grid-outer-padding: 1em;
   @media (min-width: 38em) {
@@ -206,7 +207,7 @@ img {
 .fancy-link {
   text-decoration: none;
 
-  background: linear-gradient(90deg, var(--blue-bright), var(--blue-brighter));
+  background: var(--c-highlight-gradient);
   background-size: 100% 2px;
   background-repeat: no-repeat;
   background-position: left 0 bottom 0;
