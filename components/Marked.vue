@@ -52,11 +52,7 @@ export default {
       line-height: 1.5;
       padding: 0.125em 0.5em;
       color: var(--grey-darker);
-      background: linear-gradient(
-        90deg,
-        var(--blue-bright),
-        var(--blue-brighter)
-      );
+      background: var(--blue-brighter);
       border-radius: 0.75em 0.25em 0.25em 0.25em;
     }
   }
