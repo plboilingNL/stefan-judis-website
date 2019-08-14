@@ -72,7 +72,7 @@ export default {
 @import '../assets/styles/util.css';
 
 body {
-  --blue-brighter: #e4f4ff;
+  --blue-brighter: #d2e1fc;
   --blue-bright: #4aa9e8;
   --blue: #1c7cbb;
   --blue-dark: #1d5a88;
@@ -83,7 +83,7 @@ body {
   --red: #d73f34;
   --red-dark: #c52d22;
   --white: #fff;
-  --grey-brighter: #fafafa;
+  --grey-brighter: #f9f9f9;
   --grey-bright: #e6e6e6;
   --grey: #767676;
   --grey-dark: #5a5a5a;
@@ -96,7 +96,7 @@ body {
   --c-text-contrast: var(--grey-brighter);
   --c-text-catchy: var(--grey-very-dark);
   --c-text-hover-background: var(--grey-bright);
-  --c-highlight: var(--blue-dark);
+  --c-highlight: var(--blue);
   --c-highlight-light: var(--blue-bright);
   --c-highlight-gradient: linear-gradient(
     125deg,
@@ -206,11 +206,18 @@ img {
 
 .fancy-link {
   text-decoration: none;
+  position: relative;
 
-  background: var(--c-highlight-gradient);
-  background-size: 100% 2px;
-  background-repeat: no-repeat;
-  background-position: left 0 bottom 0;
+  &:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    bottom: -0.05em;
+    background: var(--blue-brighter);
+    height: 0.4em;
+    left: -0.125em;
+    right: -0.125em;
+  }
 }
 
 .fancy-font {
