@@ -126,7 +126,7 @@ body {
   background: var(--c-background);
   color: var(--c-text);
 
-  padding-bottom: 3em;
+  padding-bottom: calc(3em + env(safe-area-inset-bottom));
 
   @media (min-width: 52em) {
     padding-bottom: 0;

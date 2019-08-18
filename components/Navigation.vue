@@ -8,19 +8,19 @@
               d="M7.5 1.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
               fill="#4AA9E8"
               fill-rule="nonzero"
-            ></path>
+            />
             <path
               d="M18.8 1.7c3.3 0 6 2.5 6 5.6 0 1-.3 2-.9 2.9l-.3.5-10.8 12.6-.8-1C23.8 7.6 18.8 1.7 18.8 1.7z"
               fill="#1D7CBB"
               fill-rule="nonzero"
-            ></path>
+            />
             <path
               d="M7.5 1.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
               stroke="#444"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ></path>
+            />
           </g>
         </svg>
       </nuxt-link>
@@ -35,7 +35,7 @@
       >
         <li v-for="(item, index) in menu" :key="item.label" :data-index="index">
           <nuxt-link :to="item.url">
-            <svg-icon v-if="item.icon" :name="item.icon"/>
+            <svg-icon v-if="item.icon" :name="item.icon" />
             {{ item.label }}
           </nuxt-link>
         </li>
@@ -151,6 +151,7 @@ export default {
     > li {
       margin: 0;
       padding: 0;
+      padding-bottom: env(safe-area-inset-bottom);
       text-align: center;
       align-self: stretch;
       justify-self: stretch;
@@ -262,7 +263,7 @@ export default {
       margin: 0.25em 0;
 
       &.is-active {
-        box-shadow: 0 0.675em 0 0 currentColor;
+        box-shadow: 0 0.375em 0 0 currentColor;
       }
     }
 
@@ -276,6 +277,7 @@ export default {
     z-index: 3;
     right: 0;
     bottom: 0;
+    padding-bottom: env(safe-area-inset-bottom);
     display: block;
     width: 20%;
     height: 100%;
@@ -288,8 +290,8 @@ export default {
     &::before {
       content: '';
       position: absolute;
-      top: 30%;
-      bottom: 30%;
+      top: 0.875em;
+      bottom: calc(0.875em + env(safe-area-inset-bottom));
       left: 0;
       width: 2px;
       background: var(--grey);
