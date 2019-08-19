@@ -73,7 +73,7 @@ export default {
 
 body {
   --blue-brighter: #d2e1fc;
-  --blue-bright: #4aa9e8;
+  --blue-bright: #4ab9f8;
   --blue: #1c7cbb;
   --blue-dark: #1d5a88;
   --green-bright: #39b97c;
@@ -208,16 +208,10 @@ img {
   text-decoration: none;
   position: relative;
 
-  &:before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    bottom: -0.05em;
-    background: var(--blue-brighter);
-    height: 0.4em;
-    left: -0.125em;
-    right: -0.125em;
-  }
+  background: var(--c-highlight-gradient);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 2px;
 }
 
 .fancy-font {
