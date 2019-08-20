@@ -31,7 +31,7 @@
           </h2>
           <ul class="o-list-reset magazine-grid__list">
             <li v-for="post in til" :key="post._id">
-              <Post :post="post" :level="3" :show-date="true" :show-excerpt="false"/>
+              <Post :post="post" :level="3" :show-date="true" :show-excerpt="false" />
             </li>
           </ul>
         </div>
@@ -40,7 +40,7 @@
           <h2 class="o-headline-4 o-headline__highlighted">Popular posts</h2>
           <ul class="o-list-reset magazine-grid__list">
             <li v-for="post in popularPosts" :key="post._id">
-              <Post :post="post" :level="3" :style-level="3" :show-date="true"/>
+              <Post :post="post" :level="3" :style-level="3" :show-date="true" />
             </li>
           </ul>
         </div>
@@ -51,7 +51,7 @@
           </h2>
           <ul class="o-list-reset magazine-grid__list">
             <li v-for="project in projects" :key="project._id">
-              <Project :project="project" :level="3" :style-level="2"/>
+              <Project :project="project" :level="3" :style-level="2" />
             </li>
           </ul>
         </div>
@@ -62,7 +62,7 @@
           </h2>
           <ul class="o-list-reset magazine-grid__list">
             <li v-for="screencast in screencasts" :key="screencast._id">
-              <Screen-cast :screencast="screencast"/>
+              <Screen-cast :screencast="screencast" />
             </li>
           </ul>
         </div>
@@ -73,7 +73,7 @@
           </h2>
           <ul class="o-list-reset magazine-grid__list">
             <li v-for="talk in talks" :key="talk._id">
-              <Talk :talk="talk"/>
+              <Talk :talk="talk" />
             </li>
           </ul>
         </div>
