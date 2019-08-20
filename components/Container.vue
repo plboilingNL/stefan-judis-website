@@ -76,6 +76,15 @@
     @media (min-width: 38em) {
       font-size: 3.5em;
     }
+
+    svg {
+      display: inline-block;
+      vertical-align: middle;
+      height: 1em;
+      width: auto;
+      max-width: 1em;
+      margin: -0.25em 0.125em 0 0;
+    }
   }
 }
 

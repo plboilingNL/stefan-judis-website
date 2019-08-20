@@ -3,18 +3,18 @@
     <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
       <PageDetails :post="post" />
+      <p v-if="post.externalUrl" class="o-highlightBox">
+        <svg-icon class="o-highlightBox__icon" name="attention" />
+        <span>
+          This article was initially posted on
+          <a
+            :href="post.externalUrl"
+            :aria-labelledby="post.title | idAlize"
+            class="fancy-link"
+          >{{ post.externalUrl | externalUrl }}</a>.
+        </span>
+      </p>
     </span>
-    <p v-if="post.externalUrl" class="o-highlightBox">
-      <svg-icon class="o-highlightBox__icon" name="attention" />
-      <span>
-        This article was initially posted on
-        <a
-          :href="post.externalUrl"
-          :aria-labelledby="post.title | idAlize"
-          class="fancy-link"
-        >{{ post.externalUrl | externalUrl }}</a>.
-      </span>
-    </p>
 
     <Marked :markdown="post.body"></Marked>
 
