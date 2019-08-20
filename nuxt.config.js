@@ -152,7 +152,6 @@ const config = {
   // related to
   // '@nuxtjs/sitemap'
   sitemap: {
-    generate: true,
     hostname: 'https://www.stefanjudis.com',
     routes: async () => {
       return await getAllRoutes().then(routes =>
