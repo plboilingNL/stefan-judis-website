@@ -3,7 +3,7 @@
     <h3>Related posts</h3>
     <ul>
       <li v-for="related in relatedItems" :key="related._id">
-        <nuxt-link :to="`/${ slug }/${ related.slug }`">{{ related.title }}</nuxt-link>
+        <nuxt-link :to="`/${ slug }/${ related.slug }/`">{{ related.title }}</nuxt-link>
       </li>
     </ul>
   </div>

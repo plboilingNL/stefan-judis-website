@@ -4,8 +4,8 @@
     <ul class="o-list-grid">
       <li v-for="topic in Object.keys(topics).sort()" :key="topic" :class="`area-${topic}`">
         <h2 class="o-headline-2 o-headline__highlighted">
-          <nuxt-link :to="`/topics/${ topics[topic].slug }`">
-            <svg-icon :name="topics[topic].slug"/>
+          <nuxt-link :to="`/topics/${ topics[topic].slug }/`">
+            <svg-icon :name="topics[topic].slug" />
             {{ topics[topic].name }}
           </nuxt-link>
         </h2>
