@@ -35,8 +35,8 @@ renderer.image = (href, title, text) => {
   return `<a href="${href}">
     <picture>
       <source srcset="${href}?w=680&fm=webp, ${href}?w=1360&fm=webp 2x" type="image/webp">
-      <source srcset="${href}?w=680, ${href}?w=1360 2x" type="image/jpeg">
-      <img src="${href}" alt="${text}">
+      <source srcset="${href}?w=680&fm=jpg, ${href}?w=1360 2x" type="image/jpeg">
+      <img src="${href}&fm=jpg" alt="${text}">
     </picture>
   </a>`;
 };
