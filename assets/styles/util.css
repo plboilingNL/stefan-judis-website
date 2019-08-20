@@ -70,6 +70,10 @@
   font-size: 1.5em;
 }
 
+.u-color-catchy {
+  color: var(--c-text-catchy);
+}
+
 .u-inline-block * {
   display: inline-block;
   vertical-align: middle;

@@ -2,12 +2,10 @@
   <Container animate="true" accessible-line-length="true" additional-class="h-entry">
     <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
-      <PrettyDate :date="post.date"/>
-      <span aria-hidden="true">•</span>
-      {{ post.readingTime }} min read
+      <PageDetails :post="post" />
     </span>
     <p v-if="post.externalUrl" class="o-highlightBox">
-      <svg-icon class="o-highlightBox__icon" name="attention"/>
+      <svg-icon class="o-highlightBox__icon" name="attention" />
       <span>
         This article was initially posted on
         <a
@@ -22,18 +20,18 @@
 
     <div class="u-marginTopLarge u-marginBottomLarge u-textAlignCenter">
       <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
-        <svg-icon name="share" aria-hidden="true"/>Share article on Twitter
+        <svg-icon name="share" aria-hidden="true" />Share article on Twitter
       </a>
     </div>
 
     <div v-if="post.topics && post.topics.length" class="u-marginBottomSmall">
       <h3>Related Topics</h3>
-      <Topics :topics="post.topics"/>
+      <Topics :topics="post.topics" />
     </div>
 
-    <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomSmall"/>
+    <RelatedItems :items="posts" :item="post" slug="blog" class="u-marginBottomSmall" />
 
-    <Comments class="u-marginTopLarge u-marginBottomMedium"/>
+    <Comments class="u-marginTopLarge u-marginBottomMedium" />
   </Container>
 </template>
 
@@ -41,11 +39,11 @@
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
-import PrettyDate from '~/components/PrettyDate.vue';
 import RelatedItems from '~/components/RelatedItems.vue';
 import Topics from '~/components/Topics.vue';
 import { createPage, getHeadForPost } from '~/lib/basepage.js';
 import { getSharingUrl } from '~/lib/util.js';
+import PageDetails from '~/components/PageDetails.vue';
 
 export default createPage({
   async fetch({ app, params, store, redirect }) {
@@ -73,7 +71,7 @@ export default createPage({
     Container,
     Comments,
     DynamicHeadline,
-    PrettyDate,
+    PageDetails,
     Marked: () => import('~/components/Marked.vue'),
     RelatedItems,
     Topics

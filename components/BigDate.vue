@@ -2,7 +2,6 @@
   <time :datetime="date" class="c-bigDate">
     <span class="c-bigDate__day">{{parsedDate.day}}</span>
     <span class="c-bigDate__month">{{parsedDate.month}}</span>
-    <!-- {{ parsedDate.prettyDate }} -->
   </time>
 </template>
 <script>

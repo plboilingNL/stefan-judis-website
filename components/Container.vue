@@ -19,7 +19,7 @@
         </div>
         <slot name="subHeadline"></slot>
       </header>
-      <slot/>
+      <slot />
 
       <div v-if="$slots.footerLine" class="c-container__footerLine">
         <slot name="footerLine"></slot>
@@ -76,15 +76,6 @@
     @media (min-width: 38em) {
       font-size: 3.5em;
     }
-  }
-
-  svg {
-    display: inline-block;
-    vertical-align: middle;
-    height: 1em;
-    width: auto;
-    max-width: 1em;
-    margin: -0.25em 0.125em 0 0;
   }
 }
 

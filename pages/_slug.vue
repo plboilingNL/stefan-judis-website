@@ -2,7 +2,8 @@
   <Container animate="true" :additional-class="page.slug" accessible-line-length="true">
     <DynamicHeadline slot="headline" :level="1" id="main-headline">{{ page.title }}</DynamicHeadline>
     <p slot="subHeadline" v-if="page.isResource">
-      <strong>Last updated at:
+      <strong class="u-color-catchy">
+        Last updated at:
         <PrettyDate v-if="page.isResource" slot="date" :date="page._updatedAt"></PrettyDate>
       </strong>
     </p>
