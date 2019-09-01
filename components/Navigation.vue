@@ -2,7 +2,13 @@
   <div>
     <div class="c-logo">
       <nuxt-link :to="'/'" aria-label="Home">
-        <svg width="26" height="25" viewBox="0 0 26 25" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="26"
+          height="25"
+          viewBox="0 0 26 25"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g fill="none" fill-rule="evenodd">
             <path
               d="M7.5 1.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"

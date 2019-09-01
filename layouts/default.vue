@@ -240,11 +240,9 @@ img {
   top: 1em;
   width: 10em;
   text-align: center;
-  opacity: 1;
 
   &:not(:focus):not(:hover) {
     transform: translateY(-4em);
-    opacity: 0;
   }
 }
 </style>

@@ -7,42 +7,45 @@
           width="66"
           height="43"
           viewBox="0 0 66 43"
+          aria-labelledby="newsletter-form-title newsletter-form-desc"
           xmlns="http://www.w3.org/2000/svg"
         >
+          <title id="newsletter-form-title">Newsletter form</title>
+          <desc id="newsletter-form-desc">An envelop with a heart on it</desc>
           <g fill="none" fill-rule="evenodd">
             <path
               d="M27.5 13.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
               fill="#4AA9E8"
               fill-rule="nonzero"
-            ></path>
+            />
             <path
               d="M38.8 13.7c3.3 0 6 2.5 6 5.6 0 1-.3 2-.9 2.9l-.3.5-10.8 12.6-.8-1c11.8-14.7 6.8-20.6 6.8-20.6z"
               fill="#1D7CBB"
               fill-rule="nonzero"
-            ></path>
+            />
             <path
               d="M27.5 13.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
               stroke="#444"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ></path>
+            />
             <path
               d="M62.1 41.5H3.9c-1.6 0-2.9-1.3-2.9-2.9V3.2C1 2 2 1 3.2 1h59.4c1.3 0 2.3 1 2.3 2.3v35.3c.1 1.6-1.2 2.9-2.8 2.9z"
               stroke="#5A5A5A"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
-            ></path>
+            />
           </g>
-          <path d="M2 2l15 16M64 2L49 18" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round"></path>
+          <path d="M2 2l15 16M64 2L49 18" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round" />
         </svg>
         <h4 class="c-footer__headline">Get the latest content right in your inbox ...</h4>
         <span>
           (
           <nuxt-link to="/newsletter/">View past newsletters</nuxt-link>&nbsp;)
         </span>
-        <newsletter-form/>
+        <newsletter-form />
       </Container>
     </div>
     <div class="c-footer__dark">
@@ -56,23 +59,23 @@
         <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
           <li>
             <a class="u-url" href="https://twitter.com/stefanjudis" rel="me">
-              <svg-icon name="twitter" aria-hidden="true"/>Twitter
+              <svg-icon name="twitter" aria-hidden="true" />Twitter
             </a>
           </li>
           <li>
             <a class="u-url" href="https://github.com/stefanjudis" rel="me">
-              <svg-icon name="github" aria-hidden="true"/>GitHub
+              <svg-icon name="github" aria-hidden="true" />GitHub
             </a>
           </li>
           <li>
             <a class="u-url" href="https://www.instagram.com/stefans_little_planet/" rel="me">
-              <svg-icon name="instagram" aria-hidden="true"/>Instagram
+              <svg-icon name="instagram" aria-hidden="true" />Instagram
             </a>
           </li>
         </ul>
       </div>
       <Container :no-padding="true">
-        <finish-line/>
+        <finish-line />
       </Container>
     </div>
   </footer>
