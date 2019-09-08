@@ -36,7 +36,7 @@ export default createPage({
     }
   },
   head() {
-    return this ? this.getHeadForPost(this.page) : {};
+    return this.page ? getHeadForPost(this.page) : {};
   },
   components: {
     Container,
