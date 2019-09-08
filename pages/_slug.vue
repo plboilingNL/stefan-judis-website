@@ -12,6 +12,8 @@
         <Marked :markdown="page.body" class="e-content"></Marked>
       </div>
     </div>
+
+    <Puppies v-if="page.slug === '404'" />
   </Container>
 </template>
 
@@ -42,7 +44,8 @@ export default createPage({
     Container,
     DynamicHeadline,
     Marked: () => import('~/components/Marked.vue'),
-    PrettyDate
+    PrettyDate,
+    Puppies: () => import('~/components/Puppies.vue')
   }
 });
 </script>
