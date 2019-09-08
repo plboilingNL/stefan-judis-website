@@ -63,6 +63,7 @@ export default ({ app, env, store }) => {
     landingpages,
     posts,
     projects,
+    puppies,
     resources,
     screencasts,
     talks,
@@ -75,6 +76,19 @@ export default ({ app, env, store }) => {
         return getEntries(`sys.id=${env.CTF_ME_ID}`)
           .then(items => {
             store.commit('me/setMe', items[0]);
+            return items[0];
+          })
+          .catch(err => console.log(err));
+      }
+
+      return me.entry;
+    },
+
+    async getPuppies() {
+      if (!puppies.entry._id) {
+        return getEntries(`sys.id=${env.CTF_PUPPY_COLLECTION_ID}`)
+          .then(items => {
+            store.commit('puppies/setPuppies', items[0]);
             return items[0];
           })
           .catch(err => console.log(err));
@@ -153,9 +167,7 @@ export default ({ app, env, store }) => {
     async getPosts() {
       if (!posts.fullyLoaded) {
         return getEntries(
-          `content_type=${
-            env.CTF_POST_ID
-          }&order=-fields.date&select=fields.date,fields.slug,fields.title,fields.excerpt,fields.topics,sys`
+          `content_type=${env.CTF_POST_ID}&order=-fields.date&select=fields.date,fields.slug,fields.title,fields.excerpt,fields.topics,sys`
         )
           .then(items => {
             store.commit('posts/setList', items);
@@ -171,9 +183,7 @@ export default ({ app, env, store }) => {
     async getProjects() {
       if (!projects.list.length) {
         return getEntries(
-          `content_type=${
-            env.CTF_PROJECT_ID
-          }&select=fields.title,fields.description,fields.topics,fields.url,sys`
+          `content_type=${env.CTF_PROJECT_ID}&select=fields.title,fields.description,fields.topics,fields.url,sys`
         )
           .then(items => {
             store.commit('projects/setList', items);
@@ -189,9 +199,7 @@ export default ({ app, env, store }) => {
     async getResources() {
       if (!resources.list.length) {
         return getEntries(
-          `content_type=${
-            env.CTF_LANDING_PAGE_ID
-          }&fields.isResource=true&order=fields.title`
+          `content_type=${env.CTF_LANDING_PAGE_ID}&fields.isResource=true&order=fields.title`
         )
           .then(items => {
             store.commit('resources/setList', items);

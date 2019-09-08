@@ -3,7 +3,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-  setMe(state, me) {
-    state.entry = me;
+  setPuppies(state, puppyEntry) {
+    state.entry = puppyEntry;
   }
 };
