@@ -137,6 +137,10 @@ p {
   margin: 0 0 1.25em;
 }
 
+strong {
+  color: var(--c-text-catchy);
+}
+
 main {
   min-height: 70vh;
 }
