@@ -5,7 +5,7 @@
       class="o-btn o-btn--small u-marginTopMedium u-marginBottomMedium"
       @click="togglePuppie"
       type="button"
-    >{{ this.showPuppie ? 'Show me another puppie!' : 'Show me a puppie!'}}</button>
+    >{{ this.showPuppie ? 'Show me another puppy!' : 'Show me a puppy!'}}</button>
     <video v-if="showPuppie && showNextPuppie" controls>
       <source :key="puppie" :src="`/puppies/${this.puppie}`" type="video/mp4" />
     </video>
