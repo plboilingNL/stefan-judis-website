@@ -1,4 +1,5 @@
 <template>
+  <!-- the v-if is needed for 404 on ntlify -->
   <Container v-if="page" animate="true" :additional-class="page.slug" accessible-line-length="true">
     <DynamicHeadline slot="headline" :level="1" id="main-headline">{{ page.title }}</DynamicHeadline>
     <p slot="subHeadline" v-if="page.isResource">
