@@ -63,7 +63,9 @@ export default {
   }
 
   hr {
-    border-color: var(--c-highlight);
+    margin: 3em 4em;
+    border: none;
+    border-top: 2px solid var(--grey-bright);
   }
 
   ul {
