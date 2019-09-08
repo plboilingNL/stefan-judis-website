@@ -151,6 +151,28 @@ video {
   margin: 1em auto;
 }
 
+table {
+  width: 100%;
+  text-align: left;
+  margin: 2em 0;
+  padding: 1em;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 0.25em 0.25em 0.25em 1em;
+  }
+
+  th {
+    border-bottom: 2px solid var(--grey-bright);
+  }
+
+  td + td,
+  th + th {
+    border-left: 2px solid var(--grey-bright);
+  }
+}
+
 video.is-mobile-video {
   display: block;
   max-width: 20em;

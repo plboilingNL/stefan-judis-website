@@ -19,7 +19,7 @@
           autoplay
           muted
           loop
-          playsinline
+          controls
           preload="metadata"
           :class="{ 'is-mobile-video': post.isMobileVideo }"
         >
