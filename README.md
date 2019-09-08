@@ -6,7 +6,7 @@ This is my approach to build my personal website using contentful.
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ npm install # Or yarn install
 
