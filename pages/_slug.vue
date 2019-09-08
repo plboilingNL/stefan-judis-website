@@ -36,7 +36,7 @@ export default createPage({
     }
   },
   head() {
-    return getHeadForPost(this.page);
+    return this ? this.getHeadForPost(this.page) : {};
   },
   components: {
     Container,
@@ -47,7 +47,7 @@ export default createPage({
 });
 </script>
 
-<style>
+<style lang="postcss">
 .useful-talk-quotes {
   blockquote {
     font-weight: bold;
