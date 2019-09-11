@@ -9,8 +9,6 @@
   Accept-CH: Width, Viewport-Width, DPR
   Accept-CH-Lifetime: 100
 
-  Link: </fancy.css>; rel=preload; as=style; no-push
-
 /_nuxt/*
   Cache-Control: max-age=31536000, public, immutable
 
