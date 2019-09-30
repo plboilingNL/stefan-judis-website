@@ -22,6 +22,10 @@
       <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
         <svg-icon name="share" aria-hidden="true" />Share article on Twitter
       </a>
+      <a
+        href="https://twitter.com/stefanjudis"
+        class="fancy-link u-marginLeftMedium u-noWrap"
+      >... or say Hi! 👋</a>
     </div>
 
     <div v-if="post.topics && post.topics.length" class="u-marginBottomSmall">
