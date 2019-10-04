@@ -53,13 +53,22 @@ export default createPage({
     }
   },
   head() {
+    const title = 'Today I learned | Stefan Judis Web Development';
+    const desc = `My documented web development learnings`;
+
     return {
-      title: 'Today I learned | Stefan Judis Web Development',
+      title,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `My daily Web Development learnings`
+          content: desc
+        },
+        { hid: 'og:title', property: 'og:title', content: title },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: desc
         }
       ]
     };
