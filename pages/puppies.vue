@@ -55,12 +55,12 @@ export default createPage({
   },
   head() {
     return {
-      title: `Stefan Judis Web Development - Not found`,
+      title: `Stefan Judis Web Development - Puppy collection`,
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: `404 - Not found`
+          content: `Some puppies for sad times`
         }
       ]
     };
