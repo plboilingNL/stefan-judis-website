@@ -14,29 +14,29 @@
     </div>
     <div>© 2019 Copyright Stefan Judis. All rights reserved.</div>
     <script>
-      // shamelessly stolen from Tim Kadlec
-      // TODO give credits
-      window.onload = function() {
-        setTimeout(function() {
-          window.performance =
-            window.performance ||
-            window.mozPerformance ||
-            window.msPerformance ||
-            window.webkitPerformance ||
-            {};
-          var t = performance.timing || {};
+  // shamelessly stolen from Tim Kadlec
+  // TODO give credits
+  window.onload = function() {
+    setTimeout(function() {
+      window.performance =
+        window.performance ||
+        window.mozPerformance ||
+        window.msPerformance ||
+        window.webkitPerformance ||
+        {};
+      var t = performance.timing || {};
 
-          if (!t) {
-            return;
-          }
-          var start = t.navigationStart;
-          var end = t.loadEventEnd;
-          var loadTime = (end - start) / 1000;
-          var numberContainer = document.querySelector('.c-finishLine__value');
-          numberContainer.innerHTML += loadTime + 's';
-          document.querySelector('.c-finishLine__value').classList.add('is-loaded');
-        }, 0);
-      };
+      if (!t) {
+        return;
+      }
+      var start = t.navigationStart;
+      var end = t.loadEventEnd;
+      var loadTime = (end - start) / 1000;
+      var numberContainer = document.querySelector('.c-finishLine__value');
+      numberContainer.innerHTML += loadTime + 's';
+      document.querySelector('.c-finishLine__value').classList.add('is-loaded');
+    }, 0);
+  };
     </script>
   </div>
 </template>
@@ -44,13 +44,17 @@
 <style lang="postcss">
 .c-finishLine {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   font-size: 0.75em;
   text-align: center;
   background: var(--c-background-contrast);
   color: var(--c-text-contrast);
-  border-top: 1px solid var(--grey);
+  border-top: 2px solid var(--c-text-contrast);
+
+  @media (min-width: 62em) {
+    justify-content: space-between;
+  }
 
   > * {
     margin-top: 1em;
