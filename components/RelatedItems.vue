@@ -1,8 +1,8 @@
 <template>
   <div v-if="relatedItems.length">
     <h3>Related posts</h3>
-    <ul>
-      <li v-for="related in relatedItems" :key="related._id">
+    <ul class="c-relatedItems">
+      <li v-for="related in relatedItems" :key="related._id" class>
         <nuxt-link :to="`/${ slug }/${ related.slug }/`">{{ related.title }}</nuxt-link>
       </li>
     </ul>
@@ -36,4 +36,12 @@ export default {
   }
 };
 </script>
+
+<style lang="postcss">
+.c-relatedItems {
+  li + li {
+    margin-top: 0.375em;
+  }
+}
+</style>
 

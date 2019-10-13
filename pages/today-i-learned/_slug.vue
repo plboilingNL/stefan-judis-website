@@ -34,13 +34,17 @@
       </div>
 
       <div class="u-marginTopLarge u-marginBottomLarge u-textAlignCenter">
-        <a :href="sharingUrl" class="o-btn" target="_blank" rel="noopener noreferrer">
+        <a
+          :href="sharingUrl"
+          class="o-btn u-marginBottomSmall"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg-icon name="share" aria-hidden="true" />Share article on Twitter
         </a>
-        <a
-          href="https://twitter.com/stefanjudis"
-          class="fancy-link u-marginLeftMedium u-noWrap"
-        >... or say Hi! 👋</a>
+        <div>
+          <a href="https://twitter.com/stefanjudis" class="fancy-link u-noWrap">... or say Hi! 👋</a>
+        </div>
       </div>
 
       <RelatedItems :items="posts" :item="post" slug="today-i-learned" class="u-marginBottomLarge" />
