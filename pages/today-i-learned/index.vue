@@ -81,14 +81,14 @@ export default createPage({
 
 <style lang="postcss">
 .area-javascript {
-  @media (min-width: 70em) {
+  @media (min-width: 80em) {
     grid-column: 2;
     grid-row: 2 / 5;
   }
 }
 
 .area-css {
-  @media (min-width: 70em) {
+  @media (min-width: 80em) {
     grid-column: 3;
     grid-row: 1 / 3;
   }
