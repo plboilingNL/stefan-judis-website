@@ -39,8 +39,18 @@
         v-on:before-enter="beforeEnter"
         :inert="!mainNavIsVisible && !showFullNav"
       >
-        <li v-for="(item, index) in menu" :key="item.label" :data-index="index" :class="[item.showIconInCompleteNav ? 'showIcon' : '']">
-          <nuxt-link :to="item.url">
+        <li
+          v-for="(item, index) in menu"
+          :key="item.label"
+          :data-index="index"
+          :class="[item.showIconInCompleteNav ? 'showIcon' : '']"
+        >
+          <a v-if="item.navigateWithHTTP" :href="item.url">
+            <svg-icon v-if="item.icon" :name="item.icon" />
+            <span>{{ item.label }}</span>
+          </a>
+
+          <nuxt-link v-if="!item.navigateWithHTTP" :to="item.url">
             <svg-icon v-if="item.icon" :name="item.icon" />
             <span>{{ item.label }}</span>
           </nuxt-link>
@@ -48,7 +58,8 @@
       </transition-group>
       <ul class="c-navigation__reduced" :inert="mainNavIsVisible">
         <li v-for="item in reducedNav" :key="item.url">
-          <nuxt-link :to="item.url">{{ item.label }}</nuxt-link>
+          <a v-if="item.navigateWithHTTP" :href="item.url">{{ item.label }}</a>
+          <nuxt-link v-if="!item.navigateWithHTTP" :to="item.url">{{ item.label }}</nuxt-link>
         </li>
       </ul>
       <button
@@ -84,7 +95,13 @@ export default {
         { label: 'Talks', url: '/talks/', icon: 'talk' },
         { label: 'Smalltalk', url: '/smalltalk/', icon: 'smalltalk' },
         { label: 'Today I learned', url: '/today-i-learned/', icon: 'learn' },
-        { label: 'RSS', url: '/rss.xml', icon: 'rss', showIconInCompleteNav: true }
+        {
+          label: 'RSS',
+          url: '/rss.xml',
+          icon: 'rss',
+          showIconInCompleteNav: true,
+          navigateWithHTTP: true
+        }
       ],
       reducedNav: [
         { label: 'Home', url: '/' },
