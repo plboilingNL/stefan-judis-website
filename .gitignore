@@ -32,6 +32,9 @@ static/sitemap.xml
 #### dir to be read by webpack
 sqip
 
+# generated icons
+assets/icons.svg
+
 # generated data
 data/image-map.js
 data/popular-posts.js
