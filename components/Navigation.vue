@@ -39,10 +39,10 @@
         v-on:before-enter="beforeEnter"
         :inert="!mainNavIsVisible && !showFullNav"
       >
-        <li v-for="(item, index) in menu" :key="item.label" :data-index="index">
+        <li v-for="(item, index) in menu" :key="item.label" :data-index="index" :class="[item.showIconInCompleteNav ? 'showIcon' : '']">
           <nuxt-link :to="item.url">
             <svg-icon v-if="item.icon" :name="item.icon" />
-            {{ item.label }}
+            <span>{{ item.label }}</span>
           </nuxt-link>
         </li>
       </transition-group>
@@ -67,7 +67,7 @@ export default {
   mounted() {
     this.$router.afterEach(_ => this.toggleNav({ isOpen: false }));
 
-    const mql = window.matchMedia('(min-width:38em)');
+    const mql = window.matchMedia('(min-width:46em)');
     this.showFullNav = mql.matches;
 
     mql.addListener(mql => {
@@ -83,7 +83,8 @@ export default {
         { label: 'Resources', url: '/resources/', icon: 'resources' },
         { label: 'Talks', url: '/talks/', icon: 'talk' },
         { label: 'Smalltalk', url: '/smalltalk/', icon: 'smalltalk' },
-        { label: 'Today I learned', url: '/today-i-learned/', icon: 'learn' }
+        { label: 'Today I learned', url: '/today-i-learned/', icon: 'learn' },
+        { label: 'RSS', url: '/rss.xml', icon: 'rss', showIconInCompleteNav: true }
       ],
       reducedNav: [
         { label: 'Home', url: '/' },
@@ -140,7 +141,7 @@ export default {
   background: var(--c-navigation-background);
   transform: translateZ(0);
 
-  @media (min-width: 52em) {
+  @media (min-width: 57em) {
     position: static;
   }
 
@@ -192,7 +193,7 @@ export default {
       margin: 0 auto 0.5em;
       fill: currentColor;
 
-      @media (min-width: 38em) {
+      @media (min-width: 46em) {
         display: none;
       }
     }
@@ -218,7 +219,7 @@ export default {
       transform: scale(1) translate(0, 0);
     }
 
-    @media (min-width: 38em) {
+    @media (min-width: 46em) {
       position: static;
       display: flex;
       justify-content: space-between;
@@ -236,11 +237,28 @@ export default {
       }
     }
 
-    @media (min-width: 52em) {
+    @media (min-width: 57em) {
       justify-content: flex-end;
 
       > li {
         margin-left: 2.5em;
+
+        &.showIcon {
+          svg {
+            display: block;
+            margin-bottom: 0;
+          }
+
+          span {
+            position: absolute !important;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap; /* added line */
+          }
+        }
       }
 
       a {
@@ -273,7 +291,7 @@ export default {
       }
     }
 
-    @media (min-width: 38em) {
+    @media (min-width: 46em) {
       display: none;
     }
   }
@@ -303,7 +321,7 @@ export default {
       background: var(--grey);
     }
 
-    @media (min-width: 38em) {
+    @media (min-width: 46em) {
       display: none;
     }
   }
