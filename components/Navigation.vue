@@ -239,7 +239,7 @@ export default {
     background: var(--c-navigation-background);
     box-shadow: 0 0 2em var(--c-shadow-color);
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 4em);
+    grid-template-rows: repeat(2, auto);
 
     transform: scale(0.2, 0.2) translate(0, 0);
     transform-origin: bottom right;
