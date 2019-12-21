@@ -280,7 +280,7 @@ export default {
 
         &.showIcon {
           &:not(:last-child) {
-            margin-right: 0.75em;
+            margin-right: 0.5em;
           }
 
           svg {
