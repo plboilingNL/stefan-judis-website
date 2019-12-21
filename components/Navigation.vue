@@ -103,7 +103,7 @@ export default {
         },
         {
           label: 'Twitter',
-          url: 'https://twiter.com/stefanjudis',
+          url: 'https://twitter.com/stefanjudis',
           icon: 'twitter',
           showIconInCompleteNav: true,
           navigateWithHTTP: true
