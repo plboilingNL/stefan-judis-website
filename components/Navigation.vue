@@ -78,7 +78,7 @@ export default {
   mounted() {
     this.$router.afterEach(_ => this.toggleNav({ isOpen: false }));
 
-    const mql = window.matchMedia('(min-width:46em)');
+    const mql = window.matchMedia('(min-width:56em)');
     this.showFullNav = mql.matches;
 
     mql.addListener(mql => {
@@ -95,6 +95,19 @@ export default {
         { label: 'Talks', url: '/talks/', icon: 'talk' },
         { label: 'Smalltalk', url: '/smalltalk/', icon: 'smalltalk' },
         { label: 'Today I learned', url: '/today-i-learned/', icon: 'learn' },
+        {
+          label: 'Twitter',
+          url: 'https://twiter.com/stefanjudis',
+          icon: 'twitter',
+          showIconInCompleteNav: true,
+          navigateWithHTTP: true
+        },
+        {
+          label: 'Newsletter',
+          url: '/newsletter',
+          icon: 'letter',
+          showIconInCompleteNav: true
+        },
         {
           label: 'RSS',
           url: '/rss.xml',
@@ -158,7 +171,7 @@ export default {
   background: var(--c-navigation-background);
   transform: translateZ(0);
 
-  @media (min-width: 57em) {
+  @media (min-width: 62em) {
     position: static;
   }
 
@@ -210,7 +223,7 @@ export default {
       margin: 0 auto 0.5em;
       fill: currentColor;
 
-      @media (min-width: 46em) {
+      @media (min-width: 56em) {
         display: none;
       }
     }
@@ -236,7 +249,7 @@ export default {
       transform: scale(1) translate(0, 0);
     }
 
-    @media (min-width: 46em) {
+    @media (min-width: 56em) {
       position: static;
       display: flex;
       justify-content: space-between;
@@ -254,13 +267,19 @@ export default {
       }
     }
 
-    @media (min-width: 57em) {
+    @media (min-width: 62em) {
       justify-content: flex-end;
 
       > li {
-        margin-left: 2.5em;
+        &:not(:last-child) {
+          margin-right: 2.5em;
+        }
 
         &.showIcon {
+          &:not(:last-child) {
+            margin-right: 0.75em;
+          }
+
           svg {
             display: block;
             margin-bottom: 0;
@@ -308,7 +327,7 @@ export default {
       }
     }
 
-    @media (min-width: 46em) {
+    @media (min-width: 56em) {
       display: none;
     }
   }
@@ -338,7 +357,7 @@ export default {
       background: var(--grey);
     }
 
-    @media (min-width: 46em) {
+    @media (min-width: 56em) {
       display: none;
     }
   }
