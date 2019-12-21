@@ -236,6 +236,7 @@ export default {
     z-index: 2;
     bottom: 0;
     padding: 2em 0.75em 4em;
+    border-top: 2px solid currentColor;
     background: var(--c-navigation-background);
     box-shadow: 0 0 2em var(--c-shadow-color);
     grid-template-columns: repeat(3, 1fr);
@@ -269,6 +270,8 @@ export default {
 
     @media (min-width: 62em) {
       justify-content: flex-end;
+      border-width: 4px;
+      border-color: var(--c-highlight);
 
       > li {
         &:not(:last-child) {
@@ -312,6 +315,7 @@ export default {
   &__reduced {
     padding-right: 20%;
     grid-template-columns: repeat(3, auto);
+    border-top: 2px solid currentColor;
     transition: opacity 0.25s ease-in-out;
 
     .main-nav-visible & {
@@ -340,7 +344,7 @@ export default {
     padding-bottom: env(safe-area-inset-bottom);
     display: block;
     width: 20%;
-    height: 100%;
+    height: calc(100% - 2px);
     font-size: 1em;
     font-weight: 800;
     background: var(--c-navigation-background);
