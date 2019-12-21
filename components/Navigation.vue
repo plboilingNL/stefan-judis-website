@@ -59,7 +59,9 @@
       <ul class="c-navigation__reduced" :inert="mainNavIsVisible">
         <li v-for="item in reducedNav" :key="item.url">
           <a v-if="item.navigateWithHTTP" :href="item.url">{{ item.label }}</a>
-          <nuxt-link v-if="!item.navigateWithHTTP" :to="item.url">{{ item.label }}</nuxt-link>
+          <nuxt-link v-if="!item.navigateWithHTTP" :to="item.url">{{
+            item.label
+          }}</nuxt-link>
         </li>
       </ul>
       <button
@@ -67,7 +69,9 @@
         class="c-navigation__toggle"
         @click="toggleNav()"
         :aria-label="mainNavIsVisible ? 'Close navigation' : 'Open navigation'"
-      >{{ mainNavIsVisible ? 'Close' : 'Menu' }}</button>
+      >
+        {{ mainNavIsVisible ? 'Close' : 'Menu' }}
+      </button>
     </nav>
   </div>
 </template>
@@ -280,7 +284,7 @@ export default {
 
         &.showIcon {
           &:not(:last-child) {
-            margin-right: 0.5em;
+            margin-right: 0.75em;
           }
 
           svg {
