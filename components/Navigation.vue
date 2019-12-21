@@ -96,17 +96,17 @@ export default {
         { label: 'Smalltalk', url: '/smalltalk/', icon: 'smalltalk' },
         { label: 'Today I learned', url: '/today-i-learned/', icon: 'learn' },
         {
+          label: 'Newsletter',
+          url: '/newsletter',
+          icon: 'letter',
+          showIconInCompleteNav: true
+        },
+        {
           label: 'Twitter',
           url: 'https://twiter.com/stefanjudis',
           icon: 'twitter',
           showIconInCompleteNav: true,
           navigateWithHTTP: true
-        },
-        {
-          label: 'Newsletter',
-          url: '/newsletter',
-          icon: 'letter',
-          showIconInCompleteNav: true
         },
         {
           label: 'RSS',
@@ -151,7 +151,7 @@ export default {
 <style lang="postcss">
 .c-logo {
   position: absolute;
-  top: 1em;
+  top: 1.25em;
   left: var(--grid-outer-padding);
   display: block;
   z-index: 3;
@@ -171,7 +171,7 @@ export default {
   background: var(--c-navigation-background);
   transform: translateZ(0);
 
-  @media (min-width: 62em) {
+  @media (min-width: 65em) {
     position: static;
   }
 
@@ -268,7 +268,7 @@ export default {
       }
     }
 
-    @media (min-width: 62em) {
+    @media (min-width: 65em) {
       justify-content: flex-end;
       border-width: 4px;
       border-color: var(--c-highlight);
