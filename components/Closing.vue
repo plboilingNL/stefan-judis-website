@@ -38,9 +38,16 @@
               stroke-linejoin="round"
             />
           </g>
-          <path d="M2 2l15 16M64 2L49 18" stroke="#5A5A5A" stroke-width="2" stroke-linecap="round" />
+          <path
+            d="M2 2l15 16M64 2L49 18"
+            stroke="#5A5A5A"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
         </svg>
-        <h4 class="c-footer__headline">Get the latest content right in your inbox ...</h4>
+        <h4 class="c-footer__headline">
+          Get the latest content right in your inbox ...
+        </h4>
         <span>
           (
           <nuxt-link to="/newsletter/">View past newsletters</nuxt-link>&nbsp;)
@@ -54,9 +61,13 @@
 
       <div class="h-card">
         <!-- only here for indie web stuff -->
-        <a class="u-email" href="mailto:stefanjudis@gmail.com" rel="me" hidden>stefanjudis@gmail.com</a>
+        <a class="u-email" href="mailto:stefanjudis@gmail.com" rel="me" hidden
+          >stefanjudis@gmail.com</a
+        >
 
-        <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomMedium">
+        <ul
+          class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomLarge"
+        >
           <li>
             <a class="u-url" href="https://twitter.com/stefanjudis" rel="me">
               <svg-icon name="twitter" aria-hidden="true" />Twitter
@@ -68,7 +79,11 @@
             </a>
           </li>
           <li>
-            <a class="u-url" href="https://www.instagram.com/stefans_little_planet/" rel="me">
+            <a
+              class="u-url"
+              href="https://www.instagram.com/stefans_little_planet/"
+              rel="me"
+            >
               <svg-icon name="instagram" aria-hidden="true" />Instagram
             </a>
           </li>
@@ -118,7 +133,6 @@ export default {
   }
 };
 </script>
-
 
 <style lang="postcss">
 .c-footer {
