@@ -3,51 +3,43 @@
     <div class="c-footer__light">
       <Container :accessible-line-length="true">
         <svg
-          class="c-newsletter__icon"
-          width="66"
-          height="43"
-          viewBox="0 0 66 43"
-          aria-labelledby="newsletter-form-title newsletter-form-desc"
           xmlns="http://www.w3.org/2000/svg"
+          class="c-newsletter__icon"
+          width="297"
+          height="190"
+          viewBox="0 0 297 190"
+          aria-labelledby="newsletter-form-title newsletter-form-desc"
         >
           <title id="newsletter-form-title">Newsletter form</title>
           <desc id="newsletter-form-desc">An envelop with a heart on it</desc>
-          <g fill="none" fill-rule="evenodd">
-            <path
-              d="M27.5 13.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
-              fill="#4AA9E8"
-              fill-rule="nonzero"
-            />
-            <path
-              d="M38.8 13.7c3.3 0 6 2.5 6 5.6 0 1-.3 2-.9 2.9l-.3.5-10.8 12.6-.8-1c11.8-14.7 6.8-20.6 6.8-20.6z"
-              fill="#1D7CBB"
-              fill-rule="nonzero"
-            />
-            <path
-              d="M27.5 13.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
-              stroke="#444"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-            <path
-              d="M62.1 41.5H3.9c-1.6 0-2.9-1.3-2.9-2.9V3.2C1 2 2 1 3.2 1h59.4c1.3 0 2.3 1 2.3 2.3v35.3c.1 1.6-1.2 2.9-2.8 2.9z"
-              stroke="#5A5A5A"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </g>
           <path
-            d="M2 2l15 16M64 2L49 18"
-            stroke="#5A5A5A"
-            stroke-width="2"
-            stroke-linecap="round"
+            fill="#52A7DD"
+            d="M181.093 59.583c-23.651-3.75-32.593 14.71-32.593 14.71s-8.941-18.46-32.593-14.71c-12.664 2.007-18.954 15.651-17.389 27.42 1.91 14.37 13.813 25.524 22.061 36.546 7.443 9.947 15.253 19.684 22.953 29.438 1.674 2.117 3.285 4.285 4.968 6.396 1.683-2.111 3.294-4.279 4.968-6.396 7.7-9.754 15.51-19.49 22.953-29.438 8.248-11.021 20.15-22.176 22.061-36.546 1.565-11.769-4.725-25.413-17.389-27.42z"
           />
+          <path
+            fill="#1D7CBA"
+            d="M172.978 61.618s25.083 21.025-25.146 92.927c0 0 94.114-88.992 25.146-92.927z"
+          />
+          <path
+            fill="none"
+            stroke="#454546"
+            stroke-width="11"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M181.093 59.583c-23.651-3.75-32.593 14.71-32.593 14.71s-8.941-18.46-32.593-14.71c-12.664 2.007-18.954 15.651-17.389 27.42 1.91 14.37 13.813 25.524 22.061 36.546 7.443 9.947 15.253 19.684 22.953 29.438 1.674 2.117 3.285 4.285 4.968 6.396 1.683-2.111 3.294-4.279 4.968-6.396 7.7-9.754 15.51-19.49 22.953-29.438 8.248-11.021 20.15-22.176 22.061-36.546 1.565-11.769-4.725-25.413-17.389-27.42z"
+          />
+          <g
+            fill="none"
+            stroke="#454546"
+            stroke-width="12"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M214.647 85.331l75.557-78.414V183.25H147.582" />
+            <path d="M82.354 85.331L6.796 6.917V183.25h142.62M6.796 6.917h283.408" />
+          </g>
         </svg>
-        <h4 class="c-footer__headline">
-          Get the latest content right in your inbox ...
-        </h4>
+        <h4 class="c-footer__headline">Get the latest content right in your inbox ...</h4>
         <span>
           (
           <nuxt-link to="/newsletter/">View past newsletters</nuxt-link>&nbsp;)
@@ -61,13 +53,9 @@
 
       <div class="h-card">
         <!-- only here for indie web stuff -->
-        <a class="u-email" href="mailto:stefanjudis@gmail.com" rel="me" hidden
-          >stefanjudis@gmail.com</a
-        >
+        <a class="u-email" href="mailto:stefanjudis@gmail.com" rel="me" hidden>stefanjudis@gmail.com</a>
 
-        <ul
-          class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomLarge"
-        >
+        <ul class="c-footer__social o-list-reset u-marginTopMedium u-marginBottomLarge">
           <li>
             <a class="u-url" href="https://twitter.com/stefanjudis" rel="me">
               <svg-icon name="twitter-mono" aria-hidden="true" />Twitter
@@ -79,11 +67,7 @@
             </a>
           </li>
           <li>
-            <a
-              class="u-url"
-              href="https://www.instagram.com/stefans_little_planet/"
-              rel="me"
-            >
+            <a class="u-url" href="https://www.instagram.com/stefans_little_planet/" rel="me">
               <svg-icon name="instagram" aria-hidden="true" />Instagram
             </a>
           </li>
