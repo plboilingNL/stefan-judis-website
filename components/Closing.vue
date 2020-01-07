@@ -70,7 +70,7 @@
         >
           <li>
             <a class="u-url" href="https://twitter.com/stefanjudis" rel="me">
-              <svg-icon name="twitter" aria-hidden="true" />Twitter
+              <svg-icon name="twitter-mono" aria-hidden="true" />Twitter
             </a>
           </li>
           <li>

@@ -2,33 +2,7 @@
   <div>
     <div class="c-logo">
       <nuxt-link :to="'/'" aria-label="Home">
-        <svg
-          width="26"
-          height="25"
-          viewBox="0 0 26 25"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g fill="none" fill-rule="evenodd">
-            <path
-              d="M7.5 1.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
-              fill="#4AA9E8"
-              fill-rule="nonzero"
-            />
-            <path
-              d="M18.8 1.7c3.3 0 6 2.5 6 5.6 0 1-.3 2-.9 2.9l-.3.5-10.8 12.6-.8-1C23.8 7.6 18.8 1.7 18.8 1.7z"
-              fill="#1D7CBB"
-              fill-rule="nonzero"
-            />
-            <path
-              d="M7.5 1.7c-3.1 0-5.6 2.5-5.6 5.6 0 1 .3 2 .8 2.9l.3.5 10 12.7 10-12.9c.7-1 1.1-2.1 1.1-3.3 0-3.1-2.5-5.6-5.6-5.6-2.2 0-4.1 1.2-5 3.2-.1.2-.2.3-.4.3s-.4-.1-.4-.3c-1.1-1.9-3-3.1-5.2-3.1z"
-              stroke="#444"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </g>
-        </svg>
+        <svg width="190" height="190" viewbox="0 0 190 190"><path fill="#52A7DD" d="M153.008 7.783C111.457 1.196 95.75 33.625 95.75 33.625S80.043 1.196 38.493 7.783C16.246 11.31 5.197 35.278 7.946 55.953c3.356 25.241 24.265 44.838 38.755 64.199 13.076 17.475 26.795 34.578 40.322 51.713 2.939 3.721 5.771 7.529 8.727 11.236 2.955-3.707 5.787-7.516 8.727-11.236 13.527-17.135 27.246-34.238 40.322-51.713 14.49-19.361 35.398-38.958 38.756-64.199 2.748-20.675-8.301-44.643-30.547-48.17z"/><path fill="#1D7CBA" d="M138.75 11.358s44.065 36.935-44.173 163.245c-.001.001 165.333-156.333 44.173-163.245z"/><path fill="none" stroke="#454546" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" d="M153.008 7.783C111.457 1.196 95.75 33.625 95.75 33.625S80.043 1.196 38.493 7.783C16.246 11.31 5.197 35.278 7.946 55.953c3.356 25.241 24.265 44.838 38.755 64.199 13.076 17.475 26.795 34.578 40.322 51.713 2.939 3.721 5.771 7.529 8.727 11.236 2.955-3.707 5.787-7.516 8.727-11.236 13.527-17.135 27.246-34.238 40.322-51.713 14.49-19.361 35.398-38.958 38.756-64.199 2.748-20.675-8.301-44.643-30.547-48.17z"/></svg>
       </nuxt-link>
     </div>
     <nav :class="['c-navigation', mainNavIsVisible ? 'main-nav-visible' : '']">
@@ -161,7 +135,7 @@ export default {
   z-index: 3;
 
   svg {
-    height: 1.75em;
+    height: 1.5em;
     width: auto;
   }
 }
@@ -187,10 +161,14 @@ export default {
 
     display: grid;
     grid-template-rows: 1fr;
-    grid-gap: 0.5em;
+    grid-gap: 2em;
+
+    @media (min-width: 65em) {
+      grid-gap: .5em;
+    }
 
     > li {
-      margin: 0;
+      margin: 0 0;
       padding: 0;
       padding-bottom: env(safe-area-inset-bottom);
       text-align: center;
@@ -222,12 +200,14 @@ export default {
 
     svg {
       display: block;
-      width: 1.5em;
+      width: auto;
+      max-width: 2.5em;
       height: 1.5em;
       margin: 0 auto 0.5em;
       fill: currentColor;
 
       @media (min-width: 56em) {
+        max-width: 1.5em;
         display: none;
       }
     }
