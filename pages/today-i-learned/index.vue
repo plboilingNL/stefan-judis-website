@@ -82,7 +82,7 @@ export default createPage({
 <style lang="postcss">
 @media (min-width: 80em) {
   .area-css {
-    grid-row: auto / span 2;
+    grid-row: auto / span 3;
   }
   .area-javascript {
     grid-row: auto / span 3;
