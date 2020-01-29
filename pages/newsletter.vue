@@ -4,7 +4,7 @@
       <h1 slot="headline" tabindex="-1" id="main-headline">Past newsletter editions</h1>
       <ul class="o-list-grid">
         <li v-for="newsletter in newsletters" :key="newsletter._id">
-          <Post :post="newsletter" :level="2" :show-date="true"/>
+          <Post :post="newsletter" :level="2" :show-date="true" />
         </li>
       </ul>
     </Container>
@@ -38,7 +38,12 @@ export default createPage({
         {
           hid: 'description',
           name: 'description',
-          content: `Subscribe to my monthly newsletter`
+          content: 'Subscribe to my monthly newsletter'
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: 'Subscribe to my monthly newsletter'
         }
       ]
     };
