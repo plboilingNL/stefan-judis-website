@@ -13,6 +13,12 @@
         <Screen-cast :screencast="screencast" :show-image="true" />
       </li>
     </ul>
+    <h2 class="u-marginTopLarge">Metrics</h2>
+    <ul class="o-list-grid">
+      <li v-for="screencast in metrics" :key="screencast._id">
+        <Screen-cast :screencast="screencast" :show-image="true" />
+      </li>
+    </ul>
   </Container>
 </template>
 
@@ -31,6 +37,11 @@ export default createPage({
     emacs() {
       return this.$store.state.screencasts.list.filter(
         entry => entry.list === 'emacs'
+      );
+    },
+    metrics() {
+      return this.$store.state.screencasts.list.filter(
+        entry => entry.list === 'metrics'
       );
     },
     tools() {
