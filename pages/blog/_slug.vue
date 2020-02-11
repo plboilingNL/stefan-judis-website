@@ -2,6 +2,7 @@
   <Container animate="true" accessible-line-length="true" additional-class="h-entry">
     <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
+      <CarbonAds />
       <PageDetails :post="post" />
       <p v-if="post.externalUrl" class="o-highlightBox">
         <svg-icon class="o-highlightBox__icon" name="attention" />
@@ -47,6 +48,7 @@
 </template>
 
 <script>
+import CarbonAds from '~/components/CarbonAds.vue';
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
@@ -79,6 +81,7 @@ export default createPage({
     return getHeadForPost(this.post);
   },
   components: {
+    CarbonAds,
     Container,
     Comments,
     DynamicHeadline,

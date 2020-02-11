@@ -3,6 +3,7 @@
     <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
       <PageDetails :post="post" />
+      <CarbonAds />
       <p class="o-highlightBox">
         <svg-icon class="o-highlightBox__icon" name="megaphone" />
         <span>
@@ -55,6 +56,7 @@
 </template>
 
 <script>
+import CarbonAds from '~/components/CarbonAds.vue';
 import Container from '~/components/Container.vue';
 import Comments from '~/components/Comments.vue';
 import DynamicHeadline from '~/components/DynamicHeadline.vue';
@@ -89,6 +91,7 @@ export default createPage({
     return getHeadForPost(this.post);
   },
   components: {
+    CarbonAds,
     Container,
     Comments,
     DynamicHeadline,
