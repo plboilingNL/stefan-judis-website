@@ -13,7 +13,7 @@
 <style>
 .carbon-container {
   position: relative;
-  height: 97px;
+  min-height: 95px;
   background: var(--grey-brighter);
   margin: 2em 0 4em;
 
