@@ -73,7 +73,7 @@
 .carbon-text {
   width: 100%;
   font-size: 0.875em;
-  padding: 0.5em 3em;
+  padding: 0.25em 0;
   line-height: 1.5;
   text-align: center;
   display: grid;
