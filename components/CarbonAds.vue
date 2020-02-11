@@ -1,6 +1,7 @@
-<template>
+<template functional>
   <div class="carbon-container">
     <script
+      v-if="props.loadAd"
       async
       type="text/javascript"
       src="//cdn.carbonads.com/carbon.js?serve=CE7DLKQM&placement=wwwstefanjudiscom"

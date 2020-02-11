@@ -3,7 +3,7 @@
     <h1 slot="headline" tabindex="-1" id="main-headline">{{ post.title }}</h1>
     <span slot="subHeadline">
       <PageDetails :post="post" />
-      <CarbonAds />
+      <CarbonAds :loadAd="IS_PRODUCTION" />
       <p class="o-highlightBox">
         <svg-icon class="o-highlightBox__icon" name="megaphone" />
         <span>
@@ -86,6 +86,11 @@ export default createPage({
     sharingUrl() {
       return getSharingUrl(this.post.title, this.$route.fullPath);
     }
+  },
+  data() {
+    return {
+      IS_PRODUCTION: process.env.IS_PRODUCTION
+    };
   },
   head() {
     return getHeadForPost(this.post);
