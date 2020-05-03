@@ -31,22 +31,26 @@
     text-decoration: none;
   }
 
-  li.is-active {
-    position: relative;
-    color: var(--c-highlight);
+  li {
+    &.is-active {
+      --nav-item-highlight-color: var(--blue);
 
-    a {
-      color: currentColor;
-    }
+      position: relative;
+      color: var(--c-highlight);
 
-    &::before {
-      position: absolute;
-      height: 0.25em;
-      content: '';
-      left: .25em;
-      right: .25em;
-      bottom: -1em;
-      background-color: var(--blue);
+      a {
+        color: currentColor;
+      }
+
+      &::before {
+        position: absolute;
+        height: 0.25em;
+        content: '';
+        left: 0.25em;
+        right: 0.25em;
+        bottom: -1em;
+        background-color: var(--nav-item-highlight-color);
+      }
     }
   }
 
