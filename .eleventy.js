@@ -77,6 +77,7 @@ function minifyHtml(content, outputPath) {
 module.exports = function (eleventyConfig) {
   // FYI CSS is done via data to only process it once 🙈
   addFilter(config, eleventyConfig, 'content-type-url');
+  addFilter(config, eleventyConfig, 'custom-rss-date');
   addFilter(config, eleventyConfig, 'overwrite-content-type');
   addFilter(config, eleventyConfig, 'domain');
   addFilter(config, eleventyConfig, 'entry-url');
@@ -88,6 +89,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addCollection('paginatedTopics', getDoublePaginatedTopics);
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
+  eleventyConfig.addPlugin(require('@11ty/eleventy-plugin-rss'));
   eleventyConfig.addPassthroughCopy('assets/fonts');
   eleventyConfig.addPassthroughCopy({ static: '.' });
 

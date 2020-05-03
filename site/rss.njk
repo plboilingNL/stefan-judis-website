@@ -1,0 +1,39 @@
+---json
+{
+  "permalink": "rss.xml",
+  "eleventyExcludeFromCollections": true,
+  "metadata": {
+    "title": "Stefan Judis Web Development",
+    "subtitle": "My daily web dev journey – documented...",
+    "url": "https://www.stefanjudis.com/",
+    "feedUrl": "https://www.stefanjudis.com/rss.xml",
+    "author": {
+      "name": "Stefan Judis",
+      "email": "stefanjudis@gmail.com"
+    }
+  }
+}
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>{{ metadata.title }}</title>
+  <subtitle>{{ metadata.subtitle }}</subtitle>
+  <link href="{{ metadata.feedUrl }}" rel="self"/>
+  <link href="{{ metadata.url }}"/>
+  <updated>{{ contentful.articles | rssLastUpdatedDate }}</updated>
+  <id>{{ metadata.url }}</id>
+  <author>
+    <name>{{ metadata.author.name }}</name>
+    <email>{{ metadata.author.email }}</email>
+  </author>
+  {%- for post in contentful.articles %}
+    {% set absolutePostUrl %}{{ post | entryUrl | absoluteUrl(metadata.url) }}{% endset %}
+    <entry>
+      <title>{{ post.fields.title }}</title>
+      <link href="{{ absolutePostUrl }}"/>
+      <updated>{{ post.fields.date | customRssDate }}</updated>
+      <id>{{ absolutePostUrl }}</id>
+      <content type="html">{{ 'TODO' }}</content>
+    </entry>
+  {%- endfor %}
+</feed>
