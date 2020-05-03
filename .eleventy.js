@@ -89,6 +89,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection('paginatedTopics', getDoublePaginatedTopics);
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPassthroughCopy('assets/fonts');
+  eleventyConfig.addPassthroughCopy({ static: '.' });
 
   if (process.env.NODE_ENV === 'production') {
     eleventyConfig.addTransform('htmlmin', minifyHtml);
