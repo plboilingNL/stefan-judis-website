@@ -10,15 +10,12 @@ TODO
   Accept-CH: Width, Viewport-Width, DPR
   Accept-CH-Lifetime: 100
 
-  Link: </fancy.css>; rel=preload; as=style; no-push
+  Link: </assets/fonts/oswald.woff2>; rel=preload; as=font; no-push
 
-/_nuxt/*
+/assets/fonts/*
   Cache-Control: max-age=31536000, public, immutable
 
-/_nuxt/*.js
-  content-type: text/javascript; charset=utf-8
-
-/favicon.ico
+/favicon.svg
   Cache-Control: max-age=3600000
 
 /sw.js
