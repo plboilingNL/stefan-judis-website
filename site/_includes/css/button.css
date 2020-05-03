@@ -12,7 +12,8 @@
   cursor: pointer;
   box-shadow: 0 3px 6px var(--grey-bright);
 
-  svg {
+  > svg {
+    color: #fff;
     fill: currentColor;
   }
 

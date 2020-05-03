@@ -3,6 +3,7 @@ node_modules
 dist
 
 .env
+.sqip
 
 # generated data (create it using `npm run setup`)
 site/_data/_popularPosts.json
