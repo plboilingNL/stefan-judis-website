@@ -1,3 +1,4 @@
+const { encode } = require('html-entities').XmlEntities;
 const SQIP_DATA = require('../../site/_data/_sqip.json');
 const md = require('markdown-it')({
   html: true,
@@ -20,7 +21,7 @@ md.renderer.rules.image = function (tokens, idx, options, env, self) {
   return `
     <figure class="sqip-image">
       ${svg}
-      <img src=${src} alt="${alt}" loading="lazy">
+      <img src="${src}" alt="${encode(alt)}" loading="lazy">
     </figure>
   `;
 };

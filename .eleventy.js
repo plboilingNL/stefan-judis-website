@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const camelCase = require('camelcase');
 const chunk = require('lodash.chunk');
+const htmlmin = require('html-minifier');
 
 const config = require('./site/_data/config');
 
@@ -15,7 +16,7 @@ function addFilter(config, eleventyConfig, fileName) {
   require(`./eleventy-util/filters/${fileName}`)({
     config,
     eleventyConfig,
-    filterName: camelCase(fileName)
+    filterName: camelCase(fileName),
   });
 }
 
@@ -44,15 +45,15 @@ function getDoublePaginatedTopics(collection) {
             ...(pageNumber > 0 && {
               previous: `/topics/${cur.fields.slug}/${
                 pageNumber === 1 ? '' : `page-${pageNumber}/`
-              }`
+              }`,
             }),
             ...(pageNumber + 1 < max && {
-              next: `/topics/${cur.fields.slug}/page-${pageNumber + 2}/`
-            })
+              next: `/topics/${cur.fields.slug}/page-${pageNumber + 2}/`,
+            }),
           },
           items: pages[pageNumber],
-          pageNumber: pageNumber
-        }
+          pageNumber: pageNumber,
+        },
       });
     }
 
@@ -60,7 +61,20 @@ function getDoublePaginatedTopics(collection) {
   }, []);
 }
 
-module.exports = function(eleventyConfig) {
+function minifyHtml(content, outputPath) {
+  if (outputPath.endsWith('.html')) {
+    let minified = htmlmin.minify(content, {
+      useShortDoctype: true,
+      removeComments: true,
+      collapseWhitespace: true,
+    });
+    return minified;
+  }
+
+  return content;
+}
+
+module.exports = function (eleventyConfig) {
   // FYI CSS is done via data to only process it once 🙈
   addFilter(config, eleventyConfig, 'content-type-url');
   addFilter(config, eleventyConfig, 'overwrite-content-type');
@@ -76,6 +90,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));
   eleventyConfig.addPassthroughCopy('assets/fonts');
 
+  if (process.env.NODE_ENV === 'production') {
+    eleventyConfig.addTransform('htmlmin', minifyHtml);
+  }
+
   return {
     dir: {
       input: 'site',
@@ -83,7 +101,7 @@ module.exports = function(eleventyConfig) {
       includes: '_includes',
       layouts: '_layouts',
 
-      output: 'dist'
-    }
+      output: 'dist',
+    },
   };
 };
