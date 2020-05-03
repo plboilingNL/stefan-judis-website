@@ -29,11 +29,20 @@
   {%- for post in contentful.articles %}
     {% set absolutePostUrl %}{{ post | entryUrl | absoluteUrl(metadata.url) }}{% endset %}
     <entry>
-      <title>{{ post.fields.title }}</title>
+      <title>{{ post.fields.title }} – #{{ post.sys.contentType.sys.id | overwriteContentType }}</title>
       <link href="{{ absolutePostUrl }}"/>
       <updated>{{ post.fields.date | customRssDate }}</updated>
       <id>{{ absolutePostUrl }}</id>
-      <content type="html">{{ 'TODO' }}</content>
+      <content type="html">
+        <h1>{{ post.fields.title }}</h1>
+        {% if post.fields.description %}
+          <p>{{ post.fields.description }}</p>
+        {% endif %}
+
+        <p>
+          <a href="{{ absolutePostUrl }}">Read article</a>
+        </p>
+      </content>
     </entry>
   {%- endfor %}
 </feed>
