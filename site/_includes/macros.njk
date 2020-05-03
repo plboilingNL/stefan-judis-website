@@ -98,7 +98,7 @@
     {% if not options.hideContentType %}
       <li>
         <a href="{{ entry | contentTypeUrl }}" class="pile is-highlighted">
-          {{ icon('hash', { isHidden: false }) }}
+          {{ icon('hash', { isHidden: true }) }}
           {{ entry.sys.contentType.sys.id | overwriteContentType }}
         </a>
       {% endif %}
