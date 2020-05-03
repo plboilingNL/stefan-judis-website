@@ -38,7 +38,7 @@
 
     {{ entryTopics(entry, { includeHeadline: false, displayInline: true }) }}
 
-    {% if entry.fields.date %}
+    {% if entry.fields.description %}
       <p class="margin-top-s margin-bottom-m">{{ entry.fields.description }}</p>
     {% endif %}
 
