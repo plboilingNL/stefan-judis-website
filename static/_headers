@@ -10,7 +10,7 @@ TODO
   Accept-CH: Width, Viewport-Width, DPR
   Accept-CH-Lifetime: 100
 
-  Link: </assets/fonts/oswald.woff2>; rel=preload; as=font; no-push
+  Link: </assets/fonts/oswald.woff2>; rel=preload; as=font; crossorigin=anonymous; no-push
 
 /assets/fonts/*
   Cache-Control: max-age=31536000, public, immutable
