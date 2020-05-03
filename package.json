@@ -5,7 +5,7 @@
   "author": "stefan judis <stefanjudis@gmail.com>",
   "private": true,
   "dependencies": {
-    "@11ty/eleventy": "^0.10.0",
+    "@11ty/eleventy": "https@github.com:11ty/eleventy",
     "@11ty/eleventy-navigation": "^0.1.5",
     "autoprefixer": "^9.7.4",
     "camelcase": "^5.3.1",
@@ -32,7 +32,7 @@
     "setup:sqip": "./scripts/sqip-it",
     "setup": "concurrently \"npm:setup:*\"",
     "dev": "npm run setup && eleventy --serve",
-    "netlify:build": "npm run setup && eleventy"
+    "netlify:build": "eleventy"
   },
   "devDependencies": {}
 }
