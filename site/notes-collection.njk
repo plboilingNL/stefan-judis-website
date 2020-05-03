@@ -1,0 +1,26 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.notes
+  size: 5
+
+permalink: /notes/
+
+title: Things from the interwebs
+desc: TODO
+subHeadline: Quick thoughts about links online...
+includesSidebar: true
+---
+
+{% import 'macros.njk' as macros %}
+
+<ol class="list-preview">
+  {%- for item in pagination.items %}
+    <li>
+      {{ macros.entryPreview(item)}}
+    </li>
+  {% endfor -%}
+</ol>
+
+{{ macros.collectionPagination(pagination, {type: "notes"})}}

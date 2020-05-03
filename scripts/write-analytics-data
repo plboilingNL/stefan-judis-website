@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
+require('dotenv').config();
+const { join } = require('path');
 const { google } = require('googleapis');
 const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
-const { getConfig } = require('../lib/config.js');
-const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY } = getConfig();
+const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY } = process.env;
 const jwt = new google.auth.JWT(
   GOOGLE_CLIENT_EMAIL,
   null,
@@ -13,46 +14,66 @@ const jwt = new google.auth.JWT(
   scopes
 );
 
+const { client } = require('../lib/contentful');
+const { contentTypeSlugs } = require('../site/_data/config');
 const { logSeparator, logSuccess, writeData } = require('./utils');
 const view_id = '157258229';
 
 async function getData() {
-  await jwt.authorize();
+  try {
+    await jwt.authorize();
 
-  logSeparator('Fetching Analytics data');
+    logSeparator('Fetching Analytics data');
 
-  const { data } = await google.analytics('v3').data.ga.get({
-    auth: jwt,
-    ids: 'ga:' + view_id,
-    'start-date': '150daysAgo',
-    'end-date': 'today',
-    metrics: 'ga:uniquePageviews',
-    dimensions: 'ga:pagePath',
-    sort: '-ga:uniquePageviews',
-    'max-results': '15'
-  });
+    const { data } = await google.analytics('v3').data.ga.get({
+      auth: jwt,
+      ids: 'ga:' + view_id,
+      'start-date': '90daysAgo',
+      'end-date': 'today',
+      metrics: 'ga:uniquePageviews',
+      dimensions: 'ga:pagePath',
+      sort: '-ga:uniquePageviews',
+      'max-results': '10'
+    });
 
-  logSuccess('Analytics data fetched');
-  logSeparator('Enriching data with Contentful data');
+    logSuccess('Analytics data fetched');
+    logSeparator('Enriching data with Contentful data');
 
-  const pages = await Promise.all(
-    data.rows
-      .filter(([path]) => path.match(/^\/(blog|today-i-learned)\/.+?\/$/g))
-      .map(([path, count]) => ({
-        path,
-        count
-      }))
-  );
+    const pages = await Promise.all(
+      data.rows
+        .filter(([path]) =>
+          // todo add notes/commands here too
+          path.match(/^\/(blog|today-i-learned)\/.+?\/$/g)
+        )
+        .map(async ([path]) => {
+          const getContentTypeId = slug => {
+            return Object.entries(contentTypeSlugs).find(
+              ([, contentTypeSlug]) => contentTypeSlug === slug
+            )[0];
+          };
 
-  logSuccess('Data enriched');
-  logSeparator('Writing JS data file');
+          const [, contentTypeSlug, entrySlug] = path.split('/');
+          const { items } = await client.getEntries({
+            content_type: getContentTypeId(contentTypeSlug),
+            'fields.slug': entrySlug
+          });
 
-  writeData(
-    'popular-posts.js',
-    `export default ${JSON.stringify(pages.slice(0, 4))}`
-  );
+          return items[0];
+        })
+    );
 
-  logSuccess('JS file written');
+    logSuccess('Data enriched');
+    logSeparator('Writing JS data file');
+
+    writeData(
+      join('..', 'site', '_data', '_popularPosts.json'),
+      JSON.stringify(pages)
+    );
+
+    logSuccess('JS file written');
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 getData();

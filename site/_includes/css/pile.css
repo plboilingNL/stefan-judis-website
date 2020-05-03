@@ -1,0 +1,18 @@
+.pile {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 0.875em;
+  color: currentColor;
+  text-decoration: none;
+  padding: 0.27em 0.75em;
+  margin-bottom: 0.5em;
+  border-radius: 0.25em;
+  border: 2px solid var(--grey-brighter);
+  background: var(--grey-brighter);
+
+  &:hover {
+    text-decoration: none;
+    border-color: var(--c-highlight);
+  }
+}

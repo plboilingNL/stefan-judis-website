@@ -1,0 +1,32 @@
+---
+layout: base.njk
+
+eleventyNavigation:
+  key: Talks
+  order: 4
+
+permalink: /talks/
+
+title: Talks
+desc: TODO
+subHeadline: Being nervous in front of people...
+---
+
+{% import 'macros.njk' as macros %}
+
+<ul class="list-grid">
+  {% for item in contentful.talks %}
+    <li>
+      <a href="{{ item | entryUrl }}">
+        <img
+          src="{{ item.fields.thumbnail.fields.file.url }}"
+          alt="{{ item.fields.title }}"
+          width="1600"
+          height="900"
+          class="box-shadow-s margin-bottom-m">
+        <h2 class="u-visually-hidden" aria-hidden="true">{{ item.fields.title }}</h2>
+      </a>
+      todo image!!!
+      {{ macros.entryTopics(item, { includeHeadline: false, hideContentType: true }) }}
+    {% endfor %}
+</ul>

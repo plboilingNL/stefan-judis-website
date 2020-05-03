@@ -1,43 +1,11 @@
 # dependencies
 node_modules
-
-# vscode
-.vscode
-
-# logs
-npm-debug.log
-
-# Nuxt build
-.nuxt
-
-# Nuxt generate
 dist
 
-static/sw.js
-static/workbox-sw*.js
-static/workbox-sw*.js.map
+.env
 
-# local config file
-.env.json
-
-# generated sitemap
-static/sitemap.xml
-
-# generated lambda functions
-.functions
-
-# sqip image cache and generate map
-#### cache to have environment like netlify
-.sqip
-#### dir to be read by webpack
-sqip
-
-# generated icons
-assets/icons.svg
-
-# generated data
-data/image-map.js
-data/popular-posts.js
+# generated data (create it using `npm run setup`)
+site/_data/_popularPosts.json
 
 # mac shizzle
 .DS_Store

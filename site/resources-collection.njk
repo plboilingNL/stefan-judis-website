@@ -1,0 +1,26 @@
+---
+layout: base.njk
+
+eleventyNavigation:
+  key: Resources
+  order: 3
+
+permalink: /resources/
+
+title: Resources
+desc: TODO
+subHeadline: A list is worth more than 100 bookmarks...
+---
+
+<ul class="list-grid">
+  {% for item in contentful.resources %}
+    <li>
+      <a href="/{{ item.fields.slug }}/" class="no-underline">
+        <h2>{{ item.fields.title }}</h2>
+      </a>
+      <p>{{ item.fields.description }}</p>
+    </li>
+  {% else %}
+    <li>This would display if the 'item' collection were empty</li>
+  {% endfor %}
+</ul>

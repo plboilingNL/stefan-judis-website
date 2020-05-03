@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+const svgstore = require('svgstore');
+const { readdirSync, readFileSync, writeFileSync } = require('fs');
+const { join } = require('path');
+const { logSuccess } = require('./utils');
+
+const ASSET_PATH = join(__dirname, '..', 'assets');
+const ICON_PATH = join(ASSET_PATH, 'icons');
+const SPRITE_PATH = join(__dirname, '..', 'site', '_includes', 'sprite.svg');
+
+const icons = readdirSync(join(ASSET_PATH, 'icons'));
+
+const sprites = icons.reduce((acc, cur) => {
+  acc.add(
+    `icon-${cur.split('.')[0]}`,
+    readFileSync(join(ICON_PATH, cur), 'utf8'),
+    { copyAttrs: ['fill'] }
+  );
+  return acc;
+}, svgstore());
+
+writeFileSync(
+  SPRITE_PATH,
+  sprites
+    .toString({ inline: true })
+    .replace('<svg', '<svg style="display: none"')
+);
+logSuccess(`Sprite written at ${SPRITE_PATH}`);

@@ -1,0 +1,52 @@
+.list-inline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+
+    &:not(last-child) {
+      margin-right: 0.75em;
+    }
+  }
+}
+
+.list-preview {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  > li + li {
+    margin-top: 4em;
+  }
+}
+
+.list-shortPreview {
+  padding: 0 0 0 1em;
+  margin: 0;
+
+  /* TODO fix the font weight */
+  h4 {
+    font-weight: normal;
+  }
+
+  a {
+    display: block;
+  }
+
+  > li + li {
+    margin-top: 0.5em;
+  }
+}
+
+.list-pagination {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}

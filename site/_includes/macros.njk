@@ -1,0 +1,234 @@
+{#
+  SHORT LIST
+  ##############################################################################
+#}
+{% macro shortList(title, collection, length, slug) %}
+  <a href="/{{ slug }}/" class="no-underline">
+    <h3 class="margin-bottom-s fancy-font">
+      {{ title }}
+    </h3>
+  </a>
+
+  <ul class="list-shortPreview fs-s">
+    {% for i in range(0, length) %}
+      <li>
+        <a class="highlight-on-hover" href="{{ collection[i] | entryUrl }}">
+          {{ collection[i].fields.title }}
+        </a>
+      {% endfor %}
+  </ul>
+{% endmacro %}
+
+{#
+  ENTRY PREVIEW
+  ##############################################################################
+#}
+{% macro entryPreview(entry, options) %}
+  <article>
+    {% if entry.fields.date %}
+      <time datetime="{{ entry.fields.date }}" class="c-prettyDate">
+        {{ entry.fields.date | readableDate }}
+      </time>
+    {% endif %}
+    <div class="entry-header">
+      <a class="no-underline" href="{{ entry | entryUrl }}">
+        <h2>{{ entry.fields.title }}</h2>
+      </a>
+    </div>
+
+    {{ entryTopics(entry, { includeHeadline: false, displayInline: true }) }}
+
+    {% if entry.fields.date %}
+      <p class="margin-top-s margin-bottom-m">{{ entry.fields.description }}</p>
+    {% endif %}
+
+  </article>
+{% endmacro %}
+
+{#
+  ENTRY DETAILS
+  ##############################################################################
+#}
+{% macro entryDetails(entry) %}
+  <dl class="entryDetails">
+    {% if entry.fields.date %}
+      <div>
+        <dt>Published at</dt>
+        <dd class="u-color-catchy">
+          <time datetime="{{ entry.fields.date }}" class="c-prettyDate">
+            {{ entry.fields.date | readableDate }}
+          </time>
+        </dd>
+      </div>
+    {% endif %}
+    <div>
+      <dt>Updated at</dt>
+      <dd class="u-color-catchy">
+        <time datetime="{{ entry.sys.updatedAt }}" class="c-prettyDate">
+          {{ entry.sys.updatedAt | readableDate }}
+        </time>
+      </dd>
+    </div>
+    <div>
+      <dt>Reading time</dt>
+      <dd class="u-color-catchy">{{ entry.fields.body | readingTime }}</dd>
+    </div>
+  </dl>
+{% endmacro %}
+
+{#
+  SVG ICON
+  ##############################################################################
+#}
+{% macro icon(id, options) %}
+  <svg class="icon" {% if options.isHidden %}aria-hidden="true"{% endif %}>
+    <use xlink:href="#icon-{{ id }}"/>
+  </svg>
+{% endmacro %}
+
+{#
+  ENTRY TOPICS
+  ##############################################################################
+#}
+{% macro entryTopics(entry, options) %}
+  {% if options.includeHeadline %}
+    <h3>Related Topics</h3>
+  {% endif %}
+  <ul class="list-inline">
+    {% if not options.hideContentType %}
+      <li>
+        <a href="{{ entry | contentTypeUrl }}" class="pile is-highlighted">
+          {{ icon('hash', { isHidden: false }) }}
+          {{ entry.sys.contentType.sys.id | overwriteContentType }}
+        </a>
+      {% endif %}
+      {%- for topic in entry.fields.topics %}
+        <li>
+          <a href="/topics/{{ topic.fields.slug }}/" class="pile">
+            {{ icon(topic.fields.slug, { isHidden: true }) }}
+            {{ topic.fields.title }}
+          </a>
+        {% endfor -%}
+    </ul>
+  {% endmacro %}
+
+  {#
+  ENTRY TOPICS
+  ##############################################################################
+#}
+  {% macro entryVideo(entry, options) %}
+    {% if entry.fields.video %}
+      <video controls="controls" preload="metadata" class="margin-top-l">
+        <source src="{{ entry.fields.videoWebm.fields.file.url }}" type="video/webm">
+        <source src="{{ entry.fields.video.fields.file.url }}" type="video/mp4">
+      </video>
+    {% endif %}
+  {% endmacro %}
+
+  {#
+  Highlight box
+  ##############################################################################
+#}
+  {% macro highlightBox(type, options) %}
+    <p class="highlightBox margin-bottom-l">
+      {% if type == 'note' %}
+        {{ icon('megaphone', { isHidden: true }) }}
+        <span>
+        This post is a quick <a href="/notes/">note</a>
+        about cool things from the web.
+      </span>
+      {% endif %}
+
+      {% if type == 'til' %}
+        {{ icon('megaphone', { isHidden: true }) }}
+        <span>
+        This post is part of my <a href="/today-i-learned/">Today I learned</a>
+        series in which I share all my learnings regarding web development.
+      </span>
+      {% endif %}
+
+      {% if type == 'repost' %}
+        {{ icon('attention', { isHidden: true }) }}
+        <span>This article was initially posted on <a href="{{ options.repostUrl }}">{{ options.reportUrl | domain }}</a>
+        </span>
+      {% endif %}
+    </p>
+  {% endmacro %}
+
+  {#
+  SHARE BUTTON
+  ##############################################################################
+#}
+  {% macro shareButton(entry, options) %}
+    <div class="padding-xl text-align-c">
+      <a href="https://twitter.com/intent/tweet?text='{{ entry.fields.title }}'&url=https://www.stefanjudis.com{{ options.url }}&via=stefanjudis" target="_blank" rel="noopener noreferrer" class="btn u-marginBottomSmall">
+        {{ icon('share', { isHidden: true }) }} Share on Twitter
+    </a>
+    </div>
+  {% endmacro %}
+
+  {#
+  Footer
+  ##############################################################################
+#}
+  {% macro footer() %}
+    <footer class="footer">
+      <div class="container two-thirds">
+        <div>
+          <div>
+            <h4>Get the latest content in your inbox</h4>
+          </div>
+          <div>
+            <h4>Say Hi!</h4>
+            {{ icon('twitter-mono', { isHidden: true }) }}
+            {{ icon('github', { isHidden: true }) }}
+            {{ icon('instagram', { isHidden: true }) }}
+          </div>
+        </div>
+      </div>
+      <script>
+        // shamelessly stolen from Tim Kadlec
+        window.onload = function () {
+          setTimeout(function () {
+            window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
+            var t = performance.timing || {};
+
+            if (!t) {
+              return;
+            }
+            var start = t.navigationStart;
+            var end = t.loadEventEnd;
+            var loadTime = (end - start) / 1000;
+            var numberContainer = document.querySelector('.load-time');
+            numberContainer.innerHTML = loadTime + 's';
+          }, 0);
+        };
+      </script>
+      <div class="container text-align-c">
+        <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>) and loaded in <span class="load-time">...</span>. </p>
+        <p class="no-margin">© 2020 Copyright Stefan Judis. All rights reserved.</p>
+      </div>
+    </footer>
+  {% endmacro %}
+
+  {#
+  Collection pagination
+  ##############################################################################
+#}
+  {% macro collectionPagination(pagination, options) %}
+    <nav class="margin-top-xl" aria-labelledby="page-pagination">
+      <h3 id="page-pagination" class="u-visually-hidden">More {{ options.type }}</h3>
+      <ol class="list-pagination">
+        <li>
+          {% if pagination.href.previous %}
+            <a href="{{ pagination.href.previous }}" class="btn">Previous page</a>
+          {% else %}Previous page{% endif %}
+        </li>
+        <li>
+          {% if pagination.href.next %}
+            <a href="{{ pagination.href.next }}" class="btn">Next page</a>
+          {% else %}Next page{% endif %}
+        </li>
+      </ol>
+    </nav>
+  {% endmacro %}

@@ -1,0 +1,24 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.shellCommands
+  size: 1
+  alias: command
+
+permalink: "/commands/{{ command.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ command.fields.title }}"
+---
+
+{% import 'macros.njk' as macros %}
+
+{{ macros.entryDetails(command) }}
+<div>TODO ad</div>
+{{ command.fields.body | markdown | safe }}
+
+{{ macros.shareButton(command, {url: page.url }) }}
+{{ macros.entryTopics(command, { includeHeadline: true }) }}

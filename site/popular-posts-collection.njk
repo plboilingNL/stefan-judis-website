@@ -1,0 +1,20 @@
+---
+layout: base.njk
+
+permalink: /popular-posts/
+
+title: Posts people like
+desc: TODO
+subHeadline: The ten most read articles in 90 days...
+includesSidebar: true
+---
+
+{% import 'macros.njk' as macros %}
+
+<ul class="list-preview">
+  {% for item in _popularPosts %}
+    <li>
+      {{ macros.entryPreview(item)}}
+    </li>
+  {% endfor %}
+</ul>

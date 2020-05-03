@@ -1,0 +1,124 @@
+pre {
+  position: relative;
+  background: #313131;
+  border-radius: 0.25em;
+  padding: 1em var(--grid-outer-padding) 1em;
+  margin: 2em 0;
+
+  &[class^='language'] {
+    padding-top: 3em;
+  }
+
+  &::before {
+    position: absolute;
+    top: 1em;
+    right: var(--grid-outer-padding);
+
+    z-index: 1;
+
+    font-size: 0.75em;
+    font-weight: bold;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+      Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol';
+    color: var(--blue-bright);
+  }
+
+  &.language-html::before {
+    content: 'HTML';
+  }
+  &.language-css::before {
+    content: 'CSS';
+  }
+  &.language-javascript::before {
+    content: 'JavaScript';
+  }
+  &.language-json::before {
+    content: 'json';
+  }
+  &.language-bash::before {
+    content: 'bash';
+  }
+
+  > code {
+    display: block;
+    position: relative;
+    max-width: 40em;
+    font-size: 1em;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: linear-gradient(
+        to right,
+        rgb(49, 49, 49) 30%,
+        rgba(49, 49, 49, 0)
+      ),
+      linear-gradient(to right, rgba(49, 49, 49, 0), rgb(49, 49, 49) 70%) 0 100%,
+      radial-gradient(
+        farthest-side at 0% 50%,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0)
+      ),
+      radial-gradient(
+          farthest-side at 100% 50%,
+          rgba(0, 0, 0, 0.4),
+          rgba(0, 0, 0, 0)
+        )
+        0 100%;
+    background-repeat: no-repeat;
+    background-size: 50px 100%, 50px 100%, 25px 100%, 25px 100%;
+    background-position: 0 0, 100%, 0 0, 100%;
+    background-attachment: local, local, scroll, scroll;
+    color: inherit;
+    border: none;
+    overflow: auto;
+    color: #ddd !important;
+  }
+
+  .token.keyword,
+  .token.boolean,
+  .token.number {
+    color: var(--blue-bright);
+    font-weight: bold;
+  }
+  .token.string,
+  .token.property,
+  .token.template-string {
+    color: var(--red-bright);
+  }
+  .token.tag {
+    color: var(--blue-bright);
+    font-weight: bold;
+  }
+  .token.attr-name {
+    color: #ddd;
+    font-weight: normal;
+  }
+  .token.attr-value {
+    color: var(--red-bright);
+    font-weight: normal;
+  }
+  .token.attr-value .punctuation {
+    color: #9a9a9a;
+  }
+  .token.atrule .rule {
+    color: var(--red-bright);
+  }
+  .token.selector {
+    color: var(--blue-bright);
+  }
+  .token.comment {
+    color: #9a9a9a;
+    font-style: italic;
+  }
+}
+
+p > code {
+  font-size: 1.125em;
+  font-family: monospace;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 0.125em 0.5em;
+  color: var(--grey-darker);
+  background: var(--blue-brighter);
+  border-radius: 0.5em 0.25em 0.25em 0.25em;
+}

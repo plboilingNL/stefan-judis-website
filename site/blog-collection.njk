@@ -1,0 +1,30 @@
+---
+layout: base.njk
+
+eleventyNavigation:
+  key: Articles
+  order: 2
+
+pagination:
+  data: contentful.articles
+  size: 5
+
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+
+title: Things I write
+desc: TODO
+subHeadline: Write it down or it didn't happen...
+includesSidebar: true
+---
+
+{% import 'macros.njk' as macros %}
+
+<ol class="list-preview">
+  {%- for item in pagination.items %}
+    <li>
+      {{ macros.entryPreview(item)}}
+    </li>
+  {% endfor -%}
+</ol>
+
+{{ macros.collectionPagination(pagination, {type: "articles"})}}

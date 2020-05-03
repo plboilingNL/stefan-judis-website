@@ -1,0 +1,40 @@
+---
+layout: base.njk
+
+permalink: /today-I-learned/
+
+title: TIL – Today I learned
+desc: TODO
+subHeadline: Keep learning, learning, learning...
+---
+
+{% import 'macros.njk' as macros %}
+
+<style>
+  .area-css {
+    grid-row: auto/span 3;
+  }
+
+  .area-javascript {
+    grid-row: auto/span 3;
+  }
+</style>
+
+<ul class="list-grid">
+  {% for item in contentful.topics %}
+    {% if contentful.allEntriesGroupedByTopic[item.fields.slug] | onlyTilPosts | length %}
+      <li class="area-{{ item.fields.slug }} margin-bottom-l">
+        <h2>
+          {{ macros.icon(item.fields.slug, { isHidden: true }) }}
+          <a href="{{ item | entryUrl }}">{{ item.fields.title }}</a>
+        </h2>
+        <ul class="list-shortPreview">
+          {% for post in contentful.allEntriesGroupedByTopic[item.fields.slug] | onlyTilPosts %}
+            <li>
+              <a href="{{ post | entryUrl }}">{{ post.fields.title }}</a>
+            {% endfor %}
+        </ul>
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>

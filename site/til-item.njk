@@ -1,0 +1,45 @@
+---
+layout: base.njk
+
+pagination:
+    data: contentful.tilPosts
+    size: 1
+    alias: post
+
+permalink: "/today-i-learned/{{ post.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ post.fields.title }}"
+---
+
+{% import 'macros.njk' as macros %}
+
+{{ macros.entryDetails(post) }}
+
+<div>TODO ad</div>
+
+{{ macros.highlightBox('til') }}
+{{ post.fields.body | markdown | safe }}
+{{ macros.entryVideo(post) }}
+{{ macros.shareButton(post, {url: page.url }) }}
+{{ macros.entryTopics(post, { includeHeadline: true }) }}
+
+<div>TODO Related posts</div>
+
+<div>
+  <ol>
+    <li>
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">Previous</a>
+      {% else %}Previous{% endif %}
+    </li>
+
+    <li>
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">Next</a>
+      {% else %}Next{% endif %}
+    </li>
+  </ol>
+</div>

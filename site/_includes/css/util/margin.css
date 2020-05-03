@@ -1,0 +1,37 @@
+.margin {
+  &-bottom {
+    &-m {
+      margin-bottom: 1em;
+    }
+
+    &-l {
+      margin-bottom: 2em;
+    }
+  }
+
+  &-top {
+    &-s {
+      margin-top: 0.25em;
+    }
+    &-l {
+      margin-top: 2em;
+    }
+    &-xl {
+      margin-top: 4em;
+    }
+  }
+
+  &-right {
+    &-l {
+      margin-right: 2em;
+    }
+  }
+
+  &-left-auto {
+    margin-left: auto !important;
+  }
+}
+
+.no-margin {
+  margin: 0;
+}

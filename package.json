@@ -1,38 +1,35 @@
 {
-  "name": "stefan-judis-website-nuxt",
+  "name": "stefan-judis-website",
   "version": "1.0.0",
   "description": "Personal website of Stefan Judis",
   "author": "stefan judis <stefanjudis@gmail.com>",
   "private": true,
   "dependencies": {
-    "@nuxtjs/google-analytics": "^2.2.2",
-    "@nuxtjs/pwa": "^3.0.0-beta.19",
-    "@nuxtjs/sitemap": "^1.2.0",
-    "@nuxtjs/svg-sprite": "^0.4.7",
-    "chalk": "^2.4.2",
-    "contentful": "^7.9.1",
-    "download": "^7.1.0",
-    "emoji-regex": "^8.0.0",
-    "focus-visible": "^5.0.2",
-    "googleapis": "^37.1.0",
-    "inert-polyfill": "^0.2.5",
-    "isomorphic-unfetch": "^3.0.0",
-    "jsdom": "^12.0.0",
-    "marked": "^0.7.0",
-    "nuxt-edge": "^2.11.1-26281449.0cb2df73",
-    "postcss-import": "^12.0.1",
-    "postcss-nested": "^4.2.1",
-    "prismjs": "^1.17.1",
-    "rss": "^1.2.2",
-    "sqip": "^0.3.3",
-    "svg-inline-loader": "^0.8.0"
+    "lodash.chunk": "^4.2.0"
   },
   "scripts": {
-    "analyze": "nuxt build --analyze",
-    "dev": "nuxt",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "netlify:build": "./scripts/build-it"
+    "setup:icon-sprite": "./scripts/create-icon-sprite",
+    "setup:popular-posts": "./scripts/write-analytics-data",
+    "setup": "concurrently \"npm:setup:*\"",
+    "dev": "npm run setup && eleventy --serve",
+    "build": "npm run setup && eleventy"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@11ty/eleventy": "git@github.com:11ty/eleventy",
+    "@11ty/eleventy-navigation": "^0.1.5",
+    "autoprefixer": "^9.7.4",
+    "camelcase": "^5.3.1",
+    "concurrently": "^5.1.0",
+    "contentful": "^7.14.0",
+    "cssnano": "^4.1.10",
+    "dotenv": "^8.2.0",
+    "googleapis": "^48.0.0",
+    "markdown-it": "^10.0.0",
+    "markdown-it-prism": "^2.0.5",
+    "markdown-it-toc-and-anchor": "^4.2.0",
+    "postcss": "^7.0.27",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.1",
+    "svgstore": "^3.0.0-2"
+  }
 }

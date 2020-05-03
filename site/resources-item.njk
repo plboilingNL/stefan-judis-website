@@ -1,0 +1,21 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.resources
+  size: 1
+  alias: resource
+
+permalink: "/{{ resource.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ resource.fields.title }}"
+---
+
+{% import 'macros.njk' as macros %}
+
+{{ macros.entryDetails(resource) }}
+<div>TODO ad</div>
+{{ resource.fields.body | markdown | safe }}

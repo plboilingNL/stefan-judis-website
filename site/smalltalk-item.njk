@@ -1,0 +1,16 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.screencasts
+  size: 1
+  alias: screencast
+
+permalink: "/smalltalk/{{ screencast.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ screencast.fields.title }}"
+---
+

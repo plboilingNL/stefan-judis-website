@@ -1,0 +1,31 @@
+---
+layout: base.njk
+
+eleventyNavigation:
+  key: Smalltalk
+  order: 5
+
+permalink: /smalltalk/
+
+title: Developer Smalltalk
+desc: TODO
+subHeadline: Talking about tech on camera...
+
+---
+
+{% import 'macros.njk' as macros %}
+
+<ul class="list-grid">
+  {% for item in contentful.screencasts %}
+    <li>
+      <img
+        src="{{ item.fields.coverImage.fields.file.url }}"
+        class="box-shadow-s margin-bottom-m"
+        width="1920"
+        height="1080"
+      >
+      {{ item.fields.title }}
+      {{ macros.entryTopics(item, { includeHeadline: false, hideContentType: true }) }}
+
+    {% endfor %}
+</ul>

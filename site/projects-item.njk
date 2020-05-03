@@ -1,0 +1,18 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.projects
+  size: 1
+  alias: project
+
+permalink: "/projects/{{ project.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ project.fields.title }}"
+---
+
+{% import 'macros.njk' as macros %}
+

@@ -1,0 +1,15 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.talks
+  size: 1
+  alias: talk
+
+permalink: "/talks/{{ talk.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ talk.fields.title }}"
+---

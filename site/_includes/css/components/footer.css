@@ -1,0 +1,9 @@
+.footer {
+  background: var(--grey-brighter);
+  padding: 1em 0;
+
+  a {
+    text-decoration: underline;
+    color: currentColor;
+  }
+}

@@ -1,0 +1,32 @@
+.markdown {
+  h2 {
+    margin-top: 3em;
+  }
+
+  .markdownIt-Anchor {
+    text-decoration: none;
+  }
+
+  blockquote {
+    position: relative;
+    margin: 0;
+    padding: 0.5em 0.5em 0.5em 2em;
+    font-style: italic;
+
+    p {
+      &:only-child {
+        margin: 0.5em 0;
+      }
+
+      &::before {
+        position: absolute;
+        left: -0.125em;
+        top: -0.25em;
+        font-family: Georgia, serif;
+        font-size: 4em;
+        font-weight: 400;
+        content: '“';
+      }
+    }
+  }
+}

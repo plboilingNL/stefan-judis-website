@@ -1,0 +1,30 @@
+---
+layout: base.njk
+
+pagination:
+    data: contentful.posts
+    size: 1
+    alias: post
+
+permalink: "/blog/{{ post.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ post.fields.title }}"
+---
+
+{% import 'macros.njk' as macros %}
+
+
+{{ macros.entryDetails(post) }}
+<div>TODO ad</div>
+{% if post.fields.externalUrl %}
+  {{ macros.highlightBox('repost', { reportUrl: post.fields.externalUrl })}}
+{% endif %}
+
+{{ post.fields.body | markdown | safe }}
+{{ macros.shareButton(post, {url: page.url }) }}
+{{ macros.entryTopics(post, { includeHeadline: true }) }}
+
+TODOOOO add more stuff!

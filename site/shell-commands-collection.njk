@@ -1,0 +1,27 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.shellCommands
+  size: 5
+
+permalink: "/commands/{% if pagination.pageNumber > 0 %}page-{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+
+title: Useful shell commands
+desc: TODO
+subHeadline: Magical things happen right in the terminal
+includesSidebar: true
+---
+
+{% import 'macros.njk' as macros %}
+
+<ol class="list-preview">
+  {%- for item in pagination.items %}
+    <li>
+      {{ macros.entryPreview(item)}}
+    </li>
+  {% endfor -%}
+</ol>
+
+{{ macros.collectionPagination(pagination, {type: "articles"})}}
+

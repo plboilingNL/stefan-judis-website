@@ -1,0 +1,28 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.5;
+  font-weight: 400;
+  background: var(--blue-dark);
+  color: #fff;
+  border: none;
+  padding: 0.375em 1em;
+  text-decoration: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+  box-shadow: 0 3px 6px var(--grey-bright);
+
+  svg {
+    fill: currentColor;
+  }
+
+  &:hover {
+    background: var(--blue);
+  }
+
+  &:active,
+  &:focus {
+    outline-color: var(--blue-dark);
+    box-shadow: none;
+  }
+}

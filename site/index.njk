@@ -1,0 +1,21 @@
+---
+layout: base.njk
+
+eleventyNavigation:
+  key: Home
+  order: 1
+
+title: Stefan Judis – Developer, writer and speaker
+desc: I love building things for the web. And I love writing sharing things about the web.
+headline: Heyo, I'm Stefan! I write and speak about web technology.
+---
+
+{% import 'macros.njk' as macros %}
+
+{{ macros.shortList("Articles", contentful.articles, 3, 'articles', config) }}
+{{ macros.shortList("Articles", contentful.articles, 3, 'articles', config) }}
+{# {{ macros.shortList("Popular Posts", _popularPosts, 3, 'popular-posts', config) }} #}
+{{ macros.shortList("Resources", contentful.resources, 3, 'resources', config) }}
+{{ macros.shortList("Projects", contentful.projects, 3, 'projects', config) }}
+{{ macros.shortList("Developer Smalltalk", contentful.screencasts, 4, 'smalltalk', config) }}
+{{ macros.shortList("Latest Talks", contentful.talks, 4, 'talks', config) }}

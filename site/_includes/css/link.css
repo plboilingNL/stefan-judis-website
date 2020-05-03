@@ -1,0 +1,18 @@
+a {
+  text-decoration: underline;
+  text-decoration-thickness: auto;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 2px;
+
+  &:focus {
+    outline-style: dashed;
+    outline-width: 3px;
+    outline-offset: 1px;
+    outline-color: var(--c-highlight);
+  }
+
+  &,
+  > * {
+    color: var(--c-highlight);
+  }
+}

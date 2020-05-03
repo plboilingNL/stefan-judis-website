@@ -1,0 +1,25 @@
+---
+layout: base.njk
+
+pagination:
+  data: contentful.notes
+  size: 1
+  alias: note
+
+permalink: "/notes/{{ note.fields.slug }}/"
+
+hasNarrowLayout: true
+
+eleventyComputed:
+  title: "{{ note.fields.title }}"
+---
+
+{% import 'macros.njk' as macros %}
+
+{{ macros.entryDetails(note) }}
+<div>TODO ad</div>
+
+{{ macros.highlightBox('note') }}
+{{ note.fields.body | markdown | safe }}
+{{ macros.entryTopics(note, { includeHeadline: true }) }}
+

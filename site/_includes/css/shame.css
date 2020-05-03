@@ -1,0 +1,5 @@
+.useful-talk-quotes {
+  blockquote + p {
+    margin: -0.5em 0 2em;
+  }
+}

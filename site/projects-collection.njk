@@ -1,0 +1,25 @@
+---
+layout: base.njk
+
+eleventyNavigation:
+  key: Projects
+  order: 6
+
+permalink: /projects/
+
+title: Projects
+desc: TODO
+subHeadline: Project sub headline
+---
+
+{% import 'macros.njk' as macros %}
+
+<ul class="list-grid">
+  {% for item in contentful.projects %}
+    <li>
+      TODO
+      <img src="{{ item.fields.coverImage.fields.file.url }}">
+      <a href="/projects/{{ item.fields.slug }}/">{{ item.fields.title }}</a>
+      {{ macros.entryTopics(item, { includeHeadline: false, hideContentType: true }) }}
+    {% endfor %}
+</ul>
