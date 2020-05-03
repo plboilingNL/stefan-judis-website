@@ -4,9 +4,12 @@ require('dotenv').config();
 const contentful = require('contentful');
 const sqip = require('sqip');
 const download = require('download');
+const pLimit = require('p-limit');
 const path = require('path');
-const { copy, emptyDir, writeFile, readFile } = require('fs-extra');
+const { emptyDir, writeFile, readFile } = require('fs-extra');
 const { logSeparator, logSuccess } = require('./utils');
+
+const limit = pLimit(8);
 
 const { CTF_SPACE_ID, CTF_CDA_TOKEN } = process.env;
 const client = contentful.createClient({
@@ -69,14 +72,16 @@ async function sqipItems() {
 
   await Promise.all(
     images.map(({ url, filename, svg }) => {
-      if (!svg) {
-        console.log(`${filename} is missing -> downloading`);
-        return download(url.replace(/\/\//, 'https://'), SQIP_CACHE, {
-          filename,
-        });
-      }
+      return limit(() => {
+        if (!svg) {
+          console.log(`${filename} is missing -> downloading`);
+          return download(url.replace(/\/\//, 'https://'), SQIP_CACHE, {
+            filename,
+          });
+        }
 
-      return Promise.resolve();
+        return Promise.resolve();
+      });
     })
   );
 
@@ -85,21 +90,23 @@ async function sqipItems() {
 
   await Promise.all(
     images.map(({ id, revision, filename, svg }) => {
-      if (!svg) {
-        const { final_svg } = sqip({
-          filename: path.join(SQIP_CACHE, filename),
-          numberOfPrimitives: 8,
-          mode: 0,
-          blur: 0,
-        });
+      return limit(() => {
+        if (!svg) {
+          const { final_svg } = sqip({
+            filename: path.join(SQIP_CACHE, filename),
+            numberOfPrimitives: 8,
+            mode: 0,
+            blur: 0,
+          });
 
-        return writeFile(
-          path.join(SQIP_CACHE, `${id}-${revision}.svg`),
-          final_svg
-        );
-      }
+          return writeFile(
+            path.join(SQIP_CACHE, `${id}-${revision}.svg`),
+            final_svg
+          );
+        }
 
-      return Promise.resolve();
+        return Promise.resolve();
+      });
     })
   );
 
