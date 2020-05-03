@@ -24,10 +24,12 @@ subHeadline: Keep learning, learning, learning...
   {% for item in contentful.topics %}
     {% if contentful.allEntriesGroupedByTopic[item.fields.slug] | onlyTilPosts | length %}
       <li class="area-{{ item.fields.slug }} margin-bottom-l">
-        <h2>
-          {{ macros.icon(item.fields.slug, { isHidden: true }) }}
-          <a href="{{ item | entryUrl }}">{{ item.fields.title }}</a>
-        </h2>
+        <a href="{{ item | entryUrl }}" class="no-underline">
+          <h2>
+            {{ macros.icon(item.fields.slug, { isHidden: true }) }}
+            {{ item.fields.title }}
+          </h2>
+        </a>
         <ul class="list-shortPreview">
           {% for post in contentful.allEntriesGroupedByTopic[item.fields.slug] | onlyTilPosts %}
             <li>
