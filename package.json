@@ -4,16 +4,7 @@
   "description": "Personal website of Stefan Judis",
   "author": "stefan judis <stefanjudis@gmail.com>",
   "private": true,
-  "dependencies": {},
-  "scripts": {
-    "setup:icon-sprite": "./scripts/create-icon-sprite",
-    "setup:popular-posts": "./scripts/write-analytics-data",
-    "setup:sqip": "./scripts/sqip-it",
-    "setup": "concurrently \"npm:setup:*\"",
-    "dev": "npm run setup && eleventy --serve",
-    "netlify:build": "npm run setup && eleventy"
-  },
-  "devDependencies": {
+  "dependencies": {
     "download": "^8.0.0",
     "lodash.chunk": "^4.2.0",
     "sqip": "^0.3.3",
@@ -33,5 +24,14 @@
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.1",
     "svgstore": "^3.0.0-2"
-  }
+  },
+  "scripts": {
+    "setup:icon-sprite": "./scripts/create-icon-sprite",
+    "setup:popular-posts": "./scripts/write-analytics-data",
+    "setup:sqip": "./scripts/sqip-it",
+    "setup": "concurrently \"npm:setup:*\"",
+    "dev": "npm run setup && eleventy --serve",
+    "netlify:build": "npm run setup && eleventy"
+  },
+  "devDependencies": {}
 }
