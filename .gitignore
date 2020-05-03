@@ -7,6 +7,7 @@ dist
 
 # generated data (create it using `npm run setup`)
 site/_data/_popularPosts.json
+site/_data/_sqip.json
 
 # mac shizzle
 .DS_Store
