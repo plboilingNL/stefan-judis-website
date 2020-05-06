@@ -53,7 +53,7 @@ export default ({ app, env, store }) => {
 
   const getEntries = query => {
     return myFetch(
-      `https://${host}/spaces/${space}/environments/${environment}/entries?${query}&access_token=${accessToken}`
+      `https://${host}/spaces/${space}/environments/${environment}/entries?${query}&limit=1000&access_token=${accessToken}`
     );
   };
 
