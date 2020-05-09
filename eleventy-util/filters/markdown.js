@@ -5,6 +5,10 @@ const md = require('markdown-it')({
   linkify: false,
 });
 
+md.renderer.rules.hr = function () {
+  return '<hr aria-hidden="true">';
+};
+
 md.renderer.rules.image = function (tokens, idx, options, env, self) {
   // https://github.com/markdown-it/markdown-it/blob/master/docs/architecture.md#renderer
   const token = tokens[idx];

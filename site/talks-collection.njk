@@ -15,18 +15,19 @@ subHeadline: Being nervous in front of people...
 {% import 'macros.njk' as macros %}
 
 <ul class="list-grid">
-  {% for item in contentful.talks %}
+  {% for entry in contentful.talks %}
     <li>
-      <a href="{{ item | entryUrl }}">
-        <img
-          src="{{ item.fields.thumbnail.fields.file.url }}"
-          alt="{{ item.fields.title }}"
-          width="1600"
-          height="900"
-          class="box-shadow-s margin-bottom-m">
-        <h2 class="u-visually-hidden" aria-hidden="true">{{ item.fields.title }}</h2>
+      {{
+        macros.gridImage(
+          entry.fields.thumbnail,
+          { alt: entry.fields.title, width: 1920, height: 1080 }
+        )
+      }}
+
+      <a href="{{ entry | entryUrl }}">
+        <h2>{{ entry.fields.title }}</h2>
       </a>
-      todo image!!!
-      {{ macros.entryTopics(item, { includeHeadline: false, hideContentType: true }) }}
+
+      {{ macros.entryTopics(entry, { includeHeadline: false, hideContentType: true }) }}
     {% endfor %}
 </ul>

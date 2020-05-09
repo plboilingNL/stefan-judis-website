@@ -16,16 +16,20 @@ subHeadline: Talking about tech on camera...
 {% import 'macros.njk' as macros %}
 
 <ul class="list-grid">
-  {% for item in contentful.screencasts %}
+  {% for entry in contentful.screencasts %}
     <li>
-      <img
-        src="{{ item.fields.coverImage.fields.file.url }}"
-        class="box-shadow-s margin-bottom-m"
-        width="1920"
-        height="1080"
-      >
-      {{ item.fields.title }}
-      {{ macros.entryTopics(item, { includeHeadline: false, hideContentType: true }) }}
+      {{
+          macros.gridImage(
+            entry.fields.coverImage,
+            { alt: entry.fields.title, width: 1920, height: 1080 }
+          )
+      }}
+
+      <a href="{{ entry | entryUrl }}">
+        <h2>{{ entry.fields.title }}</h2>
+      </a>
+
+      {{ macros.entryTopics(entry, { includeHeadline: false, hideContentType: true }) }}
 
     {% endfor %}
 </ul>

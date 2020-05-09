@@ -134,17 +134,17 @@
       {% if type == 'note' %}
         {{ icon('megaphone', { isHidden: true }) }}
         <span>
-        This post is a quick <a href="/notes/">note</a>
-        about cool things from the web.
-      </span>
+      This post is a quick <a href="/notes/">note</a>
+      about cool things from the web.
+    </span>
       {% endif %}
 
       {% if type == 'til' %}
         {{ icon('megaphone', { isHidden: true }) }}
         <span>
-        This post is part of my <a href="/today-i-learned/">Today I learned</a>
-        series in which I share all my learnings regarding web development.
-      </span>
+      This post is part of my <a href="/today-i-learned/">Today I learned</a>
+      series in which I share all my learnings regarding web development.
+    </span>
       {% endif %}
 
       {% if type == 'repost' %}
@@ -163,7 +163,7 @@
     <div class="padding-xl text-align-c">
       <a href="https://twitter.com/intent/tweet?text='{{ entry.fields.title }}'&url=https://www.stefanjudis.com{{ options.url }}&via=stefanjudis" target="_blank" rel="noopener noreferrer" class="btn u-marginBottomSmall">
         {{ icon('share', { isHidden: true }) }} Share on Twitter
-    </a>
+      </a>
     </div>
   {% endmacro %}
 
@@ -231,4 +231,30 @@
         </li>
       </ol>
     </nav>
+  {% endmacro %}
+
+  {#
+  Pagination image
+  ##############################################################################
+#}
+  {% macro gridImage(entry, options) %}
+    {% set ratio = options.height / options.width %}
+
+    <img
+        alt="{{ options.alt }}"
+        width="{{options.width}}"
+        height="{{options.height}}"
+        srcset="
+          {{ entry.fields.file.url }}?fit=scale&w={{ 300 }}&h={{ (300 * ration) | round }} 300w,
+          {{ entry.fields.file.url }}?fit=scale&w={{ 500 }}&h={{ (500 * ratio) | round }} 500w,
+          {{ entry.fields.file.url }}?fit=scale&w={{ 700 }}&h={{ (700 * ratio) | round }} 700w,
+          {{ entry.fields.file.url }}?fit=scale&w={{ 900 }}&h={{ (900 * ratio) | round }} 900w,
+          {{ entry.fields.file.url }}?fit=scale&w={{ 1100 }}&h={{ (1100 * ratio) | round }} 1100w"
+        sizes="
+          (max-width: 50em) 98vw,
+          (max-width: 75em) 48vw,
+          320px"
+        src="{{ item.fields.thumbnail.fields.file.url }}"
+        loading="lazy"
+        class="box-shadow-s margin-bottom-m">
   {% endmacro %}
