@@ -19,6 +19,8 @@
 
   &:hover {
     background: var(--blue);
+    box-shadow: 0 2px 8px var(--grey-bright);
+    transform: translate(0 -1px);
   }
 
   &:active,

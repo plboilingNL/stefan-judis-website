@@ -35,7 +35,7 @@ body {
   color: var(--c-text);
 
   margin: 0;
-  padding: 7em 0 0;
+  padding: 0;
 }
 
 * {
@@ -61,8 +61,8 @@ hr {
   border-top: 2px solid var(--grey-bright);
 }
 
-:target {
-  scroll-margin-top: 4em;
+body {
+  scroll-snap-type: x;
 }
 
 main {

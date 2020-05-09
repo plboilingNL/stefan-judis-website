@@ -29,7 +29,7 @@
   {%- for post in contentful.articles %}
     {% set absolutePostUrl %}{{ post | entryUrl | absoluteUrl(metadata.url) }}{% endset %}
     <entry>
-      <title>{{ post.fields.title }} – #{{ post.sys.contentType.sys.id | overwriteContentType }}</title>
+      <title>{{ post.fields.title }} (#{{ post.sys.contentType.sys.id | overwriteContentType }})</title>
       <link href="{{ absolutePostUrl }}"/>
       <updated>{{ post.fields.date | customRssDate }}</updated>
       <id>{{ absolutePostUrl }}</id>

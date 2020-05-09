@@ -1,7 +1,4 @@
 .navigation {
-  position: fixed;
-  top: 0;
-  width: 100%;
   padding: 1em var(--grid-outer-padding);
   border-top: 4px solid var(--blue);
   border-bottom: 1px solid var(--grey-bright);
