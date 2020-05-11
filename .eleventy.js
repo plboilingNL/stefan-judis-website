@@ -86,6 +86,7 @@ module.exports = function (eleventyConfig) {
   addFilter(config, eleventyConfig, 'reading-time');
   addFilter(config, eleventyConfig, 'readable-date');
   addFilter(config, eleventyConfig, 'sorted-by-date');
+  addFilter(config, eleventyConfig, 'social-image-url');
 
   eleventyConfig.addCollection('paginatedTopics', getDoublePaginatedTopics);
   eleventyConfig.addPlugin(require('@11ty/eleventy-navigation'));

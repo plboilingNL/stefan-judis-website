@@ -13,6 +13,7 @@ hasNarrowLayout: true
 eleventyComputed:
   title: "{{ post.fields.title }}"
   desc: "{{ post.fields.description }}"
+  socialUrl: "{{ post | socialImageUrl }}"
 ---
 
 {% import 'macros.njk' as macros %}

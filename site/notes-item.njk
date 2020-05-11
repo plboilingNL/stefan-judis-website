@@ -12,6 +12,7 @@ hasNarrowLayout: true
 
 eleventyComputed:
   title: "{{ note.fields.title }}"
+  socialUrl: "{{ note | socialImageUrl }}"
 ---
 
 {% import 'macros.njk' as macros %}
@@ -22,4 +23,3 @@ eleventyComputed:
 {{ macros.highlightBox('note') }}
 {{ note.fields.body | markdown | safe }}
 {{ macros.entryTopics(note, { includeHeadline: true }) }}
-
