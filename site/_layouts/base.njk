@@ -6,11 +6,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title | safe }} | Stefan Judis Web Development</title>
-    <meta name="description" content="{{ desc }}">
+    <meta name="description" content="desc | safe">
+
+    {% if socialUrl %}
+      <meta property="twitter:card" content="summary_large_image">
+      <meta property="twitter:url" content="{{ page.url }}">
+      <meta property="twitter:title" content="{{ title | safe }}">
+      <meta property="twitter:description" content="{{ desc | safe }}">
+      <meta property="twitter:image" content="{{ socialUrl }}">
+    {% endif %}
+
     <!-- TODO add json ld -->
     <link rel="icon" href="/favicon.svg">
     <link rel="mask-icon" href="/favicon.svg" color="#ffffff">
     <link rel="alternate" type="application/rss+xml" title="Stefan Judis Web Development" href="https://www.stefanjudis.com/rss.xml">
+
     <!-- TODO add dummy for the other feeds -->
 
     <script>
@@ -33,14 +43,6 @@
         }
       })();
     </script>
-
-    {% if socialUrl %}
-      <meta property="twitter:card" content="summary_large_image">
-      <meta property="twitter:url" content="{{ page.url }}">
-      <meta property="twitter:title" content="Meta Tags — Preview, Edit and Generate">
-      <meta property="twitter:description" content="With Meta Tags you can edit and experiment with your content then preview how your webpage will look on Google, Facebook, Twitter and more!">
-      <meta property="twitter:image" content="{{ socialUrl }}">
-    {% endif %}
 
     {% if post.fields.externalUrl %}
       <meta name="robots" content="noindex,nofollow">

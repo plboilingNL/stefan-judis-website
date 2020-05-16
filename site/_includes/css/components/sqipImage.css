@@ -5,11 +5,11 @@
   overflow: hidden;
 
   svg {
-    display: block;
     filter: blur(24px);
   }
 
-  img {
+  img,
+  svg {
     position: absolute;
     top: 0;
     right: 0;

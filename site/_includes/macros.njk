@@ -240,22 +240,24 @@
 #}
   {% macro gridImage(entry, options) %}
     {% set ratio = options.height / options.width %}
-
-    <img
-        alt="{{ options.alt }}"
-        width="{{options.width}}"
-        height="{{options.height}}"
-        srcset="
-          {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 300 }}&h={{ (300 * ration) | round }} 300w,
-          {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 500 }}&h={{ (500 * ratio) | round }} 500w,
-          {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 700 }}&h={{ (700 * ratio) | round }} 700w,
-          {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 900 }}&h={{ (900 * ratio) | round }} 900w,
-          {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 1100 }}&h={{ (1100 * ratio) | round }} 1100w"
-        sizes="
-          (max-width: 50em) 98vw,
-          (max-width: 75em) 48vw,
-          320px"
-        src="{{ item.fields.thumbnail.fields.file.url }}"
-        loading="lazy"
-        class="box-shadow-s margin-bottom-m">
+    <figure class="sqip-image" style="padding-top: {{ ratio * 100 }}%;">
+      {{ options._sqip[entry.sys.id] | safe }}
+      <img
+          alt="{{ options.alt }}"
+          width="{{options.width}}"
+          height="{{options.height}}"
+          srcset="
+            {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 300 }}&h={{ (300 * ration) | round }} 300w,
+            {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 500 }}&h={{ (500 * ratio) | round }} 500w,
+            {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 700 }}&h={{ (700 * ratio) | round }} 700w,
+            {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 900 }}&h={{ (900 * ratio) | round }} 900w,
+            {{ entry.fields.file.url }}?fm=jpg&fit=scale&w={{ 1100 }}&h={{ (1100 * ratio) | round }} 1100w"
+          sizes="
+            (max-width: 50em) 98vw,
+            (max-width: 75em) 48vw,
+            320px"
+          src="{{ item.fields.thumbnail.fields.file.url }}"
+          loading="lazy"
+          class="box-shadow-s margin-bottom-m">
+    </figure>
   {% endmacro %}
