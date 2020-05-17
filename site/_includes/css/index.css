@@ -26,7 +26,7 @@
 
 .container {
   margin: 0 auto;
-  padding: var(--grid-outer-padding);
+  padding: calc(2 * var(--grid-outer-padding)) var(--grid-outer-padding);
 
   > div {
     max-width: 62em;
