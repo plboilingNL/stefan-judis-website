@@ -1,9 +1,9 @@
 const { encode } = require('html-entities').XmlEntities;
-const SQIP_DATA = require('../../site/_data/_sqip.json');
 const md = require('markdown-it')({
   html: true,
   linkify: false,
 });
+const SQIP_DATA = require('../../site/_data/_sqip.json');
 
 md.renderer.rules.hr = function () {
   return '<hr aria-hidden="true">';
@@ -20,14 +20,19 @@ md.renderer.rules.image = function (tokens, idx, options, env, self) {
     /(?:\/\/|https:\/\/)(?:images|videos).(?:ctfassets|contentful).(?:net|com)\/.*?\/(.*?)\/.*/
   );
 
-  let svg = SQIP_DATA[assetId] || '';
+  const assetData = SQIP_DATA[assetId] || {};
+  const { svg, details } = assetData;
 
-  return `
-    <figure class="sqip-image">
+  // Contentful-orgin articles are currently not sqiped.
+  // because getAssets is only called on this space
+  return details
+    ? `
+    <figure class="sqip-image" style="padding-top: ${details.ratio}%;">
       ${svg}
       <img src="${src}" alt="${encode(alt)}" loading="lazy">
     </figure>
-  `;
+  `
+    : `<img src="${src}" alt="${encode(alt)}" loading="lazy" />`;
 };
 
 md.use(require('markdown-it-prism'));

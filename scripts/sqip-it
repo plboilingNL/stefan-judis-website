@@ -4,8 +4,9 @@ require('dotenv').config();
 const contentful = require('contentful');
 const sqip = require('sqip');
 const download = require('download');
+const sizeOf = require('image-size');
 const pLimit = require('p-limit');
-const path = require('path');
+const { join } = require('path');
 const { emptyDir, writeFile, readFile } = require('fs-extra');
 const { logSeparator, logSuccess } = require('./utils');
 
@@ -20,7 +21,7 @@ const client = contentful.createClient({
 
 const { getCachePath, shouldClearCache } = require('./utils/index.js');
 const SQIP_CACHE = getCachePath('sqip');
-const ELEVENTY_DATA_DIR = path.join(__dirname, '..', 'site', '_data');
+const ELEVENTY_DATA_DIR = join(__dirname, '..', 'site', '_data');
 
 async function sqipItems() {
   if (shouldClearCache) {
@@ -93,16 +94,13 @@ async function sqipItems() {
       if (!svg) {
         console.log(`SVG for ${filename} is missing -> sqipping`);
         const { final_svg } = sqip({
-          filename: path.join(SQIP_CACHE, filename),
+          filename: join(SQIP_CACHE, filename),
           numberOfPrimitives: 8,
           mode: 0,
           blur: 0,
         });
 
-        return writeFile(
-          path.join(SQIP_CACHE, `${id}-${revision}.svg`),
-          final_svg
-        );
+        return writeFile(join(SQIP_CACHE, `${id}-${revision}.svg`), final_svg);
       }
 
       return Promise.resolve();
@@ -110,15 +108,39 @@ async function sqipItems() {
   );
 
   logSuccess('SVGs created');
+  logSeparator('Reading image details (width/height)');
 
+  images.forEach((image) => {
+    const { id, revision, filename } = image;
+    const detailsPath = join(SQIP_CACHE, `${id}-${revision}-details.json`);
+
+    try {
+      image.details = require(detailsPath);
+    } catch (error) {
+      const { height, width } = sizeOf(join(SQIP_CACHE, filename));
+      const details = {
+        height,
+        width,
+        ratio: Math.floor((height / width) * 10000) / 100,
+      };
+      writeFile(detailsPath, JSON.stringify(details));
+      image.details = details;
+    }
+  });
+
+  logSuccess('Read / created detail json files');
   logSeparator('Writing SVG JSON');
-  const SQIP_JSON_FILE = path.join(ELEVENTY_DATA_DIR, '_sqip.json');
-  console.log(SQIP_JSON_FILE);
+
+  const SQIP_JSON_FILE = join(ELEVENTY_DATA_DIR, '_sqip.json');
   await writeFile(
     SQIP_JSON_FILE,
     JSON.stringify(
-      images.reduce((acc, { id, svg }) => {
-        acc[id] = svg;
+      images.reduce((acc, { id, details, filename, svg }) => {
+        acc[id] = {
+          filename,
+          details,
+          svg,
+        };
         return acc;
       }, {}),
       null,
