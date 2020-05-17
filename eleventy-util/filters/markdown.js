@@ -29,7 +29,7 @@ md.renderer.rules.image = function (tokens, idx, options, env, self) {
     ? `
       <figure class="sqip-image" style="padding-top: ${details.ratio}%;">
         ${svg}
-        <img width="${1000} height="${(1000 * details.ratio) / 100}"
+        <img width="${1000} height="${Math.floor((1000 * details.ratio) / 100)}"
         srcset="${[300, 500, 700, 900, 1100]
           .map(
             (size) =>
