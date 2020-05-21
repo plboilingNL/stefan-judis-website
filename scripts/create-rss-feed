@@ -2,10 +2,7 @@
 
 const { promisify } = require('util');
 const { logSeparator, logSuccess } = require('./utils');
-const glob = promisify(require('glob'));
-const readFile = promisify(require('fs').readFile);
 const writeFile = promisify(require('fs').writeFile);
-const jsdom = require('jsdom');
 const RSS = require('rss');
 
 const BASE_URL = 'https://www.stefanjudis.com';
@@ -18,41 +15,65 @@ const FEED_DEFAULTS = {
   language: 'en'
 };
 
+const cdaContentful = require('contentful');
+const { getConfig } = require('../lib/config.js');
+const ctfConfig = getConfig();
+const cdaClient = cdaContentful.createClient({
+  accessToken: ctfConfig.CTF_CDA_TOKEN,
+  host: 'cdn.contentful.com',
+  space: ctfConfig.CTF_SPACE_ID
+});
+
 const sortByDate = (prev, cur) => new Date(cur.date) - new Date(prev.date);
+
+const mapToRSSEntry = ({ fields, sys }) => {
+  let { date, title, description, slug } = fields;
+  const isTil = sys.contentType.sys.id === 'tilPost';
+
+  return {
+    date: date.substring(0, 10),
+    description,
+    title: isTil === 'tilPost' ? `TIL: ${title}` : title,
+    url: `${BASE_URL}/${isTil ? 'today-i-learned' : 'blog'}/${slug}/`
+  };
+};
+
 (async () => {
   try {
     logSeparator('Reading blog and til files');
 
-    const feeds = await Promise.all(
-      [
-        {
-          glob: './dist/blog/*/index.html',
-          file: 'blog.xml',
-          name: 'Blog Posts'
-        },
-        {
-          glob: './dist/today-i-learned/*/index.html',
-          file: 'til.xml',
-          name: 'Today I learned Posts'
-        }
-      ].map(async feed => {
-        feed.files = await glob(feed.glob);
-        feed.items = (await getFeedItemsForFiles(feed.files)).sort(sortByDate);
-
-        await writeRssFeed(feed);
-
-        return feed;
+    const blogPosts = (
+      await cdaClient.getEntries({
+        content_type: '2wKn6yEnZewu2SCCkus4as',
+        order: '-fields.date',
+        limit: 1000
       })
-    );
+    ).items.map(mapToRSSEntry);
+
+    await writeRssFeed({
+      file: 'blog.xml',
+      name: 'Blog Posts',
+      items: blogPosts
+    });
+
+    const tilPosts = (
+      await cdaClient.getEntries({
+        content_type: 'tilPost',
+        order: '-fields.date',
+        limit: 1000
+      })
+    ).items.map(mapToRSSEntry);
+
+    await writeRssFeed({
+      file: 'til.xml',
+      name: 'Today I learned Posts',
+      items: tilPosts
+    });
 
     logSuccess('blog.xml and til.xml RSS feed written');
     logSeparator('Combining RSS feeds');
 
-    const allItems = feeds
-      .reduce((items, current) => {
-        return items.concat(current.items);
-      }, [])
-      .sort(sortByDate);
+    const allItems = [...blogPosts, ...tilPosts].sort(sortByDate);
 
     await writeRssFeed({
       file: 'rss.xml',
@@ -76,36 +97,4 @@ async function writeRssFeed(feed) {
   feed.items.forEach(item => rssFeed.item(item));
 
   await writeFile(`./dist/${feed.file}`, rssFeed.xml());
-}
-
-function getFeedItemsForFiles(files) {
-  return Promise.all(
-    files.map(filePath => {
-      return (async () => {
-        // overwrite the console
-        // to get rid of error I don't care about
-        const virtualConsole = new jsdom.VirtualConsole();
-        const { document } = new jsdom.JSDOM(await readFile(filePath, 'utf8'), {
-          virtualConsole
-        }).window;
-
-        const isTil = /today-i-learned/.test(filePath);
-
-        return {
-          date: document
-            .querySelector('.c-prettyDate')
-            .getAttribute('datetime')
-            .substring(0, 10),
-          title: `${isTil ? 'TIL: ' : ''}${
-            document.querySelector('h1').innerHTML
-          }`,
-          description: document.querySelector('meta[name="description"]')
-            .content,
-          url: `${BASE_URL}${filePath
-            .replace('./dist', '')
-            .replace('index.html', '')}`
-        };
-      })();
-    })
-  );
 }
