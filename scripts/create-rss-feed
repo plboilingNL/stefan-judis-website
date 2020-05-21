@@ -33,7 +33,7 @@ const mapToRSSEntry = ({ fields, sys }) => {
   return {
     date: date.substring(0, 10),
     description,
-    title: isTil === 'tilPost' ? `TIL: ${title}` : title,
+    title: isTil ? `TIL: ${title}` : title,
     url: `${BASE_URL}/${isTil ? 'today-i-learned' : 'blog'}/${slug}/`
   };
 };
