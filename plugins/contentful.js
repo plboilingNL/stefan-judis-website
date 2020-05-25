@@ -10,6 +10,10 @@ const normalizeEntry = entry => {
   return typeof entry === 'object'
     ? Object.entries(entry.fields).reduce(
         (acc, [key, value]) => {
+          if (!value) {
+            return acc;
+          }
+
           if (value.map) {
             acc[key] = value.map(normalizeEntry);
           } else if (!!value.sys) {
@@ -32,7 +36,7 @@ const normalizeEntry = entry => {
     : entry;
 };
 
-const myFetch = async (url, query) => {
+const myFetch = async url => {
   return resolveResponse(await fetch(url).then(res => res.json())).map(
     normalizeEntry
   );
