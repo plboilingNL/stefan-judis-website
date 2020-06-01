@@ -41,7 +41,10 @@ md.renderer.rules.image = function (tokens, idx, options, env, self) {
           )
           .join(', ')}"
         sizes="(max-width: 50em) 98vw, 700px"
-        src="${src}" alt="${encode(alt)}" loading="lazy">
+        src="${src}"
+        alt="${encode(alt)}"
+        loading="lazy"
+        onload="this.classList.add('kf-fade-in')">
       </figure>
     `
     : `<img src="${src}" alt="${encode(alt)}" loading="lazy" />`;

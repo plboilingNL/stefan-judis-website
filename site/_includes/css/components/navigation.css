@@ -9,6 +9,7 @@
     &[aria-current="page"] {
       text-decoration: underline;
       text-decoration-thickness: 2px;
+      font-weight: bold;
     }
   }
 

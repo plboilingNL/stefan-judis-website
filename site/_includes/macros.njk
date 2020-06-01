@@ -256,7 +256,9 @@
             320px"
           src="{{ item.fields.thumbnail.fields.file.url }}"
           loading="lazy"
-          class="box-shadow-s margin-bottom-m">
+          class="box-shadow-s margin-bottom-m"
+          onload="this.classList.add('kf-fade-in')"
+          >
     </figure>
   {% endmacro %}
 
