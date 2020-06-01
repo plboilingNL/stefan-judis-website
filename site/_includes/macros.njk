@@ -301,13 +301,56 @@
           </ul>
         </div>
 
-        <ul class="page-nav list-reset">
+        <div hidden data-menu-button>
+          Menu
+        </div>
+
+        <ul id="page-nav" class="page-nav is-open" data-menu>
           {%- for entry in navPages %}
             <li>
               <a href="{{ entry.url | url }}" {% if entry.url | url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
             </li>
           {%- endfor %}
         </ul>
+
+        <script>
+          (function () {
+            const fakeButton = document.querySelector('[data-menu-button]');
+            const menu = document.querySelector('[data-menu]');
+
+            const toggleMenuButton = document.createElement('button');
+            toggleMenuButton.textContent = fakeButton.textContent;
+            toggleMenuButton.setAttribute('aria-expanded', false);
+            toggleMenuButton.setAttribute('aria-controls', 'page-nav');
+            toggleMenuButton
+              .classList
+              .add('nav-button');
+
+            fakeButton
+              .parentNode
+              .replaceChild(toggleMenuButton, fakeButton);
+
+            let menuIsOpen = false;
+
+            toggleMenuButton.addEventListener('click', function () {
+              let expanded = this.getAttribute('aria-expanded') === 'true' || false;
+              this.setAttribute('aria-expanded', !expanded);
+              this.innerText = menuIsOpen
+                ? 'Open menu'
+                : 'Close menu'
+              menu
+                .classList
+                .toggle('is-open');
+
+              menuIsOpen = !menuIsOpen;
+            });
+
+            menu
+              .classList
+              .toggle('is-open');
+            toggleMenuButton.innerText = 'Open menu'
+          })()
+        </script>
       </div>
 
       <ul class="large-nav">

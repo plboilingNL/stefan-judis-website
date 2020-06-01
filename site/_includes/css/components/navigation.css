@@ -38,6 +38,16 @@
     margin-bottom: 1em;
   }
 
+  .nav-button {
+    display: block;
+    width: 7em;
+    border: none;
+    border-radius: 0.25em;
+    background: transparent;
+    font-size: 1em;
+    margin: 0 auto 1em;
+  }
+
   .social-nav {
     display: flex;
     list-style: none;
@@ -54,8 +64,12 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
+
+    &.is-open {
+      display: flex;
+    }
 
     > li {
       padding: .25em 0;
