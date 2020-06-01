@@ -7,6 +7,10 @@
     &-l {
       margin-bottom: 2em;
     }
+
+    &-xl {
+      margin-bottom: 4em;
+    }
   }
 
   &-top {
@@ -22,8 +26,23 @@
   }
 
   &-right {
+    &-m {
+      margin-right: 1em;
+    }
     &-l {
       margin-right: 2em;
+    }
+  }
+
+  &-left {
+    &-s {
+      margin-left: 0.5em;
+    }
+    &-m {
+      margin-left: 1em;
+    }
+    &-l {
+      margin-left: 2em;
     }
   }
 

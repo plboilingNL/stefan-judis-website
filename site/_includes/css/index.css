@@ -26,18 +26,20 @@
 
 .container {
   margin: 0 auto;
-  padding: calc(2 * var(--grid-outer-padding)) var(--grid-outer-padding);
+  padding: var(--grid-padding-overall);
 
   > div {
-    max-width: 62em;
+    max-width: 68em;
     margin: 0 auto;
   }
 
-  &.two-thirds {
-    > div {
-      display: grid;
-      grid-template-columns: 1fr 33.33%;
-      grid-gap: 5em;
+  @media (min-width: 60em) {
+    &.two-thirds {
+      > div {
+        display: grid;
+        grid-template-columns: 1fr 33.33%;
+        grid-gap: 5em;
+      }
     }
   }
 }

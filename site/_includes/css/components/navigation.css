@@ -1,58 +1,78 @@
 .navigation {
   padding: 1em var(--grid-outer-padding);
-  border-top: 4px solid var(--blue);
-  border-bottom: 1px solid var(--grey-bright);
-  z-index: 2;
-  background: #fff;
-
-  ul {
-    display: flex;
-    width: 100%;
-    list-style: none;
-    margin: 0;
-    padding: 0 0;
-
-    li + li {
-      margin-left: 0.5em;
-
-      &:not(.has-small-margin) {
-        margin-left: 2.5em;
-      }
-    }
-  }
 
   a {
-    display: grid;
-    place-items: center;
-    color: var(--c-text-catchy);
     text-decoration: none;
-  }
+    display: block;
+    padding: .25em .375em;
 
-  li {
-    &.is-active {
-      --nav-item-highlight-color: var(--blue);
-
-      position: relative;
-      color: var(--c-highlight);
-
-      a {
-        color: currentColor;
-      }
-
-      &::before {
-        position: absolute;
-        height: 0.25em;
-        content: '';
-        left: 0.25em;
-        right: 0.25em;
-        bottom: -1em;
-        background-color: var(--nav-item-highlight-color);
-      }
+    &[aria-current="page"] {
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
     }
   }
 
-  .icon {
+  svg {
+    display: block;
     width: 1.5em;
     height: 1.5em;
+  }
+}
+
+
+.small-nav {
+  @media (min-width: 56em) {
+    display: none;
+  }
+
+  .logo {
+    width: 2em;
+    height: 2em;
+    display: block;
+  }
+
+  .logo-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1em;
+  }
+
+  .social-nav {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    li + li {
+      margin-left: 0.75em;
+    }
+  }
+
+  .page-nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    > li {
+      padding: .25em 0;
+      text-align: center;
+      flex: 1 0;
+      min-width: 8.75em;
+    }
+  }
+}
+
+.large-nav {
+  display: none;
+
+  @media (min-width: 56em) {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
   }
 }

@@ -58,83 +58,54 @@
   <body class="{{ page.url | slug }}">
     <header>
       <a href="#main" class="skip-link">Skip to content</a>
-      <nav class="navigation">
-        {% set navPages = collections.all | eleventyNavigation %}
-        <ul>
-          <li>
-            <a href="/" aria-label="Home">
-              {{ macros.icon("heart", { isHidden: true }) }}
-            </a>
 
-            {%- for entry in navPages %}
-              <li{% if entry.url == page.url %} class="is-active"{% endif %}>
-                <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-              </li>
-            {%- endfor %}
-            <li class="margin-left-auto">
-              <a href="/newsletter/">
-                {{ macros.icon("letter", { isHidden: true }) }}
-                <span class="u-visually-hidden">Newsletter</span>
-              </a>
-            <li class="has-small-margin">
-              <a href="https://twitter.com/stefanjudis">
-                {{ macros.icon("twitter", { isHidden: true }) }}
-                <span class="u-visually-hidden">Twitter</span>
-              </a>
-            <li class="has-small-margin">
-              <a href="/rss.xml">
-                {{ macros.icon("rss", { isHidden: true }) }}
-                <span class="u-visually-hidden">RSS</span>
-              </a>
-          </ul>
-        </nav>
-      </header>
-
-      <div class="
+      {{ macros.navigation(collections, page) }}
+    </header>
+    <div class="
       container bg-default
       {% if includesSidebar %}two-thirds{% endif %}
       {% if hasNarrowLayout %}has-accessible-line-length{% endif %}
     ">
-        <div>
-          <main class="padding-bottom-xl" id="main">
-            <div class="page-header {% if subHeadline %}includes-subline{% endif %}">
-              <h1 class="fancy-font o-headline-1">
-                {% if icon %}
-                  {{ macros.icon(icon, { isHidden: true }) }}
-                {% endif %}
-
-                {{ headline or title | safe }}
-              </h1>
-              {% if subHeadline %}
-                <div class="page-subline">{{ subHeadline }}</div>
+      <div>
+        <main class="padding-bottom-xl" id="main">
+          <div class="page-header {% if subHeadline %}includes-subline{% endif %}">
+            <h1 class="fancy-font o-headline-1">
+              {% if icon %}
+                {{ macros.icon(icon, { isHidden: true }) }}
               {% endif %}
+
+              {{ headline or title | safe }}
+            </h1>
+            {% if subHeadline %}
+              <div class="page-subline">{{ subHeadline }}</div>
+            {% endif %}
+          </div>
+
+          {{ content | safe }}
+        </main>
+
+        {% if includesSidebar %}
+          <aside>
+            <div class="margin-bottom-xl">
+              {{ macros.shortList("Most popular Posts", _popularPosts, 5, 'popular-posts') }}
             </div>
 
-            {{ content | safe }}
-          </main>
+            <div class="margin-bottom-xl">
+              {{ macros.shortList("Past Newsletters", contentful.posts | sortedByDate('fields.date'), 3, 'newsletter') }}
+            </div>
 
-          {% if includesSidebar %}
-            <aside>
-              <div class="padding-l margin-bottom-m">
-                {{ macros.shortList("Most popular Posts", _popularPosts, 5, 'popular-posts') }}
-              </div>
+            <div class="margin-bottom-xl">
+              {{ macros.shortList("Recent Today I learned posts", contentful.tilPosts | sortedByDate('fields.date'), 3, 'today-i-learned') }}
+            </div>
 
-              <div class="padding-l">
-                {{ macros.shortList("Past Newsletters", contentful.posts | sortedByDate('fields.date'), 3, 'newsletter') }}
-              </div>
-
-              <div class="padding-l">
-                {{ macros.shortList("Recent Today I learned posts", contentful.tilPosts | sortedByDate('fields.date'), 3, 'today-i-learned') }}
-              </div>
-
-              <div class="padding-l">
-                {{ macros.shortList("Last updated Resources", contentful.resources | sortedByDate('sys.updatedAt'), 3, 'resources') }}
-              </div>
-            </aside>
-          {% endif %}
-        </div>
+            <div class="margin-bottom-xl">
+              {{ macros.shortList("Last updated Resources", contentful.resources | sortedByDate('sys.updatedAt'), 3, 'resources') }}
+            </div>
+          </aside>
+        {% endif %}
       </div>
+    </div>
 
-      {{ macros.footer() }}
-    </body>
-  </html>
+    {{ macros.footer() }}
+  </body>
+</html>

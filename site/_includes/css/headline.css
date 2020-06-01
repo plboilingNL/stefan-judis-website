@@ -3,6 +3,7 @@
 .o-headline-3,
 .o-headline-4 {
   font-weight: 600;
+  color: var(--c-text-catchy);
   margin: 0 0 0.5em;
   padding: 0;
 }
@@ -24,27 +25,16 @@
   }
 }
 
-h1,
-h2,
-h3,
-h4 {
-  font-weight: 700;
-  font-family: sans-serif;
-  color: var(--c-text-catchy);
-  text-decoration: none;
-  margin: 0 0 0.5em;
-  padding: 0;
-  line-height: 1.25;
-}
-
-h2 {
+.o-headline-2 {
   font-size: 1.5em;
 }
 
-h3 {
-  font-size: 1.125em;
+.o-headline-3 {
+  font-size: 1.25em;
+  color: currentColor;
 }
 
-h4 {
-  font-size: 1em;
+.o-headline-4 {
+  font-size: 1.125em;
+  color: currentColor;
 }

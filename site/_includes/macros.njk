@@ -4,7 +4,7 @@
 #}
 {% macro shortList(title, collection, length, slug) %}
   <a href="/{{ slug }}/" class="no-underline">
-    <h3 class="margin-bottom-s fancy-font">
+    <h3 class="margin-bottom-s o-headline-4">
       {{ title }}
     </h3>
   </a>
@@ -160,7 +160,7 @@
   ##############################################################################
 #}
   {% macro shareButton(entry, options) %}
-    <div class="padding-xl text-align-c">
+    <div class="margin-top-xl margin-bottom-xl text-align-c">
       <a href="https://twitter.com/intent/tweet?text='{{ entry.fields.title }}'&url=https://www.stefanjudis.com{{ options.url }}&via=stefanjudis" target="_blank" rel="noopener noreferrer" class="btn u-marginBottomSmall">
         {{ icon('share', { isHidden: true }) }} Share on Twitter
       </a>
@@ -234,9 +234,8 @@
   {% endmacro %}
 
   {#
-  Pagination image
+  Grid image
   ##############################################################################
-  TODO: add placeholder SQIP
 #}
   {% macro gridImage(entry, options) %}
     <figure class="sqip-image {{ options.class }}" style="padding-top: {{ options.ratio * 100 }}%;">
@@ -259,4 +258,91 @@
           loading="lazy"
           class="box-shadow-s margin-bottom-m">
     </figure>
+  {% endmacro %}
+
+  {#
+  Navigation
+  ##############################################################################
+#}
+  {% macro navigation(collections, page) %}
+    <nav class="navigation">
+      {% set navPages = collections.all | eleventyNavigation %}
+
+      <div class="small-nav">
+        <div class="logo-nav">
+          <a href="/" aria-label="Home" class="logo">
+            <svg>
+              <use xlink:href="#icon-heart"/>
+            </svg>
+          </a>
+
+          <ul class="social-nav">
+            <li class="">
+              <a href="/newsletter/">
+                <svg aria-hidden="true">
+                  <use xlink:href="#icon-letter"/>
+                </svg>
+                <span class="u-visually-hidden">Newsletter</span>
+              </a>
+            <li class="">
+              <a href="https://twitter.com/stefanjudis">
+                <svg aria-hidden="true">
+                  <use xlink:href="#icon-twitter"/>
+                </svg>
+                <span class="u-visually-hidden">Twitter</span>
+              </a>
+            <li class="">
+              <a href="/rss.xml">
+                <svg aria-hidden="true">
+                  <use xlink:href="#icon-rss"/>
+                </svg>
+                <span class="u-visually-hidden">RSS</span>
+              </a>
+          </ul>
+        </div>
+
+        <ul class="page-nav list-reset">
+          {%- for entry in navPages %}
+            <li>
+              <a href="{{ entry.url | url }}" {% if entry.url | url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+            </li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      <ul class="large-nav">
+        <li class="margin-right-m">
+          <a href="/" aria-label="Home" class="logo">
+            <svg>
+              <use xlink:href="#icon-heart"/>
+            </svg>
+          </a>
+          {%- for entry in navPages %}
+          <li class="margin-left-m">
+            <a href="{{ entry.url | url }}" {% if entry.url | url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+          </li>
+        {%- endfor %}
+        <li class="margin-left-auto">
+          <a href="/newsletter/">
+            <svg aria-hidden="true">
+              <use xlink:href="#icon-letter"/>
+            </svg>
+            <span class="u-visually-hidden">Newsletter</span>
+          </a>
+        <li class="margin-left-s">
+          <a href="https://twitter.com/stefanjudis">
+            <svg aria-hidden="true">
+              <use xlink:href="#icon-twitter"/>
+            </svg>
+            <span class="u-visually-hidden">Twitter</span>
+          </a>
+        <li class="margin-left-s">
+          <a href="/rss.xml">
+            <svg aria-hidden="true">
+              <use xlink:href="#icon-rss"/>
+            </svg>
+            <span class="u-visually-hidden">RSS</span>
+          </a>
+      </ul>
+    </nav>
   {% endmacro %}

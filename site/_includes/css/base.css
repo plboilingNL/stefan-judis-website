@@ -25,6 +25,8 @@ body {
   @media (min-width: 38em) {
     --grid-outer-padding: 2em;
   }
+  --grid-padding-overall: calc(2 * var(--grid-outer-padding))
+    var(--grid-outer-padding);
   --grid-gap: 2.5em;
 
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
