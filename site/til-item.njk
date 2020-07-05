@@ -27,21 +27,4 @@ eleventyComputed:
 {{ macros.entryVideo(post) }}
 {{ macros.shareButton(post, {url: page.url }) }}
 {{ macros.entryTopics(post, { includeHeadline: true }) }}
-
-<div>TODO Related posts</div>
-
-<div>
-  <ol>
-    <li>
-      {% if pagination.href.previous %}
-        <a href="{{ pagination.href.previous }}">Previous</a>
-      {% else %}Previous{% endif %}
-    </li>
-
-    <li>
-      {% if pagination.href.next %}
-        <a href="{{ pagination.href.next }}">Next</a>
-      {% else %}Next{% endif %}
-    </li>
-  </ol>
-</div>
+{{ macros.relatedArticles(contentful.articles, post, { includeHeadline: true }) }}

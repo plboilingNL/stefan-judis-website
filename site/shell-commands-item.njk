@@ -22,3 +22,4 @@ eleventyComputed:
 
 {{ macros.shareButton(command, {url: page.url }) }}
 {{ macros.entryTopics(command, { includeHeadline: true }) }}
+{{ macros.relatedArticles(contentful.articles, command, { includeHeadline: true }) }}

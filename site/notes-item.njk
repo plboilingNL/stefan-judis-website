@@ -23,3 +23,4 @@ eleventyComputed:
 {{ macros.highlightBox('note') }}
 {{ note.fields.body | markdown | safe }}
 {{ macros.entryTopics(note, { includeHeadline: true }) }}
+{{ macros.relatedArticles(contentful.articles, note, { includeHeadline: true }) }}

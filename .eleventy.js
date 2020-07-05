@@ -81,7 +81,9 @@ module.exports = function (eleventyConfig) {
   addFilter(config, eleventyConfig, 'overwrite-content-type');
   addFilter(config, eleventyConfig, 'domain');
   addFilter(config, eleventyConfig, 'entry-url');
+  addFilter(config, eleventyConfig, 'filter-articles-by-topics');
   addFilter(config, eleventyConfig, 'only-til-posts');
+  addFilter(config, eleventyConfig, 'limit');
   addFilter(config, eleventyConfig, 'markdown');
   addFilter(config, eleventyConfig, 'reading-time');
   addFilter(config, eleventyConfig, 'readable-date');

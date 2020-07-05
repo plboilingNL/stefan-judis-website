@@ -27,5 +27,4 @@ eleventyComputed:
 {{ post.fields.body | markdown | safe }}
 {{ macros.shareButton(post, {url: page.url }) }}
 {{ macros.entryTopics(post, { includeHeadline: true }) }}
-
-TODOOOO add more stuff!
+{{ macros.relatedArticles(contentful.articles, post, { includeHeadline: true }) }}

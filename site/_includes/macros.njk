@@ -101,146 +101,166 @@
           {{ icon('hash', { isHidden: true }) }}
           {{ entry.sys.contentType.sys.id | overwriteContentType }}
         </a>
-      {% endif %}
-      {%- for topic in entry.fields.topics %}
-        <li>
-          <a href="/topics/{{ topic.fields.slug }}/" class="pile">
-            {{ icon(topic.fields.slug, { isHidden: true }) }}
-            {{ topic.fields.title }}
-          </a>
-        {% endfor -%}
-    </ul>
-  {% endmacro %}
+      </li>
+    {% endif %}
+    {%- for topic in entry.fields.topics %}
+      <li>
+        <a href="/topics/{{ topic.fields.slug }}/" class="pile">
+          {{ icon(topic.fields.slug, { isHidden: true }) }}
+          {{ topic.fields.title }}
+        </a>
+      </li>
+    {% endfor -%}
+  </ul>
+{% endmacro %}
 
-  {#
+{#
+  ENTRY RELATED  ENTRIES
+  ##############################################################################
+#}
+{% macro relatedArticles(articles, entry, options) %}
+  {% if options.includeHeadline %}
+    <h3>Related Articles</h3>
+  {% endif %}
+  <ul class="">
+    {%- for article in articles | filterArticlesByTopics(entry.fields.topics) | limit(5) %}
+      <li>
+        <a href="{{ article | entryUrl }}">{{ article.fields.title }}</a>
+      </li>
+    {% endfor -%}
+  </ul>
+{% endmacro %}
+
+{#
   ENTRY TOPICS
   ##############################################################################
 #}
-  {% macro entryVideo(entry, options) %}
-    {% if entry.fields.video %}
-      <video controls="controls" preload="metadata" class="margin-top-l">
-        <source src="{{ entry.fields.videoWebm.fields.file.url }}" type="video/webm">
-        <source src="{{ entry.fields.video.fields.file.url }}" type="video/mp4">
-      </video>
-    {% endif %}
-  {% endmacro %}
+{% macro entryVideo(entry, options) %}
+  {% if entry.fields.video %}
+    <video controls="controls" preload="metadata" class="margin-top-l">
+      <source src="{{ entry.fields.videoWebm.fields.file.url }}" type="video/webm">
+      <source src="{{ entry.fields.video.fields.file.url }}" type="video/mp4">
+    </video>
+  {% endif %}
+{% endmacro %}
 
-  {#
+{#
   Highlight box
   ##############################################################################
 #}
-  {% macro highlightBox(type, options) %}
-    <p class="highlightBox margin-bottom-l">
-      {% if type == 'note' %}
-        {{ icon('megaphone', { isHidden: true }) }}
-        <span>
+{% macro highlightBox(type, options) %}
+  <p class="highlightBox margin-bottom-l">
+    {% if type == 'note' %}
+      {{ icon('megaphone', { isHidden: true }) }}
+      <span>
       This post is a quick <a href="/notes/">note</a>
       about cool things from the web.
     </span>
-      {% endif %}
+    {% endif %}
 
-      {% if type == 'til' %}
-        {{ icon('megaphone', { isHidden: true }) }}
-        <span>
+    {% if type == 'til' %}
+      {{ icon('megaphone', { isHidden: true }) }}
+      <span>
       This post is part of my <a href="/today-i-learned/">Today I learned</a>
       series in which I share all my learnings regarding web development.
     </span>
-      {% endif %}
+    {% endif %}
 
-      {% if type == 'repost' %}
-        {{ icon('attention', { isHidden: true }) }}
-        <span>This article was initially posted on <a href="{{ options.repostUrl }}">{{ options.reportUrl | domain }}</a>
-        </span>
-      {% endif %}
-    </p>
-  {% endmacro %}
+    {% if type == 'repost' %}
+      {{ icon('attention', { isHidden: true }) }}
+      <span>This article was initially posted on <a href="{{ options.repostUrl }}">{{ options.reportUrl | domain }}</a>
+      </span>
+    {% endif %}
+  </p>
+{% endmacro %}
 
-  {#
+{#
   SHARE BUTTON
   ##############################################################################
 #}
-  {% macro shareButton(entry, options) %}
-    <div class="margin-top-xl margin-bottom-xl text-align-c">
-      <a href="https://twitter.com/intent/tweet?text='{{ entry.fields.title }}'&url=https://www.stefanjudis.com{{ options.url }}&via=stefanjudis" target="_blank" rel="noopener noreferrer" class="btn u-marginBottomSmall">
-        {{ icon('share', { isHidden: true }) }} Share on Twitter
+{% macro shareButton(entry, options) %}
+  <div class="margin-top-xl margin-bottom-xl text-align-c">
+    <a href="https://twitter.com/intent/tweet?text='{{ entry.fields.title }}'&url=https://www.stefanjudis.com{{ options.url }}&via=stefanjudis" target="_blank" rel="noopener noreferrer" class="btn u-marginBottomSmall">
+      {{ icon('share', { isHidden: true }) }} Share on Twitter
       </a>
-    </div>
-  {% endmacro %}
+  </div>
+{% endmacro %}
 
-  {#
+{#
   Footer
   ##############################################################################
 #}
-  {% macro footer() %}
-    <footer class="footer">
-      <div class="container two-thirds">
+{% macro footer() %}
+  <footer class="footer">
+    <div class="container two-thirds">
+      <div>
         <div>
-          <div>
-            <h4>Get the latest content in your inbox</h4>
-          </div>
-          <div>
-            <h4>Say Hi!</h4>
-            {{ icon('twitter-mono', { isHidden: true }) }}
-            {{ icon('github', { isHidden: true }) }}
-            {{ icon('instagram', { isHidden: true }) }}
-          </div>
+          <h4>Get the latest content in your inbox</h4>
+
+        </div>
+        <div>
+          <h4>Say Hi!</h4>
+          {{ icon('twitter-mono', { isHidden: true }) }}
+          {{ icon('github', { isHidden: true }) }}
+          {{ icon('instagram', { isHidden: true }) }}
         </div>
       </div>
-      <script>
-        // shamelessly stolen from Tim Kadlec
-        window.onload = function () {
-          setTimeout(function () {
-            window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
-            var t = performance.timing || {};
+    </div>
+    <script>
+      // shamelessly stolen from Tim Kadlec
+      window.onload = function () {
+        setTimeout(function () {
+          window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
+          var t = performance.timing || {};
 
-            if (!t) {
-              return;
-            }
-            var start = t.navigationStart;
-            var end = t.loadEventEnd;
-            var loadTime = (end - start) / 1000;
-            var numberContainer = document.querySelector('.load-time');
-            numberContainer.innerHTML = loadTime + 's';
-          }, 0);
-        };
-      </script>
-      <div class="container text-align-c">
-        <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>) and loaded in <span class="load-time">...</span>. </p>
-        <p class="no-margin">© 2020 Copyright Stefan Judis. All rights reserved.</p>
-      </div>
-    </footer>
-  {% endmacro %}
+          if (!t) {
+            return;
+          }
+          var start = t.navigationStart;
+          var end = t.loadEventEnd;
+          var loadTime = (end - start) / 1000;
+          var numberContainer = document.querySelector('.load-time');
+          numberContainer.innerHTML = loadTime + 's';
+        }, 0);
+      };
+    </script>
+    <div class="container text-align-c">
+      <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>) and loaded in <span class="load-time">...</span>. </p>
+      <p class="no-margin">© 2020 Copyright Stefan Judis. All rights reserved.</p>
+    </div>
+  </footer>
+{% endmacro %}
 
-  {#
+{#
   Collection pagination
   ##############################################################################
 #}
-  {% macro collectionPagination(pagination, options) %}
-    <nav class="margin-top-xl" aria-labelledby="page-pagination">
-      <h3 id="page-pagination" class="u-visually-hidden">More {{ options.type }}</h3>
-      <ol class="list-pagination">
-        <li>
-          {% if pagination.href.previous %}
-            <a href="{{ pagination.href.previous }}" class="btn">Previous page</a>
-          {% else %}Previous page{% endif %}
-        </li>
-        <li>
-          {% if pagination.href.next %}
-            <a href="{{ pagination.href.next }}" class="btn">Next page</a>
-          {% else %}Next page{% endif %}
-        </li>
-      </ol>
-    </nav>
-  {% endmacro %}
+{% macro collectionPagination(pagination, options) %}
+  <nav class="margin-top-xl" aria-labelledby="page-pagination">
+    <h3 id="page-pagination" class="u-visually-hidden">More {{ options.type }}</h3>
+    <ol class="list-pagination">
+      <li>
+        {% if pagination.href.previous %}
+          <a href="{{ pagination.href.previous }}" class="btn">Previous page</a>
+        {% else %}Previous page{% endif %}
+      </li>
+      <li>
+        {% if pagination.href.next %}
+          <a href="{{ pagination.href.next }}" class="btn">Next page</a>
+        {% else %}Next page{% endif %}
+      </li>
+    </ol>
+  </nav>
+{% endmacro %}
 
-  {#
+{#
   Grid image
   ##############################################################################
 #}
-  {% macro gridImage(entry, options) %}
-    <figure class="sqip-image {{ options.class }}" style="padding-top: {{ options.ratio * 100 }}%;">
-      {{ options._sqip[entry.sys.id].svg | safe }}
-      <img
+{% macro gridImage(entry, options) %}
+  <figure class="sqip-image {{ options.class }}" style="padding-top: {{ options.ratio * 100 }}%;">
+    {{ options._sqip[entry.sys.id].svg | safe }}
+    <img
           alt="{{ options.alt }}"
           width="{{1000}}"
           height="{{1000 * options.ratio}}"
@@ -259,135 +279,135 @@
           class="box-shadow-s margin-bottom-m"
           onload="this.classList.add('kf-fade-in')"
           >
-    </figure>
-  {% endmacro %}
+  </figure>
+{% endmacro %}
 
-  {#
+{#
   Navigation
   ##############################################################################
 #}
-  {% macro navigation(collections, page) %}
-    <nav class="navigation">
-      {% set navPages = collections.all | eleventyNavigation %}
+{% macro navigation(collections, page) %}
+  <nav class="navigation">
+    {% set navPages = collections.all | eleventyNavigation %}
 
-      <div class="small-nav">
-        <div class="logo-nav">
-          <a href="/" aria-label="Home" class="logo">
-            <svg>
-              <use xlink:href="#icon-heart"/>
-            </svg>
-          </a>
+    <div class="small-nav">
+      <div class="logo-nav">
+        <a href="/" aria-label="Home" class="logo">
+          <svg>
+            <use xlink:href="#icon-heart"/>
+          </svg>
+        </a>
 
-          <ul class="social-nav">
-            <li class="">
-              <a href="/newsletter/">
-                <svg aria-hidden="true">
-                  <use xlink:href="#icon-letter"/>
-                </svg>
-                <span class="u-visually-hidden">Newsletter</span>
-              </a>
-            <li class="">
-              <a href="https://twitter.com/stefanjudis">
-                <svg aria-hidden="true">
-                  <use xlink:href="#icon-twitter"/>
-                </svg>
-                <span class="u-visually-hidden">Twitter</span>
-              </a>
-            <li class="">
-              <a href="/rss.xml">
-                <svg aria-hidden="true">
-                  <use xlink:href="#icon-rss"/>
-                </svg>
-                <span class="u-visually-hidden">RSS</span>
-              </a>
-          </ul>
-        </div>
+        <ul class="social-nav">
+          <li class="">
+            <a href="/newsletter/">
+              <svg aria-hidden="true">
+                <use xlink:href="#icon-letter"/>
+              </svg>
+              <span class="u-visually-hidden">Newsletter</span>
+            </a>
+          <li class="">
+            <a href="https://twitter.com/stefanjudis">
+              <svg aria-hidden="true">
+                <use xlink:href="#icon-twitter"/>
+              </svg>
+              <span class="u-visually-hidden">Twitter</span>
+            </a>
+          <li class="">
+            <a href="/rss.xml">
+              <svg aria-hidden="true">
+                <use xlink:href="#icon-rss"/>
+              </svg>
+              <span class="u-visually-hidden">RSS</span>
+            </a>
+        </ul>
+      </div>
 
-        <div hidden data-menu-button>
+      <div hidden data-menu-button>
           Menu
         </div>
 
-        <ul id="page-nav" class="page-nav is-open" data-menu>
-          {%- for entry in navPages %}
-            <li>
-              <a href="{{ entry.url | url }}" {% if entry.url | url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
-            </li>
-          {%- endfor %}
-        </ul>
-
-        <script>
-          (function () {
-            const fakeButton = document.querySelector('[data-menu-button]');
-            const menu = document.querySelector('[data-menu]');
-
-            const toggleMenuButton = document.createElement('button');
-            toggleMenuButton.textContent = fakeButton.textContent;
-            toggleMenuButton.setAttribute('aria-expanded', false);
-            toggleMenuButton.setAttribute('aria-controls', 'page-nav');
-            toggleMenuButton
-              .classList
-              .add('nav-button');
-
-            fakeButton
-              .parentNode
-              .replaceChild(toggleMenuButton, fakeButton);
-
-            let menuIsOpen = false;
-
-            toggleMenuButton.addEventListener('click', function () {
-              let expanded = this.getAttribute('aria-expanded') === 'true' || false;
-              this.setAttribute('aria-expanded', !expanded);
-              this.innerText = menuIsOpen
-                ? 'Open menu'
-                : 'Close menu'
-              menu
-                .classList
-                .toggle('is-open');
-
-              menuIsOpen = !menuIsOpen;
-            });
-
-            menu
-              .classList
-              .toggle('is-open');
-            toggleMenuButton.innerText = 'Open menu'
-          })()
-        </script>
-      </div>
-
-      <ul class="large-nav">
-        <li class="margin-right-m">
-          <a href="/" aria-label="Home" class="logo">
-            <svg>
-              <use xlink:href="#icon-heart"/>
-            </svg>
-          </a>
-          {%- for entry in navPages %}
-          <li class="margin-left-m">
+      <ul id="page-nav" class="page-nav is-open" data-menu>
+        {%- for entry in navPages %}
+          <li>
             <a href="{{ entry.url | url }}" {% if entry.url | url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
           </li>
         {%- endfor %}
-        <li class="margin-left-auto">
-          <a href="/newsletter/">
-            <svg aria-hidden="true">
-              <use xlink:href="#icon-letter"/>
-            </svg>
-            <span class="u-visually-hidden">Newsletter</span>
-          </a>
-        <li class="margin-left-s">
-          <a href="https://twitter.com/stefanjudis">
-            <svg aria-hidden="true">
-              <use xlink:href="#icon-twitter"/>
-            </svg>
-            <span class="u-visually-hidden">Twitter</span>
-          </a>
-        <li class="margin-left-s">
-          <a href="/rss.xml">
-            <svg aria-hidden="true">
-              <use xlink:href="#icon-rss"/>
-            </svg>
-            <span class="u-visually-hidden">RSS</span>
-          </a>
       </ul>
-    </nav>
-  {% endmacro %}
+
+      <script>
+        (function () {
+          const fakeButton = document.querySelector('[data-menu-button]');
+          const menu = document.querySelector('[data-menu]');
+
+          const toggleMenuButton = document.createElement('button');
+          toggleMenuButton.textContent = fakeButton.textContent;
+          toggleMenuButton.setAttribute('aria-expanded', false);
+          toggleMenuButton.setAttribute('aria-controls', 'page-nav');
+          toggleMenuButton
+            .classList
+            .add('nav-button');
+
+          fakeButton
+            .parentNode
+            .replaceChild(toggleMenuButton, fakeButton);
+
+          let menuIsOpen = false;
+
+          toggleMenuButton.addEventListener('click', function () {
+            let expanded = this.getAttribute('aria-expanded') === 'true' || false;
+            this.setAttribute('aria-expanded', !expanded);
+            this.innerText = menuIsOpen
+              ? 'Open menu'
+              : 'Close menu'
+            menu
+              .classList
+              .toggle('is-open');
+
+            menuIsOpen = !menuIsOpen;
+          });
+
+          menu
+            .classList
+            .toggle('is-open');
+          toggleMenuButton.innerText = 'Open menu'
+        })()
+      </script>
+    </div>
+
+    <ul class="large-nav">
+      <li class="margin-right-m">
+        <a href="/" aria-label="Home" class="logo">
+          <svg>
+            <use xlink:href="#icon-heart"/>
+          </svg>
+        </a>
+        {%- for entry in navPages %}
+        <li class="margin-left-m">
+          <a href="{{ entry.url | url }}" {% if entry.url | url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a>
+        </li>
+      {%- endfor %}
+      <li class="margin-left-auto">
+        <a href="/newsletter/">
+          <svg aria-hidden="true">
+            <use xlink:href="#icon-letter"/>
+          </svg>
+          <span class="u-visually-hidden">Newsletter</span>
+        </a>
+      <li class="margin-left-s">
+        <a href="https://twitter.com/stefanjudis">
+          <svg aria-hidden="true">
+            <use xlink:href="#icon-twitter"/>
+          </svg>
+          <span class="u-visually-hidden">Twitter</span>
+        </a>
+      <li class="margin-left-s">
+        <a href="/rss.xml">
+          <svg aria-hidden="true">
+            <use xlink:href="#icon-rss"/>
+          </svg>
+          <span class="u-visually-hidden">RSS</span>
+        </a>
+    </ul>
+  </nav>
+{% endmacro %}

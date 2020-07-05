@@ -1,5 +1,5 @@
 module.exports = ({ config, eleventyConfig, filterName }) => {
-  eleventyConfig.addNunjucksFilter(filterName, entry => {
+  eleventyConfig.addNunjucksFilter(filterName, (entry) => {
     const entryIsLandingPage =
       entry.sys.contentType.sys.id === process.env.CTF_LANDING_PAGE_ID;
 

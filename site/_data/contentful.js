@@ -10,14 +10,14 @@ const {
   CTF_SHELL_COMMAND_ID,
   CTF_NOTE_ID,
   CTF_TOPIC_ID,
-  CTF_NEWSLETTER_ID
+  CTF_NEWSLETTER_ID,
 } = process.env;
 
-const isNotNewsletter = entry => entry.sys.id !== CTF_NEWSLETTER_ID;
+const isNotNewsletter = (entry) => entry.sys.id !== CTF_NEWSLETTER_ID;
 const sortByDate = (a, b) =>
   new Date(a.fields.date) > new Date(b.fields.date) ? -1 : 1;
 
-module.exports = async function() {
+module.exports = async function () {
   const [
     posts,
     tilPosts,
@@ -27,49 +27,50 @@ module.exports = async function() {
     resources,
     shellCommands,
     notes,
-    topics
+    topics,
   ] = await Promise.all([
     client.getEntries({
       content_type: CTF_POST_ID,
       limit: 1000,
-      order: '-fields.date'
+      order: '-fields.date',
     }),
     client.getEntries({
       content_type: CTF_TIL_ID,
       limit: 1000,
-      order: '-fields.date'
+      order: '-fields.date',
     }),
     client.getEntries({
       content_type: CTF_PROJECT_ID,
-      limit: 1000
+      limit: 1000,
     }),
     client.getEntries({
       content_type: CTF_SCREENCAST_ID,
-      limit: 1000
+      limit: 1000,
     }),
     client.getEntries({
       content_type: CTF_TALK_ID,
-      limit: 1000
+      limit: 1000,
+      order: '-fields.date',
     }),
     client.getEntries({
       content_type: CTF_LANDING_PAGE_ID,
       limit: 1000,
-      order: 'fields.title'
+      order: 'fields.title',
     }),
     client.getEntries({
       content_type: CTF_SHELL_COMMAND_ID,
       limit: 1000,
-      order: '-fields.date'
+      order: '-fields.date',
     }),
     client.getEntries({
       content_type: CTF_NOTE_ID,
-      limit: 1000
+      limit: 1000,
     }),
     client.getEntries({
       content_type: CTF_TOPIC_ID,
       limit: 1000,
-      order: 'fields.title'
-    })
+      order: 'fields.title',
+    }),
   ]);
 
   // TODO do this for all calls
@@ -81,10 +82,10 @@ module.exports = async function() {
 
   const allEntriesGroupedByTopic = (
     await Promise.all(
-      topics.items.map(topic =>
+      topics.items.map((topic) =>
         client.getEntries({
           links_to_entry: topic.sys.id,
-          limit: 1000
+          limit: 1000,
         })
       )
     )
@@ -98,7 +99,7 @@ module.exports = async function() {
       ...posts.items,
       ...tilPosts.items,
       ...notes.items,
-      ...shellCommands.items
+      ...shellCommands.items,
     ].sort(sortByDate),
     posts: posts.items,
     tilPosts: tilPosts.items,
@@ -109,6 +110,6 @@ module.exports = async function() {
     shellCommands: shellCommands.items,
     notes: notes.items,
     topics: topics.items.filter(isNotNewsletter),
-    allEntriesGroupedByTopic
+    allEntriesGroupedByTopic,
   };
 };
