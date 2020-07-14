@@ -16,6 +16,8 @@
       <meta property="twitter:image" content="{{ socialUrl }}">
     {% endif %}
 
+    <script src="https://unpkg.com/web-vitals-element/dist/web-vitals-element.js" defer></script>
+
     <!-- TODO add json ld -->
     <link rel="icon" href="/favicon.svg">
     <link rel="mask-icon" href="/favicon.svg" color="#ffffff">
@@ -104,6 +106,7 @@
           </aside>
         {% endif %}
       </div>
+      <web-vitals/>
     </div>
 
     {{ macros.footer() }}
