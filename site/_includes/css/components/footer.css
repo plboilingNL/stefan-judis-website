@@ -1,6 +1,6 @@
 .footer {
   background: var(--grey-brighter);
-  padding: 1em 0;
+  padding: 1em 0 0;
 
   a {
     text-decoration: underline;

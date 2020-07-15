@@ -206,28 +206,11 @@
         </div>
       </div>
     </div>
-    <script>
-      // shamelessly stolen from Tim Kadlec
-      window.onload = function () {
-        setTimeout(function () {
-          window.performance = window.performance || window.mozPerformance || window.msPerformance || window.webkitPerformance || {};
-          var t = performance.timing || {};
-
-          if (!t) {
-            return;
-          }
-          var start = t.navigationStart;
-          var end = t.loadEventEnd;
-          var loadTime = (end - start) / 1000;
-          var numberContainer = document.querySelector('.load-time');
-          numberContainer.innerHTML = loadTime + 's';
-        }, 0);
-      };
-    </script>
     <div class="container text-align-c">
-      <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>) and loaded in <span class="load-time">...</span>. </p>
+      <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>).</p>
       <p class="no-margin">© 2020 Copyright Stefan Judis. All rights reserved.</p>
     </div>
+    <web-vitals></web-vitals>
   </footer>
 {% endmacro %}
 
