@@ -1,7 +1,5 @@
 web-vitals {
   display: block;
-  background: var(--grey-very-dark);
-  color: #fff;
   padding: 1em;
 
   dl {

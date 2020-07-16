@@ -20,6 +20,7 @@
 @import 'markdown.css';
 @import 'pile.css';
 @import 'util.css';
+@import 'util/color.css';
 @import 'util/padding.css';
 @import 'util/margin.css';
 @import 'util/text.css';
@@ -46,8 +47,13 @@
 }
 
 .icon {
-  width: 1em;
-  height: 1em;
+  --icon-size: 1em;
+  width: var(--icon-size);
+  height: var(--icon-size);
   margin-right: 0.5em;
   margin-bottom: -0.125em;
+
+  &.is-large {
+    --icon-size: 2.5em;
+  }
 }

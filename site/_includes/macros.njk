@@ -81,7 +81,7 @@
   ##############################################################################
 #}
 {% macro icon(id, options) %}
-  <svg class="icon" {% if options.isHidden %}aria-hidden="true"{% endif %}>
+  <svg class="icon {% if options.isLarge %}is-large{% endif %}" {% if options.isHidden %}aria-hidden="true"{% endif %}>
     <use xlink:href="#icon-{{ id }}"/>
   </svg>
 {% endmacro %}
@@ -198,19 +198,24 @@
           <h4>Get the latest content in your inbox</h4>
 
         </div>
-        <div>
-          <h4>Say Hi!</h4>
-          {{ icon('twitter-mono', { isHidden: true }) }}
-          {{ icon('github', { isHidden: true }) }}
-          {{ icon('instagram', { isHidden: true }) }}
-        </div>
+
+        <h4 class="o-headline-4 text-align-c">Say Hi in the cyberwebs!</h4>
+        <a href="https://twitter.com/stefanjudis/">
+          Twitter
+        </a>
+        <a href="https://github.com/stefanjudis/">
+          GitHub
+        </a>
+        <a href="https://instagram.com/stefans_little_planet/">
+          Instagram
+        </a>
       </div>
     </div>
-    <div class="container text-align-c">
+    <web-vitals></web-vitals>
+    <div class="padding-m text-align-c bg-darkgrey c-white">
       <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>).</p>
       <p class="no-margin">© 2020 Copyright Stefan Judis. All rights reserved.</p>
     </div>
-    <web-vitals></web-vitals>
   </footer>
 {% endmacro %}
 

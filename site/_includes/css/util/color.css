@@ -1,0 +1,7 @@
+.bg-darkgrey {
+  background: var(--grey-very-dark);
+}
+
+.c-white {
+  color: #fff;
+}
