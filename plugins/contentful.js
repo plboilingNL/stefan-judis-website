@@ -6,7 +6,7 @@ if (process.browser) {
   resolveResponse = resolveResponse.default;
 }
 
-const normalizeEntry = entry => {
+const normalizeEntry = (entry) => {
   return typeof entry === 'object'
     ? Object.entries(entry.fields).reduce(
         (acc, [key, value]) => {
@@ -30,14 +30,14 @@ const normalizeEntry = entry => {
             ? { _ctId: entry.sys.contentType.sys.id }
             : {}),
           _updatedAt: entry.sys.updatedAt,
-          _revision: entry.sys.revision
+          _revision: entry.sys.revision,
         }
       )
     : entry;
 };
 
-const myFetch = async url => {
-  return resolveResponse(await fetch(url).then(res => res.json())).map(
+const myFetch = async (url) => {
+  return resolveResponse(await fetch(url).then((res) => res.json())).map(
     normalizeEntry
   );
 };
@@ -55,7 +55,7 @@ export default ({ app, env, store }) => {
     environment = 'master';
   }
 
-  const getEntries = query => {
+  const getEntries = (query) => {
     return myFetch(
       `https://${host}/spaces/${space}/environments/${environment}/entries?${query}&limit=1000&access_token=${accessToken}`
     );
@@ -71,18 +71,18 @@ export default ({ app, env, store }) => {
     resources,
     screencasts,
     talks,
-    til
+    til,
   } = store.state;
 
   app.contentful = {
     async getMe() {
       if (!me.entry._id) {
         return getEntries(`sys.id=${env.CTF_ME_ID}`)
-          .then(items => {
+          .then((items) => {
             store.commit('me/setMe', items[0]);
             return items[0];
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return me.entry;
@@ -91,11 +91,11 @@ export default ({ app, env, store }) => {
     async getPuppies() {
       if (!puppies.entry._id) {
         return getEntries(`sys.id=${env.CTF_PUPPY_COLLECTION_ID}`)
-          .then(items => {
+          .then((items) => {
             store.commit('puppies/setPuppies', items[0]);
             return items[0];
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return me.entry;
@@ -110,11 +110,11 @@ export default ({ app, env, store }) => {
             +new Date() - 1000 * 60 * 60 * 24
           ).toISOString()}`
         )
-          .then(items => {
+          .then((items) => {
             store.commit('events/setFutureList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return events.futureList;
@@ -127,11 +127,11 @@ export default ({ app, env, store }) => {
             env.CTF_EVENT_ID
           }&order=-fields.end&fields.state[in]=attending,accepted,teaching&fields.end[lte]=${new Date().toISOString()}&fields.state=accepted`
         )
-          .then(items => {
+          .then((items) => {
             store.commit('events/setPastList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return events.pastList;
@@ -140,27 +140,27 @@ export default ({ app, env, store }) => {
     async getLandingpages() {
       if (!landingpages.list.length) {
         return getEntries(`content_type=${env.CTF_LANDING_PAGE_ID}`)
-          .then(items => {
+          .then((items) => {
             store.commit('landingpages/setList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return landingpages.list;
     },
 
     async getPost(slug) {
-      const post = posts.list.find(post => post.slug === slug && post.body);
+      const post = posts.list.find((post) => post.slug === slug && post.body);
 
       if (!post) {
         return getEntries(`content_type=${env.CTF_POST_ID}&fields.slug=${slug}`)
-          .then(items => {
+          .then((items) => {
             store.commit('posts/setItem', items[0]);
             store.commit('posts/setActiveWithSlug', slug);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       } else {
         store.commit('posts/setActiveWithSlug', post.slug);
       }
@@ -173,12 +173,12 @@ export default ({ app, env, store }) => {
         return getEntries(
           `content_type=${env.CTF_POST_ID}&order=-fields.date&select=fields.date,fields.slug,fields.title,fields.excerpt,fields.topics,sys`
         )
-          .then(items => {
+          .then((items) => {
             store.commit('posts/setList', items);
             store.commit('posts/setFullyLoaded', true);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return posts.list;
@@ -189,12 +189,12 @@ export default ({ app, env, store }) => {
         return getEntries(
           `content_type=${env.CTF_PROJECT_ID}&select=fields.title,fields.description,fields.topics,fields.url,sys`
         )
-          .then(items => {
+          .then((items) => {
             store.commit('projects/setList', items);
             // store.commit('posts/setAllFetched', true);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return posts.list;
@@ -205,11 +205,11 @@ export default ({ app, env, store }) => {
         return getEntries(
           `content_type=${env.CTF_LANDING_PAGE_ID}&fields.isResource=true&order=fields.title`
         )
-          .then(items => {
+          .then((items) => {
             store.commit('resources/setList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return resources.list;
@@ -218,13 +218,13 @@ export default ({ app, env, store }) => {
     async getScreencasts() {
       if (!screencasts.list.length) {
         return getEntries(
-          `content_type=${env.CTF_SCREENCAST_ID}&order=-fields.publishDate`
+          `content_type=${env.CTF_SCREENCAST_ID}&order=-fields.date`
         )
-          .then(items => {
+          .then((items) => {
             store.commit('screencasts/setList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return screencasts.list;
@@ -233,11 +233,11 @@ export default ({ app, env, store }) => {
     async getTalks() {
       if (!talks.list.length) {
         return getEntries(`content_type=${env.CTF_TALK_ID}&order=-fields.date`)
-          .then(items => {
+          .then((items) => {
             store.commit('talks/setList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return talks.list;
@@ -246,14 +246,14 @@ export default ({ app, env, store }) => {
     async getTil() {
       if (!til.list.length) {
         return getEntries(`content_type=${env.CTF_TIL_ID}&order=-fields.date`)
-          .then(items => {
+          .then((items) => {
             store.commit('til/setList', items);
             return items;
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
 
       return til.list;
-    }
+    },
   };
 };

@@ -1,20 +1,20 @@
 <template>
   <div class="c-screencast u-flex-column u-height-100">
     <div class="u-marginBottomMedium" v-if="showImage">
-      <lazy-image :asset="screencast.coverImage" :ratio="0.5625"/>
+      <lazy-image :asset="screencast.coverImage" :ratio="0.5625" />
       <div class="c-screencast__date c-screencast__Imagedate">
-        <pretty-date :date="screencast.publishDate"></pretty-date>
+        <pretty-date :date="screencast.date"></pretty-date>
       </div>
     </div>
 
-    <pretty-date v-if="!showImage" class="c-screencast__date" :date="screencast.publishDate"></pretty-date>
+    <pretty-date v-if="!showImage" class="c-screencast__date" :date="screencast.date"></pretty-date>
     <DynamicHeadline
       :level="3"
       :url="screencast.url"
       :id="screencast.title | idAlize"
     >{{ screencast.title }}</DynamicHeadline>
     <div class="u-marginTopAuto">
-      <Topics :topics="screencast.topics"/>
+      <Topics :topics="screencast.topics" />
     </div>
   </div>
 </template>
