@@ -114,7 +114,7 @@
       const loadedLinks = new Set();
 
       [...document.querySelectorAll('a')]
-        .filter(({href}) => href.startsWith('http://localhost') || href.startsWith('https://www.stefanjudis.com'))
+        .filter(({href}) => href.startsWith('http://localhost') || href.startsWith('https://www.stefanjudis.com') || href.includes('stefanjudis.netlify.app'))
         .forEach(link => link.addEventListener('mouseenter', (e) => {
           if (!loadedLinks.has(e.target)) {
             loadedLinks.add(e.target);
