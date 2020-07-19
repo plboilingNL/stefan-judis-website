@@ -109,5 +109,24 @@
     </div>
 
     {{ macros.footer() }}
+
+    <script>
+      const loadedLinks = new Set();
+
+      [...document.querySelectorAll('a')]
+        .filter(({href}) => href.startsWith('http://localhost') || href.startsWith('https://www.stefanjudis.com'))
+        .forEach(link => link.addEventListener('mouseenter', (e) => {
+          if (!loadedLinks.has(e.target)) {
+            loadedLinks.add(e.target);
+            const link = document.createElement('link')
+            link.rel = 'prefetch'
+            link.href = e.target.href;
+
+            document
+              .head
+              .appendChild(link);
+          }
+        }))
+    </script>
   </body>
 </html>
