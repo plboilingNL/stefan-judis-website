@@ -192,30 +192,48 @@
   Footer
   ##############################################################################
 #}
-{% macro footer() %}
+{% macro footer(me) %}
   <footer class="footer">
     <div class="container two-thirds">
       <div>
-        <div>
-          <h4>Get the latest content in your inbox</h4>
-
+        <div class="d-flex">
+          <img class="b-r-50 s-square margin-right-m"
+            srcset="{{me.fields.profilePhoto.fields.file.url}}?w=100 1x,
+            {{me.fields.profilePhoto.fields.file.url}}?w=200 2x"
+            src="{{me.fields.profilePhoto.fields.file.url}}" style="--s-size: 7.5em;">
+          <div>
+            {{me.fields.biography | markdown | safe}}
+            <div>
+              <a class="btn" href="https://twitter.com/stefanjudis/">
+                Twitter
+              </a>
+              <a class="btn" href="https://github.com/stefanjudis/">
+                GitHub
+              </a>
+              <a class="btn" href="https://instagram.com/stefans_little_planet/">
+                Instagram
+              </a>
+              <a class="btn" href="https://www.youtube.com/channel/UCLpT9xDn3WQ24wfVCkAZU6A">
+                YouTube
+              </a>
+            </div>
+          </div>
         </div>
-        <iframe src="https://stefanjudis.substack.com/embed" width="480" height="320" frameborder="0" scrolling="no"></iframe>
-        <h4 class="o-headline-4 text-align-c">Say Hi in the cyberwebs!</h4>
-        <a href="https://twitter.com/stefanjudis/">
-          Twitter
-        </a>
-        <a href="https://github.com/stefanjudis/">
-          GitHub
-        </a>
-        <a href="https://instagram.com/stefans_little_planet/">
-          Instagram
-        </a>
+        <form name="contact" action="/pages/success" method="POST" data-netlify="true">
+          <h4>Get the latest content in your inbox</h4>
+          <p>
+            <label>Your Email: <input type="email" name="email"/></label>
+          </p>
+          <p>
+            <button class="btn" type="submit">Send</button>
+          </p>
+        </form>
       </div>
     </div>
-    <web-vitals></web-vitals>
+
+    <web-vitals class="bg-grey-brighter"></web-vitals>
     <div class="padding-m text-align-c bg-darkgrey c-white">
-      <p class="no-margin">This page is built with the CEN stack (<a href="https://www.contentful.com">Contentful</a>, <a href="https://www.11ty.dev/">Eleventy</a> &amp; <a href="https://www.netlify.com">Netlify</a>).</p>
+      <p class="no-margin">This page is built with the CEN stack (<a class="c-white" href="https://www.contentful.com">Contentful</a>, <a class="c-white" href="https://www.11ty.dev/">Eleventy</a> &amp; <a class="c-white" href="https://www.netlify.com">Netlify</a>).</p>
       <p class="no-margin">© 2020 Copyright Stefan Judis. All rights reserved.</p>
     </div>
   </footer>

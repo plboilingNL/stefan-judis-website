@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+
+require('dotenv').config();
+const { query } = require('../lib/contentful');
+
+const projectQuery = `
+  {
+    projectCollection{
+      items {
+        title
+        url
+        githubUrl
+      }
+    }
+  }
+`;
+
+const statsQuery = `
+query {
+  repository(owner: "random-mdn", name: "random-mdn-serverless") {
+    stargazers(first:1) {
+      totalCount
+    }
+
+    forks(first:1) {
+      totalCount
+    }
+  }
+}`;
+
+async function getGitHubProjects() {
+  const { data } = await query(projectQuery);
+  return data.projectCollection.items.filter((project) =>
+    project.githubUrl?.startsWith('https://github.com')
+  );
+}
+
+async function getData() {
+  try {
+    const projects = await getGitHubProjects();
+    console.log(projects);
+  } catch (e) {
+    console.error(e);
+    process.exit(1);
+  }
+}
+
+// How to debug Node.js in 2020
+// set a breakpoint
+// open Node.js debug terminal
+// run script
+getData();

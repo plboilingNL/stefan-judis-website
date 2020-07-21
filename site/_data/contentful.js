@@ -8,6 +8,7 @@ const {
   CTF_TALK_ID,
   CTF_LANDING_PAGE_ID,
   CTF_SHELL_COMMAND_ID,
+  CTF_ME_ID,
   CTF_NOTE_ID,
   CTF_TOPIC_ID,
   CTF_NEWSLETTER_ID,
@@ -26,6 +27,7 @@ module.exports = async function () {
     talks,
     resources,
     shellCommands,
+    me,
     notes,
     topics,
   ] = await Promise.all([
@@ -62,6 +64,10 @@ module.exports = async function () {
       content_type: CTF_SHELL_COMMAND_ID,
       limit: 1000,
       order: '-fields.date',
+    }),
+    client.getEntries({
+      'sys.id': CTF_ME_ID,
+      limit: 1000,
     }),
     client.getEntries({
       content_type: CTF_NOTE_ID,
@@ -109,6 +115,7 @@ module.exports = async function () {
     talks: talks.items,
     resources: resources.items,
     shellCommands: shellCommands.items,
+    me: me.items[0],
     notes: notes.items,
     topics: topics.items.filter(isNotNewsletter),
     allEntriesGroupedByTopic,

@@ -33,7 +33,7 @@ async function getData() {
       metrics: 'ga:uniquePageviews',
       dimensions: 'ga:pagePath',
       sort: '-ga:uniquePageviews',
-      'max-results': '10'
+      'max-results': '15',
     });
 
     logSuccess('Analytics data fetched');
@@ -46,7 +46,7 @@ async function getData() {
           path.match(/^\/(blog|today-i-learned)\/.+?\/$/g)
         )
         .map(async ([path]) => {
-          const getContentTypeId = slug => {
+          const getContentTypeId = (slug) => {
             return Object.entries(contentTypeSlugs).find(
               ([, contentTypeSlug]) => contentTypeSlug === slug
             )[0];
@@ -55,7 +55,7 @@ async function getData() {
           const [, contentTypeSlug, entrySlug] = path.split('/');
           const { items } = await client.getEntries({
             content_type: getContentTypeId(contentTypeSlug),
-            'fields.slug': entrySlug
+            'fields.slug': entrySlug,
           });
 
           return items[0];
@@ -67,7 +67,7 @@ async function getData() {
 
     writeData(
       join('..', 'site', '_data', '_popularPosts.json'),
-      JSON.stringify(pages)
+      JSON.stringify(pages.slice(0, 10))
     );
 
     logSuccess('JS file written');

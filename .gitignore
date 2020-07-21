@@ -11,3 +11,6 @@ site/_data/_sqip.json
 
 # mac shizzle
 .DS_Store
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,4 @@
+.s-square {
+  width: var(--s-size);
+  height: var(--s-size);
+}
