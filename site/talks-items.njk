@@ -13,3 +13,9 @@ hasNarrowLayout: true
 eleventyComputed:
   title: "{{ talk.fields.title }}"
 ---
+
+{% import 'macros.njk' as macros %}
+
+{{ macros.entryDetails(talk) }}
+
+{{ macros.entryTopics(talk, { includeHeadline: true }) }}

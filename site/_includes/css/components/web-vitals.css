@@ -15,5 +15,6 @@ web-vitals {
     margin: 0;
     font-size: 1.375em;
     font-weight: 800;
+    color: var(--c-text-catchy);
   }
 }

@@ -16,3 +16,6 @@ eleventyComputed:
 
 {% import 'macros.njk' as macros %}
 
+{{ macros.entryDetails(project) }}
+
+{{ macros.entryTopics(project, { includeHeadline: true }) }}

@@ -46,6 +46,7 @@ module.exports = async function () {
     client.getEntries({
       content_type: CTF_SCREENCAST_ID,
       limit: 1000,
+      order: '-fields.date',
     }),
     client.getEntries({
       content_type: CTF_TALK_ID,
