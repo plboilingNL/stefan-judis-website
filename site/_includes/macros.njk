@@ -121,16 +121,20 @@
   ##############################################################################
 #}
 {% macro relatedArticles(articles, entry, options) %}
-  {% if options.includeHeadline %}
-    <h3>Related Articles</h3>
+  {% set relatedArticles = articles | getRelatedArticles(entry) | limit(5) %}
+
+  {% if relatedArticles.length %}
+    {% if options.includeHeadline %}
+      <h3>Related Articles</h3>
+    {% endif %}
+    <ul class="">
+      {%- for article in relatedArticles %}
+        <li>
+          <a href="{{ article | entryUrl }}">{{ article.fields.title }}</a>
+        </li>
+      {% endfor -%}
+    </ul>
   {% endif %}
-  <ul class="">
-    {%- for article in articles | filterArticlesByTopics(entry.fields.topics) | limit(5) %}
-      <li>
-        <a href="{{ article | entryUrl }}">{{ article.fields.title }}</a>
-      </li>
-    {% endfor -%}
-  </ul>
 {% endmacro %}
 
 {#
