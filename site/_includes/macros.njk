@@ -67,7 +67,9 @@
       <dt>Updated at</dt>
       <dd class="u-color-catchy">
         <time datetime="{{ entry.sys.updatedAt }}" class="c-prettyDate">
-          {{ entry.sys.updatedAt | readableDate }}
+          <time-ago datetime="{{entry.sys.updatedAt}}">
+            {{ entry.sys.updatedAt | readableDate }}
+          </time-ago>
         </time>
       </dd>
     </div>
@@ -104,7 +106,11 @@
     {% if entry.fields.updatedAt %}
       <div>
         <dt>Last updated</dt>
-        <dd class="u-color-catchy">{{ entry.fields.updatedAt | readableDate }}</dd>
+        <dd class="u-color-catchy">
+          <time-ago datetime="{{entry.fields.updatedAt}}">
+            {{ entry.fields.updatedAt | readableDate }}
+          </time-ago>
+        </dd>
       </div>
     {% endif %}
   </dl>
