@@ -61,6 +61,8 @@
         </dd>
       </div>
     {% endif %}
+
+    {% if entry.sys %}
     <div>
       <dt>Updated at</dt>
       <dd class="u-color-catchy">
@@ -69,10 +71,40 @@
         </time>
       </dd>
     </div>
+    {% endif %}
+
     {% if entry.fields.body %}
       <div>
         <dt>Reading time</dt>
         <dd class="u-color-catchy">{{ entry.fields.body | readingTime }}</dd>
+      </div>
+    {% endif %}
+
+    {% if entry.fields.stargazers %}
+      <div>
+        <dt>Stargazers</dt>
+        <dd class="u-color-catchy">{{ entry.fields.stargazers.totalCount }}</dd>
+      </div>
+    {% endif %}
+
+    {% if entry.fields.forks %}
+      <div>
+        <dt>Forks</dt>
+        <dd class="u-color-catchy">{{ entry.fields.forks.totalCount }}</dd>
+      </div>
+    {% endif %}
+
+    {% if entry.fields.collaborators %}
+      <div>
+        <dt>Collaborators</dt>
+        <dd class="u-color-catchy">{{ entry.fields.collaborators.totalCount }}</dd>
+      </div>
+    {% endif %}
+
+    {% if entry.fields.updatedAt %}
+      <div>
+        <dt>Last updated</dt>
+        <dd class="u-color-catchy">{{ entry.fields.updatedAt | readableDate }}</dd>
       </div>
     {% endif %}
   </dl>

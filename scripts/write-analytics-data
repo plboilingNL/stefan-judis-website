@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 require('dotenv').config();
-const { join } = require('path');
 const { google } = require('googleapis');
 const scopes = 'https://www.googleapis.com/auth/analytics.readonly';
 const { GOOGLE_CLIENT_EMAIL, GOOGLE_PRIVATE_KEY } = process.env;
@@ -16,7 +15,7 @@ const jwt = new google.auth.JWT(
 
 const { client } = require('../lib/contentful');
 const { contentTypeSlugs } = require('../site/_data/config');
-const { logSeparator, logSuccess, writeData } = require('./utils');
+const { logSeparator, logSuccess, writeDataFile } = require('./utils');
 const view_id = '157258229';
 
 async function getData() {
@@ -63,14 +62,11 @@ async function getData() {
     );
 
     logSuccess('Data enriched');
-    logSeparator('Writing JS data file');
+    logSeparator('Writing JSON data file');
 
-    writeData(
-      join('..', 'site', '_data', '_popularPosts.json'),
-      JSON.stringify(pages.slice(0, 10))
-    );
+    writeDataFile('_popularPosts.json', JSON.stringify(pages.slice(0, 10)));
 
-    logSuccess('JS file written');
+    logSuccess('JSON file written');
   } catch (error) {
     console.error(error);
   }

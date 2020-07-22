@@ -36,6 +36,7 @@
   "scripts": {
     "setup:icon-sprite": "./scripts/create-icon-sprite",
     "setup:popular-posts": "./scripts/write-analytics-data",
+    "setup:github-stats": "./scripts/write-github-data",
     "setup:sqip": "./scripts/sqip-it",
     "setup": "concurrently \"npm:setup:*\"",
     "dev": "npm run setup && eleventy --serve",

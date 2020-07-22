@@ -3,7 +3,7 @@ const { writeFile } = require('fs-extra');
 const isNetlify = (_) => !!process.env.DEPLOY_URL;
 const chalk = require('chalk');
 
-const DATA_PATH = path.resolve(__dirname, '..', '..', 'data');
+const DATA_PATH = path.resolve(__dirname, '..', '..', 'site', '_data');
 
 module.exports = {
   getCachePath: (name) =>
@@ -14,6 +14,6 @@ module.exports = {
   logSuccess: (text) => console.log(chalk.green(`✔ ${text}\n`)),
   logSeparator: (text) => console.log(chalk.yellow(`↻ ${text}...`)),
   shouldClearCache: process.env.WEBHOOK_TITLE === 'CLEAR_CUSTOM_CACHE',
-  writeData: (fileName, content) =>
+  writeDataFile: (fileName, content) =>
     writeFile(path.join(DATA_PATH, fileName), content),
 };

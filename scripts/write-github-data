@@ -1,35 +1,46 @@
 #!/usr/bin/env node
 
 require('dotenv').config();
-const { query } = require('../lib/contentful');
+const { queryContentful, queryGithub } = require('../lib/graphql');
+const camelcase = require('camelcase');
+const { logSeparator, logSuccess, writeDataFile } = require('./utils');
 
-const projectQuery = `
-  {
-    projectCollection{
-      items {
-        title
-        url
-        githubUrl
+const query = `
+{
+  user(login: "stefanjudis") {
+    repositories(first: 15, orderBy: {field: STARGAZERS, direction: DESC}, ) {
+      nodes {
+        ...Repo
+      }
+    }
+    pinnedItems(first: 6) {
+      nodes {
+        ... on Repository {
+          ...Repo
+        }
       }
     }
   }
-`;
+}
 
-const statsQuery = `
-query {
-  repository(owner: "random-mdn", name: "random-mdn-serverless") {
-    stargazers(first:1) {
-      totalCount
-    }
-
-    forks(first:1) {
-      totalCount
-    }
+fragment Repo on Repository {
+  name
+  description
+  url
+  updatedAt
+  collaborators {
+    totalCount
+  }
+  stargazers {
+    totalCount
+  }
+  forks {
+    totalCount
   }
 }`;
 
 async function getGitHubProjects() {
-  const { data } = await query(projectQuery);
+  const { data } = await queryContentful(getProjectQuery());
   return data.projectCollection.items.filter((project) =>
     project.githubUrl?.startsWith('https://github.com')
   );
@@ -37,16 +48,39 @@ async function getGitHubProjects() {
 
 async function getData() {
   try {
-    const projects = await getGitHubProjects();
-    console.log(projects);
+    logSeparator('Fetching GitHub data');
+
+    let { collection: projects } = Object.values(
+      (await queryGithub(query)).data.user
+    )
+      .map(({ nodes }) => nodes)
+      .flat()
+      .reduce(
+        (acc, cur) => {
+          if (!acc.set.has(cur.name)) {
+            acc.set.add(cur.name);
+            acc.collection.push(cur);
+          }
+
+          return acc;
+        },
+        { set: new Set(), collection: [] }
+      );
+
+    projects = projects.sort((a, b) =>
+      a.stargazers.totalCount > b.stargazers.totalCount ? -1 : 1
+    );
+
+    logSuccess('Data fetched');
+    logSeparator('Writing JSON data file');
+
+    writeDataFile('_githubProjects.json', JSON.stringify(projects));
+
+    logSuccess('JSON file written');
   } catch (e) {
     console.error(e);
     process.exit(1);
   }
 }
 
-// How to debug Node.js in 2020
-// set a breakpoint
-// open Node.js debug terminal
-// run script
 getData();

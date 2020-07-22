@@ -9,17 +9,17 @@ permalink: /projects/
 
 title: Projects
 desc: TODO
-subHeadline: Project sub headline
+subHeadline: git push all the things...
 ---
 
 {% import 'macros.njk' as macros %}
 
 <ul class="list-grid">
-  {% for item in contentful.projects %}
+  {% for item in _githubProjects %}
     <li>
       TODO
       <img src="{{ item.fields.coverImage.fields.file.url }}">
-      <a href="/projects/{{ item.fields.slug }}/">{{ item.fields.title }}</a>
+      <a href="/projects/{{ item.name }}/">{{ item.name }}</a>
       {{ macros.entryTopics(item, { includeHeadline: false, hideContentType: true }) }}
     {% endfor %}
 </ul>
