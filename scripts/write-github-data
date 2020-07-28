@@ -4,11 +4,27 @@ require('dotenv').config();
 const { queryContentful, queryGithub } = require('../lib/graphql');
 const camelcase = require('camelcase');
 const { logSeparator, logSuccess, writeDataFile } = require('./utils');
+const hasTopicToBeIncluded = (project) =>
+  project.repositoryTopics.nodes.some(
+    ({ topic }) => topic.name === 'show-on-my-website'
+  );
+const filterDuplicateRepositories = (repos) =>
+  repos.reduce(
+    (acc, cur) => {
+      if (!acc.set.has(cur.name)) {
+        acc.set.add(cur.name);
+        acc.collection.push(cur);
+      }
+
+      return acc;
+    },
+    { set: new Set(), collection: [] }
+  ).collection;
 
 const query = `
 {
   user(login: "stefanjudis") {
-    repositories(first: 15, orderBy: {field: STARGAZERS, direction: DESC}, ) {
+    repositories(first: 15, orderBy: {field: STARGAZERS, direction: DESC}, ownerAffiliations: OWNER) {
       nodes {
         ...Repo
       }
@@ -27,7 +43,15 @@ fragment Repo on Repository {
   name
   description
   url
-  updatedAt
+  pushedAt
+  repositoryTopics(first: 8) {
+    nodes {
+      topic {
+        name
+      }
+    }
+  }
+  description
   collaborators {
     totalCount
   }
@@ -37,7 +61,8 @@ fragment Repo on Repository {
   forks {
     totalCount
   }
-}`;
+}
+`;
 
 async function getGitHubProjects() {
   const { data } = await queryContentful(getProjectQuery());
@@ -50,24 +75,14 @@ async function getData() {
   try {
     logSeparator('Fetching GitHub data');
 
-    let { collection: projects } = Object.values(
-      (await queryGithub(query)).data.user
-    )
-      .map(({ nodes }) => nodes)
-      .flat()
-      .reduce(
-        (acc, cur) => {
-          if (!acc.set.has(cur.name)) {
-            acc.set.add(cur.name);
-            acc.collection.push(cur);
-          }
+    let { repositories, pinnedItems } = (await queryGithub(query)).data.user;
 
-          return acc;
-        },
-        { set: new Set(), collection: [] }
-      );
+    console.log(repositories.nodes);
 
-    projects = projects.sort((a, b) =>
+    const projects = filterDuplicateRepositories([
+      ...pinnedItems.nodes,
+      ...repositories.nodes.filter(hasTopicToBeIncluded),
+    ]).sort((a, b) =>
       a.stargazers.totalCount > b.stargazers.totalCount ? -1 : 1
     );
 

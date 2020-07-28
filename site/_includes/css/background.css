@@ -1,3 +1,7 @@
 .bg-default {
   background: var(--c-bg);
 }
+
+.bg-grey-brighter {
+  background: var(--grey-brighter);
+}

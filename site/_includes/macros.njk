@@ -96,19 +96,12 @@
       </div>
     {% endif %}
 
-    {% if entry.fields.collaborators %}
-      <div>
-        <dt>Collaborators</dt>
-        <dd class="u-color-catchy">{{ entry.fields.collaborators.totalCount }}</dd>
-      </div>
-    {% endif %}
-
-    {% if entry.fields.updatedAt %}
+    {% if entry.fields.pushedAt %}
       <div>
         <dt>Last updated</dt>
         <dd class="u-color-catchy">
-          <time-ago datetime="{{entry.fields.updatedAt}}">
-            {{ entry.fields.updatedAt | readableDate }}
+          <time-ago datetime="{{entry.fields.pushedAt}}">
+            {{ entry.fields.pushedAt | readableDate }}
           </time-ago>
         </dd>
       </div>

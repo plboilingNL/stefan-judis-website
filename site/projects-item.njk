@@ -11,7 +11,8 @@ permalink: "/projects/{{ project.name }}/"
 hasNarrowLayout: true
 
 eleventyComputed:
-  title: "{{project.owner}} / {{ project.name }}"
+  title: "{{ project.name }}"
+  subHeadline: "{{project.description}}"
 ---
 
 {% import 'macros.njk' as macros %}
